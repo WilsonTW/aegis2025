@@ -1,0 +1,6 @@
+{
+    "markdown-pdf.displayHeaderFooter": false,
+    "files.associations": {
+        "__threading_support": "c"
+    }
+}

@@ -1,0 +1,129 @@
+
+user
+    user_id
+    user_name
+    user_password
+    is_supplier
+    phone
+    contact_name
+    
+area
+    area_id
+    area_name
+    parent_area_id
+    address
+    lt_lat
+    lt_lng
+    rb_lat
+    rb_lng
+
+role
+    role_id
+    role_name
+    
+role_permission
+    role_permission_id
+    role_id
+    resource
+    method
+
+user_permission
+    user_permission_id
+    user_id
+    area_id
+    role_id
+
+device_type
+    device_type_id
+    device_type_name
+    tags
+    fields
+
+device
+    device_id
+    device_name
+    device_type_id
+    area_id
+    address
+    lat
+    lng
+    connection
+    device_state
+    enabled
+
+repair_order
+    repair_order_id
+    title
+    priority
+    description
+    expect_end_date
+    repair_order_state
+    completeness
+    photos
+    start_date
+    end_date
+    create_time
+    
+repair_item
+    repair_item_id
+    repair_order_id
+    description
+    repair_item_state
+    device_id
+    expect_end_date
+    repair_item_state
+    completeness
+    photos
+    start_date
+    end_date
+    create_time
+
+repair_record
+    repair_record_id
+    repair_order_id
+    repair_time_start
+    repair_time_end
+    description
+    photos
+    create_time
+
+repair_record_item
+    repair_record_item_id
+    repair_record_id
+    repair_item_id
+
+repair_record_user
+    repair_record_user_id
+    repair_record_id
+    user_id
+
+event
+    event_id
+    source
+    device_id
+    code
+    description
+    create_time
+
+rule_event_range
+    rule_event_range_id
+    device_id
+    field
+    min_value
+    max_value
+    event_id
+    code
+    description
+
+rule_device_state
+    rule_device_state_id
+    on_event_id
+    on_code
+    on_description
+    device_id
+    device_state
+    email
+    line_notify_id
+
+
+

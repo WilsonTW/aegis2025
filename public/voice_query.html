@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Voice Recorder</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #FFF;
+        }
+        table td{
+            border:1px solid #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        WebRTC Voice Recorder
+    </h1>
+    <div style="display:flex; align-items: center;">
+        <div id="recording" style="display:inline-block; margin:4px; width:32px; height:32px; border-radius:16px; background-color:#666666;"></div>
+        <button id="start" style="font-size:1.5rem; padding:4px;">Start Record</button>
+        <div id="querying" style="font-size:1.5rem; margin-left:16px; display:none;">Querying ...</div>
+    </div>
+    <hr>
+    <div id="out" style="width:100%"></div>
+    <script src="recorder.js"></script>
+</body>
+</html>

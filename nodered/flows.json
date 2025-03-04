@@ -1,0 +1,1817 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Pomcube",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "79f7449b1f905f36",
+        "type": "tab",
+        "label": "流程1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6685db6d0b8927e8",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Login Platform - update token",
+        "props": [],
+        "repeat": "600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 230,
+        "y": 140,
+        "wires": [
+            [
+                "345bb3681bb0243d"
+            ]
+        ]
+    },
+    {
+        "id": "e8b7c940360053fa",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 820,
+        "y": 140,
+        "wires": [
+            [
+                "6113a9880a00a644",
+                "9843ef144df950a3"
+            ]
+        ]
+    },
+    {
+        "id": "6113a9880a00a644",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "28439d0942b79c89",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Init",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// 部署節點後，此處添加的代碼將運行一次。 \n\n// 清除所有 flow 變數 \nvar keys = flow.keys();\nfor (var i = 0; i < keys.length; i++) {\n    flow.set(keys[i]);\n}\n\nflow.set(\"PLATFORM_URL\", \"http://host.docker.internal:3000\");\nflow.set(\"PLATFORM_USER_ACCOUNT\", \"admin\");\nflow.set(\"PLATFORM_USER_PASSWORD\", \"123456\");\n//flow.set(\"POMCUBE_URL\", \"https://d37ivnq13i0iwe.cloudfront.net/api/v1\");\nflow.set(\"POMCUBE_URL\", \"https://k7topdvct9.execute-api.ap-northeast-1.amazonaws.com\");\nflow.set(\"POMCUBE_MEASUREMENT_NAME\", \"pomcube_data\");\nflow.set(\"need_reload_all\", false);\nflow.set(\"device_connections\", []);\n",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "345bb3681bb0243d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "login",
+        "func": "\nmsg.method = \"POST\"\nmsg.url = flow.get(\"PLATFORM_URL\") + '/api/auth/login'\nmsg.payload = {\n    \"user_account\": flow.get(\"PLATFORM_USER_ACCOUNT\"),\n    \"user_password\": flow.get(\"PLATFORM_USER_PASSWORD\")\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "e8b7c940360053fa"
+            ]
+        ]
+    },
+    {
+        "id": "9843ef144df950a3",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "store platform token",
+        "func": "if (msg.statusCode == 200 || msg.statusCode == 201) {\n    flow.set(\"platform_token\", msg.payload.access_token);\n} else {\n    flow.set(\"platform_token\", null);\n}\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 140,
+        "wires": [
+            [
+                "9f6c03ad7cc8d368"
+            ]
+        ]
+    },
+    {
+        "id": "56e6f646bb820ea7",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Retry",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "10",
+        "topic": "",
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "72ed98139c99a95a"
+            ]
+        ]
+    },
+    {
+        "id": "72ed98139c99a95a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "check platform_token",
+        "func": "\nvar need_reload_all = flow.get(\"need_reload_all\");\nflow.set(\"need_reload_all\", false);\n\nif (need_reload_all || flow.get(\"platform_token\")==null) {\n    node.warn(\"Reload All !!!\");\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "345bb3681bb0243d"
+            ]
+        ]
+    },
+    {
+        "id": "ab50f9e9baf3a347",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Login Pomcube - update token",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "10",
+        "topic": "",
+        "x": 230,
+        "y": 840,
+        "wires": [
+            [
+                "01a103980ec2b172"
+            ]
+        ]
+    },
+    {
+        "id": "f1fb6abf755e4158",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 920,
+        "y": 840,
+        "wires": [
+            [
+                "8b35b3adb77d400f",
+                "5c0b127f12d33aa8"
+            ]
+        ]
+    },
+    {
+        "id": "8b35b3adb77d400f",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "0a02698962c07006",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "login",
+        "func": "\nvar device_connection = msg.payload;\n\nvar payload = {\n    //\"email\": device_connection.username,\n    \"grant_type\": \"\",\n    \"username\": device_connection.username,\n    \"password\": device_connection.password,\n    \"scope\": \"\",\n    \"client_id\": \"\",\n    \"client_secret\": \"\"\n}\n\nreturn {\n    device_connection: device_connection,\n    method: \"POST\",\n    headers: {\n        \"content-type\": 'application/x-www-form-urlencoded',\n        \"Accept\": 'application/json'\n    },\n    url: flow.get(\"POMCUBE_URL\") + '/login',\n    payload: payload,\n    parts: msg.parts\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 840,
+        "wires": [
+            [
+                "f30407395d288545",
+                "f1fb6abf755e4158"
+            ]
+        ]
+    },
+    {
+        "id": "469f18db2aa12cac",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "store pomcube token",
+        "func": "var device_connections = msg.payload\nflow.set(\"device_connections\", device_connections);\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 840,
+        "wires": [
+            [
+                "f67d8ddc2197ea06"
+            ]
+        ]
+    },
+    {
+        "id": "ec48960266ef4e70",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get device_connections",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "3",
+        "topic": "",
+        "x": 210,
+        "y": 480,
+        "wires": [
+            [
+                "40b2319e7b94c486"
+            ]
+        ]
+    },
+    {
+        "id": "c70aea579ef8f94a",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 820,
+        "y": 480,
+        "wires": [
+            [
+                "8ee4ae39f791e095",
+                "6fc386a145bc193a"
+            ]
+        ]
+    },
+    {
+        "id": "8ee4ae39f791e095",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "40b2319e7b94c486",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "var platform_token = flow.get(\"platform_token\")\nvar device_types = flow.get(\"device_types\")\nif (platform_token!=null && device_types!=null) {\n    msg.method = \"GET\"\n    msg.url = flow.get(\"PLATFORM_URL\") + '/api/device_connections'\n    msg.headers = {\n        'Authorization': 'Bearer ' + platform_token\n    }\n    msg.payload = null\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 480,
+        "wires": [
+            [
+                "c70aea579ef8f94a"
+            ]
+        ]
+    },
+    {
+        "id": "6fc386a145bc193a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "filter device_connections",
+        "func": "if (msg.statusCode == 200 || msg.statusCode == 201) {\n    var device_types = flow.get(\"device_types\")\n    var device_type = device_types.find(x=>x.device_type_name=='pomcube')\n    if (device_type!=null) {\n        msg.payload = msg.payload.filter(\n               x=>x.enabled\n            && x.username!=null\n            && x.username!=''\n            && x.password!=null\n            && x.password!=''\n            && x.device_type_id==device_type.device_type_id\n        )\n        var device_connections = msg.payload\n        // flow.set(\"device_connections\", device_connections);\n        msg.device_connections = device_connections;\n    }\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 540,
+        "wires": [
+            [
+                "4afb6574a713031a"
+            ]
+        ]
+    },
+    {
+        "id": "abfca5ace2720af1",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Retry",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "20",
+        "topic": "",
+        "x": 250,
+        "y": 540,
+        "wires": [
+            [
+                "f796073b19e45ed5"
+            ]
+        ]
+    },
+    {
+        "id": "f796073b19e45ed5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "check device_connections",
+        "func": "if (flow.get(\"device_connections\")==null) {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 540,
+        "wires": [
+            [
+                "40b2319e7b94c486"
+            ]
+        ]
+    },
+    {
+        "id": "4afb6574a713031a",
+        "type": "split",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 170,
+        "y": 640,
+        "wires": [
+            [
+                "53feb8c75e47c7ad"
+            ]
+        ]
+    },
+    {
+        "id": "b2e324d401dc12a6",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "836ebe23f76c2c4b",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 500,
+        "y": 640,
+        "wires": [
+            [
+                "eb79921ff23e403a"
+            ]
+        ]
+    },
+    {
+        "id": "53feb8c75e47c7ad",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "get devices",
+        "func": "var platform_token = flow.get(\"platform_token\")\nif (platform_token!=null) {\n    var device_connection_id = msg.payload.device_connection_id\n    var query = `\n{\n  devices(device_connection_id: ${device_connection_id}) {\n    device_name\n  }\n}\n`\n    msg = {\n      device_connection: msg.payload,\n      method: \"POST\",\n      url: flow.get(\"PLATFORM_URL\") + '/graphql',\n      headers: {\n          'Authorization': 'Bearer ' + platform_token\n      },\n      payload: {\n          \"query\": query\n      },\n      parts: msg.parts\n    }\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 640,
+        "wires": [
+            [
+                "836ebe23f76c2c4b"
+            ]
+        ]
+    },
+    {
+        "id": "eb79921ff23e403a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "if (msg.payload?.data?.devices!=null) {\n    var devices = msg.payload.data.devices;\n    var device_connection = msg.device_connection;\n    device_connection.devices = devices;\n    msg.payload = device_connection\n    return msg\n\n    /*    \n    var device_connections_flow = flow.get(\"device_connections\")\n    var device_connection_flow = device_connections_flow.find(x => x.device_connection_id == device_connection.device_connection_id)\n    if (device_connection_flow==null) {\n        device_connections_flow.push(device_connection)\n    } else {\n        device_connection = device_connection_flow\n    }\n    if (device_connection.devices == null) {\n        device_connection.devices = []\n    }\n    for (var dev of device_connection.devices) {\n        var device_connection_flow = device_connections_flow.find(x => x.device_connection_id == device_connection.device_connection_id)\n    }\n    msg.payload = msg.payload.data.devices\n    return msg;\n    */\n\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 640,
+        "wires": [
+            [
+                "0a02698962c07006"
+            ]
+        ]
+    },
+    {
+        "id": "2c54c4f565cfe27a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "store device_connections",
+        "func": "var old_device_connections = flow.get(\"device_connections\");\nif (old_device_connections==null) old_device_connections = []\n\nvar device_connections = msg.device_connections\nfor (var n=0; n<device_connections.length; n++) {\n    var device_connection = device_connections[n]\n    var devices = msg.payload[n]\n    var old_device_connection = old_device_connections.find(x=>x.device_connection_id==device_connection.device_connection_id)\n    if (old_device_connection!=null) {\n        device_connection.token = old_device_connection.token\n        var old_devices = old_device_connection.devices\n        for (var device of devices) {\n            var old_device = old_devices.find(x=>x.device_name==device.device_name)\n            if (old_device!=null) {\n                device.api_name = old_device.api_name\n                device.data = old_device.data\n            }\n        }\n    }\n    device_connection.devices = devices\n}\ndevice_connections = device_connections.filter(x=>x.devices!=null && x.devices.length>0)\n\nnode.warn(device_connections);\n\nmsg.device_connections = device_connections;\nflow.set(\"device_connections\", device_connections);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 640,
+        "wires": [
+            [
+                "b2e324d401dc12a6"
+            ]
+        ]
+    },
+    {
+        "id": "b411657939a0ffd5",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get device_types",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "topic": "",
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "9f6c03ad7cc8d368"
+            ]
+        ]
+    },
+    {
+        "id": "ae3114d5c3bf6c87",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 820,
+        "y": 340,
+        "wires": [
+            [
+                "a282cd23cbebaf1f",
+                "57a09b827ae71462"
+            ]
+        ]
+    },
+    {
+        "id": "a282cd23cbebaf1f",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9f6c03ad7cc8d368",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "var platform_token = flow.get(\"platform_token\")\nif (platform_token!=null) {\n    msg.method = \"GET\"\n    msg.url = flow.get(\"PLATFORM_URL\") + '/api/device_types'\n    msg.headers = {\n        'Authorization': 'Bearer ' + platform_token\n    }\n    msg.payload = null\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "ae3114d5c3bf6c87"
+            ]
+        ]
+    },
+    {
+        "id": "57a09b827ae71462",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "store device_types",
+        "func": "if (msg.statusCode == 200 || msg.statusCode == 201) {\n    flow.set(\"device_types\", msg.payload);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 340,
+        "wires": [
+            [
+                "40b2319e7b94c486"
+            ]
+        ]
+    },
+    {
+        "id": "186b63638cd87f2c",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Retry",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "20",
+        "topic": "",
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "4323d2e912a8fd88"
+            ]
+        ]
+    },
+    {
+        "id": "4323d2e912a8fd88",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "check device_types",
+        "func": "if (flow.get(\"device_types\")==null) {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "9f6c03ad7cc8d368"
+            ]
+        ]
+    },
+    {
+        "id": "01a103980ec2b172",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "var device_connections = flow.get(\"device_connections\")\nif (device_connections!=null) {\n    msg.device_connections = device_connections\n    msg.payload = device_connections\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 840,
+        "wires": [
+            [
+                "213a286199877de0"
+            ]
+        ]
+    },
+    {
+        "id": "213a286199877de0",
+        "type": "split",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 610,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f30407395d288545",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "a628d9192779e699",
+        "type": "join",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1250,
+        "y": 840,
+        "wires": [
+            [
+                "469f18db2aa12cac",
+                "edb2fc91127064e6"
+            ]
+        ]
+    },
+    {
+        "id": "f67d8ddc2197ea06",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1680,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "5c0b127f12d33aa8",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "var device_connection = msg.device_connection;\nif (msg.statusCode == 200 || msg.statusCode == 201) {\n    device_connection.token = msg?.payload?.access_token\n}\nmsg.payload = device_connection;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 840,
+        "wires": [
+            [
+                "a0af8a0643cf7ea5"
+            ]
+        ]
+    },
+    {
+        "id": "edb2fc91127064e6",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1400,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "fc1ad7317eed63d5",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Device API Name",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "12",
+        "topic": "",
+        "x": 210,
+        "y": 1060,
+        "wires": [
+            [
+                "5f0d1798439811b3"
+            ]
+        ]
+    },
+    {
+        "id": "ed4275a59e3666fb",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 980,
+        "y": 1060,
+        "wires": [
+            [
+                "29c1a7323c456f4f",
+                "9df53609581af803"
+            ]
+        ]
+    },
+    {
+        "id": "29c1a7323c456f4f",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "a0af8a0643cf7ea5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "get device list",
+        "func": "var device_connection = msg.device_connection;\nreturn {\n    device_connection: device_connection,\n    method: \"GET\",\n    url: flow.get(\"POMCUBE_URL\") + '/nzpu/user_devices',\n    headers: {\n        'Authorization': 'Bearer ' + device_connection.token\n    },\n    parts: msg.parts\n    /*\n    ,payload: {\n        \"NS_pageInde\": \"1\",\n        \"NS_pageSize\": \"20\"\n    }\n    */\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 1060,
+        "wires": [
+            [
+                "06860cb4ce3c0cc3",
+                "ed4275a59e3666fb"
+            ]
+        ]
+    },
+    {
+        "id": "c1660133ae435a3e",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "store api name",
+        "func": "var device_connections = msg.payload\nflow.set(\"device_connections\", device_connections);\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1640,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f0d1798439811b3",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "var device_connections = flow.get(\"device_connections\")\nif (device_connections!=null) {\n    device_connections.filter(x=>x.token!=null && x.token!='')\n    if (device_connections.length>0) {\n        msg.payload = device_connections\n        return msg;\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 1060,
+        "wires": [
+            [
+                "6648ec7ba3b462b6"
+            ]
+        ]
+    },
+    {
+        "id": "6648ec7ba3b462b6",
+        "type": "split",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 570,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "06860cb4ce3c0cc3",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 15",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "0816ab15a1fd58b7",
+        "type": "join",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 1390,
+        "y": 1060,
+        "wires": [
+            [
+                "c1660133ae435a3e",
+                "f73572064fe5c921"
+            ]
+        ]
+    },
+    {
+        "id": "9df53609581af803",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "var device_connection = msg.device_connection\n\nvar device_names = {}\nif (msg.statusCode == 200 || msg.statusCode == 201) {\n    var pomcubes = msg.payload\n    if (Array.isArray(pomcubes)) {\n        for (var device of device_connection.devices) {\n            var pomcube = pomcubes.find(x => x.device_sn ==device.device_name)\n            if (pomcube!=null) {\n                device.api_name = pomcube.device_id\n                // device.OnLine = 1\n            }\n        }\n    }\n}\nmsg.payload = device_connection\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 1060,
+        "wires": [
+            [
+                "0816ab15a1fd58b7"
+            ]
+        ]
+    },
+    {
+        "id": "f73572064fe5c921",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "4fe0914d6eecc4b9",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Device real data",
+        "props": [],
+        "repeat": "120",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "15",
+        "topic": "",
+        "x": 210,
+        "y": 1280,
+        "wires": [
+            [
+                "07f77317b2282617"
+            ]
+        ]
+    },
+    {
+        "id": "b27ae1dc8aa418c5",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1320,
+        "y": 1280,
+        "wires": [
+            [
+                "4f88fba46651c1f3",
+                "af0bc623baabd8f1"
+            ]
+        ]
+    },
+    {
+        "id": "4f88fba46651c1f3",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 18",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1500,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "24fe0fe6fe68de41",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "get realData",
+        "func": "var device = msg.payload;\nvar device_connection = device.device_connection;\nreturn {\n    device: device,\n    method: \"GET\",\n    url: flow.get(\"POMCUBE_URL\") + '/api/v2/realData?deviceId=' + device.api_name,\n    headers: {\n        'Authorization': 'Bearer ' + device_connection.token\n    },\n    parts: msg.parts\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 1280,
+        "wires": [
+            [
+                "22dc33cfbdda8fce",
+                "afbc472747e38f29"
+            ]
+        ]
+    },
+    {
+        "id": "07f77317b2282617",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "split device_connection",
+        "func": "var device_connections = flow.get(\"device_connections\")\nif (device_connections!=null) {\n    device_connections = JSON.parse(JSON.stringify(device_connections))\n    device_connections.filter(x=>x.token!=null && x.token!='')\n    if (device_connections.length>0) {\n        msg.payload = device_connections\n        return msg\n    }\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1280,
+        "wires": [
+            [
+                "46ff9293cbb5ebef",
+                "f7d0ce852d3e77e8"
+            ]
+        ]
+    },
+    {
+        "id": "f7d0ce852d3e77e8",
+        "type": "split",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 650,
+        "y": 1280,
+        "wires": [
+            [
+                "b2daf3711e31c352"
+            ]
+        ]
+    },
+    {
+        "id": "22dc33cfbdda8fce",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 19",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "af0bc623baabd8f1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "join device",
+        "func": "var device = msg.device\ndevice.real = null\nif (msg.statusCode == 200 || msg.statusCode == 201) {\n    var NS_data = msg?.payload?.NS_data;\n    device.real = {\n        \"OnLine\": NS_data?.NS_OnLine,\n        \"SolarPower\": NS_data?.NS_SolarPower,\n        \"GenPower\": NS_data?.NS_GenPower,\n        \"LoadPower\": NS_data?.NS_LoadPower,\n        \"GridPower\": NS_data?.NS_GridPower,\n        \"BatSoC\": NS_data?.NS_Battery?.NS_SOC / 10,\n        \"EnvTemp1\": NS_data?.NS_Battery?.NS_MinCellTemp / 10,\n        \"EnvTemp2\": NS_data?.NS_Battery?.NS_MaxCellTemp / 10,\n        \"BatCurr\": NS_data?.NS_Battery?.NS_TotalCurr / 100,\n        \"BatVolt\": NS_data?.NS_Battery?.NS_TotalVolt / 100\n    }\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 1280,
+        "wires": [
+            [
+                "5d64022224e3b76c",
+                "51cf63dec13bf643"
+            ]
+        ]
+    },
+    {
+        "id": "b2daf3711e31c352",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "split device",
+        "func": "var device_connection = msg.payload;\nvar devices = device_connection.devices\nfor (var device of devices) {\n    device.device_connection = device_connection\n}\nmsg.payload = devices.filter(x => x.api_name != null && x.api_name != '')\nnode.warn(msg.payload)\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 1280,
+        "wires": [
+            [
+                "3ee1831c52b007bb",
+                "80c734922f5bf792"
+            ]
+        ]
+    },
+    {
+        "id": "3ee1831c52b007bb",
+        "type": "split",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 970,
+        "y": 1280,
+        "wires": [
+            [
+                "24fe0fe6fe68de41",
+                "876caca6b1dc1170"
+            ]
+        ]
+    },
+    {
+        "id": "46ff9293cbb5ebef",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 26",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "80c734922f5bf792",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 27",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "876caca6b1dc1170",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 28",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "5d64022224e3b76c",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 29",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1680,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "05b9120f6225ee33",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "store to platform",
+        "func": "\nvar devices = msg.payload;\nvar device_connection = devices[0].device_connection\nvar measurement_name = flow.get(\"POMCUBE_MEASUREMENT_NAME\")\n\nvar new_datas = [];\nfor (var device of devices) {\n    if (device.data==null) continue;\n    var new_data = Object.assign({ \"DeviceName\": device.device_name }, device.data)\n    new_datas.push(new_data)\n}\n\nif (new_datas.length>0) {\n    return {\n        device_connection: device_connection,\n        method: \"POST\",\n        url: flow.get(\"PLATFORM_URL\") + `/api/device_datas/${device_connection.organization_id}/${measurement_name}/write`,\n        headers: {\n            'Authorization': 'Bearer ' + device_connection.token\n        },\n        payload: new_datas,\n        parts: msg.parts\n    }\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2370,
+        "y": 1280,
+        "wires": [
+            [
+                "8353de305947bfa8",
+                "5398596daba58bd0"
+            ]
+        ]
+    },
+    {
+        "id": "5398596daba58bd0",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2600,
+        "y": 1280,
+        "wires": [
+            [
+                "8aea9ff004f498e7",
+                "ef4433e45e7a4653"
+            ]
+        ]
+    },
+    {
+        "id": "8aea9ff004f498e7",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 31",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2760,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "8353de305947bfa8",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 32",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2580,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "b8b4a7118fb71367",
+        "type": "join",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 3010,
+        "y": 1280,
+        "wires": [
+            [
+                "e0f6c6c28fd8ea47"
+            ]
+        ]
+    },
+    {
+        "id": "e0f6c6c28fd8ea47",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 41",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3160,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "833c93cca5eccd2a",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/notify_device_changed",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1500,
+        "wires": [
+            [
+                "365ca06189018ba6"
+            ]
+        ]
+    },
+    {
+        "id": "7f7b29be78e212ed",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "365ca06189018ba6",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set need_reload_all = true",
+        "func": "node.warn(\"/notify_device_changed\");\nflow.set(\"need_reload_all\", true);\nmsg.payload = \"ok\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1500,
+        "wires": [
+            [
+                "7f7b29be78e212ed"
+            ]
+        ]
+    },
+    {
+        "id": "792fd7b467c03e5a",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 1540,
+        "wires": [
+            [
+                "ca824cad9f92593a"
+            ]
+        ]
+    },
+    {
+        "id": "ca824cad9f92593a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set need_reload_all = true",
+        "func": "flow.set(\"need_reload_all\", true);\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e5765aee19df0882",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "store online to platform",
+        "func": "\nvar device_connection = msg.payload\nvar devices = device_connection.devices\nvar measurement_name = flow.get(\"POMCUBE_MEASUREMENT_NAME\")\n\nvar new_datas = [];\nfor (var device of devices) {\n    var new_data = {\n        \"DeviceName\": device.device_name,\n        \"OnLine\": device.OnLine\n    }\n    new_datas.push(new_data)\n}\n\n\nif (new_datas.length>0) {\n    return {\n        device_connection: device_connection,\n        method: \"POST\",\n        url: flow.get(\"PLATFORM_URL\") + `/api/device_datas/${device_connection.organization_id}/${measurement_name}/write`,\n        headers: {\n            'Authorization': 'Bearer ' + device_connection.token\n        },\n        payload: new_datas,\n        parts: msg.parts\n    }\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 960,
+        "wires": [
+            [
+                "49302f763abfb6eb",
+                "6e98a59bf59475cf"
+            ]
+        ]
+    },
+    {
+        "id": "49302f763abfb6eb",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 42",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1700,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "6e98a59bf59475cf",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1700,
+        "y": 960,
+        "wires": [
+            [
+                "af4b0e8545b4b6bd"
+            ]
+        ]
+    },
+    {
+        "id": "a1d03698675e42d8",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1860,
+        "y": 1280,
+        "wires": [
+            [
+                "71cd6d122aa0f789",
+                "ba68806074414948"
+            ]
+        ]
+    },
+    {
+        "id": "71cd6d122aa0f789",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 43",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2040,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "51cf63dec13bf643",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "get statistics",
+        "func": "var device = msg.device;\nvar device_connection = device.device_connection;\nreturn {\n    device: device,\n    method: \"GET\",\n    url: flow.get(\"POMCUBE_URL\") + '/api/v2/statistics?deviceId=' + device.api_name,\n    headers: {\n        'Authorization': 'Bearer ' + device_connection.token\n    },\n    parts: msg.parts\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1690,
+        "y": 1280,
+        "wires": [
+            [
+                "69fb0a74675e3338",
+                "f33fbbc51bbb3759"
+            ]
+        ]
+    },
+    {
+        "id": "69fb0a74675e3338",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 44",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1860,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "ba68806074414948",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "join device",
+        "func": "var device = msg.device;\n//var device_connection = device.device_connection;\n\ndevice.stat = null\nif (msg.statusCode == 200 || msg.statusCode == 201) {\n    var NS_data = msg?.payload?.NS_data;\n    device.stat = {\n        \"GridEnergy\": NS_data?.NS_GridFromTotal / 1000,\n        \"LoadEnergy\": NS_data?.NS_LoadToTotal / 1000,\n        \"SolarEnergy\": NS_data?.NS_PVTotal / 1000,\n        \"GenEnergy\": NS_data?.NS_GeneratorFromTotal / 1000,\n        \"BatEnergy\": NS_data?.NS_BatteryFromTotal / 1000\n    }\n}\n\ndevice.data = {};\nObject.assign(device.data, device.real)\nObject.assign(device.data, device.stat)\n\nnode.warn({\n    device_name: device.device_name,\n    api_name: device.api_name,\n    OnLine: device.data.OnLine,\n    LoadPower: device.data.LoadPower,\n    SolarEnergy: device.data.SolarEnergy\n});\nmsg.payload = device;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2030,
+        "y": 1280,
+        "wires": [
+            [
+                "06acee5ceb6a9ecf",
+                "1e32ab52beb767f7"
+            ]
+        ]
+    },
+    {
+        "id": "06acee5ceb6a9ecf",
+        "type": "join",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 2190,
+        "y": 1280,
+        "wires": [
+            [
+                "05b9120f6225ee33",
+                "305116083f2663e6"
+            ]
+        ]
+    },
+    {
+        "id": "1e32ab52beb767f7",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 46",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2220,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "ef4433e45e7a4653",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "join device_connection",
+        "func": "msg.payload = msg.device_connection\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2820,
+        "y": 1280,
+        "wires": [
+            [
+                "b8b4a7118fb71367"
+            ]
+        ]
+    },
+    {
+        "id": "af4b0e8545b4b6bd",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 47",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1900,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "305116083f2663e6",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 48",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2400,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "f33fbbc51bbb3759",
+        "type": "delay",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "2000",
+        "randomLast": "5000",
+        "randomUnits": "milliseconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1770,
+        "y": 1380,
+        "wires": [
+            [
+                "a1d03698675e42d8"
+            ]
+        ]
+    },
+    {
+        "id": "afbc472747e38f29",
+        "type": "delay",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "2000",
+        "randomLast": "5000",
+        "randomUnits": "milliseconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1210,
+        "y": 1360,
+        "wires": [
+            [
+                "b27ae1dc8aa418c5"
+            ]
+        ]
+    }
+]

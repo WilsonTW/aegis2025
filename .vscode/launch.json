@@ -1,0 +1,26 @@
+{
+    // 使用 IntelliSense 以得知可用的屬性。
+    // 暫留以檢視現有屬性的描述。
+    // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "start:debug"
+            ],
+            "env": {
+                "HTTP_PORT": "3080",
+                "HTTPS_PORT": "3443",
+                "NODERED_EXTERNAL_PORT": "1880",
+                "TEST_MODE": "true"
+                //"INFLUXDB_TOKEN": "1lTWzUtNZq6kfoR249sRG5UB4k3n4eJixQ4bzN1MVveIfAS1wErmBlatIvacWq2tountrKiBY6IKFQHXG8AjAg==",
+                //"INFLUXDB_TOKEN": "zLi7R-fu6DPkEcKOJVzzH37nGKvfG1vtMdCOgu_yAaS-A8XuwyyIZxegt4Y1kJYT9kraDfVlBK7P5Fdg1-ARjA=="
+            }
+        }
+    ]
+}

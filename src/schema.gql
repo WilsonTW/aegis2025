@@ -1,0 +1,438 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""AuthLogin"""
+type AuthLogin {
+  access_token: String!
+}
+
+"""User"""
+type UserGet {
+  user_id: Int!
+  user_account: String!
+  user_name: String!
+  user_password: String!
+  domain_id: Int
+  role_id: Int
+  is_supplier: Boolean!
+  phone: String!
+  email: String!
+  line_notify_token: String!
+  contact_name: String!
+  create_time: DateTime
+  expire_time: DateTime
+  is_expired: Boolean
+  domain: DomainGet
+  role: RoleGet
+  power_schedulers(power_scheduler_id: Int, domain_id: Int, device_id: Int, timezone: String, crons: String, notify_user_id: Int, update_time: DateTime, start_time: DateTime, stop_time: DateTime, running: Boolean, info: String, enabled: Boolean): [PowerSchedulerGet!]
+  repair_order_creator(repair_order_id: Int, domain_id: Int, creator_id: Int, title: String, contact_name: String, contact_phone: String, contact_email: String, priority: Int, custom_description: String, repair_description: String, expect_end_date: DateTime, repair_order_state: String, repair_order_type: String, completeness: Float, photos: String, supplier_id: Int, assign_user_id: Int, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairOrderGet!]
+  repair_order_supplier(repair_order_id: Int, domain_id: Int, creator_id: Int, title: String, contact_name: String, contact_phone: String, contact_email: String, priority: Int, custom_description: String, repair_description: String, expect_end_date: DateTime, repair_order_state: String, repair_order_type: String, completeness: Float, photos: String, supplier_id: Int, assign_user_id: Int, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairOrderGet!]
+  repair_order_assign_user(repair_order_id: Int, domain_id: Int, creator_id: Int, title: String, contact_name: String, contact_phone: String, contact_email: String, priority: Int, custom_description: String, repair_description: String, expect_end_date: DateTime, repair_order_state: String, repair_order_type: String, completeness: Float, photos: String, supplier_id: Int, assign_user_id: Int, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairOrderGet!]
+  repair_order_historys(repair_order_history_id: Int, repair_order_id: Int, repair_item_id: Int, repair_record_id: Int, user_id: Int, user_name: String, table_name: String, difference: String, snapshot: String, create_time: DateTime): [RepairOrderHistoryGet!]
+  repair_user_records(repair_user_record_id: Int, repair_record_id: Int, user_id: Int): [RepairUserRecordGet!]
+  mails(mail_id: Int, mail_type: String, user_id: Int, content: String, readed: Boolean, repair_order_id: Int, device_id: Int, create_time: DateTime): [MailGet!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""Setting"""
+type SettingGet {
+  setting_id: Int!
+  setting_value: String!
+}
+
+"""Domain"""
+type DomainGet {
+  domain_id: Int!
+  domain_name: String!
+  parent_domain_id: Int
+  is_organization: Boolean!
+  address: String!
+  lat: String
+  lng: String
+  zoom: Float
+  photos: String!
+  feed_in_tariffs: String
+  feed_in_tariff_now: Float
+  data_sources: String!
+  parent_domain: DomainGet
+  child_domains(domain_id: Int, domain_name: String, parent_domain_id: Int, is_organization: Boolean, address: String, lat: String, lng: String, zoom: Float, photos: String, feed_in_tariffs: String, feed_in_tariff_now: Float, data_sources: String): [DomainGet!]
+  roles(role_id: Int, role_name: String, domain_id: Int, page_permission: String, user_permission: String): [RoleGet!]
+  users(user_id: Int, user_account: String, user_name: String, user_password: String, domain_id: Int, role_id: Int, is_supplier: Boolean, phone: String, email: String, line_notify_token: String, contact_name: String, create_time: DateTime, expire_time: DateTime): [UserGet!]
+  device_connections(device_connection_id: Int, device_connection_name: String, device_type_id: Int, organization_id: Int, url: String, host: String, port: Int, username: String, password: String, token: String, org: String, database_name: String, enabled: Boolean, extra: String): [DeviceConnectionGet!]
+  devices(device_id: Int, device_name: String, place_name: String, device_alias_name: String, device_type_id: Int, device_type_category_id: Int, device_connection_id: Int, domain_id: Int, address: String, lat: String, lng: String, is_online: Boolean, output_power_capacity: Float, bat_capacity: Float, solar_capacity: Float, solar_area: Float, solar_eff: Float, device_state: String, error_code: String, error_description: String, last_data: String, enabled: Boolean, external_devices: String, extra: String, install_time: DateTime, create_time: DateTime, last_connect_time: DateTime): [DeviceGet!]
+  power_schedulers(power_scheduler_id: Int, domain_id: Int, device_id: Int, timezone: String, crons: String, notify_user_id: Int, update_time: DateTime, start_time: DateTime, stop_time: DateTime, running: Boolean, info: String, enabled: Boolean): [PowerSchedulerGet!]
+  schedulers(scheduler_id: Int, scheduler_name: String, organization_id: Int, device_type_id: Int, device_input_id: Int, device_id: Int, cron: String): [SchedulerGet!]
+  repair_orders(repair_order_id: Int, domain_id: Int, creator_id: Int, title: String, contact_name: String, contact_phone: String, contact_email: String, priority: Int, custom_description: String, repair_description: String, expect_end_date: DateTime, repair_order_state: String, repair_order_type: String, completeness: Float, photos: String, supplier_id: Int, assign_user_id: Int, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairOrderGet!]
+  events(event_id: Int, event_name: String, event_type: String, domain_id: Int, device_type_id: Int, device_output_id: Int, device_name: String, compare_function: String, message: String, not_trigger_second: Int, trigger_onchange: Boolean, enabled: Boolean, notifys: String): [EventGet!]
+  all_domains(domain_id: Int, domain_name: String, parent_domain_id: Int, is_organization: Boolean, address: String, lat: String, lng: String, zoom: Float, photos: String, feed_in_tariffs: String, feed_in_tariff_now: Float, data_sources: String, max_deepth: Int = 1000000): [DomainGet!]
+  all_users(user_id: Int, user_account: String, user_name: String, user_password: String, domain_id: Int, role_id: Int, is_supplier: Boolean, phone: String, email: String, line_notify_token: String, contact_name: String, create_time: DateTime, expire_time: DateTime, max_deepth: Int = 1000000): [UserGet!]
+  all_devices(device_id: Int, device_name: String, place_name: String, device_alias_name: String, device_type_id: Int, device_type_category_id: Int, device_connection_id: Int, domain_id: Int, address: String, lat: String, lng: String, is_online: Boolean, output_power_capacity: Float, bat_capacity: Float, solar_capacity: Float, solar_area: Float, solar_eff: Float, device_state: String, error_code: String, error_description: String, last_data: String, enabled: Boolean, external_devices: String, extra: String, install_time: DateTime, create_time: DateTime, last_connect_time: DateTime, max_deepth: Int = 1000000): [DeviceGet!]
+  all_repair_orders(repair_order_id: Int, domain_id: Int, creator_id: Int, title: String, contact_name: String, contact_phone: String, contact_email: String, priority: Int, custom_description: String, repair_description: String, expect_end_date: DateTime, repair_order_state: String, repair_order_type: String, completeness: Float, photos: String, supplier_id: Int, assign_user_id: Int, start_time: DateTime, end_time: DateTime, create_time: DateTime, max_deepth: Int = 1000000): [RepairOrderGet!]
+}
+
+"""Role"""
+type RoleGet {
+  role_id: Int!
+  role_name: String!
+  domain_id: Int
+  page_permission: String!
+  user_permission: String!
+  domain: DomainGet
+  users(user_id: Int, user_account: String, user_name: String, user_password: String, domain_id: Int, role_id: Int, is_supplier: Boolean, phone: String, email: String, line_notify_token: String, contact_name: String, create_time: DateTime, expire_time: DateTime): [UserGet!]
+}
+
+"""DeviceConnection"""
+type DeviceConnectionGet {
+  device_connection_id: Int!
+  device_connection_name: String!
+  device_type_id: Int
+  organization_id: Int
+  url: String
+  host: String
+  port: Int
+  username: String
+  password: String
+  token: String
+  org: String
+  database_name: String
+  enabled: Boolean!
+  extra: String!
+  device_type: DeviceTypeGet
+  organization: DomainGet
+  devices(device_id: Int, device_name: String, place_name: String, device_alias_name: String, device_type_id: Int, device_type_category_id: Int, device_connection_id: Int, domain_id: Int, address: String, lat: String, lng: String, is_online: Boolean, output_power_capacity: Float, bat_capacity: Float, solar_capacity: Float, solar_area: Float, solar_eff: Float, device_state: String, error_code: String, error_description: String, last_data: String, enabled: Boolean, external_devices: String, extra: String, install_time: DateTime, create_time: DateTime, last_connect_time: DateTime): [DeviceGet!]
+}
+
+"""Device"""
+type DeviceGet {
+  device_id: Int!
+  device_name: String!
+  place_name: String!
+  device_alias_name: String!
+  device_type_id: Int
+  device_type_category_id: Int
+  device_connection_id: Int
+  domain_id: Int
+  address: String!
+  lat: String
+  lng: String
+  is_online: Boolean!
+  output_power_capacity: Float
+  bat_capacity: Float
+  solar_capacity: Float
+  solar_area: Float
+  solar_eff: Float
+  device_state: String!
+  error_code: String!
+  error_description: String!
+  last_data: String!
+  enabled: Boolean!
+  external_devices: String!
+  extra: String!
+  install_time: DateTime
+  create_time: DateTime
+  last_connect_time: DateTime
+  device_type: DeviceTypeGet
+  device_type_category: DeviceTypeCategoryGet
+  device_connection: DeviceConnectionGet
+  domain: DomainGet
+  power_schedulers(power_scheduler_id: Int, domain_id: Int, device_id: Int, timezone: String, crons: String, notify_user_id: Int, update_time: DateTime, start_time: DateTime, stop_time: DateTime, running: Boolean, info: String, enabled: Boolean): [PowerSchedulerGet!]
+  schedulers(scheduler_id: Int, scheduler_name: String, organization_id: Int, device_type_id: Int, device_input_id: Int, device_id: Int, cron: String): [SchedulerGet!]
+  repair_items(repair_item_id: Int, repair_order_id: Int, repair_type_id: Int, description: String, repair_item_state: String, device_id: Int, expect_end_date: DateTime, completeness: Float, photos: String, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairItemGet!]
+  mails(mail_id: Int, mail_type: String, user_id: Int, content: String, readed: Boolean, repair_order_id: Int, device_id: Int, create_time: DateTime): [MailGet!]
+}
+
+"""PowerScheduler"""
+type PowerSchedulerGet {
+  power_scheduler_id: Int!
+  domain_id: Int
+  device_id: Int
+  timezone: String
+  crons: String
+  notify_user_id: Int
+  update_time: DateTime
+  start_time: DateTime
+  stop_time: DateTime
+  running: Boolean!
+  info: String!
+  enabled: Boolean!
+  domain: DomainGet
+  device: DeviceGet
+  notify_user: UserGet
+}
+
+"""Scheduler"""
+type SchedulerGet {
+  scheduler_id: Int!
+  scheduler_name: String!
+  organization_id: Int
+  device_type_id: Int
+  device_input_id: Int
+  device_id: Int
+  cron: String
+  organization: DomainGet
+  device_type: DeviceTypeGet
+  device: DeviceGet
+  device_input: DeviceInputGet
+}
+
+"""RepairOrder"""
+type RepairOrderGet {
+  repair_order_id: Int!
+  domain_id: Int
+  creator_id: Int
+  title: String!
+  contact_name: String!
+  contact_phone: String!
+  contact_email: String!
+  priority: Int!
+  custom_description: String!
+  repair_description: String!
+  expect_end_date: DateTime
+  repair_order_state: String!
+  repair_order_type: String!
+  completeness: Float!
+  photos: String!
+  supplier_id: Int
+  assign_user_id: Int
+  start_time: DateTime
+  end_time: DateTime
+  create_time: DateTime
+  domain: DomainGet
+  creator: UserGet
+  supplier: UserGet
+  assign_user: UserGet
+  repair_order_historys(repair_order_history_id: Int, repair_order_id: Int, repair_item_id: Int, repair_record_id: Int, user_id: Int, user_name: String, table_name: String, difference: String, snapshot: String, create_time: DateTime): [RepairOrderHistoryGet!]
+  repair_items(repair_item_id: Int, repair_order_id: Int, repair_type_id: Int, description: String, repair_item_state: String, device_id: Int, expect_end_date: DateTime, completeness: Float, photos: String, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairItemGet!]
+  repair_records(repair_record_id: Int, repair_order_id: Int, repair_item_id: Int, start_time: DateTime, end_time: DateTime, description: String, photos: String, create_time: DateTime, update_time: DateTime): [RepairRecordGet!]
+  mails(mail_id: Int, mail_type: String, user_id: Int, content: String, readed: Boolean, repair_order_id: Int, device_id: Int, create_time: DateTime): [MailGet!]
+}
+
+"""Event"""
+type EventGet {
+  event_id: Int!
+  event_name: String!
+  event_type: String!
+  domain_id: Int
+  device_type_id: Int
+  device_output_id: Int
+  device_name: String!
+  compare_function: String!
+  message: String!
+  not_trigger_second: Int!
+  trigger_onchange: Boolean!
+  enabled: Boolean!
+  notifys: String!
+  domain: DomainGet
+  device_type: DeviceTypeGet
+  device_output: DeviceOutputGet
+}
+
+"""PagePermission"""
+type PagePermissionGet {
+  page_permission_id: Int!
+  page_name: String!
+  permissions: String!
+}
+
+"""RepairOrderHistory"""
+type RepairOrderHistoryGet {
+  repair_order_history_id: Int!
+  repair_order_id: Int
+  repair_item_id: Int
+  repair_record_id: Int
+  user_id: Int
+  user_name: String!
+  table_name: String!
+  difference: String!
+  snapshot: String!
+  create_time: DateTime
+  repair_order: RepairOrderGet
+  user: UserGet
+}
+
+"""RepairUserRecord"""
+type RepairUserRecordGet {
+  repair_user_record_id: Int!
+  repair_record_id: Int
+  user_id: Int
+  repair_record: RepairRecordGet
+  user: UserGet
+}
+
+"""Mail"""
+type MailGet {
+  mail_id: Int!
+  mail_type: String!
+  user_id: Int
+  content: String!
+  readed: Boolean!
+  repair_order_id: Int
+  device_id: Int
+  create_time: DateTime
+  user: UserGet
+  repair_order: RepairOrderGet
+  device: DeviceGet
+}
+
+"""DeviceTypeCategory"""
+type DeviceTypeCategoryGet {
+  device_type_category_id: Int!
+  device_type_category_name: String!
+  device_type_category_alias_name: String!
+  device_types(device_type_id: Int, device_type_name: String, device_type_alias_name: String, device_type_category_id: Int, connection_params: String, is_energy_storage: Boolean): [DeviceTypeGet!]
+  devices(device_id: Int, device_name: String, place_name: String, device_alias_name: String, device_type_id: Int, device_type_category_id: Int, device_connection_id: Int, domain_id: Int, address: String, lat: String, lng: String, is_online: Boolean, output_power_capacity: Float, bat_capacity: Float, solar_capacity: Float, solar_area: Float, solar_eff: Float, device_state: String, error_code: String, error_description: String, last_data: String, enabled: Boolean, external_devices: String, extra: String, install_time: DateTime, create_time: DateTime, last_connect_time: DateTime): [DeviceGet!]
+}
+
+"""DeviceType"""
+type DeviceTypeGet {
+  device_type_id: Int!
+  device_type_name: String!
+  device_type_alias_name: String!
+  device_type_category_id: Int
+  connection_params: String!
+  is_energy_storage: Boolean!
+  device_type_category: DeviceTypeCategoryGet
+  device_connections(device_connection_id: Int, device_connection_name: String, device_type_id: Int, organization_id: Int, url: String, host: String, port: Int, username: String, password: String, token: String, org: String, database_name: String, enabled: Boolean, extra: String): [DeviceConnectionGet!]
+  device_outputs(device_output_id: Int, device_output_name: String, device_type_id: Int, output_type: String, path: String, data_type: String, device_state_field: String, device_error_code_field: String, device_error_description_field: String, is_store: Boolean, properties: String): [DeviceOutputGet!]
+  device_inputs(device_input_id: Int, device_input_name: String, device_type_id: Int, input_type: String, method: String, path: String, data_type: String, query: String, autorun: Boolean, run_every_second: Int, run_order: Int, response_output_id: Int): [DeviceInputGet!]
+  devices(device_id: Int, device_name: String, place_name: String, device_alias_name: String, device_type_id: Int, device_type_category_id: Int, device_connection_id: Int, domain_id: Int, address: String, lat: String, lng: String, is_online: Boolean, output_power_capacity: Float, bat_capacity: Float, solar_capacity: Float, solar_area: Float, solar_eff: Float, device_state: String, error_code: String, error_description: String, last_data: String, enabled: Boolean, external_devices: String, extra: String, install_time: DateTime, create_time: DateTime, last_connect_time: DateTime): [DeviceGet!]
+  schedulers(scheduler_id: Int, scheduler_name: String, organization_id: Int, device_type_id: Int, device_input_id: Int, device_id: Int, cron: String): [SchedulerGet!]
+  repair_types(repair_type_id: Int, repair_type_name: String, device_type_id: Int): [RepairTypeGet!]
+  events(event_id: Int, event_name: String, event_type: String, domain_id: Int, device_type_id: Int, device_output_id: Int, device_name: String, compare_function: String, message: String, not_trigger_second: Int, trigger_onchange: Boolean, enabled: Boolean, notifys: String): [EventGet!]
+}
+
+"""DeviceOutput"""
+type DeviceOutputGet {
+  device_output_id: Int!
+  device_output_name: String!
+  device_type_id: Int
+  output_type: String!
+  path: String
+  data_type: String!
+  device_state_field: String
+  device_error_code_field: String
+  device_error_description_field: String
+  is_store: Boolean!
+  properties: String
+  device_type: DeviceTypeGet
+  device_inputs(device_input_id: Int, device_input_name: String, device_type_id: Int, input_type: String, method: String, path: String, data_type: String, query: String, autorun: Boolean, run_every_second: Int, run_order: Int, response_output_id: Int): [DeviceInputGet!]
+  events(event_id: Int, event_name: String, event_type: String, domain_id: Int, device_type_id: Int, device_output_id: Int, device_name: String, compare_function: String, message: String, not_trigger_second: Int, trigger_onchange: Boolean, enabled: Boolean, notifys: String): [EventGet!]
+}
+
+"""DeviceInput"""
+type DeviceInputGet {
+  device_input_id: Int!
+  device_input_name: String!
+  device_type_id: Int
+  input_type: String!
+  method: String
+  path: String
+  data_type: String!
+  query: String
+  autorun: Boolean!
+  run_every_second: Int
+  run_order: Int
+  response_output_id: Int
+  device_type: DeviceTypeGet
+  response_output: DeviceOutputGet
+  schedulers(scheduler_id: Int, scheduler_name: String, organization_id: Int, device_type_id: Int, device_input_id: Int, device_id: Int, cron: String): [SchedulerGet!]
+}
+
+"""RepairType"""
+type RepairTypeGet {
+  repair_type_id: Int!
+  repair_type_name: String!
+  device_type_id: Int
+  device_type: DeviceTypeGet
+  repair_items(repair_item_id: Int, repair_order_id: Int, repair_type_id: Int, description: String, repair_item_state: String, device_id: Int, expect_end_date: DateTime, completeness: Float, photos: String, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairItemGet!]
+}
+
+"""RepairItem"""
+type RepairItemGet {
+  repair_item_id: Int!
+  repair_order_id: Int
+  repair_type_id: Int
+  description: String!
+  repair_item_state: String!
+  device_id: Int
+  expect_end_date: DateTime
+  completeness: Float!
+  photos: String!
+  start_time: DateTime
+  end_time: DateTime
+  create_time: DateTime
+  repair_type: RepairTypeGet
+  repair_order: RepairOrderGet
+  device: DeviceGet
+  repair_records(repair_record_id: Int, repair_order_id: Int, repair_item_id: Int, start_time: DateTime, end_time: DateTime, description: String, photos: String, create_time: DateTime, update_time: DateTime): [RepairRecordGet!]
+}
+
+"""RepairRecord"""
+type RepairRecordGet {
+  repair_record_id: Int!
+  repair_order_id: Int
+  repair_item_id: Int
+  start_time: DateTime
+  end_time: DateTime
+  description: String!
+  photos: String!
+  create_time: DateTime
+  update_time: DateTime
+  repair_order: RepairOrderGet
+  repair_item: RepairItemGet
+  repair_user_records(repair_user_record_id: Int, repair_record_id: Int, user_id: Int): [RepairUserRecordGet!]
+}
+
+type Query {
+  settings(setting_id: Int, setting_value: String): [SettingGet!]!
+  setting(setting_id: String!): SettingGet
+  domains(domain_id: Int, domain_name: String, parent_domain_id: Int, is_organization: Boolean, address: String, lat: String, lng: String, zoom: Float, photos: String, feed_in_tariffs: String, feed_in_tariff_now: Float, data_sources: String): [DomainGet!]!
+  domain(domain_id: Int!): DomainGet
+  roles(role_id: Int, role_name: String, domain_id: Int, page_permission: String, user_permission: String): [RoleGet!]!
+  role(role_id: Int!): RoleGet
+  page_permissions(page_permission_id: Int, page_name: String, permissions: String): [PagePermissionGet!]!
+  page_permission(page_permission_id: Int!): PagePermissionGet
+  users(user_id: Int, user_account: String, user_name: String, user_password: String, domain_id: Int, role_id: Int, is_supplier: Boolean, phone: String, email: String, line_notify_token: String, contact_name: String, create_time: DateTime, expire_time: DateTime): [UserGet!]!
+  user(user_id: Int!): UserGet
+  device_type_categorys(device_type_category_id: Int, device_type_category_name: String, device_type_category_alias_name: String): [DeviceTypeCategoryGet!]!
+  device_type_category(device_type_category_id: Int!): DeviceTypeCategoryGet
+  device_types(device_type_id: Int, device_type_name: String, device_type_alias_name: String, device_type_category_id: Int, connection_params: String, is_energy_storage: Boolean): [DeviceTypeGet!]!
+  device_type(device_type_id: Int!): DeviceTypeGet
+  device_connections(device_connection_id: Int, device_connection_name: String, device_type_id: Int, organization_id: Int, url: String, host: String, port: Int, username: String, password: String, token: String, org: String, database_name: String, enabled: Boolean, extra: String): [DeviceConnectionGet!]!
+  device_connection(device_connection_id: Int!): DeviceConnectionGet
+  device_outputs(device_output_id: Int, device_output_name: String, device_type_id: Int, output_type: String, path: String, data_type: String, device_state_field: String, device_error_code_field: String, device_error_description_field: String, is_store: Boolean, properties: String): [DeviceOutputGet!]!
+  device_output(device_output_id: Int!): DeviceOutputGet
+  device_inputs(device_input_id: Int, device_input_name: String, device_type_id: Int, input_type: String, method: String, path: String, data_type: String, query: String, autorun: Boolean, run_every_second: Int, run_order: Int, response_output_id: Int): [DeviceInputGet!]!
+  device_input(device_input_id: Int!): DeviceInputGet
+  devices(device_id: Int, device_name: String, place_name: String, device_alias_name: String, device_type_id: Int, device_type_category_id: Int, device_connection_id: Int, domain_id: Int, address: String, lat: String, lng: String, is_online: Boolean, output_power_capacity: Float, bat_capacity: Float, solar_capacity: Float, solar_area: Float, solar_eff: Float, device_state: String, error_code: String, error_description: String, last_data: String, enabled: Boolean, external_devices: String, extra: String, install_time: DateTime, create_time: DateTime, last_connect_time: DateTime): [DeviceGet!]!
+  device(device_id: Int!): DeviceGet
+  power_schedulers(power_scheduler_id: Int, domain_id: Int, device_id: Int, timezone: String, crons: String, notify_user_id: Int, update_time: DateTime, start_time: DateTime, stop_time: DateTime, running: Boolean, info: String, enabled: Boolean): [PowerSchedulerGet!]!
+  power_scheduler(power_scheduler_id: Int!): PowerSchedulerGet
+  schedulers(scheduler_id: Int, scheduler_name: String, organization_id: Int, device_type_id: Int, device_input_id: Int, device_id: Int, cron: String): [SchedulerGet!]!
+  scheduler(scheduler_id: Int!): SchedulerGet
+  repair_types(repair_type_id: Int, repair_type_name: String, device_type_id: Int): [RepairTypeGet!]!
+  repair_type(repair_type_id: Int!): RepairTypeGet
+  repair_orders(repair_order_id: Int, domain_id: Int, creator_id: Int, title: String, contact_name: String, contact_phone: String, contact_email: String, priority: Int, custom_description: String, repair_description: String, expect_end_date: DateTime, repair_order_state: String, repair_order_type: String, completeness: Float, photos: String, supplier_id: Int, assign_user_id: Int, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairOrderGet!]!
+  repair_order(repair_order_id: Int!): RepairOrderGet
+  repair_items(repair_item_id: Int, repair_order_id: Int, repair_type_id: Int, description: String, repair_item_state: String, device_id: Int, expect_end_date: DateTime, completeness: Float, photos: String, start_time: DateTime, end_time: DateTime, create_time: DateTime): [RepairItemGet!]!
+  repair_item(repair_item_id: Int!): RepairItemGet
+  repair_order_historys(repair_order_history_id: Int, repair_order_id: Int, repair_item_id: Int, repair_record_id: Int, user_id: Int, user_name: String, table_name: String, difference: String, snapshot: String, create_time: DateTime): [RepairOrderHistoryGet!]!
+  repair_order_history(repair_order_history_id: Int!): RepairOrderHistoryGet
+  repair_records(repair_record_id: Int, repair_order_id: Int, repair_item_id: Int, start_time: DateTime, end_time: DateTime, description: String, photos: String, create_time: DateTime, update_time: DateTime): [RepairRecordGet!]!
+  repair_record(repair_record_id: Int!): RepairRecordGet
+  repair_user_records(repair_user_record_id: Int, repair_record_id: Int, user_id: Int): [RepairUserRecordGet!]!
+  repair_user_record(repair_user_record_id: Int!): RepairUserRecordGet
+  mails(mail_id: Int, mail_type: String, user_id: Int, content: String, readed: Boolean, repair_order_id: Int, device_id: Int, create_time: DateTime): [MailGet!]!
+  mail(mail_id: Int!): MailGet
+  events(event_id: Int, event_name: String, event_type: String, domain_id: Int, device_type_id: Int, device_output_id: Int, device_name: String, compare_function: String, message: String, not_trigger_second: Int, trigger_onchange: Boolean, enabled: Boolean, notifys: String): [EventGet!]!
+  event(event_id: Int!): EventGet
+}
+
+type Mutation {
+  login(user_account: String!, user_password: String!): AuthLogin!
+}

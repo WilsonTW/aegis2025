@@ -1,0 +1,42 @@
+[
+    { name: "TestPage", permission: ["read", "write", "delete"] },
+    { name: "DeniedPage", permission: [] },
+
+    { name: "ElectricStatus", permission: ["read", "write", "delete"] },
+    { name: "StorgeStatus", permission: ["read", "write", "delete"] },
+
+    { name: "StorgeLocation", permission: ["read", "write", "delete"] },
+    { name: "StatusMonitor", permission: ["read", "write", "delete"] },
+    { name: "SecurityMonitor", permission: ["read", "write", "delete"] },
+    { name: "SchedulingManagement", permission: ["read", "write", "delete"] },
+    { name: "EdReg", permission: ["read", "write", "delete"] },
+
+    { name: "DeviceInfo", permission: ["read", "write", "delete"] },
+    { name: "EnergyStorge", permission: ["read", "write", "delete"] },
+    { name: "SmartPanel", permission: ["read", "write", "delete"] },
+    { name: "SmartPole", permission: ["read", "write", "delete"] },
+    { name: "ChargingPile", permission: ["read", "write", "delete"] },
+    { name: "TestDevice", permission: ["read", "write", "delete"] },
+
+    { name: "FormInfo", permission: ["read", "write", "delete"] },
+    { name: "RequestForm", permission: ["read", "write", "delete"] },
+    { name: "MaintenanceForm", permission: ["read", "write", "delete"] },
+    { name: "CompletionList", permission: ["read", "write", "delete"] },
+    { name: "VendorManagement", permission: [] },
+
+    { name: "ExecutionEfficiency", permission: ["read", "write", "delete"] },
+    { name: "ReliabilityRate", permission: ["read", "write", "delete"] },
+    { name: "AlarmLog", permission: ["read", "write", "delete"] },
+    { name: "PowerConsumption", permission: ["read", "write", "delete"] },
+    { name: "MaintenanceEngineering", permission: ["read", "write", "delete"] },
+
+    { name: "AccountManagement", permission: ["read", "write", "delete"] },
+    { name: "PermissionManagement", permission: ["read", "write", "delete"] },
+
+    { name: "SystemConfig", permission: ["read", "write", "delete"] },
+    { name: "AlarmConfig", permission: ["read", "write", "delete"] },
+    { name: "DomainConfig", permission: ["read", "write", "delete"] },
+    { name: "ReportRequest", permission: ["read", "write", "delete"] },
+    { name: "NoteConfig", permission: ["read", "write", "delete"] },
+    { name: "LocationConfig", permission: ["read", "write", "delete"] },
+]

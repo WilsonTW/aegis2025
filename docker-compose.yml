@@ -1,0 +1,78 @@
+
+version: '3.1'
+
+services:
+
+  influxdb:
+    image: influxdb:2.7.3
+    restart: always
+    environment:
+#      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=root
+      - DOCKER_INFLUXDB_INIT_PASSWORD=abcd1234
+      - DOCKER_INFLUXDB_INIT_ORG=my-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=aegis
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=BuUeXp8QwbKy1n-b_V5YizKmVziqENn__NmR5eYhKHWWqrOtUPj2yKa1MALzZXA3WU3YZh_5d8F_cJlRdUH74A==
+    ports:
+      - 8086:8086
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+
+#  mariadb:
+#    image: mariadb:11.1.2
+#    restart: always
+#    environment:
+#      - MARIADB_ROOT_PASSWORD=abcd1234
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - mariadb-data:/var/lib/mysql
+#      - mariadb-socket:/var/run/mysqld
+#
+#  phpmyadmin:
+#    image: phpmyadmin:5.2.1
+#    restart: always
+#    environment:
+#      - PMA_HOST=mariadb
+#    ports:
+#      - 8081:80
+#    depends_on:
+#      - mariadb
+
+  node-red:
+    image: nodered/node-red:3.1.10
+    restart: always
+    environment:
+      - TZ=Asia/Taipei
+    ports:
+      - "1880:1880"
+    volumes:
+      - node-red-data:/data
+      #- ./docker_data/node-red:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+
+  postgres:
+    image: postgres:16.2
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=abcd1234
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:4.8.1
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  influxdb-data:
+#  mariadb-data:
+#  mariadb-socket:
+  postgres-data:
+  node-red-data:
+

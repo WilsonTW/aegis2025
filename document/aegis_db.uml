@@ -1,0 +1,309 @@
+@startuml
+class Setting {
+  + setting_id
+  + setting_value
+}
+
+class Domain {
+  + domain_id
+  + domain_name
+  + parent_domain_id
+  + is_organization
+  + address
+  + lat
+  + lng
+  + zoom
+  + photos
+  + feed_in_tariffs
+  + feed_in_tariff_now
+  + data_sources
+}
+
+class Role {
+  + role_id
+  + role_name
+  + domain_id
+  + page_permission
+  + user_permission
+}
+
+class PagePermission {
+  + page_permission_id
+  + page_name
+  + permissions
+}
+
+class User {
+  + user_id
+  + user_account
+  + user_name
+  + user_password
+  + domain_id
+  + role_id
+  + is_supplier
+  + phone
+  + email
+  + line_notify_token
+  + contact_name
+  + create_time
+  + expire_time
+}
+
+class DeviceTypeCategory {
+  + device_type_category_id
+  + device_type_category_name
+  + device_type_category_alias_name
+}
+
+class DeviceType {
+  + device_type_id
+  + device_type_name
+  + device_type_alias_name
+  + device_type_category_id
+  + connection_params
+  + is_energy_storage
+}
+
+class DeviceConnection {
+  + device_connection_id
+  + device_connection_name
+  + device_type_id
+  + organization_id
+  + url
+  + host
+  + port
+  + username
+  + password
+  + token
+  + org
+  + database_name
+  + enabled
+  + extra
+}
+
+class DeviceOutput {
+  + device_output_id
+  + device_output_name
+  + device_type_id
+  + output_type
+  + path
+  + data_type
+  + device_state_field
+  + device_error_code_field
+  + device_error_description_field
+  + is_store
+  + properties
+}
+
+class DeviceInput {
+  + device_input_id
+  + device_input_name
+  + device_type_id
+  + input_type
+  + method
+  + path
+  + data_type
+  + query
+  + autorun
+  + run_every_second
+  + run_order
+  + response_output_id
+}
+
+class Device {
+  + device_id
+  + device_name
+  + place_name
+  + device_alias_name
+  + device_type_id
+  + device_type_category_id
+  + device_connection_id
+  + domain_id
+  + address
+  + lat
+  + lng
+  + is_online
+  + output_power_capacity
+  + bat_capacity
+  + solar_capacity
+  + solar_area
+  + solar_eff
+  + device_state
+  + error_code
+  + error_description
+  + last_data
+  + enabled
+  + external_devices
+  + extra
+  + install_time
+  + create_time
+  + last_connect_time
+}
+
+class PowerScheduler {
+  + power_scheduler_id
+  + domain_id
+  + device_id
+  + timezone
+  + crons
+  + notify_user_id
+  + update_time
+  + start_time
+  + stop_time
+  + running
+  + info
+  + enabled
+}
+
+class Scheduler {
+  + scheduler_id
+  + scheduler_name
+  + organization_id
+  + device_type_id
+  + device_input_id
+  + device_id
+  + cron
+}
+
+class RepairType {
+  + repair_type_id
+  + repair_type_name
+  + device_type_id
+}
+
+class RepairOrder {
+  + repair_order_id
+  + domain_id
+  + creator_id
+  + title
+  + contact_name
+  + contact_phone
+  + contact_email
+  + priority
+  + custom_description
+  + repair_description
+  + expect_end_date
+  + repair_order_state
+  + repair_order_type
+  + completeness
+  + photos
+  + supplier_id
+  + assign_user_id
+  + start_time
+  + end_time
+  + create_time
+}
+
+class RepairOrderHistory {
+  + repair_order_history_id
+  + repair_order_id
+  + repair_item_id
+  + repair_record_id
+  + user_id
+  + user_name
+  + table_name
+  + difference
+  + snapshot
+  + create_time
+}
+
+class RepairItem {
+  + repair_item_id
+  + repair_order_id
+  + repair_type_id
+  + description
+  + repair_item_state
+  + device_id
+  + expect_end_date
+  + completeness
+  + photos
+  + start_time
+  + end_time
+  + create_time
+}
+
+class RepairRecord {
+  + repair_record_id
+  + repair_order_id
+  + repair_item_id
+  + start_time
+  + end_time
+  + description
+  + photos
+  + create_time
+  + update_time
+}
+
+class RepairUserRecord {
+  + repair_user_record_id
+  + repair_record_id
+  + user_id
+}
+
+class Mail {
+  + mail_id
+  + mail_type
+  + user_id
+  + content
+  + readed
+  + repair_order_id
+  + device_id
+  + create_time
+}
+
+class Event {
+  + event_id
+  + event_name
+  + event_type
+  + domain_id
+  + device_type_id
+  + device_output_id
+  + device_name
+  + compare_function
+  + message
+  + not_trigger_second
+  + trigger_onchange
+  + enabled
+  + notifys
+}
+
+Domain --|{ Domain
+Domain --|{ Role
+Domain --|{ User
+Domain --|{ DeviceConnection
+Domain --|{ Device
+Domain --|{ PowerScheduler
+Domain --|{ Scheduler
+Domain --|{ RepairOrder
+Domain --|{ Event
+Role --|{ User
+User --|{ PowerScheduler
+User --|{ RepairOrder
+User --|{ RepairOrderHistory
+User --|{ RepairUserRecord
+User --|{ Mail
+DeviceTypeCategory --|{ DeviceType
+DeviceTypeCategory --|{ Device
+DeviceType --|{ DeviceConnection
+DeviceType --|{ DeviceOutput
+DeviceType --|{ DeviceInput
+DeviceType --|{ Device
+DeviceType --|{ Scheduler
+DeviceType --|{ RepairType
+DeviceType --|{ Event
+DeviceConnection --|{ Device
+DeviceOutput --|{ DeviceInput
+DeviceOutput --|{ Event
+DeviceInput --|{ Scheduler
+Device --|{ PowerScheduler
+Device --|{ Scheduler
+Device --|{ RepairItem
+Device --|{ Mail
+RepairType --|{ RepairItem
+RepairOrder --|{ RepairOrderHistory
+RepairOrder --|{ RepairItem
+RepairOrder --|{ RepairRecord
+RepairOrder --|{ Mail
+RepairItem --|{ RepairRecord
+RepairRecord --|{ RepairUserRecord
+@enduml
