@@ -17,14 +17,41 @@
 ./stop_docker.sh
 ```
 
+## 安裝 nodejs
+此程式由 nodejs 寫成，請先到 nodejs 官網下載並安裝
 
 ## AEGIS 安裝
 
-### 安裝 nodejs
-此程式由 nodejs 寫成，請先到 nodejs 官網下載並安裝
+### 建立aegis資料庫
+1. 打開瀏覽器, 輸入網址 http://127.0.0.1:8080 進入 adminer 頁面
+2. 填登入選項
+   1. 資料庫系統: PostgresSQL
+   2. 伺服器:
+      1. 沒使用 docker IPV4 -> 127.0.0.1
+      2. 沒使用 docker IPV6 -> localhost 或 [::1]
+      3. 使用 docker -> aegis_postgres
+   3. 帳號: postgres
+   4. 密碼: 參照 docker-compose.yml 中的 postgres - "POSTGRES_PASSWORD"
+3. 登入postgres後建立資料庫
+   1. 點選 "建立資料庫", 資料庫名稱 "aegis"
+4. 建立資料表
+   1. 左邊資料庫選取 "aegis"
+   2. 點左邊 "SQL 命令"
+   3. 將 aggis 原始碼中的 /document/aegis_db_postgres.sql 裡面內容全部複製貼上並執行
+
+
+### 匯入資料庫資料 (2選1)
+
+1. 只匯入基本資料<br>
+將 aggis 原始碼中的 /document/aegis_data_base.sql 裡面內容全部複製貼上並執行
+
+2. 匯入全部資料<br>
+將 aggis 原始碼中的 /document/aegis_data.sql 裡面內容全部複製貼上並執行
+
 
 ### 安裝相關套件
 ```bash
+$ cd aegis
 $ npm install
 ```
 
@@ -46,6 +73,10 @@ npm install canvas
 npm install canvas --build-from-source
 ```
 
+### AEGIS 系統設定
+可以在 /src/app_config.service.ts 中更改系統設定, 更改後需重啟 Aegis
+
+
 ### 創建root
 ```
 http://127.0.0.1:8080
@@ -62,14 +93,8 @@ Password: abcd1234
 DB: aegis -> user -> New item
 user_account: root
 user_name: root
-user_password: 123456
+user_password: 1qaz@WSX
 ```
-
-### 創建tables
-```
-psql -h 127.0.0.1 -U postgres -d aegis
-```
-複製aegis_db_postgres.sql檔案的內容，貼上執行
 
 ## 執行
 
@@ -82,6 +107,12 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+```
+
+不接收資料的測試模式
+```bash
+$ export TEST_MODE=true
+$ npm run start
 ```
 
 ## API 測試網頁

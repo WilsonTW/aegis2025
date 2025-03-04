@@ -65,8 +65,7 @@ export class AppConfigService {
             // 192.168.1.20
             token: AppConfigService.getEnv('INFLUXDB_TOKEN', 'zLi7R-fu6DPkEcKOJVzzH37nGKvfG1vtMdCOgu_yAaS-A8XuwyyIZxegt4Y1kJYT9kraDfVlBK7P5Fdg1-ARjA=='),
             
-            url: AppConfigService.getEnv('INFLUXDB_URL', 'http://localhost:8086'),
-            // url: AppConfigService.getEnv('INFLUXDB_URL', 'http://192.168.1.20:8086'),
+            url: AppConfigService.getEnv('INFLUXDB_URL', 'http://192.168.1.20:8086'),
             //url: AppConfigService.getEnv('INFLUXDB_URL', 'http://192.168.1.36:8086'),
             org: AppConfigService.getEnv('INFLUXDB_ORG', 'my-org'),
             bucket: AppConfigService.getEnv('INFLUXDB_BUCKET', 'aegis')
