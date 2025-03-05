@@ -16,53 +16,70 @@
 ## **2. 功能需求**
 
 ### **2.1 設備管理**
-| 方法   | 路徑                          | 說明                     | 參數 |
-|--------|------------------------------|--------------------------|------------------------------------------------|
-| **GET**    | `/api/devices`               | 查詢所有設備             | `type` (選填: `load`, `storage`, `generation`), `status` |
-| **POST**   | `/api/devices`               | 新增設備                 | `{ "name": "string", "type": "string", "status": "string", "location": "string" }` |
-| **PATCH**  | `/api/devices/{id}`          | 修改設備                 | `{ "name"?: "string", "status"?: "string", "location"?: "string" }` |
-| **DELETE** | `/api/devices/{id}`          | 刪除設備                 | `id` (設備 ID) |
-| **GET**    | `/api/device_datas/query`    | 查詢設備狀態與歷史數據   | `device_id`, `start_time`, `end_time` |
-| **GET**    | `/api/device_types`          | 查詢設備類型             | 無 |
+| 方法 | 路徑 | 說明 |
+|------|------------------------------|------------------------|
+| GET  | `/api/devices`               | 查詢所有設備 |
+| POST | `/api/devices`               | 新增設備 |
+| PATCH| `/api/devices/{id}`          | 修改設備 |
+| DELETE | `/api/devices/{id}`        | 刪除設備 |
+| GET  | `/api/device_datas/query`    | 查詢設備狀態與歷史數據 |
+| GET  | `/api/device_types`          | 查詢設備類型 (創能/儲能/負載) |
 
 ### **2.2 能源排程管理**
-| 方法   | 路徑                                   | 說明                          | 參數 |
-|--------|--------------------------------------|------------------------------|------------------------------------------------|
-| **GET**    | `/api/power_schedulers`            | 查詢排程                     | `device_id`, `status` |
-| **POST**   | `/api/power_schedulers`            | 新增排程                     | `{ "device_id": "number", "cron": "string", "action": "string" }` |
-| **PATCH**  | `/api/power_schedulers/{id}`       | 修改排程                     | `{ "cron"?: "string", "action"?: "string" }` |
-| **DELETE** | `/api/power_schedulers/{id}`       | 刪除排程                     | `id` (排程 ID) |
-| **POST**   | `/api/power_schedulers/update_cron_tasks` | 更新 CRON 任務         | 無 |
-| **GET**    | `/api/power_schedulers/load_balance` | 查詢負載狀況並建議調整   | 無 |
-| **POST**   | `/api/power_schedulers/adjust_schedule` | 動態調整排程             | `{ "device_id": "number", "new_schedule": "string" }` |
-| **GET**    | `/api/power_schedulers/price_optimization` | 根據電價調整運行策略 | `price_threshold`, `action` |
+| 方法 | 路徑 | 說明 |
+|------|--------------------------------|----------------------|
+| GET  | `/api/power_schedulers`        | 查詢排程 |
+| POST | `/api/power_schedulers`        | 新增排程 |
+| PATCH| `/api/power_schedulers/{id}`   | 修改排程 |
+| DELETE | `/api/power_schedulers/{id}` | 刪除排程 |
+| POST | `/api/power_schedulers/update_cron_tasks` | 更新 CRON 任務 |
+| GET  | `/api/power_schedulers/load_balance` | 查詢負載狀況並建議調整 |
+| POST | `/api/power_schedulers/adjust_schedule` | 動態調整排程 |
+| GET  | `/api/power_schedulers/price_optimization` | 根據電價調整運行策略 |
 
 ### **2.3 儲能設備管理**
-| 方法   | 路徑                        | 說明                      | 參數 |
-|--------|----------------------------|--------------------------|------------------------------------------------|
-| **POST**   | `/api/storage/charge_control` | 設定儲能充放電策略     | `{ "device_id": "number", "charge_threshold": "number", "discharge_threshold": "number", "grid_export": "boolean" }` |
-| **GET**    | `/api/storage/status`        | 查詢儲能設備狀態       | `device_id` |
-| **GET**    | `/api/storage/grid_export`   | 電網輸出限制           | `device_id` |
+| 方法 | 路徑 | 說明 |
+|------|-----------------------------|----------------|
+| POST | `/api/storage/charge_control` | 設定儲能充放電策略 |
+| GET  | `/api/storage/status`        | 查詢儲能設備狀態 |
+| GET  | `/api/storage/grid_export`   | 電網輸出限制 |
 
 ### **2.4 創能設備管理**
-| 方法   | 路徑                          | 說明                          | 參數 |
-|--------|------------------------------|------------------------------|------------------------------------------------|
-| **POST**   | `/api/generation/set_priority` | 設定發電設備優先策略     | `{ "device_id": "number", "priority": "string", "max_export": "number" }` |
-| **POST**   | `/api/generation/adjust_output` | 即時調整發電輸出         | `{ "device_id": "number", "output_level": "number" }` |
-| **GET**    | `/api/generation/status`      | 查詢發電設備狀態         | `device_id` |
+| 方法 | 路徑 | 說明 |
+|------|-------------------------------|----------------|
+| POST | `/api/generation/set_priority` | 設定發電設備優先策略 |
+| POST | `/api/generation/adjust_output` | 即時調整發電輸出 |
+| GET  | `/api/generation/status` | 查詢發電設備狀態 |
 
 ### **2.5 事件與通知管理**
-| 方法   | 路徑                          | 說明                  | 參數 |
-|--------|------------------------------|----------------------|------------------------------------------------|
-| **POST**   | `/api/notify_phone`           | 手機通知            | `{ "user_id": "number", "message": "string" }` |
-| **GET**    | `/api/events`                 | 查詢事件            | `event_type`, `status` |
-| **POST**   | `/api/events`                 | 創建事件            | `{ "type": "string", "description": "string", "priority": "string" }` |
-| **PATCH**  | `/api/events/{id}`            | 修改事件            | `{ "type"?: "string", "status"?: "string" }` |
-| **DELETE** | `/api/events/{id}`            | 刪除事件            | `id` (事件 ID) |
-| **GET**    | `/api/alerts`                 | 設備異常通知        | `device_id`, `severity` |
-| **GET**    | `/api/repair_orders/updates`  | 查詢報修狀態更新    | `repair_order_id` |
+| 方法 | 路徑 | 說明 |
+|------|-------------------------------|----------------|
+| POST | `/api/notify_phone`           | 手機通知 |
+| GET  | `/api/events`                 | 查詢事件 |
+| POST | `/api/events`                 | 創建事件 |
+| PATCH| `/api/events/{id}`            | 修改事件 |
+| DELETE | `/api/events/{id}`          | 刪除事件 |
+| GET  | `/api/alerts`                 | 設備異常通知 |
+| GET  | `/api/repair_orders/updates`  | 查詢報修狀態更新 |
 
-(表格排版已優化，確保在不同平台上顯示清晰且參數易於閱讀)
+### **2.6 用戶與權限管理**
+| 方法 | 路徑 | 說明 |
+|------|-------------------------------|----------------|
+| GET  | `/api/users`                  | 查詢用戶 |
+| POST | `/api/users`                  | 創建用戶 |
+| PATCH| `/api/users/{id}`             | 修改用戶 |
+| DELETE | `/api/users/{id}`           | 刪除用戶 |
+| GET  | `/api/roles`                  | 查詢角色權限 |
+| POST | `/api/auth/login`             | 用戶登入 |
+| POST | `/api/auth/refresh_token`     | 刷新 Token |
+
+### **2.7 數據分析與報表**
+| 方法 | 路徑 | 說明 |
+|------|-----------------------------|----------------|
+| GET  | `/api/device_datas/trend_analysis` | 設備數據趨勢分析 |
+| GET  | `/api/device_datas/report` | 取得設備報表 |
+| GET  | `/api/device_datas/pr` | 查詢 PR 值 |
+| GET  | `/api/device_datas/curtailment_ratio` | 查詢棄電比 |
 
 ---
 
@@ -98,6 +115,4 @@
 本 SRS 文件詳細描述了能源管理系統的功能與 API，並提供了未來擴展性建議。可作為開發團隊的參考指南，以確保系統符合需求並具有良好的可擴展性。
 
 ---
-
-**📌 這份 SRS 文件可以作為開發團隊的參考，請確認是否還需要進一步調整！** 🚀
 
