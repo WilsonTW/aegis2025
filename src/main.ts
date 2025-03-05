@@ -5,6 +5,7 @@ import { AllExceptionsFilter } from './all_exceptions.filter';
 import { DarkBox } from './util/darkbox';
 import { RecordConverter } from './util/record_converter';
 import { AppConfigService } from './app_config.service';
+import { writeFileSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,7 +18,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-
+  writeFileSync('./swagger.json', JSON.stringify(document, null, 2));
   /*
   // 對 paths 進行排序
   const sortedPaths = Object.keys(document.paths)

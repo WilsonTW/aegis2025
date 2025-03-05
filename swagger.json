@@ -1,0 +1,6533 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/notify_phone": {
+      "post": {
+        "operationId": "AppController_NotifyPhone",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneNotifyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_datas/{organization_id}/{measurement_name}/write": {
+      "post": {
+        "operationId": "DeviceDataController_writeDeviceData",
+        "summary": "對平台寫入裝置資料",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "measurement_name",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/device_datas/query": {
+      "get": {
+        "operationId": "DeviceDataController_getQuery",
+        "summary": "查詢裝置資料",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_output_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"pomcube_data,hermes_smartmeter_data,hermes_report\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_category_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"smart_meter,pv,ess\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"pomcube,ess_hermes,pv_inverter,smart_meter\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device1,device2,device3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "place_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"place1,place2,place3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-11-17T16:00:00.000Z\", \"2024-11-18T00:00:00+08:00\", \"1621726200\", \"-10s\", \"-30m\", \"-6h\", \"-7d\", \"-1mo\", \"-1y\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-11-20T16:00:00.000Z\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"field1,field2\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "where",
+            "required": false,
+            "in": "query",
+            "description": "ex: '{\"domain_id\":\"1\",\"device_name\":[\"device1\",\"device2\"]}' means (domain_id==1 && (device_name==\"device1\" || device_name==\"device2\"))",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "differenceNonNegativeSource",
+            "required": false,
+            "in": "query",
+            "description": "Difference NonNegative between subsequent values. one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_by",
+            "required": false,
+            "in": "query",
+            "description": "Regroups input data by modifying group key of input tables. If first char of group key is \"!\", this group key will only be grouped before calculation. ex: \"!DeviceName,_field\"",
+            "schema": {
+              "example": "!DeviceName,_field",
+              "type": "string"
+            }
+          },
+          {
+            "name": "every",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of [\"10s\", \"1m\", \"2h\", \"1d\", \"1w\", \"1mo\", \"1y\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "create_empty",
+            "required": false,
+            "in": "query",
+            "description": "Create empty tables for empty window. Default is false. ex: one of [false, true]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_src",
+            "required": false,
+            "in": "query",
+            "description": "Column to use as the source of the new time value for aggregate values. Default is \"_stop\". ex: one of [\"_start\", \"_stop\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_function",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of ['first', 'last', 'min', 'max', 'mean', 'median', 'count', 'sum', 'spread', 'integral']",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_function_params",
+            "required": false,
+            "in": "query",
+            "description": "ex: '{\"unit\":\"1h\"}'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "difference",
+            "required": false,
+            "in": "query",
+            "description": "difference between subsequent values. one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_function",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of ['min', 'max', 'mean', 'median', 'count', 'sum']",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pivot_columns",
+            "required": false,
+            "in": "query",
+            "description": "collects unique values stored vertically (column-wise) and aligns them horizontally (row-wise) into logical sets. ex: '_field' or 'tag1,tag2'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "200",
+              "type": "string"
+            }
+          },
+          {
+            "name": "output_format",
+            "required": false,
+            "in": "query",
+            "description": "one of ['json', 'csv', 'influx_line_protocol']. default is 'json'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "output_zip",
+            "required": false,
+            "in": "query",
+            "description": "Output zip file. one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "debug",
+            "required": false,
+            "in": "query",
+            "description": "one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_datas/query/last": {
+      "get": {
+        "operationId": "DeviceDataController_getQueryLast",
+        "summary": "查詢裝置最近資料",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_output_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"pomcube_data,hermes_smartmeter_data,hermes_report\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_category_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"smart_meter,pv,ess\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"pomcube,ess_hermes,pv_inverter,smart_meter\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device1,device2,device3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "place_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"place1,place2,place3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"field1,field2\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "where",
+            "required": false,
+            "in": "query",
+            "description": "ex: '{\"domain_id\":\"1\",\"device_name\":[\"device1\",\"device2\"]}' means (domain_id==1 && (device_name==\"device1\" || device_name==\"device2\"))",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_by",
+            "required": false,
+            "in": "query",
+            "description": "Regroups input data by modifying group key of input tables. If first char of group key is \"!\", this group key will only be grouped before calculation. ex: \"!DeviceName,_field\"",
+            "schema": {
+              "example": "!DeviceName,_field",
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "group_function",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of ['min', 'max', 'mean', 'median', 'count', 'sum']",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pivot_columns",
+            "required": false,
+            "in": "query",
+            "description": "collects unique values stored vertically (column-wise) and aligns them horizontally (row-wise) into logical sets. ex: '_field' or 'tag1,tag2'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "200",
+              "type": "string"
+            }
+          },
+          {
+            "name": "output_format",
+            "required": false,
+            "in": "query",
+            "description": "one of ['json', 'csv', 'influx_line_protocol']. default is 'json'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "output_zip",
+            "required": false,
+            "in": "query",
+            "description": "Output zip file. one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "debug",
+            "required": false,
+            "in": "query",
+            "description": "one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_datas/curtailment_ratio": {
+      "get": {
+        "operationId": "DeviceDataController_getCurtailmentRatio",
+        "summary": "查詢棄電比",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_output_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device_type1_data\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_category_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"smart_meter,pv,ess\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device_type1\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device1,device2,device3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "place_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"place1,place2,place3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2023-09-01T00:00:00.000Z\", \"1621726200\", \"-10s\", \"-30m\", \"-6h\", \"-7d\", \"-1mo\", \"-1y\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2023-09-01T00:00:00.000Z\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "every",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of [\"1m\", \"2h\", \"1d\", \"1w\", \"1mo\", \"1y\"]. min is \"30m\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_src",
+            "required": false,
+            "in": "query",
+            "description": "Column to use as the source of the new time value for aggregate values. Default is \"_stop\". ex: one of [\"_start\", \"_stop\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_datas/pr": {
+      "get": {
+        "operationId": "DeviceDataController_getPR",
+        "summary": "查詢 PR 值",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_output_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device_type1_data\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_category_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"smart_meter,pv,ess\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device_type1\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device1,device2,device3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "place_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"place1,place2,place3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2023-09-01T00:00:00.000Z\", \"1621726200\", \"-10s\", \"-30m\", \"-6h\", \"-7d\", \"-1mo\", \"-1y\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2023-09-01T00:00:00.000Z\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "every",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of [\"1m\", \"2h\", \"1d\", \"1w\", \"1mo\", \"1y\"]. min is \"30m\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_src",
+            "required": false,
+            "in": "query",
+            "description": "Column to use as the source of the new time value for aggregate values. Default is \"_stop\". ex: one of [\"_start\", \"_stop\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_datas/device_event": {
+      "get": {
+        "operationId": "DeviceDataController_getDeviceEvent",
+        "summary": "取得裝置的事件",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"97\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_names",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"device1,device2,device3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2023-09-01T00:00:00.000Z\", \"1621726200\", \"-10s\", \"-30m\", \"-6h\", \"-7d\", \"-1mo\", \"-1y\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2023-09-01T00:00:00.000Z\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_datas/report": {
+      "get": {
+        "operationId": "DeviceDataController_getPDF",
+        "summary": "取得報表",
+        "parameters": [
+          {
+            "name": "report_type",
+            "required": true,
+            "in": "query",
+            "description": "ex: one of {\"pv\", \"ess\"}",
+            "schema": {
+              "example": "pv",
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_type",
+            "required": true,
+            "in": "query",
+            "description": "ex: one of {\"year\", \"month\"}",
+            "schema": {
+              "example": "month",
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"66\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"8\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"2024\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "month",
+            "required": false,
+            "in": "query",
+            "description": "0~11 ex: \"0:January, 1:February, ..., 11:December\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fake_data",
+            "required": false,
+            "in": "query",
+            "description": "one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/domain_datas/query": {
+      "get": {
+        "operationId": "DeviceDataExController_getQueryDomain",
+        "summary": "查詢 Domain 資料",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_category_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"smart_meter,pv,ess\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"pomcube,ess_hermes,pv_inverter,smart_meter\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"2024-11-17T16:00:00.000Z\", \"2024-11-18T00:00:00+08:00\", \"1621726200\", \"-10s\", \"-30m\", \"-6h\", \"-7d\", \"-1mo\", \"-1y\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-11-20T16:00:00.000Z\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop_align_every",
+            "required": false,
+            "in": "query",
+            "description": "The 'stop time' align 'every'. one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"field1,field2\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "every",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of [\"10s\", \"1m\", \"2h\", \"1d\", \"1w\", \"1mo\", \"1y\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "create_empty",
+            "required": false,
+            "in": "query",
+            "description": "Create empty tables for empty window. Default is false. ex: one of [false, true]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_src",
+            "required": false,
+            "in": "query",
+            "description": "Column to use as the source of the new time value for aggregate values. Default is \"_stop\". ex: one of [\"_start\", \"_stop\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_function",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of ['first', 'last', 'min', 'max', 'mean', 'median', 'count', 'sum', 'spread', 'integral']",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_function_params",
+            "required": false,
+            "in": "query",
+            "description": "ex: '{\"unit\":\"1h\"}'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "200",
+              "type": "string"
+            }
+          },
+          {
+            "name": "output_format",
+            "required": false,
+            "in": "query",
+            "description": "one of ['json', 'csv', 'influx_line_protocol']. default is 'json'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "output_zip",
+            "required": false,
+            "in": "query",
+            "description": "Output zip file. one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "debug",
+            "required": false,
+            "in": "query",
+            "description": "one of ['true', 'false']. default is 'false'",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domain_datas/query/history/power_soc_predict_photometer": {
+      "get": {
+        "operationId": "DeviceDataExController_getQueryDomainHistoryPowerSocPredictPhotometer",
+        "summary": "查詢 Domain 的 Power,SoC,Predict,Photometer 歷史資料",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_category_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"smart_meter,pv,ess\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"pomcube,ess_hermes,pv_inverter,smart_meter\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"2024-11-17T16:00:00.000Z\", \"2024-11-18T00:00:00+08:00\", \"1621726200\", \"-10s\", \"-30m\", \"-6h\", \"-7d\", \"-1mo\", \"-1y\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-11-20T16:00:00.000Z\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "every",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of [\"10s\", \"1m\", \"2h\", \"1d\", \"1w\", \"1mo\", \"1y\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "create_empty",
+            "required": false,
+            "in": "query",
+            "description": "Create empty tables for empty window. Default is false. ex: one of [false, true]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_src",
+            "required": false,
+            "in": "query",
+            "description": "Column to use as the source of the new time value for aggregate values. Default is \"_stop\". ex: one of [\"_start\", \"_stop\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_function",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of ['first', 'last', 'min', 'max', 'mean', 'median', 'count', 'sum', 'spread', 'integral']",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_function_params",
+            "required": false,
+            "in": "query",
+            "description": "ex: '{\"unit\":\"1h\"}'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "200",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domain_datas/query/today": {
+      "get": {
+        "operationId": "DeviceDataExController_getQueryDomainToday",
+        "summary": "查詢 Domain 今日資料",
+        "parameters": [
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domain_datas/query/pr": {
+      "get": {
+        "operationId": "DeviceDataExController_getQueryDomainPR",
+        "summary": "查詢 Domain PR 值",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_category_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"smart_meter,pv,ess\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_name",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"pomcube,ess_hermes,pv_inverter,smart_meter\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-11-17T16:00:00.000Z\", \"2024-11-18T00:00:00+08:00\", \"1621726200\", \"-10s\", \"-30m\", \"-6h\", \"-7d\", \"-1mo\", \"-1y\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stop",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-11-20T16:00:00.000Z\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "every",
+            "required": false,
+            "in": "query",
+            "description": "ex: one of [\"10s\", \"1m\", \"2h\", \"1d\", \"1w\", \"1mo\", \"1y\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "create_empty",
+            "required": false,
+            "in": "query",
+            "description": "Create empty tables for empty window. Default is false. ex: one of [false, true]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time_src",
+            "required": false,
+            "in": "query",
+            "description": "Column to use as the source of the new time value for aggregate values. Default is \"_stop\". ex: one of [\"_start\", \"_stop\"]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timezone",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"Asia/Taipei\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "200",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/feed_in_tariff": {
+      "get": {
+        "operationId": "DeviceDataExController_getDomainFeedInTariff",
+        "summary": "取得 domain 的躉售費率",
+        "parameters": [
+          {
+            "name": "domain_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"5\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/generate_money": {
+      "get": {
+        "operationId": "DeviceDataExController_getGenerateMoney",
+        "summary": "計算收入金額",
+        "parameters": [
+          {
+            "name": "domain_id",
+            "required": true,
+            "in": "query",
+            "description": "ex: \"66\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device_type_id",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"8\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_time",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-04-30T16:00:00Z\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_time",
+            "required": false,
+            "in": "query",
+            "description": "ex: \"2024-05-31T16:00:00Z\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/settings": {
+      "post": {
+        "operationId": "SettingController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "SettingController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Setting records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Setting"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/settings/{id}": {
+      "get": {
+        "operationId": "SettingController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Setting record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Setting"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "SettingController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domains": {
+      "get": {
+        "operationId": "DomainController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Domain records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Domain"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "DomainController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domains/{id}": {
+      "get": {
+        "operationId": "DomainController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Domain record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Domain"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DomainController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "DomainController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domains/{domain_id}/upload_photo": {
+      "post": {
+        "operationId": "DomainController_uploadMultipleFiles",
+        "parameters": [
+          {
+            "name": "domain_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domains/{domain_id}/replace_photo": {
+      "put": {
+        "operationId": "DomainController_replaceMultipleFiles",
+        "parameters": [
+          {
+            "name": "domain_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/domains/{domain_id}/photos/{filename}": {
+      "delete": {
+        "operationId": "DomainController_removePhoto",
+        "parameters": [
+          {
+            "name": "domain_id",
+            "required": true,
+            "in": "path",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "filename",
+            "required": true,
+            "in": "path",
+            "description": "ex: \"9d8e47e2-2b02-49c7-b3d5-039827bf9ce9.webp\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/roles": {
+      "get": {
+        "operationId": "RoleController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Role records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Role"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "RoleController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/roles/{id}": {
+      "get": {
+        "operationId": "RoleController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Role record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Role"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "RoleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RoleController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/page_permissions": {
+      "post": {
+        "operationId": "PagePermissionController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagePermissionUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "PagePermissionController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The PagePermission records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PagePermission"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/page_permissions/{id}": {
+      "get": {
+        "operationId": "PagePermissionController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The PagePermission record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagePermission"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "PagePermissionController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagePermissionUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "PagePermissionController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/users": {
+      "get": {
+        "operationId": "UserController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The User records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserGet"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "UserController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "operationId": "UserController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The User record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserGet"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "UserController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "UserController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_type_categorys": {
+      "post": {
+        "operationId": "DeviceTypeCategoryController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceTypeCategoryUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "DeviceTypeCategoryController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The DeviceTypeCategory records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceTypeCategory"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_type_categorys/{id}": {
+      "get": {
+        "operationId": "DeviceTypeCategoryController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The DeviceTypeCategory record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceTypeCategory"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "DeviceTypeCategoryController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceTypeCategoryUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeviceTypeCategoryController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_types": {
+      "post": {
+        "operationId": "DeviceTypeController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceTypeUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "DeviceTypeController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The DeviceType records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceType"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_types/{id}": {
+      "get": {
+        "operationId": "DeviceTypeController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The DeviceType record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceType"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "DeviceTypeController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceTypeUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeviceTypeController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_connections/update_all": {
+      "post": {
+        "operationId": "DeviceConnectionController_updateAllConnection",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_connections": {
+      "get": {
+        "operationId": "DeviceConnectionController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The DeviceConnection records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceConnection"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "DeviceConnectionController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceConnectionUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_connections/{id}": {
+      "get": {
+        "operationId": "DeviceConnectionController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The DeviceConnection record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceConnection"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "DeviceConnectionController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceConnectionUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeviceConnectionController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_outputs": {
+      "post": {
+        "operationId": "DeviceOutputController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceOutputUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "DeviceOutputController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The DeviceOutput records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceOutput"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_outputs/{id}": {
+      "get": {
+        "operationId": "DeviceOutputController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The DeviceOutput record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceOutput"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "DeviceOutputController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceOutputUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeviceOutputController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_inputs": {
+      "post": {
+        "operationId": "DeviceInputController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceInputUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "DeviceInputController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The DeviceInput records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceInput"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/device_inputs/{id}": {
+      "get": {
+        "operationId": "DeviceInputController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The DeviceInput record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceInput"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "DeviceInputController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceInputUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeviceInputController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/devices": {
+      "get": {
+        "operationId": "DeviceController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Device records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Device"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "DeviceController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/devices/{id}": {
+      "get": {
+        "operationId": "DeviceController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Device record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Device"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "DeviceController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeviceController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/power_schedulers": {
+      "post": {
+        "operationId": "PowerSchedulerController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PowerSchedulerUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "PowerSchedulerController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The PowerScheduler records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PowerScheduler"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/power_schedulers/{id}": {
+      "patch": {
+        "operationId": "PowerSchedulerController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PowerSchedulerUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "PowerSchedulerController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "PowerSchedulerController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The PowerScheduler record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PowerScheduler"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/power_schedulers/update_cron_tasks": {
+      "post": {
+        "operationId": "PowerSchedulerController_updateCronTasks",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/power_schedulers/{power_scheduler_id}/history": {
+      "get": {
+        "operationId": "PowerSchedulerController_queryDomain",
+        "parameters": [
+          {
+            "name": "power_scheduler_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The PowerScheduler record"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/schedulers": {
+      "post": {
+        "operationId": "SchedulerController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchedulerUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "SchedulerController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Scheduler records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Scheduler"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/schedulers/{id}": {
+      "get": {
+        "operationId": "SchedulerController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Scheduler record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scheduler"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "SchedulerController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchedulerUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "SchedulerController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_types": {
+      "post": {
+        "operationId": "RepairTypeController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairTypeUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "RepairTypeController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The RepairType records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RepairType"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_types/{id}": {
+      "get": {
+        "operationId": "RepairTypeController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The RepairType record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepairType"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "RepairTypeController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairTypeUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RepairTypeController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_orders": {
+      "get": {
+        "operationId": "RepairOrderController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The RepairOrder records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RepairOrder"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "RepairOrderController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairOrderUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_orders/{id}": {
+      "get": {
+        "operationId": "RepairOrderController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The RepairOrder record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepairOrder"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "RepairOrderController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairOrderUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RepairOrderController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_orders/{repair_order_id}/upload_photo": {
+      "post": {
+        "operationId": "RepairOrderController_uploadMultipleFiles",
+        "parameters": [
+          {
+            "name": "repair_order_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_orders/{repair_order_id}/replace_photo": {
+      "put": {
+        "operationId": "RepairOrderController_replaceMultipleFiles",
+        "parameters": [
+          {
+            "name": "repair_order_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_orders/{repair_order_id}/photos/{filename}": {
+      "delete": {
+        "operationId": "RepairOrderController_removePhoto",
+        "parameters": [
+          {
+            "name": "repair_order_id",
+            "required": true,
+            "in": "path",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "filename",
+            "required": true,
+            "in": "path",
+            "description": "ex: \"9d8e47e2-2b02-49c7-b3d5-039827bf9ce9.webp\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_items": {
+      "post": {
+        "operationId": "RepairItemController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairItemUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "RepairItemController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The RepairItem records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RepairItem"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_items/{id}": {
+      "get": {
+        "operationId": "RepairItemController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The RepairItem record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepairItem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "RepairItemController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairItemUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RepairItemController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_order_historys": {
+      "post": {
+        "operationId": "RepairOrderHistoryController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairOrderHistoryUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "RepairOrderHistoryController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The RepairOrderHistory records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RepairOrderHistory"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_order_historys/{id}": {
+      "get": {
+        "operationId": "RepairOrderHistoryController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The RepairOrderHistory record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepairOrderHistory"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "RepairOrderHistoryController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairOrderHistoryUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RepairOrderHistoryController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_records/{repair_record_id}/upload_photo": {
+      "post": {
+        "operationId": "RepairRecordController_uploadMultipleFiles",
+        "parameters": [
+          {
+            "name": "repair_record_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_records/{repair_record_id}/replace_photo": {
+      "put": {
+        "operationId": "RepairRecordController_replaceMultipleFiles",
+        "parameters": [
+          {
+            "name": "repair_record_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_records/{repair_record_id}/photos/{filename}": {
+      "delete": {
+        "operationId": "RepairRecordController_removePhoto",
+        "parameters": [
+          {
+            "name": "repair_record_id",
+            "required": true,
+            "in": "path",
+            "description": "ex: \"3\"",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "filename",
+            "required": true,
+            "in": "path",
+            "description": "ex: \"9d8e47e2-2b02-49c7-b3d5-039827bf9ce9.webp\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_records": {
+      "post": {
+        "operationId": "RepairRecordController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairRecordUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "RepairRecordController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The RepairRecord records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RepairRecord"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_records/{id}": {
+      "get": {
+        "operationId": "RepairRecordController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The RepairRecord record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepairRecord"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "RepairRecordController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairRecordUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RepairRecordController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_user_records": {
+      "post": {
+        "operationId": "RepairUserRecordController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairUserRecordUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "RepairUserRecordController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The RepairUserRecord records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RepairUserRecord"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/repair_user_records/{id}": {
+      "get": {
+        "operationId": "RepairUserRecordController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The RepairUserRecord record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepairUserRecord"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "RepairUserRecordController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RepairUserRecordUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "RepairUserRecordController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/mails/multi/{ids}": {
+      "delete": {
+        "operationId": "MailController_removeMulti",
+        "parameters": [
+          {
+            "name": "ids",
+            "required": true,
+            "in": "path",
+            "description": "id to delete. split with \",\". ex: \"12,34,56\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/mails": {
+      "post": {
+        "operationId": "MailController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MailUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "MailController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Mail records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Mail"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/mails/{id}": {
+      "get": {
+        "operationId": "MailController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Mail record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mail"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "MailController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MailUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "MailController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/events": {
+      "post": {
+        "operationId": "EventController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "EventController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The Event records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/events/{id}": {
+      "get": {
+        "operationId": "EventController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The Event record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "EventController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "EventController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "summary": "User login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/String"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/auth/refresh_token": {
+      "post": {
+        "operationId": "AuthController_refresh_token",
+        "summary": "Refresh token",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Refresh successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/String"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/notify_device": {
+      "post": {
+        "operationId": "ExtraController_create",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "AEGIS",
+    "description": "The aegis API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "apis",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "PhoneNotifyDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "token"
+          },
+          "title": {
+            "type": "string",
+            "description": "token"
+          },
+          "body": {
+            "type": "string",
+            "description": "token"
+          }
+        },
+        "required": [
+          "token",
+          "title",
+          "body"
+        ]
+      },
+      "SettingUpdate": {
+        "type": "object",
+        "properties": {
+          "setting_value": {
+            "type": "string"
+          }
+        }
+      },
+      "Setting": {
+        "type": "object",
+        "properties": {
+          "setting_id": {
+            "type": "string"
+          },
+          "setting_value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "setting_id",
+          "setting_value"
+        ]
+      },
+      "Domain": {
+        "type": "object",
+        "properties": {
+          "domain_id": {
+            "type": "number"
+          },
+          "domain_name": {
+            "type": "string"
+          },
+          "parent_domain_id": {
+            "type": "number"
+          },
+          "is_organization": {
+            "type": "boolean"
+          },
+          "address": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          },
+          "zoom": {
+            "type": "number"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "feed_in_tariffs": {
+            "type": "string"
+          },
+          "feed_in_tariff_now": {
+            "type": "number"
+          },
+          "data_sources": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "domain_id",
+          "domain_name",
+          "parent_domain_id",
+          "is_organization",
+          "address",
+          "lat",
+          "lng",
+          "zoom",
+          "photos",
+          "feed_in_tariffs",
+          "feed_in_tariff_now",
+          "data_sources"
+        ]
+      },
+      "DomainUpdate": {
+        "type": "object",
+        "properties": {
+          "domain_name": {
+            "type": "string"
+          },
+          "parent_domain_id": {
+            "type": "number"
+          },
+          "is_organization": {
+            "type": "boolean"
+          },
+          "address": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          },
+          "zoom": {
+            "type": "number"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "feed_in_tariffs": {
+            "type": "string"
+          },
+          "feed_in_tariff_now": {
+            "type": "number"
+          },
+          "data_sources": {
+            "type": "string"
+          }
+        }
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "role_id": {
+            "type": "number"
+          },
+          "role_name": {
+            "type": "string"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "page_permission": {
+            "type": "string"
+          },
+          "user_permission": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "role_id",
+          "role_name",
+          "domain_id",
+          "page_permission",
+          "user_permission"
+        ]
+      },
+      "RoleUpdate": {
+        "type": "object",
+        "properties": {
+          "role_name": {
+            "type": "string"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "page_permission": {
+            "type": "string"
+          },
+          "user_permission": {
+            "type": "string"
+          }
+        }
+      },
+      "PagePermissionUpdate": {
+        "type": "object",
+        "properties": {
+          "page_name": {
+            "type": "string"
+          },
+          "permissions": {
+            "type": "string"
+          }
+        }
+      },
+      "PagePermission": {
+        "type": "object",
+        "properties": {
+          "page_permission_id": {
+            "type": "number"
+          },
+          "page_name": {
+            "type": "string"
+          },
+          "permissions": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page_permission_id",
+          "page_name",
+          "permissions"
+        ]
+      },
+      "UserGet": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "number"
+          },
+          "user_account": {
+            "type": "string"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "user_password": {
+            "type": "string"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "role_id": {
+            "type": "number"
+          },
+          "is_supplier": {
+            "type": "boolean"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "line_notify_token": {
+            "type": "string"
+          },
+          "contact_name": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          },
+          "expire_time": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "user_id",
+          "user_account",
+          "user_name",
+          "user_password",
+          "domain_id",
+          "role_id",
+          "is_supplier",
+          "phone",
+          "email",
+          "line_notify_token",
+          "contact_name",
+          "create_time",
+          "expire_time",
+          "is_expired"
+        ]
+      },
+      "UserUpdate": {
+        "type": "object",
+        "properties": {
+          "user_account": {
+            "type": "string"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "user_password": {
+            "type": "string"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "role_id": {
+            "type": "number"
+          },
+          "is_supplier": {
+            "type": "boolean"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "line_notify_token": {
+            "type": "string"
+          },
+          "contact_name": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          },
+          "expire_time": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceTypeCategoryUpdate": {
+        "type": "object",
+        "properties": {
+          "device_type_category_name": {
+            "type": "string"
+          },
+          "device_type_category_alias_name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceTypeCategory": {
+        "type": "object",
+        "properties": {
+          "device_type_category_id": {
+            "type": "number"
+          },
+          "device_type_category_name": {
+            "type": "string"
+          },
+          "device_type_category_alias_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_type_category_id",
+          "device_type_category_name",
+          "device_type_category_alias_name"
+        ]
+      },
+      "DeviceTypeUpdate": {
+        "type": "object",
+        "properties": {
+          "device_type_name": {
+            "type": "string"
+          },
+          "device_type_alias_name": {
+            "type": "string"
+          },
+          "device_type_category_id": {
+            "type": "number"
+          },
+          "connection_params": {
+            "type": "string"
+          },
+          "is_energy_storage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DeviceType": {
+        "type": "object",
+        "properties": {
+          "device_type_id": {
+            "type": "number"
+          },
+          "device_type_name": {
+            "type": "string"
+          },
+          "device_type_alias_name": {
+            "type": "string"
+          },
+          "device_type_category_id": {
+            "type": "number"
+          },
+          "connection_params": {
+            "type": "string"
+          },
+          "is_energy_storage": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "device_type_id",
+          "device_type_name",
+          "device_type_alias_name",
+          "device_type_category_id",
+          "connection_params",
+          "is_energy_storage"
+        ]
+      },
+      "DeviceConnection": {
+        "type": "object",
+        "properties": {
+          "device_connection_id": {
+            "type": "number"
+          },
+          "device_connection_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "organization_id": {
+            "type": "number"
+          },
+          "url": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "port": {
+            "type": "number"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "org": {
+            "type": "string"
+          },
+          "database_name": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extra": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_connection_id",
+          "device_connection_name",
+          "device_type_id",
+          "organization_id",
+          "url",
+          "host",
+          "port",
+          "username",
+          "password",
+          "token",
+          "org",
+          "database_name",
+          "enabled",
+          "extra"
+        ]
+      },
+      "DeviceConnectionUpdate": {
+        "type": "object",
+        "properties": {
+          "device_connection_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "organization_id": {
+            "type": "number"
+          },
+          "url": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "port": {
+            "type": "number"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "org": {
+            "type": "string"
+          },
+          "database_name": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "extra": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceOutputUpdate": {
+        "type": "object",
+        "properties": {
+          "device_output_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "output_type": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string"
+          },
+          "device_state_field": {
+            "type": "string"
+          },
+          "device_error_code_field": {
+            "type": "string"
+          },
+          "device_error_description_field": {
+            "type": "string"
+          },
+          "is_store": {
+            "type": "boolean"
+          },
+          "properties": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceOutput": {
+        "type": "object",
+        "properties": {
+          "device_output_id": {
+            "type": "number"
+          },
+          "device_output_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "output_type": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string"
+          },
+          "device_state_field": {
+            "type": "string"
+          },
+          "device_error_code_field": {
+            "type": "string"
+          },
+          "device_error_description_field": {
+            "type": "string"
+          },
+          "is_store": {
+            "type": "boolean"
+          },
+          "properties": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_output_id",
+          "device_output_name",
+          "device_type_id",
+          "output_type",
+          "path",
+          "data_type",
+          "device_state_field",
+          "device_error_code_field",
+          "device_error_description_field",
+          "is_store",
+          "properties"
+        ]
+      },
+      "DeviceInputUpdate": {
+        "type": "object",
+        "properties": {
+          "device_input_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "input_type": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          },
+          "autorun": {
+            "type": "boolean"
+          },
+          "run_every_second": {
+            "type": "number"
+          },
+          "run_order": {
+            "type": "number"
+          },
+          "response_output_id": {
+            "type": "number"
+          }
+        }
+      },
+      "DeviceInput": {
+        "type": "object",
+        "properties": {
+          "device_input_id": {
+            "type": "number"
+          },
+          "device_input_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "input_type": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          },
+          "autorun": {
+            "type": "boolean"
+          },
+          "run_every_second": {
+            "type": "number"
+          },
+          "run_order": {
+            "type": "number"
+          },
+          "response_output_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "device_input_id",
+          "device_input_name",
+          "device_type_id",
+          "input_type",
+          "method",
+          "path",
+          "data_type",
+          "query",
+          "autorun",
+          "run_every_second",
+          "run_order",
+          "response_output_id"
+        ]
+      },
+      "Device": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "number"
+          },
+          "device_name": {
+            "type": "string"
+          },
+          "place_name": {
+            "type": "string"
+          },
+          "device_alias_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "device_type_category_id": {
+            "type": "number"
+          },
+          "device_connection_id": {
+            "type": "number"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "address": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          },
+          "is_online": {
+            "type": "boolean"
+          },
+          "output_power_capacity": {
+            "type": "number"
+          },
+          "bat_capacity": {
+            "type": "number"
+          },
+          "solar_capacity": {
+            "type": "number"
+          },
+          "solar_area": {
+            "type": "number"
+          },
+          "solar_eff": {
+            "type": "number"
+          },
+          "device_state": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "error_description": {
+            "type": "string"
+          },
+          "last_data": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "external_devices": {
+            "type": "string"
+          },
+          "extra": {
+            "type": "string"
+          },
+          "install_time": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          },
+          "last_connect_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_id",
+          "device_name",
+          "place_name",
+          "device_alias_name",
+          "device_type_id",
+          "device_type_category_id",
+          "device_connection_id",
+          "domain_id",
+          "address",
+          "lat",
+          "lng",
+          "is_online",
+          "output_power_capacity",
+          "bat_capacity",
+          "solar_capacity",
+          "solar_area",
+          "solar_eff",
+          "device_state",
+          "error_code",
+          "error_description",
+          "last_data",
+          "enabled",
+          "external_devices",
+          "extra",
+          "install_time",
+          "create_time",
+          "last_connect_time"
+        ]
+      },
+      "DeviceUpdate": {
+        "type": "object",
+        "properties": {
+          "device_name": {
+            "type": "string"
+          },
+          "place_name": {
+            "type": "string"
+          },
+          "device_alias_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "device_type_category_id": {
+            "type": "number"
+          },
+          "device_connection_id": {
+            "type": "number"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "address": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          },
+          "is_online": {
+            "type": "boolean"
+          },
+          "output_power_capacity": {
+            "type": "number"
+          },
+          "bat_capacity": {
+            "type": "number"
+          },
+          "solar_capacity": {
+            "type": "number"
+          },
+          "solar_area": {
+            "type": "number"
+          },
+          "solar_eff": {
+            "type": "number"
+          },
+          "device_state": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "error_description": {
+            "type": "string"
+          },
+          "last_data": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "external_devices": {
+            "type": "string"
+          },
+          "extra": {
+            "type": "string"
+          },
+          "install_time": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          },
+          "last_connect_time": {
+            "type": "string"
+          }
+        }
+      },
+      "PowerSchedulerUpdate": {
+        "type": "object",
+        "properties": {
+          "domain_id": {
+            "type": "number"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "crons": {
+            "type": "string"
+          },
+          "notify_user_id": {
+            "type": "number"
+          },
+          "update_time": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "stop_time": {
+            "type": "string"
+          },
+          "running": {
+            "type": "boolean"
+          },
+          "info": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PowerScheduler": {
+        "type": "object",
+        "properties": {
+          "power_scheduler_id": {
+            "type": "number"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "crons": {
+            "type": "string"
+          },
+          "notify_user_id": {
+            "type": "number"
+          },
+          "update_time": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "stop_time": {
+            "type": "string"
+          },
+          "running": {
+            "type": "boolean"
+          },
+          "info": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "power_scheduler_id",
+          "domain_id",
+          "device_id",
+          "timezone",
+          "crons",
+          "notify_user_id",
+          "update_time",
+          "start_time",
+          "stop_time",
+          "running",
+          "info",
+          "enabled"
+        ]
+      },
+      "SchedulerUpdate": {
+        "type": "object",
+        "properties": {
+          "scheduler_name": {
+            "type": "string"
+          },
+          "organization_id": {
+            "type": "number"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "device_input_id": {
+            "type": "number"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "cron": {
+            "type": "string"
+          }
+        }
+      },
+      "Scheduler": {
+        "type": "object",
+        "properties": {
+          "scheduler_id": {
+            "type": "number"
+          },
+          "scheduler_name": {
+            "type": "string"
+          },
+          "organization_id": {
+            "type": "number"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "device_input_id": {
+            "type": "number"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "cron": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "scheduler_id",
+          "scheduler_name",
+          "organization_id",
+          "device_type_id",
+          "device_input_id",
+          "device_id",
+          "cron"
+        ]
+      },
+      "RepairTypeUpdate": {
+        "type": "object",
+        "properties": {
+          "repair_type_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          }
+        }
+      },
+      "RepairType": {
+        "type": "object",
+        "properties": {
+          "repair_type_id": {
+            "type": "number"
+          },
+          "repair_type_name": {
+            "type": "string"
+          },
+          "device_type_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "repair_type_id",
+          "repair_type_name",
+          "device_type_id"
+        ]
+      },
+      "RepairOrder": {
+        "type": "object",
+        "properties": {
+          "repair_order_id": {
+            "type": "number"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "creator_id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "contact_name": {
+            "type": "string"
+          },
+          "contact_phone": {
+            "type": "string"
+          },
+          "contact_email": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "number"
+          },
+          "custom_description": {
+            "type": "string"
+          },
+          "repair_description": {
+            "type": "string"
+          },
+          "expect_end_date": {
+            "type": "string"
+          },
+          "repair_order_state": {
+            "type": "string"
+          },
+          "repair_order_type": {
+            "type": "string"
+          },
+          "completeness": {
+            "type": "number"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "supplier_id": {
+            "type": "number"
+          },
+          "assign_user_id": {
+            "type": "number"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repair_order_id",
+          "domain_id",
+          "creator_id",
+          "title",
+          "contact_name",
+          "contact_phone",
+          "contact_email",
+          "priority",
+          "custom_description",
+          "repair_description",
+          "expect_end_date",
+          "repair_order_state",
+          "repair_order_type",
+          "completeness",
+          "photos",
+          "supplier_id",
+          "assign_user_id",
+          "start_time",
+          "end_time",
+          "create_time"
+        ]
+      },
+      "RepairOrderUpdate": {
+        "type": "object",
+        "properties": {
+          "domain_id": {
+            "type": "number"
+          },
+          "creator_id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "contact_name": {
+            "type": "string"
+          },
+          "contact_phone": {
+            "type": "string"
+          },
+          "contact_email": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "number"
+          },
+          "custom_description": {
+            "type": "string"
+          },
+          "repair_description": {
+            "type": "string"
+          },
+          "expect_end_date": {
+            "type": "string"
+          },
+          "repair_order_state": {
+            "type": "string"
+          },
+          "repair_order_type": {
+            "type": "string"
+          },
+          "completeness": {
+            "type": "number"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "supplier_id": {
+            "type": "number"
+          },
+          "assign_user_id": {
+            "type": "number"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        }
+      },
+      "RepairItemUpdate": {
+        "type": "object",
+        "properties": {
+          "repair_order_id": {
+            "type": "number"
+          },
+          "repair_type_id": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "repair_item_state": {
+            "type": "string"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "expect_end_date": {
+            "type": "string"
+          },
+          "completeness": {
+            "type": "number"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        }
+      },
+      "RepairItem": {
+        "type": "object",
+        "properties": {
+          "repair_item_id": {
+            "type": "number"
+          },
+          "repair_order_id": {
+            "type": "number"
+          },
+          "repair_type_id": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "repair_item_state": {
+            "type": "string"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "expect_end_date": {
+            "type": "string"
+          },
+          "completeness": {
+            "type": "number"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repair_item_id",
+          "repair_order_id",
+          "repair_type_id",
+          "description",
+          "repair_item_state",
+          "device_id",
+          "expect_end_date",
+          "completeness",
+          "photos",
+          "start_time",
+          "end_time",
+          "create_time"
+        ]
+      },
+      "RepairOrderHistoryUpdate": {
+        "type": "object",
+        "properties": {
+          "repair_order_id": {
+            "type": "number"
+          },
+          "repair_item_id": {
+            "type": "number"
+          },
+          "repair_record_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "table_name": {
+            "type": "string"
+          },
+          "difference": {
+            "type": "string"
+          },
+          "snapshot": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        }
+      },
+      "RepairOrderHistory": {
+        "type": "object",
+        "properties": {
+          "repair_order_history_id": {
+            "type": "number"
+          },
+          "repair_order_id": {
+            "type": "number"
+          },
+          "repair_item_id": {
+            "type": "number"
+          },
+          "repair_record_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "table_name": {
+            "type": "string"
+          },
+          "difference": {
+            "type": "string"
+          },
+          "snapshot": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repair_order_history_id",
+          "repair_order_id",
+          "repair_item_id",
+          "repair_record_id",
+          "user_id",
+          "user_name",
+          "table_name",
+          "difference",
+          "snapshot",
+          "create_time"
+        ]
+      },
+      "RepairRecordUpdate": {
+        "type": "object",
+        "properties": {
+          "repair_order_id": {
+            "type": "number"
+          },
+          "repair_item_id": {
+            "type": "number"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          },
+          "update_time": {
+            "type": "string"
+          }
+        }
+      },
+      "RepairRecord": {
+        "type": "object",
+        "properties": {
+          "repair_record_id": {
+            "type": "number"
+          },
+          "repair_order_id": {
+            "type": "number"
+          },
+          "repair_item_id": {
+            "type": "number"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "photos": {
+            "type": "string"
+          },
+          "create_time": {
+            "type": "string"
+          },
+          "update_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repair_record_id",
+          "repair_order_id",
+          "repair_item_id",
+          "start_time",
+          "end_time",
+          "description",
+          "photos",
+          "create_time",
+          "update_time"
+        ]
+      },
+      "RepairUserRecordUpdate": {
+        "type": "object",
+        "properties": {
+          "repair_record_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          }
+        }
+      },
+      "RepairUserRecord": {
+        "type": "object",
+        "properties": {
+          "repair_user_record_id": {
+            "type": "number"
+          },
+          "repair_record_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "repair_user_record_id",
+          "repair_record_id",
+          "user_id"
+        ]
+      },
+      "MailUpdate": {
+        "type": "object",
+        "properties": {
+          "mail_type": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "content": {
+            "type": "string"
+          },
+          "readed": {
+            "type": "boolean"
+          },
+          "repair_order_id": {
+            "type": "number"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        }
+      },
+      "Mail": {
+        "type": "object",
+        "properties": {
+          "mail_id": {
+            "type": "number"
+          },
+          "mail_type": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "content": {
+            "type": "string"
+          },
+          "readed": {
+            "type": "boolean"
+          },
+          "repair_order_id": {
+            "type": "number"
+          },
+          "device_id": {
+            "type": "number"
+          },
+          "create_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "mail_id",
+          "mail_type",
+          "user_id",
+          "content",
+          "readed",
+          "repair_order_id",
+          "device_id",
+          "create_time"
+        ]
+      },
+      "EventUpdate": {
+        "type": "object",
+        "properties": {
+          "event_name": {
+            "type": "string"
+          },
+          "event_type": {
+            "type": "string"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "device_output_id": {
+            "type": "number"
+          },
+          "device_name": {
+            "type": "string"
+          },
+          "compare_function": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "not_trigger_second": {
+            "type": "number"
+          },
+          "trigger_onchange": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "notifys": {
+            "type": "string"
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "number"
+          },
+          "event_name": {
+            "type": "string"
+          },
+          "event_type": {
+            "type": "string"
+          },
+          "domain_id": {
+            "type": "number"
+          },
+          "device_type_id": {
+            "type": "number"
+          },
+          "device_output_id": {
+            "type": "number"
+          },
+          "device_name": {
+            "type": "string"
+          },
+          "compare_function": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "not_trigger_second": {
+            "type": "number"
+          },
+          "trigger_onchange": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "notifys": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id",
+          "event_name",
+          "event_type",
+          "domain_id",
+          "device_type_id",
+          "device_output_id",
+          "device_name",
+          "compare_function",
+          "message",
+          "not_trigger_second",
+          "trigger_onchange",
+          "enabled",
+          "notifys"
+        ]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "user_account": {
+            "type": "string",
+            "description": "User account"
+          },
+          "user_password": {
+            "type": "string",
+            "description": "Password"
+          }
+        },
+        "required": [
+          "user_account",
+          "user_password"
+        ]
+      },
+      "String": {
+        "type": "object",
+        "properties": {}
+      },
+      "RefreshTokenDto": {
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "type": "string",
+            "description": "refresh_token"
+          }
+        },
+        "required": [
+          "refresh_token"
+        ]
+      }
+    }
+  }
+}
