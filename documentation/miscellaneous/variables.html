@@ -1,0 +1,2003 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#acorn" title="src/util/record_converter.ts" ><b>acorn</b>&nbsp;&nbsp;&nbsp;(src/.../record_converter.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#acorn" title="src/modules/device_data/device_data.service.ts" ><b>acorn</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AdmZip" title="src/modules/device_data/device_data.service.ts" ><b>AdmZip</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AdmZip" title="src/modules/device_data/device_report.service.ts" ><b>AdmZip</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#cache_child_domains" title="src/modules/domain/domain.service.ts" ><b>cache_child_domains</b>&nbsp;&nbsp;&nbsp;(src/.../domain.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#cache_devices" title="src/modules/device/device.service.ts" ><b>cache_devices</b>&nbsp;&nbsp;&nbsp;(src/.../device.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#cache_domains" title="src/modules/domain/domain.service.ts" ><b>cache_domains</b>&nbsp;&nbsp;&nbsp;(src/.../domain.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Chart" title="src/modules/device_data/device_data.service.ts" ><b>Chart</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Chart" title="src/modules/device_data/device_report.service.ts" ><b>Chart</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#client" title="src/modules/device_data/influxdb_client.service.ts" ><b>client</b>&nbsp;&nbsp;&nbsp;(src/.../influxdb_client.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#cron" title="src/modules/power_scheduler/power_schedulerex.service.ts" ><b>cron</b>&nbsp;&nbsp;&nbsp;(src/.../power_schedulerex.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#cron_tasks" title="src/modules/power_scheduler/power_schedulerex.service.ts" ><b>cron_tasks</b>&nbsp;&nbsp;&nbsp;(src/.../power_schedulerex.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#dataStorerManager" title="src/modules/data_storer/mqtt.service.ts" ><b>dataStorerManager</b>&nbsp;&nbsp;&nbsp;(src/.../mqtt.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#dsource" title="src/modules/device_data/device_data.service.ts" ><b>dsource</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#escodegen" title="src/modules/device_data/device_data.service.ts" ><b>escodegen</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#font_path_medium" title="src/modules/device_data/device_report.service.ts" ><b>font_path_medium</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#font_path_regular" title="src/modules/device_data/device_report.service.ts" ><b>font_path_regular</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fs" title="src/util/util.ts" ><b>fs</b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fs" title="src/modules/device_data/device_data.service.ts" ><b>fs</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fs" title="src/modules/device_data/device_report.service.ts" ><b>fs</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fs" title="src/modules/domain/domain.controller.ts" ><b>fs</b>&nbsp;&nbsp;&nbsp;(src/.../domain.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fs" title="src/modules/repair_order/repair_order.controller.ts" ><b>fs</b>&nbsp;&nbsp;&nbsp;(src/.../repair_order.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fs" title="src/modules/repair_order/repair_order.service.ts" ><b>fs</b>&nbsp;&nbsp;&nbsp;(src/.../repair_order.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fs" title="src/modules/repair_record/repair_record.controller.ts" ><b>fs</b>&nbsp;&nbsp;&nbsp;(src/.../repair_record.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/util/util.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/autorun/autorun.service.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../autorun.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/device/device.service.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../device.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/device_data/device_data.controller.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/device_data/device_data.service.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/device_data/device_data_prediction.service.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../device_data_prediction.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/device_data/device_report.service.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/device_data/device_spec_storer.service.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../device_spec_storer.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#moment" title="src/modules/power_scheduler/power_schedulerex.service.ts" ><b>moment</b>&nbsp;&nbsp;&nbsp;(src/.../power_schedulerex.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mqtt" title="src/modules/data_storer/mqtt.service.ts" ><b>mqtt</b>&nbsp;&nbsp;&nbsp;(src/.../mqtt.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#onProxyReq" title="src/modules/ai/aiquery.controller.ts" ><b>onProxyReq</b>&nbsp;&nbsp;&nbsp;(src/.../aiquery.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/app.module.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../app.module.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/util/util.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/modules/device_data/device_data.service.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/modules/device_data/device_report.service.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/modules/domain/domain.controller.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../domain.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/modules/repair_order/repair_order.controller.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../repair_order.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/modules/repair_order/repair_order.service.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../repair_order.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#path" title="src/modules/repair_record/repair_record.controller.ts" ><b>path</b>&nbsp;&nbsp;&nbsp;(src/.../repair_record.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#pomcube" title="src/modules/device/device.service.ts" ><b>pomcube</b>&nbsp;&nbsp;&nbsp;(src/.../device.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#proxy" title="src/modules/ai/aiquery.controller.ts" ><b>proxy</b>&nbsp;&nbsp;&nbsp;(src/.../aiquery.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#tmp" title="src/modules/device_data/device_data.service.ts" ><b>tmp</b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#tmp" title="src/modules/device_data/device_report.service.ts" ><b>tmp</b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/util/darkbox.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../darkbox.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#vm" title="src/util/darkbox.ts" ><b>vm</b>&nbsp;&nbsp;&nbsp;(src/.../darkbox.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/util/darkbox.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../darkbox.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#walk" title="src/util/record_converter.ts" ><b>walk</b>&nbsp;&nbsp;&nbsp;(src/.../record_converter.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/util/util.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/data_storer/mqtt.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../mqtt.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/autorun/autorun.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../autorun.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/autorun/autorun.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../autorun.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/device_data.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/device_data.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../device_data.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/device_data_prediction.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../device_data_prediction.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/device_data_prediction.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../device_data_prediction.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/device_report.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../device_report.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/device_spec_storer.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../device_spec_storer.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/device_spec_storer.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../device_spec_storer.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/influxdb_client.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../influxdb_client.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/device_data/influxdb_client.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../influxdb_client.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/modules/power_scheduler/power_schedulerex.service.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../power_schedulerex.service.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/util/record_converter.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="acorn"></a>
+                    <span class="name">
+                        <span ><b>acorn</b></span>
+                        <a href="#acorn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&quot;acorn&quot;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="walk"></a>
+                    <span class="name">
+                        <span ><b>walk</b></span>
+                        <a href="#walk"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&quot;acorn-walk&quot;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/device_data/device_data.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="acorn"></a>
+                    <span class="name">
+                        <span ><b>acorn</b></span>
+                        <a href="#acorn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;acorn&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AdmZip"></a>
+                    <span class="name">
+                        <span ><b>AdmZip</b></span>
+                        <a href="#AdmZip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&quot;adm-zip&quot;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Chart"></a>
+                    <span class="name">
+                        <span ><b>Chart</b></span>
+                        <a href="#Chart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;chart.js/auto&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dsource"></a>
+                    <span class="name">
+                        <span ><b>dsource</b></span>
+                        <a href="#dsource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  &quot;querys&quot;: [
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SP000001&quot;,
+          &quot;fields&quot;: &quot;DirectRadiation:PredictionIrradiance&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;mean&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003,HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarPower:PredictionSolarPower,SolarEff,SolarArea&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003,HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarPower:PredictionSolarEnergyWh&quot;
+        }
+      ],
+      &quot;time_function&quot;: &quot;integral&quot;,
+      &quot;time_function_params&quot;: &quot;{\&quot;unit\&quot;:\&quot;1h\&quot;}&quot;,
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;PredictionSolarEnergy&quot;,
+          &quot;value&quot;: &quot;r.PredictionSolarEnergyWh / 1000.0&quot;
+        }
+      ]
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_sun_photometer_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SP000001&quot;,
+          &quot;fields&quot;: &quot;Irradiance&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;mean&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;pomcube_data,hermes_ess_data&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003&quot;,
+          &quot;fields&quot;: &quot;SolarPower,GenPower&quot;
+        },
+        {
+          &quot;device_output_name&quot;: &quot;hermes_pv_inverter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarPower&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_smartmeter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SM000001,HERMES_SM000002,HERMES_SM000003&quot;,
+          &quot;fields&quot;: &quot;Active_Power:GridPower&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_smartmeter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SM000004,HERMES_SM000005,HERMES_SM000006&quot;,
+          &quot;fields&quot;: &quot;Active_Power:LoadPower&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_smartmeter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SM000004,HERMES_SM000005,HERMES_SM000006&quot;,
+          &quot;fields&quot;: &quot;Active_Power:LoadEnergyWh&quot;
+        }
+      ],
+      &quot;time_function&quot;: &quot;integral&quot;,
+      &quot;time_function_params&quot;: &quot;{\&quot;unit\&quot;:\&quot;1h\&quot;}&quot;,
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;LoadEnergy&quot;,
+          &quot;value&quot;: &quot;r.LoadEnergyWh / 1000.0&quot;
+        }
+      ]
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;pomcube_data,hermes_ess_data&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003&quot;,
+          &quot;fields&quot;: &quot;SolarEnergy,GridEnergy,GenEnergy,BatteryChargeEnergy,BatteryDischargeEnergy&quot;
+        },
+        {
+          &quot;device_output_name&quot;: &quot;hermes_pv_inverter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarEnergy,GridEnergy,GenEnergy,BatteryChargeEnergy,BatteryDischargeEnergy&quot;
+        }
+      ],
+      &quot;differenceNonNegativeSource&quot;: &quot;true&quot;,
+      &quot;time_function&quot;: &quot;sum&quot;,
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;querys&quot;: [
+        {
+          &quot;sources&quot;: [
+            {
+              &quot;device_output_name&quot;: &quot;pomcube_data,hermes_ess_data,device_spec&quot;,
+              &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003&quot;,
+              &quot;fields&quot;: &quot;BatSoC,BatCapacity&quot;
+            }
+          ],
+          &quot;maps&quot;: [
+            {
+              &quot;field&quot;: &quot;BatRemainEnergy&quot;,
+              &quot;value&quot;: &quot;r.BatCapacity * r.BatSoC / 100.0&quot;
+            }
+          ],
+          &quot;group_function&quot;: &quot;sum&quot;,
+          &quot;export_fields&quot;: &quot;BatCapacity,BatRemainEnergy&quot;
+        }
+      ]
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;BatSoC&quot;,
+          &quot;value&quot;: &quot;r.BatRemainEnergy / r.BatCapacity * 100.0&quot;
+        }
+      ]
+    },
+    {
+      &quot;querys&quot;: [
+        {
+          &quot;sources&quot;: [
+            {
+              &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+              &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003,HERMES_PV000001,HERMES_PV000002&quot;,
+              &quot;fields&quot;: &quot;SolarArea,SolarEff&quot;
+            }
+          ],
+          &quot;maps&quot;: [
+            {
+              &quot;field&quot;: &quot;SolarEffArea&quot;,
+              &quot;value&quot;: &quot;r.SolarEff * r.SolarArea&quot;
+            }
+          ],
+          &quot;group_function&quot;: &quot;sum&quot;
+        }
+      ],
+      &quot;export_fields&quot;: &quot;SolarArea,SolarEffArea&quot;
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;PhotometerSolarPower&quot;,
+          &quot;value&quot;: &quot;r.Irradiance * r.SolarEffArea&quot;
+        }
+      ]
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;CurtailmentRatio&quot;,
+          &quot;value&quot;: &quot;(r.PhotometerSolarPower-r.SolarPower)/r.PhotometerSolarPower*100.0&quot;
+        }
+      ]
+    }
+  ]
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="escodegen"></a>
+                    <span class="name">
+                        <span ><b>escodegen</b></span>
+                        <a href="#escodegen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;escodegen&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                        <span ><b>fs</b></span>
+                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;fs&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tmp"></a>
+                    <span class="name">
+                        <span ><b>tmp</b></span>
+                        <a href="#tmp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;tmp&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;canvas&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/device_data/device_report.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AdmZip"></a>
+                    <span class="name">
+                        <span ><b>AdmZip</b></span>
+                        <a href="#AdmZip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&quot;adm-zip&quot;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Chart"></a>
+                    <span class="name">
+                        <span ><b>Chart</b></span>
+                        <a href="#Chart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;chart.js/auto&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="font_path_medium"></a>
+                    <span class="name">
+                        <span ><b>font_path_medium</b></span>
+                        <a href="#font_path_medium"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>path.join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;public&#x27;, &#x27;font&#x27;, &#x27;Noto_Sans_TC&#x27;, &#x27;static&#x27;, &#x27;NotoSansTC-Medium.ttf&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="font_path_regular"></a>
+                    <span class="name">
+                        <span ><b>font_path_regular</b></span>
+                        <a href="#font_path_regular"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>path.join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;public&#x27;, &#x27;font&#x27;, &#x27;Noto_Sans_TC&#x27;, &#x27;static&#x27;, &#x27;NotoSansTC-Regular.ttf&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                        <span ><b>fs</b></span>
+                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;fs&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tmp"></a>
+                    <span class="name">
+                        <span ><b>tmp</b></span>
+                        <a href="#tmp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;tmp&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;canvas&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/domain/domain.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cache_child_domains"></a>
+                    <span class="name">
+                        <span ><b>cache_child_domains</b></span>
+                        <a href="#cache_child_domains"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Array&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cache_domains"></a>
+                    <span class="name">
+                        <span ><b>cache_domains</b></span>
+                        <a href="#cache_domains"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Array&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/device/device.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cache_devices"></a>
+                    <span class="name">
+                        <span ><b>cache_devices</b></span>
+                        <a href="#cache_devices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Device.html" target="_self" >Array&lt;Device&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pomcube"></a>
+                    <span class="name">
+                        <span ><b>pomcube</b></span>
+                        <a href="#pomcube"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Pomcube.html" target="_self" >Pomcube</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/device_data/influxdb_client.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="client"></a>
+                    <span class="name">
+                        <span ><b>client</b></span>
+                        <a href="#client"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;http&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/power_scheduler/power_schedulerex.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cron"></a>
+                    <span class="name">
+                        <span ><b>cron</b></span>
+                        <a href="#cron"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;node-cron&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cron_tasks"></a>
+                    <span class="name">
+                        <span ><b>cron_tasks</b></span>
+                        <a href="#cron_tasks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/data_storer/mqtt.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataStorerManager"></a>
+                    <span class="name">
+                        <span ><b>dataStorerManager</b></span>
+                        <a href="#dataStorerManager"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DataStorerManager.html" target="_self" >DataStorerManager</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mqtt"></a>
+                    <span class="name">
+                        <span ><b>mqtt</b></span>
+                        <a href="#mqtt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&quot;mqtt&quot;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/util/util.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                        <span ><b>fs</b></span>
+                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;fs&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;node:path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/domain/domain.controller.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                        <span ><b>fs</b></span>
+                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;fs&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;node:path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/repair_order/repair_order.controller.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                        <span ><b>fs</b></span>
+                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;fs&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;node:path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/repair_order/repair_order.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                        <span ><b>fs</b></span>
+                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;fs&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;node:path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/repair_record/repair_record.controller.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                        <span ><b>fs</b></span>
+                        <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;fs&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;node:path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/autorun/autorun.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client-apis&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/device_data/device_data.controller.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/device_data/device_data_prediction.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client-apis&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/device_data/device_spec_storer.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;moment-timezone&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;@influxdata/influxdb-client-apis&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/ai/aiquery.controller.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onProxyReq"></a>
+                    <span class="name">
+                        <span ><b>onProxyReq</b></span>
+                        <a href="#onProxyReq"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>function (proxyReq, req, res) {
+  // add new header to request
+  const url &#x3D; new URL(req.query.url as string);
+  proxyReq.setHeader(&#x27;host&#x27;, url.host);
+  proxyReq.setHeader(&#x27;origin&#x27;, url.origin);
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="proxy"></a>
+                    <span class="name">
+                        <span ><b>proxy</b></span>
+                        <a href="#proxy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createProxyMiddleware({
+  target: &#x27;http://192.168.200.25:5000/voice_decode&#x27;,
+  /*
+  router: (req) &#x3D;&gt; {
+    return req.query.url as string;
+  },
+  on: { proxyReq: onProxyReq },
+  */
+  ignorePath: true,
+  changeOrigin: true,
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="path"></a>
+                    <span class="name">
+                        <span ><b>path</b></span>
+                        <a href="#path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;path&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/util/darkbox.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;worker_threads&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vm"></a>
+                    <span class="name">
+                        <span ><b>vm</b></span>
+                        <a href="#vm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;vm&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>require(&#x27;class-validator&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,825 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DeviceDataPredictionService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/device_data/device_data_prediction.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceService" >deviceService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#domainService" >domainService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#domainServiceEx" >domainServiceEx</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#influxdbClientService" >influxdbClientService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#SOLAR_PREDICTION_MEASUREMENT_NAME" >SOLAR_PREDICTION_MEASUREMENT_NAME</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#executeCronJob" >executeCronJob</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#handleCron" >handleCron</a>
+                            </li>
+                            <li>
+                                <a href="#onModuleInit" >onModuleInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(influxdbClientService: <a href="../injectables/InfluxdbClientService.html" target="_self">InfluxdbClientService</a>, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, domainServiceEx: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, deviceService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>influxdbClientService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InfluxdbClientService.html" target="_self" >InfluxdbClientService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domainService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domainServiceEx</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="executeCronJob"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>executeCronJob</b></span>
+                        <a href="#executeCronJob"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>executeCronJob()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleCron"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>handleCron</b></span>
+                        <a href="#handleCron"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleCron()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cron(&#x27;0 0 */3 * * *&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onModuleInit"></a>
+                    <span class="name">
+                        <span ><b>onModuleInit</b></span>
+                        <a href="#onModuleInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onModuleInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceService</b></span>
+                        <a href="#deviceService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domainService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>domainService</b></span>
+                        <a href="#domainService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domainServiceEx"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>domainServiceEx</b></span>
+                        <a href="#domainServiceEx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="influxdbClientService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>influxdbClientService</b></span>
+                        <a href="#influxdbClientService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/InfluxdbClientService.html" target="_self" >InfluxdbClientService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOLAR_PREDICTION_MEASUREMENT_NAME"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>SOLAR_PREDICTION_MEASUREMENT_NAME</b></span>
+                        <a href="#SOLAR_PREDICTION_MEASUREMENT_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;solar_prediction&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/device_data/device_data_prediction.service.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable, OnModuleInit } from &quot;@nestjs/common&quot;;
+import { Cron } from &quot;@nestjs/schedule&quot;;
+import { InfluxdbClientService } from &quot;./influxdb_client.service&quot;;
+import { DomainService } from &quot;../domain/domain.service&quot;;
+import { DeviceService } from &quot;../device/device.service&quot;;
+import { Util } from &quot;src/util/util&quot;;
+import { AppConfigService } from &quot;src/app_config.service&quot;;
+import { DeviceDataService } from &quot;./device_data.service&quot;;
+
+var moment &#x3D; require(&#x27;moment-timezone&#x27;);
+require(&#x27;moment/locale/zh-tw&#x27;);
+
+const {InfluxDB, Point} &#x3D; require(&#x27;@influxdata/influxdb-client&#x27;)
+const {DeleteAPI} &#x3D; require(&#x27;@influxdata/influxdb-client-apis&#x27;)
+
+@Injectable()
+export class DeviceDataPredictionService implements OnModuleInit {
+
+  static SOLAR_PREDICTION_MEASUREMENT_NAME &#x3D; &#x27;solar_prediction&#x27;;
+
+  constructor(
+    public readonly influxdbClientService:InfluxdbClientService,
+    //public readonly deviceDataService: DeviceDataService,
+    public readonly domainService: DomainService,
+    public readonly domainServiceEx: DomainService,
+    public readonly deviceService: DeviceService
+  ) {}
+
+  onModuleInit() {
+    // this.executeCronJob();
+  }
+
+  //@Cron(&#x27;0 * * * * *&#x27;)  // every minute, on the 0th second
+  @Cron(&#x27;0 0 */3 * * *&#x27;)  // every 3 hours
+  handleCron() {
+    this.executeCronJob();
+  }
+
+  async executeCronJob() {
+
+    var test_mode &#x3D; AppConfigService.getSystemConfig().test_mode
+    if (test_mode) return;
+
+    console.log(&#x27;&gt;&gt;&gt; &#x27; + (new Date()).toISOString()+&#x27; DeviceDataPredictionService - executeCronJob&#x27;)
+
+    var system_user &#x3D; AppConfigService.getSystemUser()
+
+    try {
+
+      var org &#x3D; AppConfigService.getInfluxdbConfig().org;
+      //var influxdb_client &#x3D; InfluxdbClientService.getClient();
+
+      type Prediction &#x3D; {
+      //  domain_id: number,
+      //  device_id: number,
+        lat: string,
+        lng: string,
+        timezone: string,
+        times?: string[]
+        direct_radiations?: number[]
+      }
+      var predictions:Prediction[] &#x3D; []
+      var domains &#x3D; await this.domainService.findAll(system_user, {where:{parent_domain_id:1}})
+      for (var domain of domains) {
+        var bucket &#x3D; domain.domain_name
+        var measurement &#x3D; DeviceDataPredictionService.SOLAR_PREDICTION_MEASUREMENT_NAME
+        var devices &#x3D; await this.domainServiceEx.getAllDevices(system_user, this.deviceService, domain.domain_id, {}, 1000000)
+        for (var device of devices) {
+          if (device.lat!&#x3D;null &amp;&amp; device.lng!&#x3D;null &amp;&amp; device.solar_capacity!&#x3D;0 &amp;&amp; device.lat!&#x3D;&#x27;&#x27; &amp;&amp; device.lng!&#x3D;&#x27;&#x27;) {
+            var new_prediction:Prediction &#x3D; {
+            //    domain_id: domain.domain_id,
+            //    device_id: device.device_id,
+                lat: device.lat,
+                lng: device.lng,
+                timezone: null,
+                times: null,
+                direct_radiations: null
+            }
+            var prediction &#x3D; predictions.find(x&#x3D;&gt;x.lat&#x3D;&#x3D;device.lat &amp;&amp; x.lng&#x3D;&#x3D;device.lng)
+            if (prediction!&#x3D;null) {
+              new_prediction.timezone &#x3D; prediction.timezone
+              new_prediction.times &#x3D; prediction.times
+              new_prediction.direct_radiations &#x3D; prediction.direct_radiations
+            } else {
+              try {
+                await Util.sleep(1000)
+                // https://api.open-meteo.com/v1/dwd-icon?latitude&#x3D;22.921&amp;longitude&#x3D;120.29&amp;minutely_15&#x3D;direct_radiation&amp;timezone&#x3D;Asia%2FTaipei
+                console.log(&#x60;    query direct_radiation. latitude&#x3D;${device.lat}, longitude&#x3D;${device.lng}&#x60;);
+                var url &#x3D; &#x60;https://api.open-meteo.com/v1/dwd-icon?latitude&#x3D;${device.lat}&amp;longitude&#x3D;${device.lng}&amp;minutely_15&#x3D;direct_radiation&amp;timezone&#x3D;Asia%2FTaipei&#x60;
+                var response &#x3D; await fetch(url, {
+                  method: &quot;GET&quot;,
+                  cache: &#x27;no-cache&#x27;, // *default, no-cache, reload, force-cache, only-if-cached
+                  mode: &#x27;cors&#x27;, // no-cors, cors, *same-origin
+                })
+                var result &#x3D; await response.json()
+                if (result?.timezone!&#x3D;null &amp;&amp; result?.minutely_15!&#x3D;null) {
+                  var minutely_15 &#x3D; result?.minutely_15;
+                  if (Array.isArray(minutely_15.time) &amp;&amp; Array.isArray(minutely_15.direct_radiation) &amp;&amp; minutely_15.time.length&#x3D;&#x3D;minutely_15.direct_radiation.length) {
+                    new_prediction.timezone &#x3D; result.timezone
+                    new_prediction.times &#x3D; minutely_15.time
+                    new_prediction.direct_radiations &#x3D; minutely_15.direct_radiation
+                  }
+                  //moment.tz(&quot;2024-06-24T13:00&quot;, result.timezone).toISOString();
+                }
+              } catch (ex) {
+                console.log(ex)
+              }
+            }
+
+            if (new_prediction.direct_radiations!&#x3D;null) {
+              try {
+                var prediction &#x3D; predictions.find(x&#x3D;&gt;x.lat&#x3D;&#x3D;device.lat &amp;&amp; x.lng&#x3D;&#x3D;device.lng)
+                if (prediction&#x3D;&#x3D;null) predictions.push(new_prediction)
+
+                const delete_old &#x3D; false
+                if (delete_old) {
+                  var influxdb_client2 &#x3D; InfluxdbClientService.getClient();
+                  const deleteAPI &#x3D; new DeleteAPI(influxdb_client2)
+                  // define time interval for delete operation
+                  const start &#x3D; new Date()
+                  const stop &#x3D; new Date(start.getTime() + 5 * 24 * 60 * 60 * 1000)
+                
+                  await deleteAPI.postDelete({
+                    org,
+                    bucket,
+                    // you can better specify orgID, bucketID in place or org, bucket if you already know them
+                    body: {
+                      start: (new Date(&quot;2000-01-01 00:00:00&quot;)).toISOString(), //start.toISOString(),
+                      stop: stop.toISOString(),
+                      // see https://docs.influxdata.com/influxdb/latest/reference/syntax/delete-predicate/
+                      predicate: &#x60;_measurement&#x3D;&quot;${measurement}&quot; AND DeviceName&#x3D;&quot;${device.device_name}&quot;&#x60;,
+                    },
+                  })
+                }
+
+                var timezone &#x3D; new_prediction.timezone
+                var direct_radiations &#x3D; new_prediction.direct_radiations;
+                var times &#x3D; new_prediction.times;
+
+                var influxdb_client &#x3D; InfluxdbClientService.getClient();
+                let writeClient &#x3D; influxdb_client.getWriteApi(org, bucket, &#x27;ms&#x27;)
+                var size &#x3D; times.length;
+                for (var n&#x3D;0; n&lt;size; n++) {
+                  var solar_power &#x3D; null
+                  if (device.solar_area !&#x3D; null &amp;&amp; device.solar_eff!&#x3D;null) {
+                    solar_power &#x3D; direct_radiations[n] * device.solar_area * device.solar_eff
+                  }
+                  //var time &#x3D; moment.tz(&quot;2024-06-24T13:00&quot;, timezone).toISOString();
+                  var time &#x3D; moment.tz(times[n], timezone).toISOString();
+                  let point &#x3D; new Point(measurement)
+                  point.tag(&#x27;DeviceName&#x27;, device.device_name)
+                  if (device.solar_area!&#x3D;null) point.floatField(&#x27;SolarArea&#x27;, device.solar_area)
+                  if (device.solar_eff!&#x3D;null) point.floatField(&#x27;SolarEff&#x27;, device.solar_eff)
+                  if (direct_radiations[n]!&#x3D;null) point.floatField(&#x27;DirectRadiation&#x27;, direct_radiations[n])
+                  if (solar_power!&#x3D;null) point.floatField(&#x27;SolarPower&#x27;, solar_power)
+                  point.timestamp(new Date(time))
+                  writeClient.writePoint(point)
+                }
+                await writeClient.flush();
+              } catch (ex) {
+                console.log(ex)
+              }
+            }
+          }
+        }
+      }
+
+
+    } catch (ex) {
+      console.log(ex)
+    }
+
+  }
+
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DeviceDataPredictionService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

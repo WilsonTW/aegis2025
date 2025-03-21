@@ -1,0 +1,2914 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DomainService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/domain/domain.service.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../injectables/DomainServiceBase.html" target="_self" >DomainServiceBase</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#domainRepository" >domainRepository</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#buildCacheDomains" >buildCacheDomains</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#checkData" >checkData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllInDomain" >findAllInDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOneInDomain" >findOneInDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAll" >getAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllDevices" >getAllDevices</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllDomains" >getAllDomains</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllRepairOrders" >getAllRepairOrders</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllRoles" >getAllRoles</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllUsers" >getAllUsers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCacheDomains" >getCacheDomains</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getChildIds" >getChildIds</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getDomainName" >getDomainName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getDomainTree" >getDomainTree</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getOrganizationId" >getOrganizationId</a>
+                            </li>
+                            <li>
+                                <a href="#getPhotos" >getPhotos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#includeDomain" >includeDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remove" >remove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(domainRepository: <a href="../classes/Domain.html" target="_self">Repository&lt;Domain&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/modules/domain/domain.service.ts:80</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>domainRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Domain.html" target="_self" >Repository&lt;Domain&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buildCacheDomains"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>buildCacheDomains</b></span>
+                        <a href="#buildCacheDomains"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>buildCacheDomains()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="211"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:211</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>checkData</b></span>
+                        <a href="#checkData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkData(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, domain: <a href="../classes/DomainUpdate.html" target="_self">DomainUpdate</a>, parent_domain_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain</td>
+                                            <td>
+                                                            <code><a href="../classes/DomainUpdate.html" target="_self" >DomainUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>parent_domain_id</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, domain: <a href="../classes/DomainUpdate.html" target="_self">DomainUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DomainServiceBase.html" target="_self" >DomainServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DomainServiceBase.html#source" target="_self" >DomainServiceBase:150</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain</td>
+                                            <td>
+                                                            <code><a href="../classes/DomainUpdate.html" target="_self" >DomainUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Domain.html" target="_self" >Promise&lt;Domain&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, options: null, computeFeedInTariff, computePhotos)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DomainServiceBase.html" target="_self" >DomainServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DomainServiceBase.html#source" target="_self" >DomainServiceBase:102</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>computeFeedInTariff</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>computePhotos</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>true</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Domain.html" target="_self" >Promise&lt;Domain[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllInDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAllInDomain</b></span>
+                        <a href="#findAllInDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllInDomain(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, options: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Domain.html" target="_self" >Promise&lt;Domain[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DomainServiceBase.html" target="_self" >DomainServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DomainServiceBase.html#source" target="_self" >DomainServiceBase:119</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneInDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOneInDomain</b></span>
+                        <a href="#findOneInDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneInDomain(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Domain.html" target="_self" >Promise&lt;Domain&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAll</b></span>
+                        <a href="#getAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAll(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, service: literal type, domain_id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, where: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, sort_field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, max_deepth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="373"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:373</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>service</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>where</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>sort_field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>max_deepth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>1000000</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Array&lt;any&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllDevices"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAllDevices</b></span>
+                        <a href="#getAllDevices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllDevices(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, deviceService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, args: <a href="../classes/GetDeviceArgs.html" target="_self">GetDeviceArgs</a>, max_deepth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="356"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:356</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>deviceService</td>
+                                            <td>
+                                                            <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>args</td>
+                                            <td>
+                                                            <code><a href="../classes/GetDeviceArgs.html" target="_self" >GetDeviceArgs</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>max_deepth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>1000000</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Device.html" target="_self" >Promise&lt;Array&lt;Device&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllDomains"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAllDomains</b></span>
+                        <a href="#getAllDomains"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllDomains(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, args: <a href="../classes/GetDomainArgs.html" target="_self">GetDomainArgs</a>, max_deepth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="317"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:317</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>domainService</td>
+                                            <td>
+                                                            <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>args</td>
+                                            <td>
+                                                            <code><a href="../classes/GetDomainArgs.html" target="_self" >GetDomainArgs</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>max_deepth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>1000000</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Domain.html" target="_self" >Promise&lt;Array&lt;Domain&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllRepairOrders"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAllRepairOrders</b></span>
+                        <a href="#getAllRepairOrders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllRepairOrders(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, repairOrderService: <a href="../injectables/RepairOrderService.html" target="_self">RepairOrderService</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, args: <a href="../classes/GetRepairOrderArgs.html" target="_self">GetRepairOrderArgs</a>, max_deepth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="364"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:364</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>repairOrderService</td>
+                                            <td>
+                                                            <code><a href="../injectables/RepairOrderService.html" target="_self" >RepairOrderService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>args</td>
+                                            <td>
+                                                            <code><a href="../classes/GetRepairOrderArgs.html" target="_self" >GetRepairOrderArgs</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>max_deepth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>1000000</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/RepairOrder.html" target="_self" >Promise&lt;Array&lt;RepairOrder&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllRoles"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAllRoles</b></span>
+                        <a href="#getAllRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllRoles(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, roleService: <a href="../injectables/RoleService.html" target="_self">RoleService</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, args: <a href="../classes/GetRoleArgs.html" target="_self">GetRoleArgs</a>, max_deepth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="325"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:325</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>roleService</td>
+                                            <td>
+                                                            <code><a href="../injectables/RoleService.html" target="_self" >RoleService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>args</td>
+                                            <td>
+                                                            <code><a href="../classes/GetRoleArgs.html" target="_self" >GetRoleArgs</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>max_deepth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>1000000</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Role.html" target="_self" >Promise&lt;Array&lt;Role&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllUsers"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAllUsers</b></span>
+                        <a href="#getAllUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllUsers(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, args: <a href="../classes/GetUserArgs.html" target="_self">GetUserArgs</a>, max_deepth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="341"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:341</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>userService</td>
+                                            <td>
+                                                            <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>args</td>
+                                            <td>
+                                                            <code><a href="../classes/GetUserArgs.html" target="_self" >GetUserArgs</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>max_deepth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>1000000</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Array&lt;User&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCacheDomains"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getCacheDomains</b></span>
+                        <a href="#getCacheDomains"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCacheDomains()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Array&lt;literal type&gt;&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getChildIds"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getChildIds</b></span>
+                        <a href="#getChildIds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getChildIds(parent_domain_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parent_domain_id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDomainName"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getDomainName</b></span>
+                        <a href="#getDomainName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDomainName(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:250</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;String&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDomainTree"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getDomainTree</b></span>
+                        <a href="#getDomainTree"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDomainTree(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, max_deepth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="261"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:261</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>max_deepth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>0</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getOrganizationId"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getOrganizationId</b></span>
+                        <a href="#getOrganizationId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getOrganizationId(domain_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="303"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:303</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>domain_id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPhotos"></a>
+                    <span class="name">
+                        <span ><b>getPhotos</b></span>
+                        <a href="#getPhotos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getPhotos(domain_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>domain_id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="includeDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>includeDomain</b></span>
+                        <a href="#includeDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>includeDomain(parent_domain_id, descendants_domain_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="291"
+                                    class="link-to-prism">src/modules/domain/domain.service.ts:291</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parent_domain_id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>descendants_domain_id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DomainServiceBase.html" target="_self" >DomainServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DomainServiceBase.html#source" target="_self" >DomainServiceBase:184</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateDomain: <a href="../classes/DomainUpdate.html" target="_self">DomainUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DomainServiceBase.html" target="_self" >DomainServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DomainServiceBase.html#source" target="_self" >DomainServiceBase:165</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>updateDomain</td>
+                                            <td>
+                                                            <code><a href="../classes/DomainUpdate.html" target="_self" >DomainUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Domain.html" target="_self" >Promise&lt;Domain&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domainRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>domainRepository</b></span>
+                        <a href="#domainRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Domain.html" target="_self" >Repository&lt;Domain&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(Domain)<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../injectables/DomainServiceBase.html" target="_self" >DomainServiceBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DomainServiceBase.html#source" target="_self" >DomainServiceBase:82</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Inject, Injectable, NotFoundException, forwardRef } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { In, Repository } from &#x27;typeorm&#x27;;
+import { Domain, DomainUpdate } from &#x27;./domain.entity&#x27;;
+import { DomainServiceBase } from &#x27;./domain.service.base&#x27;;
+import { User } from &#x27;../user/user.entity&#x27;;
+import { Device } from &#x27;../device/device.entity&#x27;;
+import { UserService } from &#x27;../user/user.service&#x27;;
+import { RepairOrderService } from &#x27;../repair_order/repair_order.service&#x27;;
+import { DeviceService } from &#x27;../device/device.service&#x27;;
+import { RepairOrder } from &#x27;../repair_order/repair_order.entity&#x27;;
+import { ArgsType, Field } from &#x27;@nestjs/graphql&#x27;;
+import { GetDomainArgs } from &#x27;./domain.args&#x27;;
+import { IsNumber, IsOptional } from &#x27;class-validator&#x27;;
+import { GetDeviceArgs } from &#x27;../device/device.args&#x27;;
+import { GetUserArgs } from &#x27;../user/user.args&#x27;;
+import { GetRepairItemArgs } from &#x27;../repair_item/repair_item.args&#x27;;
+import { GetRepairOrderArgs } from &#x27;../repair_order/repair_order.args&#x27;;
+import { AppConfigService } from &#x27;src/app_config.service&#x27;;
+import { Util } from &#x27;src/util/util&#x27;;
+import { start } from &#x27;repl&#x27;;
+import { time } from &#x27;console&#x27;;
+import { DeviceDataService } from &#x27;../device_data/device_data.service&#x27;;
+import { InfluxdbClientService } from &#x27;../device_data/influxdb_client.service&#x27;;
+import { UserWithPermission } from &#x27;../user/user_with_permission.entity&#x27;;
+import { RoleService } from &#x27;../role/role.service&#x27;;
+import { GetRoleArgs } from &#x27;../role/role.args&#x27;;
+import { Role } from &#x27;../role/role.entity&#x27;;
+
+var cache_child_domains:Array&lt;{
+  domain_id?:number,
+  domain_name?:string,
+  child_domain_ids:Array&lt;number&gt;
+}&gt; &#x3D; null;
+
+
+var cache_domains:Array&lt;{
+  domain_id?:number,
+  domain_name?:string,
+  parent_domain_id?:number,
+  is_organization?:boolean
+}&gt; &#x3D; null;
+
+
+/*
+@ArgsType()
+export class GetAllDomainArgs extends GetDomainArgs {
+  @IsNumber()
+  @IsOptional()
+  @Field({ nullable: true, defaultValue:1000000 })
+  max_deepth?:number;
+}
+
+@ArgsType()
+export class GetAllDeviceArgs extends GetDeviceArgs {
+  @IsNumber()
+  @IsOptional()
+  @Field({ nullable: true, defaultValue:1000000 })
+  max_deepth?:number;
+}
+
+@ArgsType()
+export class GetAllUserArgs extends GetUserArgs {
+  @IsNumber()
+  @IsOptional()
+  @Field({ nullable: true, defaultValue:1000000 })
+  max_deepth?:number;
+}
+
+@ArgsType()
+export class GetAllRepairItemArgs extends GetRepairItemArgs {
+  @IsNumber()
+  @IsOptional()
+  @Field({ nullable: true, defaultValue:1000000 })
+  max_deepth?:number;
+}
+*/
+
+@Injectable()
+export class DomainService extends DomainServiceBase {
+  constructor(
+    @InjectRepository(Domain) public readonly domainRepository: Repository&lt;Domain&gt;,
+    //private readonly domainService: DomainService,
+    //public readonly userService: UserService,
+    //@InjectRepository(User) public readonly userRepository: Repository&lt;User&gt;,
+    //@Inject(forwardRef(() &#x3D;&gt; UserService)) public readonly userService: UserService,
+    //@Inject(forwardRef(() &#x3D;&gt; RepairOrderService)) public readonly repairOrderService: RepairOrderService,
+    //@Inject(UserService) public readonly userService: UserService,
+    //@Inject(RepairOrderService) public readonly repairOrderService: RepairOrderService,
+    //public readonly userService: UserService,
+    //public readonly repairOrderService: RepairOrderService,
+  ) {
+    //console.log(&#x27;userService&#x27;, userService)
+    super(domainRepository);
+  }
+  
+  getPhotos(domain_id) {
+    var config &#x3D; AppConfigService.getSystemConfig();
+    return Util.getPhotos(config.domain_dirname, domain_id);
+  }
+
+  async findAll(this_user:UserWithPermission, options&#x3D;null, computeFeedInTariff&#x3D;false, computePhotos&#x3D;true): Promise&lt;Domain[]&gt; {
+    var domains:any &#x3D; await this.domainRepository.find(options);
+    if (computePhotos) {
+      for (var domain of domains) {
+        domain.photos &#x3D; (await this.getPhotos(domain.domain_id)).join(&#x27;|&#x27;);
+        //if (computeFeedInTariff) 
+        //domain.feed_in_tariff_now &#x3D; await this.getFeedInTariff(domain.domain_id)
+      }
+    }
+    return domains;
+  }
+
+  async findAllInDomain(this_user:UserWithPermission, options&#x3D;null): Promise&lt;Domain[]&gt; {
+    var domains &#x3D; await this.getAllDomains(this_user, this, this_user.domain_id, options?.where)
+    return domains
+  }
+
+  async findOne(this_user:UserWithPermission, id: number): Promise&lt;any&gt; {
+    var domain:any &#x3D; await this.domainRepository.findOne({
+        where: {
+          domain_id:id,
+        },
+    });
+    if (domain!&#x3D;null) domain.photos &#x3D; (await this.getPhotos(domain.domain_id)).join(&#x27;|&#x27;);
+    return domain;
+  }
+
+  async findOneInDomain(this_user:UserWithPermission, id: number): Promise&lt;Domain&gt; {
+    var where:GetDomainArgs &#x3D; {domain_id: id}
+    var domains &#x3D; await this.getAllDomains(this_user, this, this_user.domain_id, where)
+    return domains.length&gt;0 ? domains[0] : null;
+  }
+  
+
+  async checkData(this_user:UserWithPermission, domain: DomainUpdate, parent_domain_id) {
+    if (parent_domain_id&#x3D;&#x3D;1 &amp;&amp; domain.domain_name!&#x3D;null) {
+      if (/[\~\!\@\#\$\%\^\&amp;\(\)\[\]\{\}\&#x27;\&quot;\&#x60;\:\;\.\,\+\-\*\/\\\|\&#x3D; ]+/.test(domain.domain_name)) {
+        throw new HttpException(&#x27;domain_name is invalid&#x27;, HttpStatus.BAD_REQUEST);
+      }
+    }
+    if (domain.parent_domain_id!&#x3D;null) {
+      var in_domain &#x3D; await this.includeDomain(this_user.domain_id, domain.parent_domain_id)
+      if (!in_domain) {
+        throw new HttpException(&#x27;parent_domain_id is out of domain&#x27;, HttpStatus.FORBIDDEN);
+      }
+    }
+  }
+
+  async create(this_user:UserWithPermission, domain: DomainUpdate): Promise&lt;Domain&gt; {
+    if (domain.domain_name&#x3D;&#x3D;null || (&#x27;&#x27;+domain.domain_name).trim()&#x3D;&#x3D;&#x27;&#x27;) {
+      throw new HttpException(&#x27;domain_name is invalid&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    if (domain.parent_domain_id&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;parent_domain_id is null&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    await this.checkData(this_user, domain, domain.parent_domain_id)
+    var ret &#x3D; await this.domainRepository.save(domain);
+    await this.buildCacheDomains();
+    Util.notifyDeviceChanged()
+    return ret;
+    //return await this.domainRepository.insert(domain);
+  }
+
+  async update(this_user:UserWithPermission, id: number, updateDomain: DomainUpdate): Promise&lt;Domain&gt; {
+    var domain:Domain &#x3D; await this.findOneInDomain(this_user, id)
+    if (domain&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;The domain is not in this domain&#x27;, HttpStatus.NOT_FOUND);
+    }
+    if (updateDomain.parent_domain_id!&#x3D;AppConfigService.RECYCLE_DOMAIN_ID) { // 2:recycle
+      await this.checkData(this_user, updateDomain, updateDomain.parent_domain_id ?? domain.parent_domain_id)
+    }
+    await this.domainRepository.update(id, updateDomain);
+    var ret &#x3D; await this.domainRepository.findOne({
+        where: {
+          domain_id:id,
+        },
+    });
+    await this.buildCacheDomains();
+    Util.notifyDeviceChanged()
+    return ret;
+  }
+
+  async remove(this_user:UserWithPermission, id: number): Promise&lt;boolean&gt; {
+    //const result &#x3D; await this.domainRepository.delete(id);
+    //return result.affected &gt; 0;
+    if (id&#x3D;&#x3D;AppConfigService.ROOT_DOMAIN_ID || id&#x3D;&#x3D;AppConfigService.RECYCLE_DOMAIN_ID) { //{1:root, 2:recycle}
+      throw new HttpException(&#x27;This domain is protected&#x27;, HttpStatus.FORBIDDEN);
+    }
+    var domain:Domain &#x3D; await this.findOneInDomain(this_user, id)
+    if (domain&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;The domain is not in this domain&#x27;, HttpStatus.NOT_FOUND);
+    }
+    await this.domainRepository.update(id, {
+      parent_domain_id: AppConfigService.RECYCLE_DOMAIN_ID
+    });
+    await this.buildCacheDomains();
+    Util.notifyDeviceChanged()
+    return true;
+  }
+
+  async getCacheDomains(): Promise&lt;Array&lt;{
+    domain_id?:number,
+    domain_name?:string,
+    parent_domain_id?:number
+  }&gt;&gt; {
+    if (cache_domains&#x3D;&#x3D;null) await this.buildCacheDomains();
+    return cache_domains;
+  }
+
+  async buildCacheDomains(): Promise&lt;void&gt; {
+    cache_child_domains &#x3D; [];
+    var root_id &#x3D; 1;
+    var root_name &#x3D; &#x27;root&#x27;;
+    var max_deepth &#x3D; 1000000;
+    var domain_stack &#x3D; [];
+    domain_stack.push({domain_id:root_id, domain_name:root_name, deepth:0});
+    for (var n&#x3D;0; n&lt;1000000; n++) {
+      if (domain_stack.length&#x3D;&#x3D;0) break;
+      var {domain_id:parent_id, domain_name:parent_name, deepth:deepth} &#x3D; domain_stack.pop();
+      if (deepth&gt;&#x3D;max_deepth) continue;
+      var childs &#x3D; await this.domainRepository.find({
+          where: {
+            parent_domain_id: parent_id
+          },
+      });
+      cache_child_domains.push({
+        domain_id: parent_id,
+        domain_name: parent_name,
+        child_domain_ids: childs.map(x&#x3D;&gt;x.domain_id)
+      });
+      for (var child of childs) {
+        domain_stack.push({domain_id:child.domain_id, domain_name:child.domain_name, deepth:deepth+1})
+      }
+    }
+
+    // ------------------
+    cache_domains &#x3D; [];
+    var domains &#x3D; await this.domainRepository.find();
+    for (var domain of domains) {
+      cache_domains.push({
+        domain_id: domain.domain_id,
+        domain_name: domain.domain_name,
+        parent_domain_id: domain.parent_domain_id,
+        is_organization: domain.is_organization
+      });
+    }
+  }
+
+  async getDomainName(id: number): Promise&lt;String&gt; {
+    if (cache_child_domains&#x3D;&#x3D;null) await this.buildCacheDomains();
+    return cache_child_domains.find(x&#x3D;&gt;x.domain_id&#x3D;&#x3D;id)?.domain_name;
+  }
+
+  async getChildIds(parent_domain_id) {
+    if (cache_child_domains&#x3D;&#x3D;null) await this.buildCacheDomains();
+    var child_ids &#x3D; cache_child_domains.find(x&#x3D;&gt;x.domain_id&#x3D;&#x3D;parent_domain_id)?.child_domain_ids;
+    return child_ids
+  }
+
+  async getDomainTree(id: number, max_deepth:number&#x3D;0): Promise&lt;any&gt; {
+    var root:any &#x3D; await this.domainRepository.findOne({
+        where: {
+          domain_id: id,
+        },
+    });
+    if (root&#x3D;&#x3D;null) return root;
+    root.photos &#x3D; (await this.getPhotos(root.domain_id)).join(&#x27;|&#x27;);
+
+    var domain_stack &#x3D; [];
+    domain_stack.push({domain:root, deepth:0});
+    for (var n&#x3D;0; n&lt;1000000; n++) {
+      if (domain_stack.length&#x3D;&#x3D;0) break;
+      var {domain:parent, deepth:deepth} &#x3D; domain_stack.pop();
+      if (deepth&gt;&#x3D;max_deepth) continue;
+      var childs &#x3D; await this.domainRepository.find({
+          where: {
+            parent_domain_id: parent.domain_id
+          },
+      });
+      parent.child_domains &#x3D; childs;
+      var child:any;
+      for (child of childs) {
+        child.photos &#x3D; (await this.getPhotos(child.domain_id)).join(&#x27;|&#x27;);
+        domain_stack.push({domain:child, deepth:deepth+1})
+      }
+    }
+    return root;
+  }
+
+  async includeDomain(parent_domain_id, descendants_domain_id) {
+    if (cache_domains&#x3D;&#x3D;null) await this.buildCacheDomains();
+    var domain_id &#x3D; descendants_domain_id;
+    while (domain_id!&#x3D;null) {
+      var domain &#x3D; cache_domains.find(x&#x3D;&gt;x.domain_id&#x3D;&#x3D;domain_id)
+      if (domain&#x3D;&#x3D;null) break;
+      if (domain.domain_id&#x3D;&#x3D;parent_domain_id) return true;
+      domain_id &#x3D; domain.parent_domain_id;
+    }
+    return false;
+  }
+  
+  async getOrganizationId(domain_id):Promise&lt;number&gt; {
+    if (domain_id&#x3D;&#x3D;1) return 1;
+    if (cache_domains&#x3D;&#x3D;null) await this.buildCacheDomains();
+    var dom_id &#x3D; domain_id
+    while (dom_id!&#x3D;null) {
+      var domain &#x3D; cache_domains.find(x&#x3D;&gt;x.domain_id&#x3D;&#x3D;dom_id)
+      if (domain&#x3D;&#x3D;null) break;
+      if (domain.is_organization) return domain.domain_id;
+      dom_id &#x3D; domain.parent_domain_id
+    }
+    return null;
+  }
+
+
+  async getAllDomains(this_user:UserWithPermission, domainService:DomainService, id: number, args:GetDomainArgs&#x3D;{}, max_deepth:number&#x3D;1000000): Promise&lt;Array&lt;Domain&gt;&gt; {
+    var perms &#x3D; Util.getViewPermissionByTable(&#x27;domain&#x27;)
+    if (!Util.hasPermission(this_user, perms)) {
+      throw new HttpException(&#x27;No permission to access Domain&#x27;, HttpStatus.FORBIDDEN);
+    }
+    return await this.getAll(this_user, domainService, id, args, &#x27;domain_id&#x27;, max_deepth)
+  }
+
+  async getAllRoles(this_user:UserWithPermission, roleService:RoleService, id: number, args:GetRoleArgs&#x3D;{}, max_deepth:number&#x3D;1000000): Promise&lt;Array&lt;Role&gt;&gt; {
+    var perms &#x3D; Util.getViewPermissionByTable(&#x27;role&#x27;)
+    var args2 &#x3D; Object.assign({}, args)
+    if (!Util.hasPermission(this_user, perms)) {
+      if (args2.role_id!&#x3D;null) {
+        if (args2.role_id !&#x3D; this_user.role_id) {
+          throw new HttpException(&#x27;No permission to access Role&#x27;, HttpStatus.FORBIDDEN);
+        }
+      } else {
+        args2.role_id &#x3D; this_user.role_id
+      }
+    }
+    var organization_id &#x3D; await this.getOrganizationId(id)
+    return await this.getAll(this_user, roleService, organization_id, args2, &#x27;role_id&#x27;, max_deepth)
+  }
+
+  async getAllUsers(this_user:UserWithPermission, userService:UserService, id: number, args:GetUserArgs&#x3D;{}, max_deepth:number&#x3D;1000000): Promise&lt;Array&lt;User&gt;&gt; {
+    var perms &#x3D; Util.getViewPermissionByTable(&#x27;user&#x27;)
+    var args2 &#x3D; Object.assign({}, args)
+    if (!Util.hasPermission(this_user, perms)) {
+      if (args2.user_id!&#x3D;null) {
+        if (args2.user_id !&#x3D; this_user.user_id) {
+          throw new HttpException(&#x27;No permission to access User&#x27;, HttpStatus.FORBIDDEN);
+        }
+      } else {
+        args2.user_id &#x3D; this_user.user_id
+      }
+    }
+    return await this.getAll(this_user, userService, id, args2, &#x27;user_id&#x27;, max_deepth)
+  }
+
+  async getAllDevices(this_user:UserWithPermission, deviceService:DeviceService, id: number, args:GetDeviceArgs&#x3D;{}, max_deepth:number&#x3D;1000000): Promise&lt;Array&lt;Device&gt;&gt; {
+    var perms &#x3D; Util.getViewPermissionByTable(&#x27;device&#x27;)
+    if (!Util.hasPermission(this_user, perms)) {
+      throw new HttpException(&#x27;No permission to access Device&#x27;, HttpStatus.FORBIDDEN);
+    }
+    return await this.getAll(this_user, deviceService, id, args, &#x27;device_id&#x27;, max_deepth)
+  }
+  
+  async getAllRepairOrders(this_user:UserWithPermission, repairOrderService:RepairOrderService, id: number, args:GetRepairOrderArgs&#x3D;{}, max_deepth:number&#x3D;1000000): Promise&lt;Array&lt;RepairOrder&gt;&gt; {
+    var perms &#x3D; Util.getViewPermissionByTable(&#x27;repair_order&#x27;)
+    if (!Util.hasPermission(this_user, perms)) {
+      throw new HttpException(&#x27;No permission to access RepairOrder&#x27;, HttpStatus.FORBIDDEN);
+    }
+    return await this.getAll(this_user, repairOrderService, id, args, &#x27;repair_order_id&#x27;, max_deepth)
+  }
+
+  
+  async getAll(this_user:UserWithPermission, service:{findAll:Function}, domain_id: number, where:any&#x3D;{}, sort_field:string&#x3D;null, max_deepth:number&#x3D;1000000): Promise&lt;Array&lt;any&gt;&gt; {
+    var all_resources &#x3D; [];
+    if (!this.includeDomain(this_user.domain_id, domain_id)) {
+      return all_resources
+    }
+    var domain_stack &#x3D; [];
+    domain_stack.push({domain_id:domain_id, deepth:0});
+    for (var n&#x3D;0; n&lt;1000000; n++) {
+      if (domain_stack.length&#x3D;&#x3D;0) break;
+      var {domain_id:parent_domain_id, deepth:deepth} &#x3D; domain_stack.pop();
+      if (deepth&gt;&#x3D;max_deepth) continue;
+      var resources &#x3D; []
+      if (&#x27;domain_id&#x27; in where) {
+        if (where.domain_id&#x3D;&#x3D;parent_domain_id) {
+          resources &#x3D; await service.findAll(this_user, {
+            where: where
+          });
+        }
+      } else {
+        var where2 &#x3D; Object.assign({}, where)
+        where2.domain_id &#x3D; parent_domain_id
+        resources &#x3D; await service.findAll(this_user, {
+          where: where2
+        });
+      }
+      for (var resource of resources) all_resources.push(resource);
+      var child_ids &#x3D; await this.getChildIds(parent_domain_id)
+      if (child_ids!&#x3D;null) {
+        for (var child_id of child_ids) {
+          domain_stack.push({domain_id:child_id, deepth:deepth+1})
+        }
+      }
+    }
+    if (sort_field!&#x3D;null) {
+      all_resources.sort(function(a,b) {
+        if (a[sort_field]&gt;b[sort_field]) return 1;
+        if (a[sort_field]&lt;b[sort_field]) return -1;
+        return 0;
+      })
+    }
+    return all_resources;
+  }
+
+
+}
+
+
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DomainService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1397 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >RoleService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/role/role.service.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../injectables/RoleServiceBase.html" target="_self" >RoleServiceBase</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#roleRepository" >roleRepository</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#checkData" >checkData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllInDomain" >findAllInDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOneInDomain" >findOneInDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPermissionByRole" >getPermissionByRole</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remove" >remove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(roleRepository: <a href="../classes/Role.html" target="_self">Repository&lt;Role&gt;</a>, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, pagePermissionService: <a href="../injectables/PagePermissionService.html" target="_self">PagePermissionService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/modules/role/role.service.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>roleRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Role.html" target="_self" >Repository&lt;Role&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domainService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pagePermissionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PagePermissionService.html" target="_self" >PagePermissionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>checkData</b></span>
+                        <a href="#checkData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkData(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, role: <a href="../classes/RoleUpdate.html" target="_self">RoleUpdate</a>, role_id: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/modules/role/role.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>role</td>
+                                            <td>
+                                                            <code><a href="../classes/RoleUpdate.html" target="_self" >RoleUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>role_id</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, role: <a href="../classes/RoleUpdate.html" target="_self">RoleUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RoleServiceBase.html" target="_self" >RoleServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RoleServiceBase.html#source" target="_self" >RoleServiceBase:73</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>role</td>
+                                            <td>
+                                                            <code><a href="../classes/RoleUpdate.html" target="_self" >RoleUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Role.html" target="_self" >Promise&lt;Role&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllInDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAllInDomain</b></span>
+                        <a href="#findAllInDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllInDomain(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, options: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/modules/role/role.service.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Role.html" target="_self" >Promise&lt;Role[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneInDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOneInDomain</b></span>
+                        <a href="#findOneInDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneInDomain(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/modules/role/role.service.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Role.html" target="_self" >Promise&lt;Role&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPermissionByRole"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPermissionByRole</b></span>
+                        <a href="#getPermissionByRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPermissionByRole(role_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/modules/role/role.service.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>role_id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RoleServiceBase.html" target="_self" >RoleServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RoleServiceBase.html#source" target="_self" >RoleServiceBase:89</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateRole: <a href="../classes/RoleUpdate.html" target="_self">RoleUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RoleServiceBase.html" target="_self" >RoleServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RoleServiceBase.html#source" target="_self" >RoleServiceBase:79</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>updateRole</td>
+                                            <td>
+                                                            <code><a href="../classes/RoleUpdate.html" target="_self" >RoleUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Role.html" target="_self" >Promise&lt;Role&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, options: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RoleServiceBase.html" target="_self" >RoleServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RoleServiceBase.html#source" target="_self" >RoleServiceBase:18</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Role.html" target="_self" >Promise&lt;Role[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RoleServiceBase.html" target="_self" >RoleServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RoleServiceBase.html#source" target="_self" >RoleServiceBase:22</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Role.html" target="_self" >Promise&lt;Role&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roleRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>roleRepository</b></span>
+                        <a href="#roleRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Role.html" target="_self" >Repository&lt;Role&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(Role)<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../injectables/RoleServiceBase.html" target="_self" >RoleServiceBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RoleServiceBase.html#source" target="_self" >RoleServiceBase:17</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { FindManyOptions, Repository } from &#x27;typeorm&#x27;;
+import { Role, RoleUpdate } from &#x27;./role.entity&#x27;;
+import { RoleServiceBase } from &#x27;./role.service.base&#x27;;
+import { AppConfigService } from &#x27;src/app_config.service&#x27;;
+import { PagePermissionService } from &#x27;../page_permission/page_permission.service&#x27;;
+import { PagePermission } from &#x27;../page_permission/page_permission.entity&#x27;;
+import { Util } from &#x27;src/util/util&#x27;;
+import { UserWithPermission } from &#x27;../user/user_with_permission.entity&#x27;;
+import { DomainService } from &#x27;../domain/domain.service&#x27;;
+import { GetRoleArgs } from &#x27;./role.args&#x27;;
+
+@Injectable()
+export class RoleService extends RoleServiceBase {
+  constructor(
+    @InjectRepository(Role) public readonly roleRepository: Repository&lt;Role&gt;,
+    private readonly domainService: DomainService,
+    private readonly pagePermissionService: PagePermissionService,
+  ) {
+    super(roleRepository);
+  }
+
+
+  async checkData(this_user:UserWithPermission, role: RoleUpdate, role_id&#x3D;null) {
+    if (role_id!&#x3D;null) {
+      var role2:Role &#x3D; await this.findOneInDomain(this_user, role_id)
+      if (role2&#x3D;&#x3D;null) {
+        throw new HttpException(&#x27;The role is not in this domain&#x27;, HttpStatus.FORBIDDEN);
+      }
+    }
+
+    if (role?.role_name!&#x3D;null) {
+      if ((&#x27;&#x27;+role.role_name).trim()&#x3D;&#x3D;&#x27;&#x27;) {
+        throw new HttpException(&#x27;role_name is null&#x27;, HttpStatus.BAD_REQUEST);
+      }
+    }
+
+    if (role.domain_id!&#x3D;null) {
+      //var organization_id &#x3D; await this.domainService.getOrganizationId(this_user.domain_id)
+      if (!this.domainService.includeDomain(this_user.domain_id, role.domain_id)) {
+        throw new HttpException(&#x27;domain_id is outside&#x27;, HttpStatus.FORBIDDEN);
+      }
+    }
+  }
+
+  async findAllInDomain(this_user:UserWithPermission, options&#x3D;null): Promise&lt;Role[]&gt; {
+    var roles &#x3D; await this.domainService.getAllRoles(this_user, this, this_user.domain_id, options?.where)
+    return roles
+    /*
+    var organization_id &#x3D; await this.domainService.getOrganizationId(this_user.domain_id)
+    options ??&#x3D; {}
+    options.where ??&#x3D; {}
+    options.where.domain_id &#x3D; organization_id
+    if (this_user.domain_id !&#x3D; organization_id) {
+      options.where.role_id &#x3D; this_user.role_id
+    }
+    return await this.roleRepository.find(options);
+    */
+  }
+
+  async findOneInDomain(this_user:UserWithPermission, id: number): Promise&lt;Role&gt; {
+    var where:GetRoleArgs &#x3D; {role_id: id}
+    var roles &#x3D; await this.domainService.getAllRoles(this_user, this, this_user.domain_id, where)
+    return roles.length&gt;0 ? roles[0] : null;
+    /*
+    var options2:FindManyOptions&lt;Role&gt; &#x3D; {where:{role_id: id}}
+    var roles:Role[] &#x3D; await this.findAllInDomain(this_user, options2)
+    return roles.length&gt;0 ? roles[0] : null;
+    */
+  }
+
+  async create(this_user:UserWithPermission, role: RoleUpdate): Promise&lt;Role&gt; {
+    await this.checkData(this_user, role)
+    return await this.roleRepository.save(role);
+    //return await this.roleRepository.insert(role);
+  }
+
+  async update(this_user:UserWithPermission, id: number, updateRole: RoleUpdate): Promise&lt;Role&gt; {
+    await this.checkData(this_user, updateRole, id)
+    await this.roleRepository.update(id, updateRole);
+    return await this.roleRepository.findOne({
+        where: {
+          role_id:id,
+        },
+    });
+  }
+
+  async remove(this_user:UserWithPermission, id: number): Promise&lt;boolean&gt; {
+    await this.checkData(this_user, null, id)
+    const result &#x3D; await this.roleRepository.delete(id);
+    return result.affected &gt; 0;
+  }
+
+  async getPermissionByRole(role_id) {
+
+    var system_user &#x3D; AppConfigService.getSystemUser()
+
+    var page_permissions &#x3D; await this.pagePermissionService.findAll(system_user)
+    var page_permissionexs:Array&lt;PagePermission &amp; {perm:any}&gt; &#x3D; []
+    for (var page_permission of page_permissions) {
+      try {
+        let perm &#x3D; JSON.parse(page_permission.permissions)
+        page_permissionexs.push({...page_permission, perm})
+      } catch (ex) {
+        throw new HttpException(&#x60;&quot;page_permissions[${page_permission.page_name}]&quot; is invalid&quot;. &#x60;, HttpStatus.SERVICE_UNAVAILABLE);
+      }
+    }
+
+    var role &#x3D; await this.findOne(system_user, role_id)
+    if (role&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;&quot;role_id&quot; not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+
+    var user_perms:Set&lt;string&gt; &#x3D; new Set()
+    //user_perms.add(&quot;view:user&quot;)
+    user_perms.add(&quot;view:device_type&quot;)
+    user_perms.add(&quot;view:device_type_category&quot;)
+
+    if (!(role.user_permission&#x3D;&#x3D;null || (&#x27;&#x27;+role.user_permission).trim()&#x3D;&#x3D;&#x27;&#x27;)) {
+      try {
+        var role_user_perms &#x3D; JSON.parse(role.user_permission)
+        if (!Array.isArray(role_user_perms)) {
+          throw new HttpException(&#x27;&quot;role.user_permission&quot; is not a &quot;Array&quot;. &#x27;, HttpStatus.SERVICE_UNAVAILABLE);
+        }
+        for (var role_user_perm of role_user_perms) {
+          user_perms.add(role_user_perm)
+        }
+      } catch (ex) {
+        throw new HttpException(&#x27;&quot;role.user_permission&quot; is invalid. &#x27; + ex, HttpStatus.SERVICE_UNAVAILABLE);
+      }
+    }
+
+
+    var role_page_perms &#x3D; []
+    if (!(role.page_permission&#x3D;&#x3D;null || (&#x27;&#x27;+role.page_permission).trim()&#x3D;&#x3D;&#x27;&#x27;)) {
+      try {
+        role_page_perms &#x3D; JSON.parse(role.page_permission)
+        if (!Array.isArray(role_page_perms)) {
+          throw new HttpException(&#x27;&quot;role.page_permission&quot; is not a &quot;Array&quot;. &#x27;, HttpStatus.SERVICE_UNAVAILABLE);
+        }
+      } catch (ex) {
+        throw new HttpException(&#x27;&quot;role.page_permission&quot; is invalid. &#x27; + ex, HttpStatus.SERVICE_UNAVAILABLE);
+      }
+    }
+
+    /*
+    var role_page_perms &#x3D; [{&quot;name&quot;:&quot;OverView&quot;,&quot;permission&quot;:1},{&quot;name&quot;:&quot;DeviceStatus&quot;,&quot;permission&quot;:1},{&quot;name&quot;:&quot;StatusMonitor&quot;,&quot;permission&quot;:1},{&quot;name&quot;:&quot;SecurityMonitor&quot;,&quot;permission&quot;:1}]
+    */
+
+    for (var role_page_perm of role_page_perms) {
+      var page_permissionex &#x3D; page_permissionexs.find(x&#x3D;&gt;x.page_name&#x3D;&#x3D;role_page_perm.name)
+      if (page_permissionex!&#x3D;null) {
+        let crud_perms:Set&lt;string&gt; &#x3D; new Set()
+        if (role_page_perm.permission&#x3D;&#x3D;0) {
+          continue
+        }
+        if (role_page_perm.permission&gt;&#x3D;1) {
+          crud_perms &#x3D; Util.unionSet(crud_perms, page_permissionex.perm[&quot;read&quot;] ?? [])
+        } 
+        if (role_page_perm.permission&gt;&#x3D;2) {
+          crud_perms &#x3D; Util.unionSet(crud_perms, page_permissionex.perm[&quot;edit&quot;] ?? [])
+        }
+        if (role_page_perm.permission&gt;&#x3D;3) {
+          crud_perms &#x3D; Util.unionSet(crud_perms, page_permissionex.perm[&quot;manage&quot;] ?? [])
+        }
+        if (role_page_perm.permission&gt;&#x3D;4) {
+          crud_perms &#x3D; Util.unionSet(crud_perms, page_permissionex.perm[&quot;complete&quot;] ?? [])
+        }
+        for (var crud_perm of crud_perms) {
+          user_perms.add(crud_perm)
+        }
+      }
+    }
+    return Array.from(user_perms)
+
+  }
+
+
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RoleService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

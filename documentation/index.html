@@ -1,0 +1,3356 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1>AEGIS 系統簡介及安裝</h1>
+<h2>系統簡介</h2>
+<p>這是一個包含維運的電力管理系統</p>
+<h2>相關服務</h2>
+<p>此系統需搭配 postgres, influxdb, nodered 等背景服務才能運作。此處以 Docker 方式在背景服務，詳細定義在&quot;docker-compose.yml&quot;，可用下方指令開關背景服務</p>
+<blockquote>
+<p>啟動背景服務</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">./start_docker.sh</code></pre></div><blockquote>
+<p>停止背景服務</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">./stop_docker.sh</code></pre></div><h2>安裝 nodejs</h2>
+<p>此程式由 nodejs 寫成，請先到 nodejs 官網下載並安裝</p>
+<h2>AEGIS 安裝</h2>
+<h3>建立aegis資料庫</h3>
+<ol>
+<li>打開瀏覽器, 輸入網址 <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> 進入 adminer 頁面</li>
+<li>填登入選項<ol>
+<li>資料庫系統: PostgresSQL</li>
+<li>伺服器:<ol>
+<li>沒使用 docker IPV4 -&gt; 127.0.0.1</li>
+<li>沒使用 docker IPV6 -&gt; localhost 或 [::1]</li>
+<li>使用 docker -&gt; aegis_postgres</li>
+</ol>
+</li>
+<li>帳號: postgres</li>
+<li>密碼: 參照 docker-compose.yml 中的 postgres - &quot;POSTGRES_PASSWORD&quot;</li>
+</ol>
+</li>
+<li>登入postgres後建立資料庫<ol>
+<li>點選 &quot;建立資料庫&quot;, 資料庫名稱 &quot;aegis&quot;</li>
+</ol>
+</li>
+<li>建立資料表<ol>
+<li>左邊資料庫選取 &quot;aegis&quot;</li>
+<li>點左邊 &quot;SQL 命令&quot;</li>
+<li>將 aggis 原始碼中的 /document/aegis_db_postgres.sql 裡面內容全部複製貼上並執行</li>
+</ol>
+</li>
+</ol>
+<h3>匯入資料庫資料 (2選1)</h3>
+<ol>
+<li><p>只匯入基本資料<br>
+將 aggis 原始碼中的 /document/aegis_data_base.sql 裡面內容全部複製貼上並執行</p>
+</li>
+<li><p>匯入全部資料<br>
+將 aggis 原始碼中的 /document/aegis_data.sql 裡面內容全部複製貼上並執行</p>
+</li>
+</ol>
+<h3>安裝相關套件</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ cd aegis
+$ npm install</code></pre></div><h3>在 macOS 可能出現 canvas 無法安裝的問題 (若無問題可跳過)</h3>
+<blockquote>
+<p>安裝 node-gyp</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">sudo npm install -g npm
+sudo npm install -g node-gyp</code></pre></div><blockquote>
+<p>安裝系統套件</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">brew install pkg-config cairo pango libpng jpeg giflib librsvg
+npm install canvas</code></pre></div><blockquote>
+<p>若還是有問題,從原始碼編譯 (沒問題可跳過)</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">npm install canvas --build-from-source</code></pre></div><h3>AEGIS 系統設定</h3>
+<p>可以在 /src/app_config.service.ts 中更改系統設定, 更改後需重啟 Aegis</p>
+<h3>創建root</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">http://127.0.0.1:8080</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none">Login:
+System: PostgreSQL
+Server: aegis_postgres
+Username: postgres
+Password: abcd1234</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none">DB: aegis -&gt; user -&gt; New item
+user_account: root
+user_name: root
+user_password: 1qaz&#64;WSX</code></pre></div><h2>執行</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod</code></pre></div><p>不接收資料的測試模式</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ export TEST_MODE=true
+$ npm run start</code></pre></div><h2>啟動CompoDoc</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ npx compodoc -p tsconfig.json -s --port 15002</code></pre></div><h2>API 測試網頁</h2>
+<ul>
+<li><p>Restful API - <a href="http://127.0.0.1:3000/api">http://127.0.0.1:3000/api</a></p>
+</li>
+<li><p>GraphQL - <a href="http://127.0.0.1:3000/graphql">http://127.0.0.1:3000/graphql</a></p>
+</li>
+</ul>
+<h2>登入系統 - POST &quot;/auth/login&quot;</h2>
+<ul>
+<li>API說明：<ul>
+<li>用來登入系統</li>
+</ul>
+</li>
+<li>HTTP Header：<ul>
+<li>Content-Type: application/json</li>
+</ul>
+</li>
+<li>欄位說明：<ul>
+<li>user_account: 帳號</li>
+<li>user_password: 密碼</li>
+</ul>
+</li>
+</ul>
+<p>欄位範例：</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  &quot;user_account&quot;: &quot;admin&quot;,
+  &quot;user_password&quot;: &quot;xxx&quot;
+}</code></pre></div><p>傳回結果：</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  &quot;access_token&quot;: &quot;ey.123.xx&quot;,
+  &quot;user_id&quot;: 2,
+  &quot;user_name&quot;: &quot;Accton Admin&quot;,
+  &quot;role_id&quot;: 2,
+  &quot;domain_id&quot;: 2,
+  &quot;domain_name&quot;: &quot;taipei&quot;,
+  &quot;organization_id&quot;: 2
+}</code></pre></div><h2>Restful API 測試</h2>
+<blockquote>
+<p>查詢裝置資料</p>
+</blockquote>
+<ul>
+<li>GET &quot;/api/domains&quot;<ul>
+<li>HTTP Header：<ul>
+<li>Authorization: login 傳回來的 access_token。例如: &quot;Bearer ey.123.xx&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>傳回</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">[
+  {
+    &quot;domain_id&quot;: 48,
+    &quot;domain_name&quot;: &quot;Test-domain&quot;,
+    &quot;parent_domain_id&quot;: 2,
+    &quot;is_organization&quot;: false,
+    &quot;address&quot;: &quot;&quot;,
+    &quot;lat&quot;: &quot;23.75518177&quot;,
+    &quot;lng&quot;: &quot;120.80566406&quot;,
+    &quot;zoom&quot;: 7,
+    &quot;photos&quot;: &quot;&quot;,
+    &quot;feed_in_tariffs&quot;: null,
+    &quot;feed_in_tariff_now&quot;: null
+  }
+]</code></pre></div><h2>GraphQL 測試</h2>
+<blockquote>
+<p>取得 device 狀態</p>
+</blockquote>
+<ul>
+<li>用瀏覽器打開 <a href="http://127.0.0.1:3000/graphql">http://127.0.0.1:3000/graphql</a></li>
+<li>左方輸入</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-graphql">query {
+  device(device_id:1) {
+    device_state
+  }
+}</code></pre></div><ul>
+<li>按中央的三角形查詢傳回下面結果</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">&quot;data&quot;: {
+  &quot;device&quot;: {
+    &quot;device_state&quot;: &quot;running&quot;
+  }
+}</code></pre></div><div class="page"/>
+
+<h1>資料庫</h1>
+<h2>資料表定義</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setting</td>
+<td>設置</td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>域</td>
+</tr>
+<tr>
+<td>Role</td>
+<td>角色</td>
+</tr>
+<tr>
+<td>Role Permission</td>
+<td>角色權限</td>
+</tr>
+<tr>
+<td>User</td>
+<td>用戶</td>
+</tr>
+<tr>
+<td>Device Type</td>
+<td>裝置類型</td>
+</tr>
+<tr>
+<td>Device Connection</td>
+<td>裝置連線</td>
+</tr>
+<tr>
+<td>Device Output</td>
+<td>裝置輸出</td>
+</tr>
+<tr>
+<td>Device Input</td>
+<td>裝置輸入</td>
+</tr>
+<tr>
+<td>Device</td>
+<td>裝置</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>排程器</td>
+</tr>
+<tr>
+<td>Repair Type</td>
+<td>維修類型</td>
+</tr>
+<tr>
+<td>Repair Order</td>
+<td>維修訂單</td>
+</tr>
+<tr>
+<td>Repair Item</td>
+<td>維修項目</td>
+</tr>
+<tr>
+<td>Repair Order History</td>
+<td>維修訂單歷史</td>
+</tr>
+<tr>
+<td>Repair Record</td>
+<td>維修記錄</td>
+</tr>
+<tr>
+<td>Repair User Record</td>
+<td>維修派工記錄</td>
+</tr>
+<tr>
+<td>Mail</td>
+<td>郵件</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>事件</td>
+</tr>
+</tbody>
+</table>
+<div class="page"/>
+
+<h2>資料庫關聯圖</h2>
+<p><img src="./document/aegis_db.png" alt="Database" class="img-responsive" title="Database"></p>
+<h2>Setting (設置)</h2>
+<h3>說明</h3>
+<p>用來儲存設置的鍵值對</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setting_id</td>
+<td>VARCHAR(127)</td>
+<td>設置ID</td>
+</tr>
+<tr>
+<td>setting_value</td>
+<td>TEXT</td>
+<td>設置值</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Domain (域)</h2>
+<h3>說明</h3>
+<p>定義系統中的域，支持層級結構</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain_id</td>
+<td>SERIAL</td>
+<td>域ID</td>
+</tr>
+<tr>
+<td>domain_name</td>
+<td>VARCHAR(64)</td>
+<td>域名稱</td>
+</tr>
+<tr>
+<td>parent_domain_id</td>
+<td>INT</td>
+<td>父域ID</td>
+</tr>
+<tr>
+<td>is_organization</td>
+<td>BOOLEAN</td>
+<td>是否為組織</td>
+</tr>
+<tr>
+<td>address</td>
+<td>VARCHAR(255)</td>
+<td>地址</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>DECIMAL(10,8)</td>
+<td>緯度</td>
+</tr>
+<tr>
+<td>lng</td>
+<td>DECIMAL(11,8)</td>
+<td>經度</td>
+</tr>
+<tr>
+<td>zoom</td>
+<td>FLOAT</td>
+<td>地圖縮放級別</td>
+</tr>
+<tr>
+<td>photos</td>
+<td>TEXT</td>
+<td>照片</td>
+</tr>
+<tr>
+<td>feed_in_tariffs</td>
+<td>TEXT</td>
+<td>躉售費率</td>
+</tr>
+<tr>
+<td>feed_in_tariff_now</td>
+<td>FLOAT</td>
+<td>當前躉售費率</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>其它 API</h3>
+<ul>
+<li>PUT /api/domains/{domain_id}/replace_photo<ul>
+<li>說明: domain 照片上傳</li>
+<li>參數:<ul>
+<li>domain_id: 域ID</li>
+<li>multipart/form-data<ul>
+<li>file: 要上傳的照片</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Role (角色)</h2>
+<h3>說明</h3>
+<p>定義角色和其所屬域的權限</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>role_id</td>
+<td>SERIAL</td>
+<td>角色ID</td>
+</tr>
+<tr>
+<td>role_name</td>
+<td>VARCHAR(64)</td>
+<td>角色名稱</td>
+</tr>
+<tr>
+<td>domain_id</td>
+<td>INT</td>
+<td>所屬域ID</td>
+</tr>
+<tr>
+<td>page_permission</td>
+<td>TEXT</td>
+<td>頁面權限</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>User (用戶)</h2>
+<h3>說明</h3>
+<p>系統中的用戶信息</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>SERIAL</td>
+<td>用戶ID</td>
+</tr>
+<tr>
+<td>user_account</td>
+<td>VARCHAR(64)</td>
+<td>用戶帳號</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>VARCHAR(64)</td>
+<td>用戶名稱</td>
+</tr>
+<tr>
+<td>user_password</td>
+<td>VARCHAR(64)</td>
+<td>用戶密碼</td>
+</tr>
+<tr>
+<td>domain_id</td>
+<td>INT</td>
+<td>所屬域ID</td>
+</tr>
+<tr>
+<td>role_id</td>
+<td>INT</td>
+<td>角色ID</td>
+</tr>
+<tr>
+<td>is_supplier</td>
+<td>BOOLEAN</td>
+<td>是否為供應商</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>VARCHAR(32)</td>
+<td>電話</td>
+</tr>
+<tr>
+<td>email</td>
+<td>VARCHAR(63)</td>
+<td>電子郵件</td>
+</tr>
+<tr>
+<td>line_notify_token</td>
+<td>VARCHAR(127)</td>
+<td>Line 通知令牌</td>
+</tr>
+<tr>
+<td>contact_name</td>
+<td>VARCHAR(64)</td>
+<td>聯絡人名稱</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>TIMESTAMP</td>
+<td>創建時間</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Device Type Category (裝置類型群組)</h2>
+<h3>說明</h3>
+<p>用來定義裝置的類型群組</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_type_category_id</td>
+<td>SERIAL</td>
+<td>裝置類型群組 ID</td>
+</tr>
+<tr>
+<td>device_type_category_name</td>
+<td>VARCHAR(255)</td>
+<td>裝置類型群組名稱</td>
+</tr>
+<tr>
+<td>device_type_category_alias_name</td>
+<td>VARCHAR(255)</td>
+<td>裝置類型群組別名</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Device Type (裝置類型)</h2>
+<h3>說明</h3>
+<p>用來定義裝置的類型</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_type_id</td>
+<td>SERIAL</td>
+<td>裝置類型ID</td>
+</tr>
+<tr>
+<td>device_type_name</td>
+<td>VARCHAR(255)</td>
+<td>裝置類型名稱</td>
+</tr>
+<tr>
+<td>device_type_alias_name</td>
+<td>VARCHAR(255)</td>
+<td>裝置類型別名</td>
+</tr>
+<tr>
+<td>connection_params</td>
+<td>TEXT</td>
+<td>連線時需要的參數</td>
+</tr>
+<tr>
+<td>is_energy_storage</td>
+<td>BOOLEAN</td>
+<td>是否為儲能裝置</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Device Connection (裝置連線)</h2>
+<h3>說明</h3>
+<p>定義裝置的連線配置, 例如 mqtt 或 mysql 等需要常連線的連線方式必須使用</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_connection_id</td>
+<td>SERIAL</td>
+<td>裝置連線ID</td>
+</tr>
+<tr>
+<td>device_connection_name</td>
+<td>VARCHAR(127)</td>
+<td>裝置連線名稱</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>INT</td>
+<td>裝置類型ID</td>
+</tr>
+<tr>
+<td>organization_id</td>
+<td>INT</td>
+<td>組織ID</td>
+</tr>
+<tr>
+<td>url</td>
+<td>TEXT</td>
+<td>連接URL</td>
+</tr>
+<tr>
+<td>host</td>
+<td>VARCHAR(255)</td>
+<td>主機</td>
+</tr>
+<tr>
+<td>port</td>
+<td>INT</td>
+<td>埠號</td>
+</tr>
+<tr>
+<td>username</td>
+<td>VARCHAR(127)</td>
+<td>使用者名稱</td>
+</tr>
+<tr>
+<td>password</td>
+<td>VARCHAR(127)</td>
+<td>密碼</td>
+</tr>
+<tr>
+<td>token</td>
+<td>VARCHAR(255)</td>
+<td>令牌</td>
+</tr>
+<tr>
+<td>org</td>
+<td>VARCHAR(127)</td>
+<td>組織</td>
+</tr>
+<tr>
+<td>database_name</td>
+<td>VARCHAR(63)</td>
+<td>數據庫名稱</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>BOOLEAN</td>
+<td>是否啟用</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>TEXT</td>
+<td>額外信息</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Device Output (裝置輸出)</h2>
+<h3>說明</h3>
+<p>定義裝置的輸出信息</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_output_id</td>
+<td>SERIAL</td>
+<td>裝置輸出ID</td>
+</tr>
+<tr>
+<td>device_output_name</td>
+<td>VARCHAR(127)</td>
+<td>裝置輸出名稱</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>INT</td>
+<td>裝置類型ID</td>
+</tr>
+<tr>
+<td>output_type</td>
+<td>VARCHAR(63)</td>
+<td>輸出類型, ex: one of {&quot;mqtt&quot;, &quot;modbus&quot;, &quot;http&quot;}</td>
+</tr>
+<tr>
+<td>path</td>
+<td>TEXT</td>
+<td>路徑。 <pre>當 "output_type" 為下面值的範例:<br>modbus: 用來指定 modbus device_id. ex:"1"<br>mqtt: 用來指定 mqtt topic. ex:"/path/to/topic1"<br>http: 用來指定 http url. ex:"<a href="http://127.0.0.1:3000/test.html">http://127.0.0.1:3000/test.html</a>"</pre></td>
+</tr>
+<tr>
+<td>data_type</td>
+<td>VARCHAR(31)</td>
+<td>數據類型 ex: one of {&quot;text&quot;, &quot;json&quot;}</td>
+</tr>
+<tr>
+<td>device_state_field</td>
+<td>VARCHAR(63)</td>
+<td>更新 device_state 的欄位</td>
+</tr>
+<tr>
+<td>device_error_code_field</td>
+<td>VARCHAR(63)</td>
+<td>更新 device_error_code 的欄位</td>
+</tr>
+<tr>
+<td>device_error_description_field</td>
+<td>TEXT</td>
+<td>更新 device_error_description 的欄位</td>
+</tr>
+<tr>
+<td>is_store</td>
+<td>BOOLEAN</td>
+<td>是否儲存</td>
+</tr>
+<tr>
+<td>store_tags</td>
+<td>TEXT</td>
+<td><pre>influxdb tag<br>ex:[<br>{"tag":"place_name","source":"device_order"}, {"tag":"device_name","source":"device_name"}, {"tag":"device_sn","source":"device_sn"}<br>]</pre></td>
+</tr>
+<tr>
+<td>store_fields</td>
+<td>TEXT</td>
+<td><pre>influxdb field<br>ex:[<br>{"field":"LoadPower","source":"LoadPower"}, {"field":"SOC","source":"SOC"}<br>]</pre></td>
+</tr>
+<tr>
+<td>data_schema</td>
+<td>TEXT</td>
+<td>數據模式</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>data_schema</h3>
+<p>data_schema 須符合 &quot;json schema&quot; 的規範, 請參照下面網址:</p>
+<ul>
+<li>JSON Schema: <a href="https://json-schema.org/">https://json-schema.org/</a></li>
+<li>JSON Schema Builder: <a href="https://bjdash.github.io/JSON-Schema-Builder/">https://bjdash.github.io/JSON-Schema-Builder/</a></li>
+<li>JSON Schema validator: <a href="https://github.com/ajv-validator/ajv">https://github.com/ajv-validator/ajv</a></li>
+</ul>
+<p>下面範例中 &quot;productId&quot; 和 &quot;productName&quot; 為欄位名稱，型態分別為整數和字串。</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;productId&quot;: {
+      &quot;description&quot;: &quot;The unique identifier for a product&quot;,
+      &quot;type&quot;: &quot;integer&quot;
+    },
+    &quot;productName&quot;: {
+      &quot;description&quot;: &quot;Name of the product&quot;,
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;createdDate&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;format&quot;: &quot;date&quot;
+    },
+    &quot;updatedDateTime&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;format&quot;: &quot;date-time&quot;
+    },
+  }
+}</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-json">{   
+  &quot;type&quot;: &quot;array&quot;,
+  &quot;items&quot;: {
+    &quot;type&quot;: &quot;string&quot;
+  },
+  &quot;minItems&quot;: 1
+}</code></pre></div><h2>Device Input (裝置輸入) (目前未實做)</h2>
+<h3>說明</h3>
+<p>定義裝置的輸入信息</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_input_id</td>
+<td>SERIAL</td>
+<td>裝置輸入ID</td>
+</tr>
+<tr>
+<td>device_input_name</td>
+<td>VARCHAR(127)</td>
+<td>裝置輸入名稱</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>INT</td>
+<td>裝置類型ID</td>
+</tr>
+<tr>
+<td>input_type</td>
+<td>VARCHAR(63)</td>
+<td>輸入類型ex: one of {&quot;mqtt&quot;, &quot;modbus&quot;, &quot;http&quot;, &quot;mysql&quot;, &quot;influxdb&quot;}</td>
+</tr>
+<tr>
+<td>method</td>
+<td>VARCHAR(63)</td>
+<td>存取方式 ex: one of {&quot;get&quot;, &quot;post&quot;, &quot;patch&quot;, &quot;put&quot;, &quot;delete&quot;}</td>
+</tr>
+<tr>
+<td>path</td>
+<td>TEXT</td>
+<td>路徑</td>
+</tr>
+<tr>
+<td>data_type</td>
+<td>VARCHAR(31)</td>
+<td>數據類型 ex: one of {&quot;text&quot;, &quot;json&quot;}</td>
+</tr>
+<tr>
+<td>query</td>
+<td>TEXT</td>
+<td>查詢語法</td>
+</tr>
+<tr>
+<td>autorun</td>
+<td>BOOLEAN</td>
+<td>是否自動運行</td>
+</tr>
+<tr>
+<td>run_every_second</td>
+<td>INT</td>
+<td>每秒運行</td>
+</tr>
+<tr>
+<td>run_order</td>
+<td>INT</td>
+<td>運行順序</td>
+</tr>
+<tr>
+<td>response_output_id</td>
+<td>INT</td>
+<td>當 &quot;input_type&quot; 使用 &quot;http&quot; 時, 觸發的回應 output 處理方式</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>query 查詢語法說明</h3>
+<p>&quot;query&quot; 及 &quot;path&quot; 欄位可用 &quot;${xxx}&quot; 來替換變數, 目前可用的項目如下：</p>
+<ul>
+<li>${param.xxx} 會被替換成 &quot;/device_types/{device_type_id}/trigger&quot; API 中的 &quot;param.xxx&quot; 欄位</li>
+<li>${device.device_name} 會被替換成 &quot;/device_types/{device_type_id}/trigger&quot; API 中, &quot;domain_id&quot; 及 &quot;device_name&quot; 所包含的裝置名稱</li>
+</ul>
+<p>當 &quot;input_type&quot; 為下面值的範例:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">modbus:
+  path:
+    1
+  query:
+    123
+
+mqtt:
+  path:
+    /devices/${device.device_name}/control
+  query:
+    data_type==&quot;text&quot;
+      ${param}
+    data_type==&quot;json&quot;
+      {const1:&#39;const1&#39;, var1:${param.var1}, all_data:${data}}
+
+http:
+  method:
+    post
+  path:
+    /devices/${device.device_name}/control
+  query:
+    data_type==&quot;text&quot;
+      ${param}
+    data_type==&quot;json&quot;
+      {const1:&#39;const1&#39;, var1:${param.var1}, all_data:${data}}
+
+
+mysql:
+  query:
+    SELECT * FROM user
+
+influxdb:
+  query:
+    from(bucket: &quot;bucket1&quot;) \|&gt; range(start: 0, stop: 100) \|&gt; filter(fn: (r) =&gt; r[&quot;_measurement&quot;] == &quot;measurement1&quot;)</code></pre></div><h2>Device (裝置)</h2>
+<h3>說明</h3>
+<p>定義裝置的信息</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_id</td>
+<td>SERIAL</td>
+<td>裝置ID</td>
+</tr>
+<tr>
+<td>device_name</td>
+<td>VARCHAR(127)</td>
+<td>裝置名稱</td>
+</tr>
+<tr>
+<td>place_name</td>
+<td>VARCHAR(127)</td>
+<td>地點名稱</td>
+</tr>
+<tr>
+<td>device_alias_name</td>
+<td>VARCHAR(127)</td>
+<td>裝置別名</td>
+</tr>
+<tr>
+<td>device_type_category_id</td>
+<td>INT</td>
+<td>裝置類型群組 ID</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>INT</td>
+<td>裝置類型ID</td>
+</tr>
+<tr>
+<td>device_connection_id</td>
+<td>INT</td>
+<td>裝置連線ID</td>
+</tr>
+<tr>
+<td>domain_id</td>
+<td>INT</td>
+<td>所屬域ID</td>
+</tr>
+<tr>
+<td>address</td>
+<td>VARCHAR(255)</td>
+<td>地址</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>DECIMAL(10,8)</td>
+<td>緯度</td>
+</tr>
+<tr>
+<td>lng</td>
+<td>DECIMAL(11,8)</td>
+<td>經度</td>
+</tr>
+<tr>
+<td>is_online</td>
+<td>BOOLEAN</td>
+<td>是否在線</td>
+</tr>
+<tr>
+<td>output_power_capacity</td>
+<td>FLOAT</td>
+<td>輸出功率容量</td>
+</tr>
+<tr>
+<td>bat_capacity</td>
+<td>FLOAT</td>
+<td>電池容量</td>
+</tr>
+<tr>
+<td>solar_capacity</td>
+<td>FLOAT</td>
+<td>太陽能容量</td>
+</tr>
+<tr>
+<td>solar_area</td>
+<td>FLOAT</td>
+<td>太陽能面積</td>
+</tr>
+<tr>
+<td>solar_eff</td>
+<td>FLOAT</td>
+<td>太陽能效率</td>
+</tr>
+<tr>
+<td>device_state</td>
+<td>VARCHAR(31)</td>
+<td>裝置狀態</td>
+</tr>
+<tr>
+<td>error_code</td>
+<td>VARCHAR(63)</td>
+<td>錯誤代碼</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>TEXT</td>
+<td>錯誤描述</td>
+</tr>
+<tr>
+<td>last_data</td>
+<td>TEXT</td>
+<td>最後數據</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>BOOLEAN</td>
+<td>是否啟用</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>TEXT</td>
+<td>額外信息</td>
+</tr>
+<tr>
+<td>install_time</td>
+<td>TIMESTAMP</td>
+<td>安裝時間</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>TIMESTAMP</td>
+<td>創建時間</td>
+</tr>
+<tr>
+<td>last_connect_time</td>
+<td>TIMESTAMP</td>
+<td>最後連接時間</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>device_state</h3>
+<ul>
+<li>正常運作中 running</li>
+<li>警告 warning</li>
+<li>錯誤 error</li>
+</ul>
+<h2>Scheduler (排程器) (目前未實做)</h2>
+<h3>說明</h3>
+<p>定義排程器的排程信息</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scheduler_id</td>
+<td>SERIAL</td>
+<td>排程器ID</td>
+</tr>
+<tr>
+<td>scheduler_name</td>
+<td>VARCHAR(127)</td>
+<td>排程器名稱</td>
+</tr>
+<tr>
+<td>organization_id</td>
+<td>INT</td>
+<td>組織ID</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>INT</td>
+<td>裝置類型ID</td>
+</tr>
+<tr>
+<td>device_input_id</td>
+<td>INT</td>
+<td>要觸發的裝置輸入ID</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>INT</td>
+<td>裝置ID</td>
+</tr>
+<tr>
+<td>cron</td>
+<td>VARCHAR(63)</td>
+<td>CRON 表達式</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>cron 設定範例</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none"># 每天早上 8 點 30 分執行
+30 08 * * *
+
+# 每週日下午 6 點 30 分執行
+30 18 * * 0
+
+# 每週日下午 6 點 30 分執行
+30 18 * * Sun
+
+# 每年 6 月 10 日早上 8 點 30 分執行
+30 08 10 06 *
+
+# 每月 1 日、15 日、29 日晚上 9 點 30 分各執行一次
+30 21 1,15,29 * *
+
+# 每隔 10 分鐘執行一次
+*/10 * * * *
+
+# 從早上 9 點到下午 6 點，凡遇到整點就執行
+00 09-18 * * *</code></pre></div><h2>Repair Type (維修類型)</h2>
+<h3>說明</h3>
+<p>定義維修類型</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repair_type_id</td>
+<td>SERIAL</td>
+<td>維修類型ID</td>
+</tr>
+<tr>
+<td>repair_type_name</td>
+<td>VARCHAR(255)</td>
+<td>維修類型名稱</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>INT</td>
+<td>裝置類型ID</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>傳送資料給裝置</h3>
+<p>POST /device_types/{device_type_id}/trigger</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  &quot;domain_id&quot;: 3, // (選填) 傳送給此 domain 下所有裝置
+  &quot;device_name&quot;: &quot;device1&quot;, // (選填) 傳送單一裝置
+  &quot;device_input_id&quot;: 1, // (必填) 裝置的哪個輸入端
+  &quot;param&quot;: {&quot;temp&quot;:12}  // (選填) 帶入參數, 可將 &quot;DeviceInput&quot; 中, &quot;path&quot; 及 &quot;query&quot; 中的 ${param.temp} 替換成 12
+}</code></pre></div><h2>Repair Order (維修訂單)</h2>
+<h3>說明</h3>
+<p>維修訂單的詳細信息</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repair_order_id</td>
+<td>SERIAL</td>
+<td>維修訂單ID</td>
+</tr>
+<tr>
+<td>domain_id</td>
+<td>INT</td>
+<td>所屬域ID</td>
+</tr>
+<tr>
+<td>creator_id</td>
+<td>INT</td>
+<td>創建者ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td>VARCHAR(127)</td>
+<td>標題</td>
+</tr>
+<tr>
+<td>contact_name</td>
+<td>VARCHAR(63)</td>
+<td>聯絡人名稱</td>
+</tr>
+<tr>
+<td>contact_phone</td>
+<td>VARCHAR(31)</td>
+<td>聯絡電話</td>
+</tr>
+<tr>
+<td>contact_email</td>
+<td>VARCHAR(127)</td>
+<td>聯絡郵件</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>INT</td>
+<td>優先級</td>
+</tr>
+<tr>
+<td>custom_description</td>
+<td>TEXT</td>
+<td>自定義描述</td>
+</tr>
+<tr>
+<td>repair_description</td>
+<td>TEXT</td>
+<td>維修描述</td>
+</tr>
+<tr>
+<td>expect_end_date</td>
+<td>DATE</td>
+<td>預期完成日期</td>
+</tr>
+<tr>
+<td>repair_order_state</td>
+<td>VARCHAR(31)</td>
+<td>維修訂單狀態</td>
+</tr>
+<tr>
+<td>repair_order_type</td>
+<td>VARCHAR(31)</td>
+<td>維修訂單類型</td>
+</tr>
+<tr>
+<td>completeness</td>
+<td>FLOAT</td>
+<td>完整性</td>
+</tr>
+<tr>
+<td>photos</td>
+<td>TEXT</td>
+<td>照片</td>
+</tr>
+<tr>
+<td>supplier_id</td>
+<td>INT</td>
+<td>供應商ID</td>
+</tr>
+<tr>
+<td>assign_user_id</td>
+<td>INT</td>
+<td>指派用戶ID</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>TIMESTAMP</td>
+<td>開始時間</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>TIMESTAMP</td>
+<td>結束時間</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>TIMESTAMP</td>
+<td>創建時間</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>repair_order_state, repair_order_type</h3>
+<ul>
+<li><p>故障回報單 report_order</p>
+<ul>
+<li>待處理 pending</li>
+<li>已拒絕 rejected</li>
+</ul>
+</li>
+<li><p>維修單 repair_order</p>
+<ul>
+<li>未派工 not_dispatched</li>
+<li>待處理 pending</li>
+<li>維修中 repairing</li>
+<li>維修完成 completed</li>
+</ul>
+</li>
+<li><p>已結案 closed</p>
+<ul>
+<li>正常結案 normal</li>
+<li>異常結案 abnormal</li>
+</ul>
+</li>
+</ul>
+<h3>其它 API</h3>
+<ul>
+<li>PUT /api/repair_orders/{repair_order_id}/replace_photo<ul>
+<li>說明: repair_order 照片上傳</li>
+<li>參數:<ul>
+<li>repair_order_id: repair_order ID</li>
+<li>multipart/form-data<ul>
+<li>file: 要上傳的照片</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Repair Item (維修項目)</h2>
+<h3>說明</h3>
+<p>維修訂單中的維修項目</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repair_item_id</td>
+<td>SERIAL</td>
+<td>維修項目ID</td>
+</tr>
+<tr>
+<td>repair_order_id</td>
+<td>INT</td>
+<td>維修訂單ID</td>
+</tr>
+<tr>
+<td>repair_type_id</td>
+<td>INT</td>
+<td>維修類型ID</td>
+</tr>
+<tr>
+<td>description</td>
+<td>TEXT</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>repair_item_state</td>
+<td>VARCHAR(31)</td>
+<td>維修項目狀態</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>INT</td>
+<td>裝置ID</td>
+</tr>
+<tr>
+<td>expect_end_date</td>
+<td>DATE</td>
+<td>預期完成日期</td>
+</tr>
+<tr>
+<td>completeness</td>
+<td>FLOAT</td>
+<td>完整性</td>
+</tr>
+<tr>
+<td>photos</td>
+<td>TEXT</td>
+<td>照片</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>TIMESTAMP</td>
+<td>開始時間</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>TIMESTAMP</td>
+<td>結束時間</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>TIMESTAMP</td>
+<td>創建時間</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Repair Order History (維修訂單歷史)</h2>
+<h3>說明</h3>
+<p>維修訂單的歷史紀錄</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repair_order_history_id</td>
+<td>SERIAL</td>
+<td>維修訂單歷史ID</td>
+</tr>
+<tr>
+<td>repair_order_id</td>
+<td>INT</td>
+<td>維修訂單ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>INT</td>
+<td>用戶ID</td>
+</tr>
+<tr>
+<td>snapshot</td>
+<td>TEXT</td>
+<td>快照</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>TIMESTAMP</td>
+<td>創建時間</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Repair Record (維修記錄)</h2>
+<h3>說明</h3>
+<p>維修記錄的詳細信息</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repair_record_id</td>
+<td>SERIAL</td>
+<td>維修記錄ID</td>
+</tr>
+<tr>
+<td>repair_order_id</td>
+<td>INT</td>
+<td>維修訂單ID</td>
+</tr>
+<tr>
+<td>repair_item_id</td>
+<td>INT</td>
+<td>維修項目ID</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>TIMESTAMP</td>
+<td>開始時間</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>TIMESTAMP</td>
+<td>結束時間</td>
+</tr>
+<tr>
+<td>description</td>
+<td>TEXT</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>photos</td>
+<td>TEXT</td>
+<td>照片</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>TIMESTAMP</td>
+<td>創建時間</td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>TIMESTAMP</td>
+<td>更新時間</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>其它 API</h3>
+<ul>
+<li>PUT /api/repair_records/{repair_record_id}/replace_photo<ul>
+<li>說明: repair_record 照片上傳</li>
+<li>參數:<ul>
+<li>repair_record_id: repair_record ID</li>
+<li>multipart/form-data<ul>
+<li>file: 要上傳的照片</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Repair User Record (維修派工記錄)</h2>
+<h3>說明</h3>
+<p>維修派工記錄</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repair_user_record_id</td>
+<td>SERIAL</td>
+<td>派工記錄ID</td>
+</tr>
+<tr>
+<td>repair_record_id</td>
+<td>INT</td>
+<td>維修記錄ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>INT</td>
+<td>用戶ID</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Mail (郵件)</h2>
+<h3>說明</h3>
+<p>用於管理郵件通知</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mail_id</td>
+<td>SERIAL</td>
+<td>郵件ID</td>
+</tr>
+<tr>
+<td>mail_type</td>
+<td>VARCHAR(63)</td>
+<td>郵件類型</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>INT</td>
+<td>用戶ID</td>
+</tr>
+<tr>
+<td>content</td>
+<td>TEXT</td>
+<td>內容</td>
+</tr>
+<tr>
+<td>readed</td>
+<td>BOOLEAN</td>
+<td>是否已讀</td>
+</tr>
+<tr>
+<td>repair_order_id</td>
+<td>INT</td>
+<td>維修訂單ID</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>INT</td>
+<td>裝置ID</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>TIMESTAMP</td>
+<td>創建時間</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>其它 API</h3>
+<ul>
+<li>DELETE /api/mails/multi/{ids}<ul>
+<li>說明: 一次刪除多個 mail</li>
+<li>參數:<ul>
+<li>ids: 要刪除的 mail_id, 以 &quot;,&quot; 隔開。例如：&quot;12,34,56&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Event (觸發事件的規則)</h2>
+<h3>說明</h3>
+<p>觸發事件的規則</p>
+<h3>欄位定義</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td>SERIAL</td>
+<td>事件ID</td>
+</tr>
+<tr>
+<td>event_name</td>
+<td>VARCHAR(63)</td>
+<td>事件名稱</td>
+</tr>
+<tr>
+<td>event_type</td>
+<td>VARCHAR(63)</td>
+<td>事件類型, 可以是下面三種 {&quot;user&quot;:&quot;使用者觸發&quot;, &quot;device&quot;:&quot;裝置觸發&quot;, &quot;repair_order&quot;:&quot;維修單觸發&quot;}</td>
+</tr>
+<tr>
+<td>domain_id</td>
+<td>INT</td>
+<td>所屬域ID</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>INT</td>
+<td>裝置類型ID (for event_type=&quot;device&quot;)</td>
+</tr>
+<tr>
+<td>device_output_id</td>
+<td>INT</td>
+<td>裝置輸出ID</td>
+</tr>
+<tr>
+<td>device_name</td>
+<td>VARCHAR(127)</td>
+<td>裝置名稱 (for event_type=&quot;device&quot;)</td>
+</tr>
+<tr>
+<td>compare_function</td>
+<td>TEXT</td>
+<td>比較函數,必須傳回true或false, 傳回true時觸發事件 (for event_type=&quot;device&quot;)</td>
+</tr>
+<tr>
+<td>message</td>
+<td>TEXT</td>
+<td>訊息</td>
+</tr>
+<tr>
+<td>not_trigger_second</td>
+<td>INT</td>
+<td>單一裝置幾秒內不要重複觸發 (for event_type=&quot;device&quot;)</td>
+</tr>
+<tr>
+<td>trigger_onchange</td>
+<td>BOOLEAN</td>
+<td>是否觸發變更</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>BOOLEAN</td>
+<td>是否啟用</td>
+</tr>
+<tr>
+<td>notifys</td>
+<td>TEXT</td>
+<td>要通知的對象</td>
+</tr>
+</tbody>
+</table>
+<h3>notifys 範例</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">[
+  {
+    &quot;user_id&quot;: 35,
+    &quot;mail&quot;: true,
+    &quot;email&quot;: false,
+    &quot;line_notify&quot;: true
+  }
+]</code></pre></div><h3>比較函數 compare_function</h3>
+<p>當 event_type=&quot;device&quot; 時, 設定觸發的條件, 語言為 javascript, 內建有兩個參數</p>
+<ul>
+<li>device:Device - 觸發的裝置</li>
+<li>data:any - 裝置傳來的資料</li>
+</ul>
+<p>下面是範例</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">device.device_name==&#39;device1&#39; &amp;&amp; data.temperature&gt;50</code></pre></div><h3>訊息文字 message</h3>
+<p>下面是範例</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">裝置${device.device_name}的溫度過高, 目前是${data.temperature}度</code></pre></div><div class="page"/>
+
+<h1>GraphQL</h1>
+<h2>維修單查詢範例</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-graphql">query {
+  domains {
+    domain_name
+    users {
+      user_name
+    }
+    devices{
+      device_name
+    }
+    repair_orders{
+      custom_description
+      repair_description
+      repair_items {
+        description
+      }
+      repair_records {
+        description
+        repair_item {
+          description
+        }
+        repair_user_records{
+          user{
+            user_name
+          }
+        }
+      }
+    }
+  }
+}</code></pre></div><blockquote>
+<p>Response</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;domains&quot;: [
+      {
+        &quot;domain_name&quot;: &quot;root&quot;,
+        &quot;users&quot;: [
+          {
+            &quot;user_name&quot;: &quot;root 管理員&quot;
+          }
+        ],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;台北市&quot;,
+        &quot;users&quot;: [
+          {
+            &quot;user_name&quot;: &quot;台北管理員&quot;
+          }
+        ],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;台中市&quot;,
+        &quot;users&quot;: [],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;台南市&quot;,
+        &quot;users&quot;: [
+          {
+            &quot;user_name&quot;: &quot;台南管理員&quot;
+          },
+          {
+            &quot;user_name&quot;: &quot;工程師1&quot;
+          },
+          {
+            &quot;user_name&quot;: &quot;訂單管理員1&quot;
+          }
+        ],
+        &quot;devices&quot;: [
+          {
+            &quot;device_name&quot;: &quot;AA-70-2209-01-0079-377&quot;
+          },
+          {
+            &quot;device_name&quot;: &quot;AA-70-2211-01-0155-160&quot;
+          },
+          {
+            &quot;device_name&quot;: &quot;AA-70-2211-01-0217-874&quot;
+          },
+          {
+            &quot;device_name&quot;: &quot;AA-70-2211-01-0225-889&quot;
+          },
+          {
+            &quot;device_name&quot;: &quot;AA-70-2212-01-0028-070&quot;
+          },
+          {
+            &quot;device_name&quot;: &quot;AA-70-2212-01-0092-973&quot;
+          }
+        ],
+        &quot;repair_orders&quot;: [
+          {
+            &quot;custom_description&quot;: &quot;發電機無法充電&quot;,
+            &quot;repair_description&quot;: &quot;&quot;,
+            &quot;repair_items&quot;: [],
+            &quot;repair_records&quot;: []
+          }
+        ]
+      },
+      {
+        &quot;domain_name&quot;: &quot;高雄市&quot;,
+        &quot;users&quot;: [],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;新北市&quot;,
+        &quot;users&quot;: [],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;桃園市&quot;,
+        &quot;users&quot;: [],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;萬華區&quot;,
+        &quot;users&quot;: [],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;內湖區&quot;,
+        &quot;users&quot;: [],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: []
+      },
+      {
+        &quot;domain_name&quot;: &quot;永康區&quot;,
+        &quot;users&quot;: [
+          {
+            &quot;user_name&quot;: &quot;台南永康管理員&quot;
+          },
+          {
+            &quot;user_name&quot;: &quot;維修人員1&quot;
+          },
+          {
+            &quot;user_name&quot;: &quot;維修人員2&quot;
+          }
+        ],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: [
+          {
+            &quot;custom_description&quot;: &quot;讀取數值時好時壞&quot;,
+            &quot;repair_description&quot;: &quot;訊號線過長&quot;,
+            &quot;repair_items&quot;: [],
+            &quot;repair_records&quot;: []
+          }
+        ]
+      },
+      {
+        &quot;domain_name&quot;: &quot;安南區&quot;,
+        &quot;users&quot;: [
+          {
+            &quot;user_name&quot;: &quot;維修人員3&quot;
+          }
+        ],
+        &quot;devices&quot;: [],
+        &quot;repair_orders&quot;: [
+          {
+            &quot;custom_description&quot;: &quot;太陽能無法充電&quot;,
+            &quot;repair_description&quot;: &quot;太陽能接線鬆脫&quot;,
+            &quot;repair_items&quot;: [],
+            &quot;repair_records&quot;: []
+          },
+          {
+            &quot;custom_description&quot;: &quot;機台無法開機&quot;,
+            &quot;repair_description&quot;: &quot;主控版故障&quot;,
+            &quot;repair_items&quot;: [
+              {
+                &quot;description&quot;: &quot;前往廠區檢查&quot;
+              },
+              {
+                &quot;description&quot;: &quot;更換主機板&quot;
+              }
+            ],
+            &quot;repair_records&quot;: [
+              {
+                &quot;description&quot;: &quot;前去檢查發現主機板出問題&quot;,
+                &quot;repair_item&quot;: {
+                  &quot;description&quot;: &quot;前往廠區檢查&quot;
+                },
+                &quot;repair_user_records&quot;: [
+                  {
+                    &quot;user&quot;: {
+                      &quot;user_name&quot;: &quot;維修人員1&quot;
+                    }
+                  }
+                ]
+              },
+              {
+                &quot;description&quot;: &quot;把壞掉的主機板換掉&quot;,
+                &quot;repair_item&quot;: {
+                  &quot;description&quot;: &quot;更換主機板&quot;
+                },
+                &quot;repair_user_records&quot;: [
+                  {
+                    &quot;user&quot;: {
+                      &quot;user_name&quot;: &quot;維修人員1&quot;
+                    }
+                  },
+                  {
+                    &quot;user&quot;: {
+                      &quot;user_name&quot;: &quot;維修人員2&quot;
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre></div><h2>Domain 內資料查詢範例</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-graphql">query{
+  domain(domain_id:118) {
+    domain_name
+    child_domains{
+      domain_name
+    }
+    all_domains{
+      domain_name
+    }
+    all_users{
+      user_name
+    }
+    all_repair_orders {
+      repair_description
+    }
+    all_devices {
+      device_name
+    }
+  }
+}</code></pre></div><blockquote>
+<p>Response</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;domain&quot;: {
+      &quot;domain_name&quot;: &quot;X公司&quot;,
+      &quot;child_domains&quot;: [
+        {
+          &quot;domain_name&quot;: &quot;台北&quot;
+        }
+      ],
+      &quot;all_domains&quot;: [
+        {
+          &quot;domain_name&quot;: &quot;X公司&quot;
+        },
+        {
+          &quot;domain_name&quot;: &quot;台北&quot;
+        },
+        {
+          &quot;domain_name&quot;: &quot;內湖&quot;
+        }
+      ],
+      &quot;all_users&quot;: [
+        {
+          &quot;user_name&quot;: &quot;管理員&quot;
+        },
+        {
+          &quot;user_name&quot;: &quot;訪客&quot;
+        }
+      ],
+      &quot;all_repair_orders&quot;: [
+        {
+          &quot;repair_description&quot;: &quot;太陽能板接頭鬆脫&quot;
+        }
+      ],
+      &quot;all_devices&quot;: [
+        {
+          &quot;device_name&quot;: &quot;AA-70-2212-01-0076-123&quot;
+        },
+        {
+          &quot;device_name&quot;: &quot;AA-70-2209-01-0079-567&quot;
+        }
+      ]
+    }
+  }
+}</code></pre></div><h2>Device 裝置類型查詢</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-graphql">query {
+  device_type_categorys {
+    device_type_category_id
+    device_type_category_name
+    device_types{
+      device_type_name
+    }
+  }
+  domain(domain_id: 12) {
+    domain_name
+    all_devices(device_type_category_id: 3) {
+      device_name
+    }
+  }
+}</code></pre></div><blockquote>
+<p>Response</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;device_type_categorys&quot;: [
+      {
+        &quot;device_type_category_id&quot;: 1,
+        &quot;device_type_category_name&quot;: &quot;ess&quot;,
+        &quot;device_types&quot;: [
+          {
+            &quot;device_type_name&quot;: &quot;pomcube&quot;
+          },
+          {
+            &quot;device_type_name&quot;: &quot;ess_hermes&quot;
+          }
+        ]
+      },
+      {
+        &quot;device_type_category_id&quot;: 2,
+        &quot;device_type_category_name&quot;: &quot;pv&quot;,
+        &quot;device_types&quot;: [
+          {
+            &quot;device_type_name&quot;: &quot;pv_inverter&quot;
+          }
+        ]
+      },
+      {
+        &quot;device_type_category_id&quot;: 3,
+        &quot;device_type_category_name&quot;: &quot;smart_meter&quot;,
+        &quot;device_types&quot;: [
+          {
+            &quot;device_type_name&quot;: &quot;smart_meter&quot;
+          }
+        ]
+      }
+    ],
+    &quot;domain&quot;: {
+      &quot;domain_name&quot;: &quot;X Company&quot;,
+      &quot;all_devices&quot;: [
+        {
+          &quot;device_name&quot;: &quot;SM000001&quot;
+        },
+        {
+          &quot;device_name&quot;: &quot;SM000002&quot;
+        }
+      ]
+    }
+  }
+}</code></pre></div><h2>Device 連線狀態查詢</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-graphql">query{
+  device_types{
+    device_type_id
+    device_type_name
+  }
+  domain(domain_id:118) {
+    all_ess:all_devices(device_type_id:6) {
+      device_name
+      is_online
+    }
+    all_pv_inverter:all_devices(device_type_id:8) {
+      device_name
+      is_online
+    }
+  }
+}</code></pre></div><blockquote>
+<p>Response</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;device_types&quot;: [
+      {
+        &quot;device_type_id&quot;: 6,
+        &quot;device_type_name&quot;: &quot;ess&quot;
+      },
+      {
+        &quot;device_type_id&quot;: 8,
+        &quot;device_type_name&quot;: &quot;pv_inverter&quot;
+      }
+    ],
+    &quot;domain&quot;: {
+      &quot;all_ess&quot;: [
+        {
+          &quot;device_name&quot;: &quot;AA-70-2212-01-0076-789&quot;,
+          &quot;is_online&quot;: true
+        },
+        {
+          &quot;device_name&quot;: &quot;AA-70-2209-01-0079-321&quot;,
+          &quot;is_online&quot;: false
+        },
+      ],
+      &quot;all_pv_inverter&quot;: [
+        {
+          &quot;device_name&quot;: &quot;EMS000002&quot;,
+          &quot;is_online&quot;: true
+        },
+        {
+          &quot;device_name&quot;: &quot;EMS000003&quot;,
+          &quot;is_online&quot;: true
+        }
+      ]
+    }
+  }
+}</code></pre></div><div class="page"/>
+
+<h1>裝置資料查詢與寫入 (Data API)</h1>
+<h2>簡介</h2>
+<p>  透過 Data API，使用者可以取得裝置的相關數據，並利用這些資料提供全面的能源管理與分析能力，它包括以下內容：</p>
+<ol>
+<li>即時/歷史太陽能功率</li>
+<li>即時/歷史市電功率</li>
+<li>即時/歷史負載功率</li>
+<li>即時/歷史電池電量 (SOC)</li>
+<li>根據時間查詢該站點的太陽能發電預測</li>
+</ol>
+<h2>Data API 路徑</h2>
+<p>查詢裝置</p>
+<blockquote>
+<p>GET /api/device_datas/query</p>
+</blockquote>
+<p>查詢 Domain</p>
+<blockquote>
+<p>GET /api/domain_datas/query</p>
+</blockquote>
+<h2>使用流程</h2>
+<ol>
+<li>使用 POST /auth/login 登入<ol>
+<li>帳號 (user_account): &quot;admin&quot;</li>
+<li>密碼 (user_password): &quot;xxx&quot;</li>
+</ol>
+</li>
+<li>利用 GET /api/device_datas/query 查詢設備資料</li>
+</ol>
+<h2>Data API - GET &quot;/api/device_datas/query&quot;</h2>
+<ul>
+<li><p>API說明：</p>
+<ul>
+<li>查詢裝置資料</li>
+</ul>
+</li>
+<li><p>HTTP Header：</p>
+<ul>
+<li>Authorization: login 傳回來的 access_token。例如: &quot;Bearer ey.123.xx&quot;</li>
+</ul>
+</li>
+<li><p>參數說明</p>
+<ul>
+<li>organization_id: (必填) 組織 ID</li>
+<li>device_type_name: 裝置類型名稱</li>
+<li>device_output_name: (必填) 輸出埠名稱. 目前必須是下面兩種<ul>
+<li>&quot;ess_data&quot;: ess的資料</li>
+<li>&quot;solar_prediction&quot;: 太陽能預測的資料</li>
+</ul>
+</li>
+<li>domain_id: 查詢此 domain 所有 device, 忽略時等同於 organization_id</li>
+<li>device_names: 要查詢的 device 名稱, 多個裝置以 &quot;,&quot; 隔開, ex: &quot;device1,device2,device3&quot;, 忽略時等同於 organization_id 下所有裝置</li>
+<li>place_names: 要查詢的 place 名稱, 多個 place 以 &quot;,&quot; 隔開, ex: &quot;place1,place2,place3&quot;</li>
+<li>start: 開始時間, ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;</li>
+<li>stop: 結束時間, ex: &quot;2023-09-01T00:00:00.000Z&quot;</li>
+<li>fields: (必填) 要查詢的欄位, 每個欄位用 &quot;,&quot; 隔開. ex: &quot;field1,field2&quot;</li>
+<li>where: 查詢條件. 例如 &#39;{&quot;domain_id&quot;:&quot;1&quot;,&quot;device_name&quot;:[&quot;device1&quot;,&quot;device2&quot;]}&#39; 代表 (domain_id==1 &amp;&amp; (device_name==&quot;device1&quot; || device_name==&quot;device2&quot;)) 。 查詢欄位必須是 tag</li>
+<li>differenceNonNegativeSource: 是否在統計前, 先把後一筆的值減去前一筆的值, 若減完結果為負值則為null。可為 &quot;false&quot; 或 &quot;true&quot;。預設 &quot;false&quot;</li>
+<li>group_by: 需要群組的欄位，欄位名稱用 &#39;,&#39; 隔開。若欄位名稱開頭有 &#39;!&#39; ，則此欄位僅在統計前群組，統計後不群組。ex: &quot;!DeviceName,_field&quot;</li>
+<li>every: 每段統計的時間區間, 需搭配 &quot;time_function&quot; 一起使用</li>
+<li>create_empty: 每段統計的時間區間值為 null 時, 是否仍建立此時間。可為 &quot;false&quot; 或 &quot;true&quot;。預設 &quot;false&quot;</li>
+<li>time_src: 每段統計的時間要使用 開頭時間(&#39;_start&#39;) 或 結束時間(&#39;_stop&#39;)。 ex: one of [&quot;_start&quot;, &quot;_stop&quot;]</li>
+<li>timezone: 當使用 every 或其他具時區的查詢時用到，例如 &quot;每日&quot; </li>
+<li>difference: 是否將後一時間段的值減去前一時間段的值。可為 &quot;false&quot; 或 &quot;true&quot;。預設 &quot;false&quot;</li>
+<li>time_function: &quot;每段時間&quot; 的統計 function。 ex: one of [&#39;first&#39;, &#39;last&#39;, &#39;min&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;count&#39;, &#39;sum&#39;, &#39;spread&#39;,&#39;integral&#39;]<ul>
+<li>last: 最後一筆</li>
+<li>min: 最小</li>
+<li>mean: 平均值</li>
+<li>count: 個數</li>
+<li>sum: 總計</li>
+<li>spread: 區間內 (最大-最小)</li>
+<li>integral: 積分 (值*秒差)</li>
+</ul>
+</li>
+<li>group_function: 將 &quot;多個群組&quot; 合併成 &quot;一個時間群組&quot;。ex: one of [&#39;min&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;count&#39;, &#39;sum&#39;]</li>
+<li>pivot_columns: 是否將不同 table 的值，依據時間區間，合併 欄位(ex:&quot;_field&quot;) 或 tag(ex:&quot;LoadPower&quot;) 成為一筆紀錄。ex: &quot;_field&quot;</li>
+<li>limit: 每個 table 最多幾筆</li>
+<li>output_format: 輸出格式。one of [&#39;json&#39;, &#39;influx_line_protocol&#39;]. default is &#39;json&#39;</li>
+<li>output_zip: 是否輸出壓縮檔. one of [&#39;true&#39;, &#39;false&#39;]. default is &#39;false&#39;</li>
+<li>debug: 偵錯使用。可為 &quot;false&quot; 或 &quot;true&quot;。預設 &quot;false&quot;</li>
+</ul>
+</li>
+</ul>
+<h2>Data API - GET &quot;/api/domain_datas/query&quot;</h2>
+<ul>
+<li><p>API說明：</p>
+<ul>
+<li>查詢Domain資料</li>
+</ul>
+</li>
+<li><p>HTTP Header：</p>
+<ul>
+<li>Authorization: login 傳回來的 access_token。例如: &quot;Bearer ey.123.xx&quot;</li>
+</ul>
+</li>
+<li><p>參數說明</p>
+<ul>
+<li>organization_id: (必填) 組織 ID</li>
+<li>device_type_name: 裝置類型名稱</li>
+<li>domain_id: 查詢此 domain 所有 device, 忽略時等同於 organization_id</li>
+<li>start: 開始時間, ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;</li>
+<li>stop: 結束時間, ex: &quot;2023-09-01T00:00:00.000Z&quot;</li>
+<li>fields: (必填) 要查詢的欄位, 每個欄位用 &quot;,&quot; 隔開. ex: &quot;field1,field2&quot;</li>
+<li>every: 每段統計的時間區間, 需搭配 &quot;time_function&quot; 一起使用</li>
+<li>create_empty: 每段統計的時間區間值為 null 時, 是否仍建立此時間。可為 &quot;false&quot; 或 &quot;true&quot;。預設 &quot;false&quot;</li>
+<li>time_src: 每段統計的時間要使用 開頭時間(&#39;_start&#39;) 或 結束時間(&#39;_stop&#39;)。 ex: one of [&quot;_start&quot;, &quot;_stop&quot;]</li>
+<li>timezone: 當使用 every 或其他具時區的查詢時用到，例如 &quot;每日&quot; </li>
+<li>time_function: &quot;每段時間&quot; 的統計 function。 ex: one of [&#39;first&#39;, &#39;last&#39;, &#39;min&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;count&#39;, &#39;sum&#39;, &#39;spread&#39;,&#39;integral&#39;]<ul>
+<li>last: 最後一筆</li>
+<li>min: 最小</li>
+<li>mean: 平均值</li>
+<li>count: 個數</li>
+<li>sum: 總計</li>
+<li>spread: 區間內 (最大-最小)</li>
+<li>integral: 積分 (值*秒差)</li>
+</ul>
+</li>
+<li>group_function: 將 &quot;多個群組&quot; 合併成 &quot;一個時間群組&quot;。ex: one of [&#39;min&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;count&#39;, &#39;sum&#39;]</li>
+<li>pivot_columns: 是否將不同 table 的值，依據時間區間，合併 欄位(ex:&quot;_field&quot;) 或 tag(ex:&quot;LoadPower&quot;) 成為一筆紀錄。ex: &quot;_field&quot;</li>
+<li>limit: 每個 table 最多幾筆</li>
+<li>output_format: 輸出格式。one of [&#39;json&#39;, &#39;influx_line_protocol&#39;]. default is &#39;json&#39;</li>
+<li>output_zip: 是否輸出壓縮檔. one of [&#39;true&#39;, &#39;false&#39;]. default is &#39;false&#39;</li>
+<li>debug: 偵錯使用。可為 &quot;false&quot; 或 &quot;true&quot;。預設 &quot;false&quot;</li>
+</ul>
+</li>
+</ul>
+<h2>傳回範例</h2>
+<ul>
+<li>一般傳回格式</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">[
+  {
+    &quot;table&quot;: 0,
+    &quot;_time&quot;: &quot;2024-07-03T08:57:01.303Z&quot;,
+    &quot;_value&quot;: 673,
+    &quot;DeviceName&quot;: &quot;AA-70-2211-01-0217-874&quot;,
+    &quot;_field&quot;: &quot;LoadPower&quot;
+  },
+  {
+    &quot;table&quot;: 1,
+    &quot;_time&quot;: &quot;2024-07-03T08:57:01.303Z&quot;,
+    &quot;_value&quot;: 863,
+    &quot;DeviceName&quot;: &quot;AA-70-2211-01-0217-874&quot;,
+    &quot;_field&quot;: &quot;SolarPower&quot;
+  }
+]</code></pre></div><ul>
+<li>pivot_columns = &quot;_field&quot;</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">[
+  {
+    &quot;table&quot;: 0,
+    &quot;_time&quot;: &quot;2024-07-03T08:51:01.007Z&quot;,
+    &quot;DeviceName&quot;: &quot;AA-70-2211-01-0217-874&quot;,
+    &quot;LoadPower&quot;: 655,
+    &quot;SolarPower&quot;: 539
+  }
+]</code></pre></div><h3>Pomcube,ess_hermes 相關欄位 (device_output_name=&quot;pomcube_data&quot;, device_output_name=&quot;ess_hermes&quot;)</h3>
+<ul>
+<li><strong>GenPower</strong>: 發電機功率 (W)，顯示當前發電機的輸出功率。</li>
+<li><strong>GridPower</strong>: 市電功率 (W)，表示從市電網獲得的功率。</li>
+<li><strong>LoadPower</strong>: 負載功率 (W)，表示當前負載消耗的功率。</li>
+<li><strong>SolarPower</strong>: 太陽能功率 (W)，顯示太陽能板產生的功率。</li>
+<li><strong>GenEnergy</strong>: 發電機累積度數（kWh)，表示發電機自安裝以來產生的總電量。</li>
+<li><strong>GridEnergy</strong>: 市電累積度數（kWh)，顯示從市電網累積獲得的總電量。</li>
+<li><strong>LoadEnergy</strong>: 負載累積度數（kWh)，代表負載自安裝以來消耗的總電量。</li>
+<li><strong>SolarEnergy</strong>: 太陽能累積度數（kWh)，表示太陽能板自安裝以來產生的總電量。</li>
+<li><strong>BatSoC</strong>: 電池容量（%），顯示當前電池的剩餘容量比例。</li>
+<li><strong>BatCurr</strong>: 總電流 (A)，表示系統的總電流。</li>
+<li><strong>BatVolt</strong>: 總電壓 (V)，表示系統的總電壓。</li>
+<li><strong>BatTemp</strong>: 電池溫度 (degC)，表示電池區的溫度。</li>
+<li><strong>EnvTemp1 &amp; EnvTemp2</strong>: 環境溫度 1 &amp; 2 (degC)，分別表示兩個不同位置的環境溫度。</li>
+<li><strong>EnvHumidity1 &amp; EnvHumidity2</strong>: 環境濕度 1 &amp; 2 (%)，分別表示兩個不同位置的環境濕度。</li>
+<li><strong>EnvCO &amp; EnvCO2</strong>: 一氧化碳和二氧化碳濃度 (PPM)，分別表示當前空氣中的 CO 和 CO2 濃度。</li>
+<li><strong>Irradiance</strong>: 日照功率，太陽光照射到太陽能板的強度，通常表示為瓦特每平方米 (W/m²)</li>
+<li><strong>PR</strong>: Performance Ratio 效能比，意即用來評估一個太陽能電站的效能表現。</li>
+</ul>
+<h3>hermes 太陽能逆變器 (device_output_name=&quot;pv_inverter&quot;)</h3>
+<ul>
+<li><strong>PV_ID</strong>: 光伏逆變器的唯一識別碼，用於標識特定的光伏逆變器單元。</li>
+<li><strong>Timestamp</strong>: 數據記錄的時間戳記，遵循ISO 8601格式，表示數據被記錄的精確時間。</li>
+<li><strong>Status</strong>: 光伏逆變器的當前狀態，例如&quot;Operating&quot;表明光伏逆變器正常運作。</li>
+<li><strong>SolarPower</strong>: 輸出功率 (W)，表示 PV Inverter 轉換後的輸出功率。</li>
+<li><strong>SolarEnergy</strong>: 太陽能累積度數（kWh)，表示太陽能板自安裝以來產生的總電量。</li>
+</ul>
+<h3>hermes 光度計 (device_output_name=&quot;sun_photometer_hermes&quot;)</h3>
+<ul>
+<li><strong>SunPhotometer_ID</strong>: 日照計的唯一識別碼。</li>
+<li><strong>Timestamp</strong>: 數據記錄的時間戳記，遵循ISO 8601格式，表示數據被記錄的精確時間。</li>
+<li><strong>Status</strong>: 日照計的當前狀態，例如&quot;Operating&quot;表明日照計正常運作。</li>
+<li><strong>Irradiance</strong>: 日照強度 (W/m²)，表示太陽光照射到日照計的強度。</li>
+<li><strong>Temperature</strong>: 溫度 (degC)，表示日照計運行環境的溫度。</li>
+</ul>
+<h3>hermes 智慧電表 (device_output_name=&quot;smart_meter&quot;)</h3>
+<ul>
+<li><strong>SmartMeter_ID</strong>: SmartMeter 的唯一識別碼，用於標識具體的SmartMeter實例。</li>
+<li><strong>Timestamp</strong>: 記錄數據的時間戳記，遵循ISO 8601格式，表示數據被記錄的精確時間。</li>
+<li><strong>Status</strong>: 表示 Smart Meter 的當前運行狀態。常見的狀態包括：<ul>
+<li><strong>Operating</strong>: 表示智能電表正在正常運行並收集數據。</li>
+<li><strong>Standby</strong>: 智能電表處於待機狀態，暫時不收集數據。</li>
+<li><strong>Fault</strong>: 智能電表出現故障，無法正常運行。</li>
+<li><strong>Maintenance</strong>: 智能電表正在進行維護，可能會暫停數據收集或報告。</li>
+</ul>
+</li>
+<li><strong>Type</strong>: 表示測量的功率類型，例如 &quot;Grid&quot;（電網）、&quot;Load&quot;（負載）、&quot;Solar&quot;（太陽能）、&quot;AirConditioning&quot;（空調）、&quot;Lighting&quot;（照明）等。可以根據實際應用場景擴展為其他類型。</li>
+<li><strong>Phase</strong>: 表示所測量的相位。<ul>
+<li>3P：三相系統中所有相位的總測量值。</li>
+<li>3PL1：三相系統中相位1的測量值。</li>
+<li>3PL2：三相系統中相位2的測量值。</li>
+<li>3PL3：三相系統中相位3的測量值。</li>
+<li>2P：裂相系統中兩相的總測量值。</li>
+<li>2PL1：裂相系統中相位1的測量值。</li>
+<li>2PL2：裂相系統中相位2的測量值。</li>
+</ul>
+</li>
+<li><strong>Voltage</strong>: 相應相位的電壓值 (V)。</li>
+<li><strong>Frequency</strong>: 電網頻率 (Hz)。</li>
+<li><strong>Current</strong>: 相應相位的電流值 (A)。</li>
+<li><strong>Active_Power</strong>: 有功功率 (W)，表示當前消耗或輸出的實際功率。</li>
+<li><strong>Apparent_Power</strong>: 視在功率 (VA)，表示電壓和電流乘積的總功率。</li>
+<li><strong>Reactive_Power</strong>: 無功功率 (VAr)，表示電路中未實際消耗但存在於系統中的功率。</li>
+<li><strong>Power_Factor</strong>: 功率因數，用於表示負載的功率效率。</li>
+<li><strong>Power</strong>: Smart Meter 測量的瞬時功率值 (W)。</li>
+<li><strong>InputEnergy</strong>: 累積能量值 (kWh)，Type為Grid表示購電，Type為Battery表示充電，Type為Load表示負載用電。</li>
+<li><strong>OutputEnergy</strong>: 累積能量值 (kWh)，Type為Grid表示售電或逆送電力，Type為Battery表示放電，Type為Solar或Gen表示產生的電能。</li>
+</ul>
+<h3>太陽能預測相關欄位 (device_output_name=&quot;solar_prediction&quot;)</h3>
+<ul>
+<li>DirectRadiation: 日照功率，太陽光照射到太陽能板的強度，通常表示為瓦特每平方米 (W/m²)</li>
+<li>SolarArea: 太陽能板面積 (m²)</li>
+<li>SolarEff: 太陽能板發電效率 (0<del>1) (0%</del>100%)</li>
+<li>SolarPower: 發電功率 (W)</li>
+</ul>
+<h2>裝置查詢 &quot;/api/device_datas/query&quot; 使用範例</h2>
+<h3>太陽能預測 (多台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  domain_id: 4,
+  device_output_name: &quot;solar_prediction&quot;,
+  start: &#39;2024-06-26T16:00:00Z&#39;,
+  stop: &#39;2024-06-28T16:00:00Z&#39;,
+  fields: &quot;SolarPower&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  group_by: &quot;_time&quot;,
+  group_function: &quot;sum&quot;
+}</code></pre></div><h3>太陽能預測 (單台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  device_output_name: &quot;solar_prediction&quot;,
+  start: &#39;2024-06-26T16:00:00Z&#39;,
+  stop: &#39;2024-06-28T16:00:00Z&#39;,
+  fields: &quot;DirectRadiation,SolarArea,SolarEff,SolarPower&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>每日太陽能度數預測 (單台日照量轉換 &quot;W/m²&quot; -&gt; &quot;Ws/m²&quot;)</h3>
+<ul>
+<li>將輸出結果 DirectRadiation / (60*60) 就可以把 &quot;Ws/m²&quot; 轉成 &quot;Wh/m²&quot;</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  device_output_name: &quot;solar_prediction&quot;,
+  start: &#39;2024-06-26T16:00:00Z&#39;,
+  stop: &#39;2024-06-28T16:00:00Z&#39;,
+  fields: &quot;DirectRadiation&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;integral&quot;,
+  time_src: &#39;_start&#39;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>目前功率 (單台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  device_output_name: &quot;ess_data&quot;,
+  start: 0,
+  fields: &quot;SolarPower,LoadPower&quot;,
+  time_function: &quot;last&quot;,
+  group_by: &quot;_field&quot;
+}</code></pre></div><h3>目前太陽能發電功率 (多台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  domain_id: 4,
+  device_output_name: &quot;ess_data&quot;,
+  start: 0,
+  fields: &quot;SolarPower&quot;,
+  time_function: &quot;last&quot;,
+  group_by: &quot;!DeviceName,_field&quot;,
+  group_function: &quot;sum&quot;
+}</code></pre></div><h3>裝置規格(單台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  fields: &quot;SolarEff,SolarArea&quot;,
+  every: &quot;1h&quot;,
+  time_function: &quot;first&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;,
+  group_by: &quot;_field&quot;,
+  pivot_columns: &quot;_field&quot;
+}</code></pre></div><h3>每日歷史功率圖 (單台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  device_output_name: &quot;ess_data&quot;,
+  start: &#39;2024-05-31T16:00:00Z&#39;,
+  stop: &#39;2024-06-30T16:00:00Z&#39;,
+  fields: &quot;SolarPower,LoadPower,GenPower,GridPower&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;mean&quot;,
+  create_empty: &quot;true&quot;,  // 此欄位非必須
+  time_src: &#39;_start&#39;,
+  group_by: &quot;_field&quot;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>每日歷史功率圖 (多台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  domain_id: 4,
+  device_output_name: &quot;ess_data&quot;,
+  start: &#39;2024-05-31T16:00:00Z&#39;,
+  stop: &#39;2024-06-30T16:00:00Z&#39;,
+  fields: &quot;SolarPower,LoadPower,GenPower,GridPower&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;mean&quot;,
+  create_empty: &quot;true&quot;,  // 此欄位非必須
+  time_src: &#39;_start&#39;,
+  group_by: &quot;!DeviceName,_field&quot;,
+  group_function: &quot;sum&quot;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>每日電表累計度數 (單台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  device_output_name: &quot;ess_data&quot;,
+  start: &#39;2024-05-30T16:00:00Z&#39;,
+  stop: &#39;2024-06-30T16:00:00Z&#39;,
+  fields: &quot;SolarEnergy,LoadEnergy&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;last&quot;,
+  create_empty: &quot;true&quot;,  // 此欄位非必須
+  group_by: &quot;_field&quot;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>每日太陽能發電度數及用電度數 (單台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  device_output_name: &quot;ess_data&quot;,
+  start: &#39;2024-05-30T16:00:00Z&#39;,
+  stop: &#39;2024-06-30T16:00:00Z&#39;,
+  fields: &quot;SolarEnergy,LoadEnergy&quot;,
+  differenceNonNegativeSource: &quot;true&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;sum&quot;,
+  create_empty: &quot;true&quot;,
+  time_src: &#39;_start&#39;,
+  group_by: &quot;_field&quot;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>每月太陽能發電度數及用電度數 (多台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  domain_id: 4,
+  device_output_name: &quot;ess_data&quot;,
+  start: &#39;2023-11-30T16:00:00Z&#39;,
+  stop: &#39;2024-12-31T16:00:00Z&#39;,
+  fields: &quot;SolarEnergy,LoadEnergy&quot;,
+  differenceNonNegativeSource: &quot;true&quot;,
+  every: &quot;1mo&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;sum&quot;,
+  create_empty: &quot;true&quot;,
+  time_src: &#39;_start&#39;,
+  group_by: &quot;!DeviceName,_field&quot;,
+  group_function: &quot;sum&quot;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>每日太陽能發電度數及用電度數 (單台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  device_names: &#39;AA-70-2212-01-0028-070&#39;,
+  device_output_name: &quot;ess_data&quot;,
+  start: &#39;2024-05-30T16:00:00Z&#39;,
+  stop: &#39;2024-06-30T16:00:00Z&#39;,
+  fields: &quot;SolarEnergy,LoadEnergy&quot;,
+  differenceNonNegativeSource: &quot;true&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;sum&quot;,
+  create_empty: &quot;true&quot;,
+  time_src: &#39;_start&#39;,
+  group_by: &quot;_field&quot;,
+  pivot_columns: &quot;_field&quot;  // 此欄位非必須
+}</code></pre></div><h3>最近24小時太陽能發電度數及用電度數 (多台)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 2,
+  domain_id: 4,
+  device_output_name: &quot;ess_data&quot;,
+  start: &#39;-24h&#39;,
+  fields: &quot;SolarEnergy,LoadEnergy&quot;,
+  differenceNonNegativeSource: &quot;true&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;sum&quot;,
+  group_by: &quot;!DeviceName,_field&quot;,
+  group_function: &quot;sum&quot;,
+}</code></pre></div><h2>站點(Domain) 查詢 &quot;/api/domain_datas/query&quot; 使用範例</h2>
+<h3>/api/domain_datas/query 增加欄位</h3>
+<ul>
+<li><strong>SolarEffArea</strong>: sum(太陽能板發電效率*太陽能板面積)，單位為 (m²)</li>
+<li><strong>Irradiance</strong>: 日照計日照量，單位為 (W/m²)</li>
+<li><strong>PhotometerSolarPower</strong>: 日照計預期發電功率，單位為 (w)</li>
+<li><strong>PredictionIrradiance</strong>: 太陽能預測日照量，單位為 (W/m²)</li>
+<li><strong>PredictionSolarPower</strong>: 太陽能預測功率，單位為 (w)</li>
+<li><strong>BatCapacity</strong>: 電池建置容量，單位為 (kWh)</li>
+<li><strong>BatRemainEnergy</strong>: 電池剩餘電量，單位為 (kWh)</li>
+<li><strong>BatSoC</strong>: 電池電量百分比，0~100，100為100%，單位為 (%)</li>
+<li><strong>CurtailmentRatio</strong>: 棄電比，0~100，100為100%，單位為 (%)</li>
+<li><strong>PR</strong>: 效能比 Performance Ratio (PR) 值，0~100，100為100%，單位為 (%)</li>
+<li><strong>BatteryChargeEnergy</strong>: 電池充電度數 (kWh)</li>
+<li><strong>BatteryDischargeEnergy</strong>: 電池放電度數 (kWh)</li>
+<li><strong>SolarEnergy</strong>: 太陽能發電度數，單位為 (kWh)</li>
+<li><strong>PredictionSolarEnergy</strong>: 太陽能預測發電度數，單位為 (kWh)</li>
+</ul>
+<h3>今日能耗度數 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  fields: &quot;SolarEnergy,LoadEnergy,GridEnergy&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h3>即時功率 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: 0,
+  fields: &quot;SolarPower,LoadPower,GridPower,GenPower&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;last&quot;
+}</code></pre></div><h3>即時 SoC,剩餘電量 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: 0,
+  fields: &quot;BatRemainEnergy,BatSoC&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_function: &quot;last&quot;
+}</code></pre></div><h3>光照計照量 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  fields: &quot;Irradiance&quot;,
+  every: &quot;1h&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h3>每15分鐘平均SoC (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  stop: &#39;2024-11-30T00:00:00+08:00&#39;,
+  fields: &quot;BatSoC&quot;,
+  every: &quot;15m&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h3>預計發電功率 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  stop: &#39;2024-11-30T00:00:00+08:00&#39;,
+  fields: &quot;PredictionSolarPower&quot;,
+  every: &quot;15m&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h3>預計發電度數 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  stop: &#39;2024-11-30T00:00:00+08:00&#39;,
+  fields: &quot;PredictionSolarEnergy&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h3>棄電比 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  stop: &#39;2024-11-30T00:00:00+08:00&#39;,
+  fields: &quot;CurtailmentRatio&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h3>效能比 Performance Ratio (PR) 值 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  stop: &#39;2024-11-30T00:00:00+08:00&#39;,
+  fields: &quot;PR&quot;,
+  every: &quot;1d&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h3>功率圖 (站點)</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 182,
+  domain_id: 187,
+  start: &#39;2024-11-25T00:00:00+08:00&#39;,
+  stop: &#39;2024-11-30T00:00:00+08:00&#39;,
+  fields: &quot;SolarPower,LoadPower,GridPower,GenPower&quot;,
+  every: &quot;15m&quot;,
+  timezone: &quot;Asia/Taipei&quot;,
+  time_src: &#39;_start&#39;
+}</code></pre></div><h2>其他 API</h2>
+<h3>GET /api/device_datas/curtailment_ratio</h3>
+<p>計算棄電比，間隔(every) 最小為 30m  </p>
+<p>下面是8月1日到8月3日的棄電比範例:</p>
+<blockquote>
+<p>參數：</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 118,
+  domain_id: 123,
+  device_output_name: &#39;ess_data&#39;,
+  start: &#39;2024-07-31T16:00:00Z&#39;,
+  stop: &#39;2024-08-03T16:00:00Z&#39;,
+  every: &#39;1d&#39;,
+  time_src: &#39;_start&#39;,
+  timezone: &#39;Asia/Taipei&#39;
+}</code></pre></div><blockquote>
+<p>傳回</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  &quot;times&quot;: [
+    &quot;2024-07-31T16:00:00Z&quot;,
+    &quot;2024-08-01T16:00:00Z&quot;,
+    &quot;2024-08-02T16:00:00Z&quot;
+  ],
+  &quot;solar_energys&quot;: [
+    12.400999999999975,
+    13.861000000000118,
+    13.541000000000036
+  ],
+  &quot;prediction_energys&quot;: [
+    98.65232999999996,
+    103.13860499999996,
+    102.13276499999996
+  ],
+  &quot;curtailment_ratios&quot;: [
+    87.42959238773177,
+    86.5608032995985,
+    86.74176695402299
+  ]
+}</code></pre></div><h3>GET /api/device_datas/pr</h3>
+<p>計算PR值，間隔(every) 最小為 1h  </p>
+<p>下面是8月1日到8月3日的 PR 值範例:</p>
+<blockquote>
+<p>參數：</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 118,
+  domain_id: 126,
+  device_output_name: &#39;hermes_report&#39;,
+  start: &#39;2024-07-31T16:00:00Z&#39;,
+  stop: &#39;2024-08-03T16:00:00Z&#39;,
+  every: &#39;1d&#39;,
+  time_src: &#39;_start&#39;,
+  timezone: &#39;Asia/Taipei&#39;
+}</code></pre></div><blockquote>
+<p>傳回</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">[
+  {
+    &quot;_time&quot;: &quot;2024-07-31T16:00:00Z&quot;,
+    &quot;SolarEnergy&quot;: 6526.429,
+    &quot;SolarCapacity&quot;: 1500,
+    &quot;Irradiance&quot;: 5147.997,
+    &quot;PR&quot;: 84.52
+  },
+  {
+    &quot;_time&quot;: &quot;2024-08-01T16:00:00Z&quot;,
+    &quot;SolarEnergy&quot;: 7574.601,
+    &quot;SolarCapacity&quot;: 1500,
+    &quot;Irradiance&quot;: 5323.197,
+    &quot;PR&quot;: 94.86
+  },
+  {
+    &quot;_time&quot;: &quot;2024-08-02T16:00:00Z&quot;,
+    &quot;SolarEnergy&quot;: 7201.811,
+    &quot;SolarCapacity&quot;: 1500,
+    &quot;Irradiance&quot;: 4938.476,
+    &quot;PR&quot;: 97.22
+  }
+]</code></pre></div><h3>GET /api/device_datas/device_event</h3>
+<p>取得裝置事件</p>
+<p>下面是取得裝置事件的範例:</p>
+<blockquote>
+<p>參數：</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  organization_id: 118,
+  device_names: &#39;EMS000003&#39;,
+  start: &#39;2024-08-05T10:00:00Z&#39;,
+  stop: &#39;2024-08-05T10:05:00Z&#39;,
+  time_src: &#39;_start&#39;,
+  timezone: &#39;Asia/Taipei&#39;
+}</code></pre></div><blockquote>
+<p>傳回</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">[
+  {
+    &quot;_time&quot;: &quot;2024-08-05T10:00:33.387Z&quot;,
+    &quot;DeviceName&quot;: &quot;EMS000003&quot;,
+    &quot;DeviceType&quot;: &quot;pv_inverter&quot;,
+    &quot;ErrorCode&quot;: &quot;E1004&quot;,
+    &quot;ErrorDescription&quot;: &quot;E-dRag排程狀態發生錯誤&quot;
+  },
+  {
+    &quot;_time&quot;: &quot;2024-08-05T10:04:33.368Z&quot;,
+    &quot;DeviceName&quot;: &quot;EMS000003&quot;,
+    &quot;DeviceType&quot;: &quot;pv_inverter&quot;,
+    &quot;ErrorCode&quot;: &quot;E1001&quot;,
+    &quot;ErrorDescription&quot;: &quot;Aggregator聚合器運行發生錯誤&quot;
+  }
+]</code></pre></div><h3>GET /api/device_datas/report</h3>
+<blockquote>
+<p>說明</p>
+</blockquote>
+<p>產生報表</p>
+<blockquote>
+<p>參數說明</p>
+</blockquote>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>report_type</td>
+<td>報表類型: &quot;pv&quot; 或 &quot;ess&quot;</td>
+</tr>
+<tr>
+<td>time_type</td>
+<td>年報或月報 &quot;year&quot; 或 &quot;month&quot;</td>
+</tr>
+<tr>
+<td>domain_id</td>
+<td>域ID</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>裝置類型</td>
+</tr>
+<tr>
+<td>year</td>
+<td>年 ex: 2024</td>
+</tr>
+<tr>
+<td>month</td>
+<td>月 0:一月, 11:十二月</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>時區 ex: &quot;Asia/Taipei&quot;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>GET /api/feed_in_tariff</h3>
+<blockquote>
+<p>說明</p>
+</blockquote>
+<p>取得此 domain 的躉售費率表</p>
+<blockquote>
+<p>參數說明</p>
+</blockquote>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain_id</td>
+<td>域ID</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>傳回範例</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">[
+  {
+    &quot;time&quot;: &quot;2023-12-31T16:00:00.000Z&quot;,
+    &quot;tariff&quot;: 4.5
+  },
+  {
+    &quot;time&quot;: &quot;2024-05-31T16:00:00.000Z&quot;,
+    &quot;tariff&quot;: 5
+  },
+  {
+    &quot;time&quot;: &quot;2024-12-31T16:00:00.000Z&quot;,
+    &quot;tariff&quot;: null
+  }
+]</code></pre></div><p>上面的傳回結果代表 2024 年<br>1月1日<del>5月31日的躉售費率是每度4.5元。<br>6月1日</del>12月31日的躉售費率是每度5元。  </p>
+<h3>GET /api/generate_money</h3>
+<blockquote>
+<p>說明</p>
+</blockquote>
+<p>取得此 domain 賺了多少錢</p>
+<blockquote>
+<p>參數說明</p>
+</blockquote>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain_id</td>
+<td>域ID</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>裝置類型</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>開始時間</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>結束時間</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>傳回範例</p>
+</blockquote>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+  &quot;tariffs&quot;: [
+    {
+      &quot;time&quot;: &quot;2023-12-31T16:00:00.000Z&quot;,
+      &quot;tariff&quot;: 5
+    },
+    {
+      &quot;time&quot;: &quot;2024-12-31T16:00:00.000Z&quot;,
+      &quot;tariff&quot;: null
+    }
+  ],
+  &quot;incomes&quot;: [
+    {
+      &quot;time&quot;: &quot;2024-06-30T16:00:00.000Z&quot;,
+      &quot;tariff&quot;: 5,
+      &quot;diff_energy&quot;: 2500,
+      &quot;amount&quot;: 12500
+    },
+    {
+      &quot;time&quot;: &quot;2024-07-31T16:00:00.000Z&quot;,
+      &quot;tariff&quot;: 5
+    }
+  ],
+  &quot;total_income&quot;: 12500
+}</code></pre></div><p>上面的傳回結果代表7月總共產生了2500度電, 每度5元, 共賺了12500元</p>
+<h2>裝置資料的寫入</h2>
+<ul>
+<li>API: POST /api/device_datas/{organization_id}/{measurement_name}/write</li>
+<li>說明: 用來寫入裝置資料</li>
+<li>參數:<ul>
+<li>organization_id: 組織 ID</li>
+<li>measurement_name: 資料表名稱</li>
+<li>[post data]: 一層結構的 JSON 物件陣列，例如: &quot;[{&#39;DeviceName&#39;:&#39;device1&#39;,&#39;temp&#39;:26.3,&#39;humi&#39;:35.2},{&#39;DeviceName&#39;:&#39;device2&#39;,&#39;temp&#39;:27.9,&#39;humi&#39;:33.6}]&quot;，DeviceName 必須為存在的裝置</li>
+</ul>
+</li>
+</ul>
+<h2>權限管理</h2>
+<p>角色:</p>
+<ol>
+<li>root<ol>
+<li>所有權限</li>
+</ol>
+</li>
+<li>domain admin<ol>
+<li>此 domain 下所有權限</li>
+</ol>
+</li>
+<li>維修單管理員<ol>
+<li>此 domain 下所有維修單的管理</li>
+<li>人員指派</li>
+</ol>
+</li>
+<li>維修人員<ol>
+<li>可建立維修單</li>
+<li>可編輯自己建立的維修單</li>
+<li>可檢視別人派給他的維修單</li>
+</ol>
+</li>
+<li>domain 檢視人員<ol>
+<li>此 domain 下都可檢視</li>
+</ol>
+</li>
+<li>報修人員<ol>
+<li>建立報修單</li>
+<li>檢視報修進度</li>
+</ol>
+</li>
+<li>智慧電表管理員<ol>
+<li>管理智慧電表</li>
+</ol>
+</li>
+</ol>
+<p>role 資料表:
+    page_permission: [{&quot;name&quot;:&quot;OverView&quot;,&quot;permission&quot;:1},{&quot;name&quot;:&quot;DeviceStatus&quot;,&quot;permission&quot;:1},{&quot;name&quot;:&quot;StatusMonitor&quot;,&quot;permission&quot;:1},{&quot;name&quot;:&quot;SecurityMonitor&quot;,&quot;permission&quot;:1},{&quot;name&quot;:&quot;DeviceInfo&quot;,&quot;permission&quot;:1},</p>
+<p>頁面關聯表:</p>
+<ol>
+<li>OverView: {&quot;read&quot;:[&quot;view_domain_all&quot;]}</li>
+<li>DeviceStatus: {&quot;read&quot;:[&quot;view_domain_all&quot;]}</li>
+<li>StatusMonitor: {&quot;read&quot;:[&quot;view_domain_all&quot;], &quot;edit&quot;:[&quot;edit_domain_datasource&quot;]}</li>
+<li>SecurityMonitor: {&quot;read&quot;:[&quot;view_video&quot;]}</li>
+<li>ECOImport: {&quot;read&quot;:[&quot;view_electricity_bill&quot;], &quot;edit&quot;:[&quot;edit_electricity_bill&quot;]}</li>
+<li>ECOSetup: {&quot;read&quot;:[&quot;view_domain_all&quot;], &quot;edit&quot;:[&quot;edit_eco_goals&quot;]}</li>
+<li>DeviceInfo: {&quot;read&quot;:[&quot;view_device&quot;]}</li>
+<li>SmartPanelHermes: {&quot;read&quot;:[&quot;view_device(device_type=&quot;smart_panel_hermes&quot;)&quot;], &quot;edit&quot;:[&quot;edit_device(device_type=&quot;smart_panel_hermes&quot;)&quot;], &quot;manage&quot;:[&quot;manage_device(device_type=&quot;smart_panel_hermes&quot;)&quot;]}</li>
+<li>PVInverter: {&quot;read&quot;:[&quot;view_device(device_type=&quot;pv_inverter&quot;)&quot;], &quot;edit&quot;:[&quot;edit_device(device_type=&quot;pv_inverter&quot;)&quot;], &quot;manage&quot;:[&quot;manage_device(device_type=&quot;pv_inverter&quot;)&quot;]}</li>
+<li>ESSHermes: {&quot;read&quot;:[&quot;view_device(device_type=&quot;ess_hermes&quot;)&quot;], &quot;edit&quot;:[&quot;edit_device(device_type=&quot;ess_hermes&quot;)&quot;], &quot;manage&quot;:[&quot;manage_device(device_type=&quot;ess_hermes&quot;)&quot;]}</li>
+<li>ESSCloud: {&quot;read&quot;:[&quot;view_device(device_type=&quot;pomcube&quot;)&quot;], &quot;edit&quot;:[&quot;edit_device(device_type=&quot;pomcube&quot;)&quot;], &quot;manage&quot;:[&quot;manage_device(device_type=&quot;pomcube&quot;)&quot;]}</li>
+<li>SmartMeter: {&quot;read&quot;:[&quot;view_device(device_type=&quot;smart_meter&quot;)&quot;], &quot;edit&quot;:[&quot;edit_device(device_type=&quot;smart_meter&quot;)&quot;], &quot;manage&quot;:[&quot;manage_device(device_type=&quot;smart_meter&quot;)&quot;]}</li>
+<li>SunPhotometerHermes: {&quot;read&quot;:[&quot;view_device(device_type=&quot;sun_photometer_hermes&quot;)&quot;], &quot;edit&quot;:[&quot;edit_device(device_type=&quot;sun_photometer_hermes&quot;)&quot;], &quot;manage&quot;:[&quot;manage_device(device_type=&quot;sun_photometer_hermes&quot;)&quot;]}</li>
+<li>CaseManagement: {&quot;read&quot;:[&quot;view_repair_order&quot;], &quot;edit&quot;:[&quot;edit_repair_order&quot;], &quot;manage&quot;:[&quot;manage_repair_order&quot;], &quot;complete&quot;:[&quot;complete_repair_order&quot;]}</li>
+<li>RequestForm: {&quot;read&quot;:[1,3,5], &quot;edit&quot;:[2,4]}</li>
+<li>MaintenanceForm: {&quot;read&quot;:[1,3,5], &quot;edit&quot;:[2,4]}</li>
+<li>CaseClosure: {&quot;read&quot;:[1,3,5], &quot;edit&quot;:[2,4]}</li>
+<li>PowerGeneration: {&quot;read&quot;:[&quot;export_report&quot;]}</li>
+<li>AccountManagement: {&quot;read&quot;:[&quot;view_user&quot;], &quot;edit&quot;:[&quot;edit_user&quot;], &quot;manage&quot;:[&quot;manage_user&quot;]}</li>
+<li>PermissionManagement: {&quot;read&quot;:[&quot;view_role&quot;], &quot;edit&quot;:[&quot;edit_role&quot;], &quot;manage&quot;:[&quot;manage_role&quot;]}</li>
+<li>SystemInfo: {&quot;read&quot;:[]}</li>
+<li>AlarmManagement: {&quot;read&quot;:[&quot;view_domain_all&quot;], &quot;edit&quot;:[&quot;edit_domain_all&quot;]}</li>
+<li>DomainConfig: {&quot;read&quot;:[&quot;view_domain&quot;], &quot;edit&quot;:[&quot;edit_domain&quot;], &quot;manage&quot;:[&quot;manage_domain&quot;]}</li>
+<li>MessageBox: {&quot;read&quot;:[&quot;view_domain_all&quot;], &quot;edit&quot;:[&quot;edit_domain_all&quot;]}</li>
+</ol>
+<p>權限:</p>
+<ol>
+<li><p>view_domain_all</p>
+</li>
+<li><p>edit_domain_all</p>
+</li>
+<li><p>manage_domain</p>
+</li>
+<li><p>edit_domain_datasource</p>
+</li>
+<li><p>view_video</p>
+</li>
+<li><p>view_electricity_bill</p>
+</li>
+<li><p>edit_eco_goals</p>
+</li>
+<li><p>view_device</p>
+</li>
+<li><p>edit_device</p>
+</li>
+<li><p>manage_device</p>
+</li>
+<li><p>view_repair_order</p>
+</li>
+<li><p>edit_repair_order</p>
+</li>
+<li><p>manage_repair_order</p>
+</li>
+<li><p>complete_repair_order</p>
+</li>
+<li><p>export_report</p>
+</li>
+<li><p>view_user</p>
+</li>
+<li><p>edit_user</p>
+</li>
+<li><p>manage_user</p>
+</li>
+<li><p>(view_domain_video) 檢視 domain 影片</p>
+</li>
+<li><p>(edit_domain_datasource) 設定 domain 資料來源</p>
+</li>
+<li><p>(edit_repair_order) domain 維修單管理</p>
+</li>
+<li><p>(assign_repair_order_user) 人員指派</p>
+</li>
+<li><p>(create_repair_order) 可建立維修單</p>
+</li>
+<li><p>(edit_self_repair_order) 可編輯自己建立的維修單</p>
+</li>
+<li><p>(view_self_repair_order) 可檢視別人派給他的維修單</p>
+</li>
+<li><p>(view_domain_device) 可檢視 domain 下所有裝置</p>
+</li>
+<li><p>可檢視維修單的裝置</p>
+</li>
+<li><p>建立 user</p>
+</li>
+<li><p>檢視 user</p>
+</li>
+<li><p>管理智慧電表</p>
+</li>
+<li><p>管理日照計</p>
+</li>
+</ol>
+<h2>XXXXXXXX</h2>
+<ol>
+<li>權限管理<ol>
+<li>Domain 低層不能要到高層資料</li>
+<li>/device_data/query 及 /domain_data/query 不能存取到不能存取的裝置</li>
+<li>特殊權限處理, 例如能看到高domain指派給自己的維修單</li>
+<li>GraphQL 權限管理</li>
+</ol>
+</li>
+<li>看 2030.5 文件及規劃<ol>
+<li>看 2030.5文件</li>
+<li>專案項目規劃</li>
+</ol>
+</li>
+</ol>
+<p>待辦事項</p>
+<ol>
+<li>排程取消(2h)</li>
+<li>user 增加 is_expired 欄位(1h)</li>
+<li>refresh token(1h)</li>
+<li>維修單歷史紀錄(4h)</li>
+<li>連續性排程(8h)</li>
+<li>手機推播通知</li>
+<li>開機自動啟動 aegis</li>
+</ol>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">{
+    &quot;devices&quot;: {
+        &quot;meter1&quot;: {
+            &quot;SolarEnergy&quot;: {
+                &quot;field&quot;: &quot;SolarPower&quot;,
+                &quot;計算方式&quot;: &quot;積分&quot;
+            }
+        },
+        &quot;meter2&quot;: {
+            &quot;SolarEnergy&quot;: {
+                &quot;field&quot;: &quot;SolarEnergy&quot;,
+                &quot;計算方式&quot;: &quot;度數差&quot;
+            }
+        },
+        &quot;meter3&quot;: {
+            &quot;SolarPower&quot;: {
+                &quot;field&quot;: &quot;SolarPower&quot;,
+                &quot;計算方式&quot;: &quot;last&quot;
+            }
+        }
+    },
+    &quot;outs&quot;: {
+        &quot;SolarEnergy&quot;: {
+            &quot;類型&quot;: &quot;度數&quot;
+            &quot;裝置&quot;: [
+                &quot;meter1&quot;, &quot;meter2&quot;
+            ]
+        },
+        &quot;SolarPower&quot;: {
+            &quot;類型&quot;: &quot;功率&quot;
+            &quot;裝置&quot;: [
+                &quot;meter3&quot;
+            ]
+        }
+    }
+}</code></pre></div><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h2>IEEE 2030.5</h2>
+<h3>Server</h3>
+<ol>
+<li>將 se_list.txt, sep_wadl.xml, sep.xsd 轉換成前端網頁</li>
+<li>憑證處理<ol>
+<li>建立 CA 憑證</li>
+<li>用 CA 憑證簽署 Server 憑證</li>
+<li>DER Client 匯入 CA 憑證</li>
+<li>產生Client憑證,由憑證雜湊成 lFDI 和 sFDI</li>
+<li>PIN 碼的產生</li>
+<li>加密方式 TLS_ECDHE_ECDSA_WITH_AES_128_CCM_8</li>
+</ol>
+</li>
+<li>DNS-SD - 自動偵測裝置加入區網</li>
+<li>Subscription/Notification - 訂閱及通知</li>
+<li>DERProgram(DER排程控制), DemandResponseProgram(非DER排程控制), MessagingProgram(文字處理排程控制)</li>
+<li>Response - 收到指令, 開始處理指令, 指令完成, 指令取消</li>
+<li>Metering - UsagePoint(從Server讀取電表數值), MirrorUsagePoint(DER Client或人工對Server寫入電表數值)</li>
+<li>群組管理 - 多層 Domain 下的 DERProgram, 需有 Domain 管理頁面, 並能設定 FunctionSetAssignments, DERProgram</li>
+<li>Aggregator 編輯頁面, 需能編輯 Aggregator 下面有哪些 DER Client</li>
+<li>其他功能集 - File, Pricing, Billing, Prepayment, FlowReservation</li>
+<li>和 Aegis 的整合, 部分整合或全整合</li>
+</ol>
+<h3>Client</h3>
+<ol>
+<li>DNS-SD</li>
+<li>憑證處理</li>
+<li>Subscription/Notification - 訂閱及通知</li>
+<li>DERProgram(DER排程控制), DemandResponseProgram(非DER排程控制), MessagingProgram(文字處理排程控制)</li>
+<li>群組管理 - 多層 Domain 下的 DERProgram 解析<ol>
+<li>規則不衝突則都執行</li>
+<li>規則衝突情況, 越接近 DER Client 的規則優先</li>
+<li>沒有能執行的規則時, 執行 DefaultDERControl</li>
+</ol>
+</li>
+<li>Response - 收到指令, 開始處理指令, 指令完成, 指令取消</li>
+<li>DER Client 的規格<ol>
+<li>出廠規格 - /edev/1/der/4/dercap</li>
+<li>目前可使用規格 - /edev/1/der/4/derg</li>
+</ol>
+</li>
+<li>定期回報DER狀態，參考 IEEE 2030.5 Implementation Guide for Smart Inverters 4.6<ol>
+<li>DeviceStatus - /edev/1/dstat</li>
+<li>DERStatus - /edev/1/der/4/ders - 參考 SPEC Table E.2—Monitoring information</li>
+<li>PowerStatus - /edev/1/ps</li>
+<li>Alarms - 參考 SPEC - Table 41 (Metering LogEvents)</li>
+</ol>
+</li>
+<li>Metering - MirrorUsagePoint(DER Client或人工對Server寫入電表數值), 回報不在 DERStatus 上的資訊</li>
+<li>Aggregators 設計及裝置管理, Aggregators 自己也算是一個 DER Device</li>
+<li>Event - 延遲隨機幾秒啟動，幾秒內完成</li>
+<li>DERCurve - 充放電控制曲線的解析</li>
+</ol>
+<h3>測試流程</h3>
+<ol>
+<li>系統開機</li>
+<li>Client 發出 DNS-SD 找到 Server 的 dcap 網址</li>
+<li>Aggregator 透過 /edev 取得 Aggregator 所管理的所有裝置列表(EndDeviceList)</li>
+<li>每個裝置透過 FunctionSetAssignments 得知有哪些功能集可用</li>
+<li>若有 DERProgram 功能集, 則透過上述規則解析出哪些 DER Control 或 DERCurve 需要執行</li>
+<li>將解析後的控制指令下給實體裝置</li>
+<li>訂閱或輪詢下面資源,輪詢秒數 pollRate 預設 900 秒, 可從 GET /edev 取得<ol>
+<li>/edev (Aggregator需要)</li>
+<li>/edev/1/fsa</li>
+<li>/derp</li>
+<li>/derp/1</li>
+<li>/derp/1/dderc</li>
+<li>/derp/1/derc</li>
+<li>/derp/1/derc/1</li>
+</ol>
+</li>
+<li>當 DER Control 變更, Client 收到指令需透過 replyTo 得知 Response 網址,當responseRequired=&quot;00&quot;不回報, 當responseRequired=&quot;01&quot;回報</li>
+<li>定期回報 Status 及 Metering 資料</li>
+</ol>
+<p>[
+    {
+        &quot;power_scheduler_id&quot;: 4,
+        &quot;domain_id&quot;: 187,
+        &quot;device_id&quot;: null,
+        &quot;timezone&quot;: &quot;Asia/Taipei&quot;,
+        &quot;crons&quot;: &quot;[{&quot;start_time&quot;:56700,&quot;stop_time&quot;:0,&quot;power&quot;:-300}]&quot;,
+        &quot;notify_user_id&quot;: 1,
+        &quot;update_time&quot;: &quot;2024-12-23T07:39:57.710Z&quot;,
+        &quot;start_time&quot;: &quot;2024-12-20T00:04:30.327Z&quot;,
+        &quot;stop_time&quot;: &quot;2024-12-20T00:20:00.000Z&quot;,
+        &quot;running&quot;: false,
+        &quot;info&quot;: &quot;&quot;,
+        &quot;enabled&quot;: false
+    }
+]</p>
+<p>978*3
+00:00~00:00</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

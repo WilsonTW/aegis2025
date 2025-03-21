@@ -1,0 +1,671 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >InfluxdbClientService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/device_data/influxdb_client.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formatString" >formatString</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getClient" >getClient</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#writeData" >writeData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/modules/device_data/influxdb_client.service.ts:38</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatString"></a>
+                    <span class="name">
+                        <span ><b>formatString</b></span>
+                        <a href="#formatString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatString(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/modules/device_data/influxdb_client.service.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>str</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getClient"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getClient</b></span>
+                        <a href="#getClient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getClient()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/modules/device_data/influxdb_client.service.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>writeData</b></span>
+                        <a href="#writeData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>writeData(bucketName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, measurementName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, tags: Array<literal type>, fields: Array<literal type>, time: number | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/modules/device_data/influxdb_client.service.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bucketName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>measurementName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>tags</td>
+                                            <td>
+                                                        <code>Array&lt;literal type&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>fields</td>
+                                            <td>
+                                                        <code>Array&lt;literal type&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>time</td>
+                                            <td>
+                                                        <code>number | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { AppConfigService } from &#x27;../../app_config.service&#x27;;
+
+const {Agent} &#x3D; require(&#x27;http&#x27;)
+const {InfluxDB, Point} &#x3D; require(&#x27;@influxdata/influxdb-client&#x27;)
+
+var client &#x3D; null;
+
+
+async function ajax(url, options, is_return_response&#x3D;false, time &#x3D; 15000) {
+    const controller &#x3D; new AbortController();
+    setTimeout(() &#x3D;&gt; {
+        controller.abort();
+    }, time);
+    const config &#x3D; { ...options, signal: controller.signal };
+    try {
+        const response &#x3D; await fetch(url, config);
+        if (is_return_response) return response;
+
+        var text &#x3D; await response.text();
+        if (response.status&gt;&#x3D;400) {
+            console.log(&#x27;Cannot load page &quot;&#x27;+url+&#x27;&quot;. response(&#x27;+response.status+&#x27;)&#x3D;&quot;&#x27;+text+&#x27;&quot;&#x27;);
+            return null;
+        } else {
+            return text;
+        }
+        //const responseJson &#x3D; await response.json();
+        //return responseJson;
+    } catch (error) {
+        console.log(&#x27;Cannot load page &quot;&#x27;+url+&#x27;&quot;&#x27;);
+        console.error(error);
+        return null;
+    }
+}
+
+
+@Injectable()
+export class InfluxdbClientService {
+
+    constructor(
+    ) {}
+
+    static getClient() {
+        if (client!&#x3D;null) {
+            return client;
+        } else {
+            try {
+                const agent &#x3D; new Agent({
+                    keepAlive: true,
+                    keepAliveMsecs: 5 * 1000, // 5 seconds keep alive
+                })
+
+                var config &#x3D; AppConfigService.getInfluxdbConfig();
+                let client2 &#x3D; new InfluxDB({
+                    url: config.url,
+                    token: config.token,
+                    transportOptions: {agent}
+                })
+                return client2;
+            } catch (ex) {
+                console.log(&quot;Cannot create influxdb client !!!&quot;);
+                console.log(ex);
+            }
+        }
+    }
+
+    formatString(str: string) {
+        str &#x3D; str + &quot;&quot;;
+        var ret &#x3D; str.replace(/\\/g, &#x27;\\\\&#x27;);
+        return ret.replace(/&quot;/g, &#x27;\\\&quot;&#x27;);
+    }
+
+    async writeData(bucketName:string, measurementName:string, tags:Array&lt;{name:string, value:string}&gt;, fields:Array&lt;{name:string, value:any, type:string}&gt;, time:number|null&#x3D;null) {
+        var config &#x3D; AppConfigService.getInfluxdbConfig();
+
+        var arr_tags &#x3D; [];
+        for (var tag of tags) {
+            var str &#x3D; this.formatString(tag.value).replace(/ /g, &#x27;\\\ &#x27;);
+            arr_tags.push(tag.name + &#x27;&#x3D;&#x27; + str);
+        }
+
+        var arr_fields &#x3D; [];
+        for (var field of fields) {
+            try {
+                if (field.type&#x3D;&#x3D;&#x27;int&#x27;) {
+                    var v &#x3D; parseInt(field.value);
+                    if (isNaN(v)) {
+                        console.log(&quot;write to influxdb error. [&quot; + field.name + &quot;]&#x3D;[&quot; + field.value + &quot;] must be a Integer&quot;);
+                        continue;
+                    } else {
+                        arr_fields.push(field.name + &#x27;&#x3D;&#x27; + (field.value + &#x27;i&#x27;));
+                    }
+                } else if (field.type&#x3D;&#x3D;&#x27;float&#x27;) {
+                    var v &#x3D; parseFloat(field.value);
+                    if (isNaN(v)) {
+                        console.log(&quot;write to influxdb error. [&quot; + field.name + &quot;]&#x3D;[&quot; + field.value + &quot;] must be a Float&quot;);
+                        continue;
+                    } else {
+                        arr_fields.push(field.name + &#x27;&#x3D;&#x27; + field.value);
+                    }
+                } else if (field.type&#x3D;&#x3D;&#x27;string&#x27;) {
+                    if (typeof (field.value) &#x3D;&#x3D; &#x27;string&#x27;) {
+                        arr_fields.push(field.name + &#x27;&#x3D;&quot;&#x27; + this.formatString(field.value) + &#x27;&quot;&#x27;);
+                    } else {
+                        var json_str &#x3D; JSON.stringify(field.value);
+                        arr_fields.push(field.name + &#x27;&#x3D;&quot;&#x27; + this.formatString(json_str) + &#x27;&quot;&#x27;);
+                    }
+                } else if (field.type&#x3D;&#x3D;&#x27;boolean&#x27;) {
+                    arr_fields.push(field.name + &#x27;&#x3D;&#x27; + ((&#x27;&#x27; + field.value &#x3D;&#x3D; &#x27;true&#x27;) || (&#x27;&#x27; + field.value &#x3D;&#x3D; &#x27;True&#x27;) || (&#x27;&#x27; + field.value &#x3D;&#x3D; &#x27;TRUE&#x27;) || (&#x27;&#x27; + field.value &#x3D;&#x3D; &#x27;T&#x27;) || (&#x27;&#x27; + field.value &#x3D;&#x3D; &#x27;1&#x27;)));
+                } else {
+                    arr_fields.push(field.name + &#x27;&#x3D;&quot;&#x27; + this.formatString(&#x27;&#x27; + field.value) + &#x27;&quot;&#x27;);
+                }
+            } catch (err) {
+                console.log(&quot;write to influxdb error. [&quot; + field.name + &quot;]&#x3D;[&quot; + field.value + &quot;]&quot;);
+                console.log(err);
+            }
+        }
+
+        var timestamp &#x3D; null;
+        if (time!&#x3D;null) {
+            timestamp &#x3D; new Date(time).getTime();
+            if (isNaN(timestamp)) {
+                console.log(&#x27;write to influxdb error. time is invalid - time&#x3D;[&#x27; + time + &#x27;]&#x27;);
+                return;
+            }
+        }
+
+        if (arr_fields.length &gt; 0) {
+            var url &#x3D; config.url + &#x60;/api/v2/write?org&#x3D;${encodeURIComponent(config.org)}&amp;bucket&#x3D;${encodeURIComponent(bucketName)}&amp;precision&#x3D;ms&#x60;;
+            var data_tags_str &#x3D; (arr_tags.length &#x3D;&#x3D; 0) ? &#x27;&#x27; : &#x27;,&#x27; + arr_tags.join(&#x27;,&#x27;);
+            var body &#x3D; this.formatString(measurementName).replace(&#x27; &#x27;, &#x27;\\\ &#x27;) + data_tags_str + &#x27; &#x27; + arr_fields.join(&#x27;,&#x27;);
+            if (timestamp!&#x3D;null) {
+                var timestamp_ns &#x3D; timestamp * 1000000;
+                body +&#x3D; &#x27; &#x27; + timestamp_ns;
+            }
+
+        //    console.log(&#x27;url&#x27;, url);
+        //    console.log(&#x27;body&#x27;, body);
+
+            // GET localhost:8086/api/v2/write?bucket&#x3D;db/rp&amp;precision&#x3D;s
+            // mem,host&#x3D;host1 used_percent&#x3D;23.43234543 1556896326
+            await ajax(url, {
+                method: &quot;POST&quot;,
+                headers: new Headers({
+                    &#x27;Authorization&#x27;: &#x27;Token &#x27; + config.token,
+                }),
+                body: body,
+                cache: &#x27;no-cache&#x27;, // *default, no-cache, reload, force-cache, only-if-cached
+                mode: &#x27;cors&#x27;, // no-cors, cors, *same-origin
+            }, false, 10000);
+        }
+
+
+
+    }
+
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'InfluxdbClientService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

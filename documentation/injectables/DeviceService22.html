@@ -1,0 +1,1442 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DeviceService22</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/device/device.service.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../injectables/DeviceServiceBase.html" target="_self" >DeviceServiceBase</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceRepository" >deviceRepository</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remove" >remove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(deviceRepository: <a href="../classes/Device.html" target="_self">Repository&lt;Device&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="392" class="link-to-prism">src/modules/device/device.service.ts:392</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>deviceRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Device.html" target="_self" >Repository&lt;Device&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, device: <a href="../classes/DeviceUpdate.html" target="_self">DeviceUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DeviceServiceBase.html" target="_self" >DeviceServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DeviceServiceBase.html#source" target="_self" >DeviceServiceBase:13</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device</td>
+                                            <td>
+                                                            <code><a href="../classes/DeviceUpdate.html" target="_self" >DeviceUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Device.html" target="_self" >Promise&lt;Device&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, options: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DeviceServiceBase.html" target="_self" >DeviceServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DeviceServiceBase.html#source" target="_self" >DeviceServiceBase:18</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Device.html" target="_self" >Promise&lt;Device[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DeviceServiceBase.html" target="_self" >DeviceServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DeviceServiceBase.html#source" target="_self" >DeviceServiceBase:22</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Device.html" target="_self" >Promise&lt;Device&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DeviceServiceBase.html" target="_self" >DeviceServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DeviceServiceBase.html#source" target="_self" >DeviceServiceBase:39</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateDevice: <a href="../classes/DeviceUpdate.html" target="_self">DeviceUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/DeviceServiceBase.html" target="_self" >DeviceServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DeviceServiceBase.html#source" target="_self" >DeviceServiceBase:30</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>updateDevice</td>
+                                            <td>
+                                                            <code><a href="../classes/DeviceUpdate.html" target="_self" >DeviceUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Device.html" target="_self" >Promise&lt;Device&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceRepository</b></span>
+                        <a href="#deviceRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Device.html" target="_self" >Repository&lt;Device&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(Device)<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../injectables/DeviceServiceBase.html" target="_self" >DeviceServiceBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/DeviceServiceBase.html#source" target="_self" >DeviceServiceBase:394</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { Repository, FindOperator } from &#x27;typeorm&#x27;;
+import { Device, DeviceUpdate } from &#x27;./device.entity&#x27;;
+import { DeviceServiceBase } from &#x27;./device.service.base&#x27;;
+import { Util } from &#x27;src/util/util&#x27;;
+import { DeviceSpecStorer } from &#x27;../device_data/device_spec_storer.service&#x27;;
+import { Domain } from &#x27;../domain/domain.entity&#x27;;
+import { DomainService } from &#x27;../domain/domain.service&#x27;;
+import { DeviceTypeService } from &#x27;../device_type/device_type.service&#x27;;
+import { DeviceInputService } from &#x27;../device_input/device_input.service&#x27;;
+import { AppConfigService } from &#x27;src/app_config.service&#x27;;
+import { UserWithPermission } from &#x27;../user/user_with_permission.entity&#x27;;
+import { ApiProperty, OmitType, PartialType } from &#x27;@nestjs/swagger&#x27;;
+import { GetDeviceArgs } from &#x27;./device.args&#x27;;
+
+var moment &#x3D; require(&#x27;moment-timezone&#x27;);
+require(&#x27;moment/locale/zh-tw&#x27;);
+
+
+var cache_devices:Array&lt;Device&gt; &#x3D; null;
+
+
+var pomcube:Pomcube &#x3D; null;
+
+class Pomcube {
+
+  api_host?:string;
+  username?:string;
+  password?:string;
+
+  api_token?:string;
+  last_login_time:number &#x3D; 0;
+  devices:Array&lt;any&gt; &#x3D; [];
+
+  constructor(api_host, username, password) {
+    this.api_host &#x3D; api_host
+    this.username &#x3D; username
+    this.password &#x3D; password
+  }
+
+  async login(username, password) {
+    try {
+      var details &#x3D; {
+        username: username,
+        password: password
+      };
+      
+      var formBody &#x3D; [];
+      for (var property in details) {
+        var encodedKey &#x3D; encodeURIComponent(property);
+        var encodedValue &#x3D; encodeURIComponent(details[property]);
+        formBody.push(encodedKey + &quot;&#x3D;&quot; + encodedValue);
+      }
+      var body &#x3D; formBody.join(&quot;&amp;&quot;);
+      
+      const response &#x3D; await fetch(this.api_host + &#x27;/login&#x27;, {
+        method: &#x27;POST&#x27;,
+        headers: {
+          &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded;charset&#x3D;UTF-8&#x27;
+        },
+        body: body
+      })
+
+      if (response.status&gt;&#x3D;400) {
+          var text &#x3D; await response.text();
+          console.log(&#x27;Cannot login pomcube&quot;. response(&#x27;+response.status+&#x27;)&#x3D;&quot;&#x27;+text+&#x27;&quot;&#x27;);
+          throw new HttpException(text, response.status)
+      } else {
+        var json &#x3D; await response.json();
+        if (json.access_token!&#x3D;null) {
+          this.api_token &#x3D; json.access_token
+          this.last_login_time &#x3D; Date.now();
+          return;
+        }
+      }
+    } catch (error) {
+      console.log(&#x27;Cannot login pomcube.&#x27;);
+      console.log(error);
+      throw error
+    }
+  }
+
+  async relogin() {
+    if (Date.now()-this.last_login_time&gt;30*60*1000) {
+      await this.login(this.username, this.password)
+    }
+  }
+
+  /*
+  [
+    {
+      &quot;id&quot;: 17,
+      &quot;device_id&quot;: 2332,
+      &quot;device_model&quot;: &quot;PNZ-UN0&quot;,
+      &quot;device_code&quot;: &quot;01235460ED9F7CE0EE&quot;,
+      &quot;device_sn&quot;: &quot;AA-70-2201-01-0093-915&quot;,
+      &quot;device_name&quot;: &quot;台南鼎硯 915&quot;
+    }
+  ]
+  */
+  async getDeviceList() {
+    try {
+      await this.relogin()
+
+      var response &#x3D; await fetch(this.api_host + &#x27;/nzpu/user_devices&#x27;, {
+        method: &#x27;GET&#x27;,
+        headers: {
+          &#x27;Authorization&#x27;: &#x27;Bearer &#x27; + this.api_token
+        }
+      })
+      if (response.status&gt;&#x3D;400) {
+        var text &#x3D; await response.text();
+        console.log(&#x27;Cannot get pomcube device list&quot;. response(&#x27;+response.status+&#x27;)&#x3D;&quot;&#x27;+text+&#x27;&quot;&#x27;);
+        return
+      }
+      this.devices &#x3D; await response.json()
+      return this.devices
+    } catch (ex) {console.log(ex)}
+    return null
+  }
+
+  async getDeviceBySN(device_sn) {
+    var device &#x3D; this.devices.find(x&#x3D;&gt;x.device_sn&#x3D;&#x3D;device_sn)
+    if (device!&#x3D;null) {
+      return device
+    }
+    await this.getDeviceList()
+    return this.devices.find(x&#x3D;&gt;x.device_sn&#x3D;&#x3D;device_sn)
+  }
+
+  async setPower(device_id, power?:number, start_sec:number&#x3D;null, stop_sec:number&#x3D;null) {
+
+    if (power&#x3D;&#x3D;null) {
+      await this.removeTimer(device_id)
+      return;
+    }
+
+    await this.relogin()
+    var timer_id &#x3D; await this.removeTimer(device_id, true)
+
+    if (isNaN(power)) {
+      throw new HttpException(&#x27;Set pomcube power. power is invalid&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    if (power&lt;-12500) power&#x3D;-12500;
+    if (power&gt;12500) power&#x3D;12500;
+    console.log(&#x60;set device[${device_id}].power &#x3D;  ${power}&#x60;);
+
+    /*
+    var m &#x3D; moment();
+    var now &#x3D; m.startOf(&#x27;day&#x27;).unix();
+    //var now &#x3D; Math.floor(Date.now()/1000);
+    var endTime &#x3D; m.add(2,&#x27;year&#x27;).startOf(&#x27;day&#x27;).unix();
+
+    var timer_args &#x3D; {
+      &quot;NS_deviceId&quot;: device_id,
+      &quot;NS_endTime&quot;: endTime,
+      &quot;NS_power&quot;: power,
+      &quot;NS_startTime&quot;: now,
+      &quot;NS_time&quot;: now,
+      &quot;NS_valid&quot;: 1,
+      &quot;NS_repeat&quot;: &quot;0,1,2,3,4,5,6&quot;
+    }
+    */
+
+    var timer_args &#x3D; {
+      &quot;NS_deviceId&quot;: device_id,
+      &quot;NS_endTime&quot;: stop_sec,
+      &quot;NS_power&quot;: power,
+      &quot;NS_startTime&quot;: start_sec,
+      &quot;NS_time&quot;: start_sec,
+      &quot;NS_valid&quot;: 1,
+      &quot;NS_repeat&quot;: &quot;0,1,2,3,4,5,6&quot;
+    }
+    console.log(&#x27;setPower timer_args: &#x27;, JSON.stringify(timer_args))
+
+    if (timer_id&#x3D;&#x3D;null) {
+      await this.createNewTimer(timer_args)
+    } else {
+      await this.updateTimer(timer_id, timer_args)
+    }
+  }
+
+
+
+  
+  async createNewTimer(timer_args) {
+    //var status &#x3D; null
+    //var response_text &#x3D; &#x27;&#x27;
+    var success &#x3D; false
+    for (var n&#x3D;0; n&lt;5; n++) {
+      var response &#x3D; await fetch(this.api_host + &#x27;/api/v2/timer&#x27;, {
+        method: &#x27;POST&#x27;,
+        headers: {
+          &#x27;content-type&#x27;: &#x27;application/json&#x27;,
+          &#x27;Authorization&#x27;: &#x27;Bearer &#x27; + this.api_token
+        },
+        body: JSON.stringify(timer_args)
+      })
+      let status &#x3D; response.status
+      let response_text &#x3D; &#x27;&#x27;
+      if (response.status&gt;&#x3D;400) {
+        response_text &#x3D; await response.text();
+        console.log(&#x27;createNewTimer error: &#x27; + response_text)
+        await Util.sleep(2000)
+        continue;
+      } else {
+        /*
+        {
+          &quot;requestId&quot;: &quot;11a88d51-c398-47b5-9caf-a51cd0bebf01&quot;,
+          &quot;code&quot;: 200,
+          &quot;msg&quot;: &quot;success&quot;,
+          &quot;data&quot;: {
+            &quot;timerId&quot;: 1729762329
+          }
+        }
+        */
+        var response_json &#x3D; await response.json();
+        var timerId &#x3D; response_json?.data?.timerId;
+        if (timerId&#x3D;&#x3D;null) {
+          await Util.sleep(2000)
+          continue;
+        }
+
+        await Util.sleep(5000)
+
+        var response_timer &#x3D; await this.getTimer(timer_args.NS_deviceId)
+        if (response_timer?.NS_data&#x3D;&#x3D;null || !(timerId in response_timer.NS_data)) {
+          await Util.sleep(2000)
+          continue;
+        }
+
+        success &#x3D; true
+        break;
+      }
+    }
+
+    if (!success) {
+      var device_sn &#x3D; null
+      var device &#x3D; this.devices.find(x&#x3D;&gt;x.device_id&#x3D;&#x3D;timer_args.NS_deviceId)
+      if (device!&#x3D;null) device_sn &#x3D; device.device_sn;
+      throw new HttpException(&#x27;Cannot create pomcube(&#x27;+device_sn+&#x27;) schedule timer.&#x27;, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /*
+    if (response_data!&#x3D;null) {
+      try {
+        var json &#x3D; JSON.parse(response_data);
+        var timerId &#x3D; json?.data?.timerId;
+        if (timerId!&#x3D;null) schedule_timer &#x3D; {
+          device_id: device_id,
+          timer_id: timerId
+        };
+      } catch (ex) {
+        self.log(ex);
+      }
+    }
+    */
+  }
+
+  async updateTimer(timerId, timer_args) {
+    for (var n&#x3D;0; n&lt;2; n++) {
+      try {
+        var response &#x3D; await fetch(this.api_host + &#x27;/api/v2/timer/&#x27; + encodeURIComponent(timerId), {
+          method: &#x27;PUT&#x27;,
+          headers: {
+            &#x27;content-type&#x27;: &#x27;application/json&#x27;,
+            &#x27;Authorization&#x27;: &#x27;Bearer &#x27; + this.api_token
+          },
+          body: JSON.stringify(timer_args)
+        })
+        if (response.status&gt;&#x3D;400) {
+          var text &#x3D; await response.text();
+          console.log(&#x27;Cannot update pomcube timer&quot;. response(&#x27;+response.status+&#x27;)&#x3D;&quot;&#x27;+text+&#x27;&quot;&#x27;);
+          await Util.sleep(2000)
+          continue;
+        } else {
+          await Util.sleep(2000)
+          break;
+        }
+      } catch (ex) {console.log(ex)}
+    }
+  }
+
+  async getTimer(device_id) {
+    /*
+    {
+      &quot;NS_requestId&quot;: &quot;df97d227-c96f-4ca1-aeb3-25c113fe9092&quot;,
+      &quot;NS_code&quot;: 200,
+      &quot;NS_msg&quot;: &quot;success&quot;,
+      &quot;NS_data&quot;: {
+        &quot;1719192795&quot;: {
+          &quot;NS_EndTime&quot;: 1724956200,
+          &quot;NS_Power&quot;: 5000,
+          &quot;NS_StartTime&quot;: 1724947215,
+          &quot;NS_Time&quot;: 1719192795,
+          &quot;NS_Valid&quot;: 1,
+          &quot;NS_Repeat&quot;: &quot;1,2,3,4,5,6,&quot;
+        }
+      }
+    }
+    */
+    var response &#x3D; await fetch(this.api_host + &#x60;/api/v2/timer?deviceId&#x3D;${encodeURIComponent(device_id)}&#x60;, {
+      method: &#x27;GET&#x27;,
+      headers: {
+        &#x27;Authorization&#x27;: &#x27;Bearer &#x27; + this.api_token
+      }
+    })
+    if (response.status&gt;&#x3D;400) {
+      var text &#x3D; await response.text();
+      console.log(&#x27;Cannot get pomcube timer&quot;. response(&#x27;+response.status+&#x27;)&#x3D;&quot;&#x27;+text+&#x27;&quot;&#x27;);
+      throw new HttpException(text, response.status);
+    }
+    return await response.json();
+  }
+
+
+  async removeTimer(device_id, retain&#x3D;false) {
+
+    var ret &#x3D; null
+
+    var success &#x3D; false
+    for (var n&#x3D;0; n&lt;5; n++) {
+      var response_data &#x3D; await this.getTimer(device_id)
+      //console.log(response_data);
+
+      if (response_data?.NS_data&#x3D;&#x3D;null) {
+        await Util.sleep(2000)
+        continue;
+      }
+
+      var size &#x3D; Object.keys(response_data.NS_data).length
+      if (size&#x3D;&#x3D;0) {
+        success &#x3D; true
+        break;
+      }
+
+      var n &#x3D; 0
+      for (var timer_id in response_data.NS_data) {
+        //var timer &#x3D; response_data.NS_data[timer_id]
+        ret &#x3D; timer_id
+        if (retain &amp;&amp; n&#x3D;&#x3D;size-1) {
+          success &#x3D; true
+          break;
+        }
+        var status &#x3D; null
+        var response_text &#x3D; &#x27;&#x27;
+        var response &#x3D; await fetch(this.api_host + &#x60;/api/v2/timer/${timer_id}?deviceId&#x3D;${encodeURIComponent(device_id)}&#x60;, {
+          method: &#x27;DELETE&#x27;,
+          headers: {
+            &#x27;Authorization&#x27;: &#x27;Bearer &#x27; + this.api_token
+          }
+        })
+        if (response.status&gt;&#x3D;400) {
+          status &#x3D; response.status
+          response_text &#x3D; await response.text()
+          console.log(&#x27;Cannot delete pomcube schedule timer&quot;. response(&#x27;+status+&#x27;)&#x3D;&quot;&#x27;+response_text+&#x27;&quot;&#x27;);
+        } else {
+          console.log(&#x27;Pomcube timer is removed: device_id&#x3D;&#x27;+device_id+&#x27;, timer_id&#x3D;&#x27; + timer_id)
+        }
+        await Util.sleep(1000)
+        n ++
+      }
+      if (success) break;
+    }
+
+    if (!success) {
+      var device_sn &#x3D; null
+      var device &#x3D; this.devices.find(x&#x3D;&gt;x.device_id&#x3D;&#x3D;device_id)
+      if (device!&#x3D;null) device_sn &#x3D; device.device_sn;
+      throw new HttpException(&#x27;Cannot delete pomcube(&#x27;+device_sn+&#x27;) schedule timer.&#x27;, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    return ret
+
+  }
+}
+
+
+pomcube &#x3D; new Pomcube(
+  AppConfigService.getSystemConfig().pomcube_api_host,
+  AppConfigService.getSystemConfig().pomcube_username,
+  AppConfigService.getSystemConfig().pomcube_password
+)
+
+
+
+@Injectable()
+//export class DeviceService extends OmitType(DeviceServiceBase,  [&#x27;create&#x27;, &#x27;findAll&#x27;, &#x27;findOne&#x27;, &#x27;update&#x27;, &#x27;remove&#x27;]) {
+export class DeviceService22 extends DeviceServiceBase {
+  constructor(
+    @InjectRepository(Device) public readonly deviceRepository: Repository&lt;Device&gt;,
+  ) {
+    super(deviceRepository);
+  }
+
+}
+
+@Injectable()
+export class DeviceService extends DeviceServiceBase {
+  constructor(
+    @InjectRepository(Device) public readonly deviceRepository: Repository&lt;Device&gt;,
+    public readonly domainService: DomainService,
+    public readonly deviceTypeService: DeviceTypeService,
+    public readonly deviceInputService: DeviceInputService,
+  ) {
+    super(deviceRepository);
+  }
+
+
+  async storeDeviceSpec(this_user:UserWithPermission, device) {
+    await DeviceSpecStorer.storeDeviceSpec(this_user, [device], null, null, device?.domain_id, this.domainService)
+  }
+
+  async fixDeviceTypeCategoryId(this_user:UserWithPermission, device: DeviceUpdate) {
+    if (&#x27;device_type_category_id&#x27; in device) {
+      delete device.device_type_category_id
+    }
+    if (&#x27;device_type_id&#x27; in device) {
+      if (device.device_type_id&#x3D;&#x3D;null) {
+        device.device_type_category_id &#x3D; null
+      } else {
+        var device_type &#x3D; await this.deviceTypeService.findOne(this_user, device.device_type_id)
+        if (device_type&#x3D;&#x3D;null) {
+          throw new HttpException(&#x27;DeviceType not found&#x27;, HttpStatus.NOT_FOUND);
+        }
+        device.device_type_category_id &#x3D; device_type.device_type_category_id;
+      }
+    }
+  }
+
+
+  async checkData(this_user:UserWithPermission, device: DeviceUpdate, device_id&#x3D;null) {
+    if (device_id!&#x3D;null) {
+      var device2:Device &#x3D; await this.findOneInDomain(this_user, device_id)
+      if (device2&#x3D;&#x3D;null) {
+        throw new HttpException(&#x27;The device is not in this domain&#x27;, HttpStatus.FORBIDDEN);
+      }
+    }
+
+    if (device?.domain_id!&#x3D;null) {
+      var in_domain &#x3D; await this.domainService.includeDomain(this_user.domain_id, device.domain_id)
+      if (!in_domain) {
+        throw new HttpException(&#x27;domain_id is out of domain&#x27;, HttpStatus.FORBIDDEN);
+      }
+    }
+
+    if (device?.device_name!&#x3D;null) {
+      if ((&#x27;&#x27;+device.device_name).trim()&#x3D;&#x3D;&#x27;&#x27;) {
+        throw new HttpException(&#x27;device_name is null&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      var organization_id &#x3D; await this.domainService.getOrganizationId(device.domain_id)
+      var devices &#x3D; await this.domainService.getAllDevices(this_user, this, organization_id,{device_name:device.device_name}, 1000000)
+      if (devices.length&gt;0) {
+        throw new HttpException(&#x27;device_name is exist&#x27;, HttpStatus.CONFLICT);
+      }
+    }
+    if (device!&#x3D;null) {
+      await this.fixDeviceTypeCategoryId(this_user, device)
+    }
+  }
+
+  async create(this_user:UserWithPermission, device: DeviceUpdate): Promise&lt;Device&gt; {
+    if (device.domain_id&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;domain_id is null&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    if (device.device_name&#x3D;&#x3D;null || (&#x27;&#x27;+device.device_name).trim()&#x3D;&#x3D;&#x27;&#x27;) {
+      throw new HttpException(&#x27;device_name is null&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    await this.checkData(this_user, device)
+    var ret &#x3D; await this.deviceRepository.save(device);
+    cache_devices &#x3D;  await this.deviceRepository.find();
+    await this.storeDeviceSpec(this_user, device)
+    Util.notifyDeviceChanged()
+    return ret;
+  }
+
+  async update(this_user:UserWithPermission, id: number, updateDevice: DeviceUpdate): Promise&lt;Device&gt; {
+    await this.checkData(this_user, updateDevice, id)
+    await this.deviceRepository.update(id, updateDevice);
+    var device &#x3D; await this.deviceRepository.findOne({where:{device_id:id}});
+    if (cache_devices&#x3D;&#x3D;null) {
+      cache_devices &#x3D; await this.deviceRepository.find();
+      await this.storeDeviceSpec(this_user, {domain_id:device.domain_id, ...updateDevice})
+      return device;
+    }
+    if (device!&#x3D;null) {
+      var index &#x3D; cache_devices.findIndex(x&#x3D;&gt;x.device_id&#x3D;&#x3D;id);
+      if (index!&#x3D;-1) {
+        cache_devices[index] &#x3D; device;
+      }
+    }
+    var device2 &#x3D; {
+      domain_id: device.domain_id,
+      device_name: device.device_name,
+      place_name: (device.place_name&#x3D;&#x3D;&#x27;&#x27;) ? null : device.place_name,
+      ...updateDevice
+    }
+    await this.storeDeviceSpec(this_user, device2)
+    if (  &quot;device_name&quot; in updateDevice
+       || &quot;device_type_id&quot; in updateDevice
+       || &quot;device_connection_id&quot; in updateDevice
+       || &quot;domain_id&quot; in updateDevice
+       || &quot;enabled&quot; in updateDevice
+      ) {
+      Util.notifyDeviceChanged()
+    }
+    return device;
+  }
+
+  async remove(this_user:UserWithPermission, id: number): Promise&lt;boolean&gt; {
+    await this.checkData(this_user, null, id)
+    const result &#x3D; await this.deviceRepository.delete(id);
+    cache_devices &#x3D;  await this.deviceRepository.find();
+    Util.notifyDeviceChanged()
+    return result.affected &gt; 0;
+  }
+
+
+  async findAll(this_user:UserWithPermission, options&#x3D;null): Promise&lt;Device[]&gt; {
+    try {
+      var ret:Array&lt;Device&gt;;
+      if (cache_devices&#x3D;&#x3D;null) {
+        ret &#x3D; await this.deviceRepository.find();
+        cache_devices &#x3D; ret;
+      } else {
+        ret &#x3D; cache_devices;
+      }
+
+      var where &#x3D; options?.where;
+      if (where!&#x3D;null) {
+        for (var n in where) {
+          var cond &#x3D; where[n];
+          if (cond instanceof FindOperator) {
+            if (cond.type&#x3D;&#x3D;&#x27;in&#x27; &amp;&amp; Array.isArray(cond.value)) {
+              ret &#x3D; ret.filter(x&#x3D;&gt;cond.value.includes(x[n]))
+            }
+          } else {
+            ret &#x3D; ret.filter(x&#x3D;&gt;x[n]&#x3D;&#x3D;cond)
+          }
+        }
+      }
+      return ret;
+    } catch(ex) {
+      console.log(ex);
+    }
+    return [];
+    // return await this.deviceRepository.find(options);
+  }
+
+  async findAllInDomain(this_user:UserWithPermission, options&#x3D;null): Promise&lt;Device[]&gt; {
+    var devices &#x3D; await this.domainService.getAllDevices(this_user, this, this_user.domain_id, options?.where)
+    return devices
+  }
+
+  async findOne(this_user:UserWithPermission, id: number): Promise&lt;Device&gt; {
+    var devices &#x3D; await this.findAll(this_user, {where:{device_id:id}});
+    return (devices.length&gt;0)?devices[0]:null;
+    // return await this.deviceRepository.findOne({
+    //     where: {
+    //       device_id:id,
+    //     },
+    // });
+  }
+
+  async findOneInDomain(this_user:UserWithPermission, id: number): Promise&lt;Device&gt; {
+    var where:GetDeviceArgs &#x3D; {device_id: id}
+    var devices &#x3D; await this.domainService.getAllDevices(this_user, this, this_user.domain_id, where)
+    return devices.length&gt;0 ? devices[0] : null;
+  }
+
+  async sendDataToDevice(this_user:UserWithPermission, device_id, device_input_name, data) {
+    if (data&#x3D;&#x3D;null) data &#x3D; &#x27;&#x27;;
+    if (data&#x3D;&#x3D;&#x27;null&#x27;) data &#x3D; &#x27;&#x27;;
+    if (device_input_name&#x3D;&#x3D;&#x27;pomcube_bat_power&#x27;) {
+      var data2 &#x3D; JSON.parse(data)
+      var device &#x3D; await this.findOne(this_user, device_id)
+      if (device&#x3D;&#x3D;null) {
+        throw new HttpException(&#x27;Device not found&#x27;, HttpStatus.NOT_FOUND)
+      }
+      var device_sn &#x3D; device.device_name;
+      var pomcube_device &#x3D; await pomcube.getDeviceBySN(device_sn)
+      if (pomcube_device!&#x3D;null) {
+        var m &#x3D; moment.tz(new Date(), data2.timezone)
+        m.startOf(&#x27;day&#x27;)
+        var m2 &#x3D; m.clone();
+        let start_sec &#x3D; m.add(data2.start_sec, &#x27;seconds&#x27;).unix()
+        if (data2.continuity) {
+          m2.add(5, &#x27;minutes&#x27;)
+        }
+        let stop_sec &#x3D; m2.add(data2.stop_sec, &#x27;seconds&#x27;).unix()
+        await pomcube.setPower(pomcube_device.device_id, data2.power, start_sec, stop_sec)
+      }
+    }
+  }
+
+
+}  </code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DeviceService22.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

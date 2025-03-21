@@ -6,9 +6,23 @@ import { DarkBox } from './util/darkbox';
 import { RecordConverter } from './util/record_converter';
 import { AppConfigService } from './app_config.service';
 import { writeFileSync } from 'fs';
+// import { GraphInspector } from '@nestjs/core/inspector';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // 嘗試啟用 GraphInspector（確保不報錯）
+  // try {
+  //   const inspector = app.get('GraphInspector', { strict: false });
+  //   if (inspector && typeof inspector.listen === 'function') {
+  //     inspector.listen(); // 這行確保 /graph 路由可用
+  //     console.log('✅ GraphInspector 啟動成功，請訪問 /graph');
+  //   } else {
+  //     console.warn('⚠️ 無法啟動 GraphInspector，請檢查 @nestjs/core 版本');
+  //   }
+  // } catch (error) {
+  //   console.warn('⚠️ GraphInspector 無法啟動，錯誤資訊:', error.message);
+  // }
 
   const config = new DocumentBuilder()
     .setTitle('AEGIS')

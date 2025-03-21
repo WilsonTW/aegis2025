@@ -1,0 +1,968 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >RecordConverter</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/util/record_converter.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#build" >build</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getUndefinedVars" >getUndefinedVars</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#toInfluxRecords" >toInfluxRecords</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="build"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>build</b></span>
+                        <a href="#build"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>build(properties)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/util/record_converter.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>properties</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ name: string; fullpath: string; childs: {}; }</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUndefinedVars"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getUndefinedVars</b></span>
+                        <a href="#getUndefinedVars"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUndefinedVars(script)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/util/record_converter.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>script</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toInfluxRecords"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>toInfluxRecords</b></span>
+                        <a href="#toInfluxRecords"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toInfluxRecords(data, program_root)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/util/record_converter.ts:282</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>program_root</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DarkBox } from &quot;./darkbox&quot;;
+
+const acorn &#x3D; require(&quot;acorn&quot;);
+const walk &#x3D; require(&quot;acorn-walk&quot;);
+
+
+/*
+var store_tags &#x3D; [&#x27;DeviceName:SmartPanel_ID&#x27;,&#x27;time:Timestamp&#x27;,&#x27;Transformers.Transformer_ID&#x27;,&#x27;ACBs.ACB_ID&#x27;,&#x27;Meters.Meter_ID&#x27;, &#x27;Transformers.aa.oo_id&#x27;]
+var store_fields &#x3D; [
+  &#x27;Status&#x27;,
+  &#x27;Transformers.Temperature&#x27;,
+  &#x27;zxc:Transformers.aa.oo_value&#x27;,
+  &#x27;ACBs.Release_Protection&#x27;, &#x27;ACBs.Closing_Abnormal&#x27;, &#x27;ACBs.Release_Abnormal&#x27;, &#x27;ACBs.Status&#x27;,
+  &#x27;Meters.Voltage_R&#x27;,&#x27;Meters.Voltage_S&#x27;,&#x27;Meters.Voltage_T&#x27;,
+  &#x27;Meters.Current_R&#x27;,&#x27;Meters.Current_S&#x27;,&#x27;Meters.Current_T&#x27;,
+  &#x27;Meters.Line_Voltage_RS&#x27;,&#x27;Meters.Line_Voltage_ST&#x27;,&#x27;Meters.Line_Voltage_RT&#x27;,
+  &#x27;Meters.Line_Current_R&#x27;,&#x27;Meters.Line_Current_S&#x27;,&#x27;Meters.Line_Current_T&#x27;,
+  &#x27;Meters.ActivePower&#x27;,&#x27;Meters.ReactivePower&#x27;,&#x27;Meters.PowerFactor&#x27;
+]
+
+async function test() {
+  RecordConverter.updateVars(properties)
+  var records &#x3D; await RecordConverter.toInfluxRecords(properties, data)
+  console.log(records)
+}
+*/
+
+
+export class RecordConverter {
+
+
+  static getUndefinedVars(script):string[] {
+    const ast &#x3D; acorn.parse(script, { ecmaVersion: 2020 });
+
+    const definedVars &#x3D; new Set&lt;string&gt;();
+    const usedVars &#x3D; new Set&lt;string&gt;();
+
+    // Track defined variables
+    walk.simple(ast, {
+        VariableDeclarator(node) {
+            definedVars.add(node.id.name);
+        },
+        FunctionDeclaration(node) {
+            // Add function parameters as defined variables
+            node.params.forEach(param &#x3D;&gt; definedVars.add(param.name));
+        },
+        FunctionExpression(node) {
+            // Add function parameters as defined variables
+            node.params.forEach(param &#x3D;&gt; definedVars.add(param.name));
+        },
+        ArrowFunctionExpression(node) {
+            // Add function parameters as defined variables
+            node.params.forEach(param &#x3D;&gt; definedVars.add(param.name));
+        }
+    });
+
+    // Track used variables
+    walk.simple(ast, {
+        Identifier(node) {
+            if (node.name !&#x3D;&#x3D; &quot;undefined&quot;) {
+                usedVars.add(node.name);
+            }
+        },
+        MemberExpression(node) {
+            if (node.object &amp;&amp; node.property) {
+                let name &#x3D; getIdentifierName2(node)
+                if (name!&#x3D;null) {
+                    usedVars.add(name);
+                }
+                /*
+                const objectName &#x3D; getIdentifierName(node.object);
+                const propertyName &#x3D; getIdentifierName(node.property);
+                if (objectName) {
+                    usedVars.add(&#x60;${objectName}.${propertyName}&#x60;);
+                }
+                */
+            }
+        }
+    });
+
+    // Helper function to get identifier name from a node
+    function getIdentifierName(node) {
+        if (node.type &#x3D;&#x3D;&#x3D; &quot;Identifier&quot;) {
+            return node.name;
+        } else if (node.type &#x3D;&#x3D;&#x3D; &quot;MemberExpression&quot;) {
+            return getIdentifierName(node.object);
+        }
+        return null;
+    }
+
+    function getIdentifierName2(node):string {
+        if (node.type &#x3D;&#x3D;&#x3D; &quot;Identifier&quot;) {
+            return node.name;
+        } else if (node.type &#x3D;&#x3D;&#x3D; &quot;MemberExpression&quot;) {
+            if (node.object!&#x3D;null) {
+                var parent_name &#x3D; getIdentifierName2(node.object)
+                if (parent_name!&#x3D;null) {
+                    if (node.property.type &#x3D;&#x3D;&#x3D; &#x27;Literal&#x27;) {
+                        return parent_name + &#x27;.&#x27; + node.property.value;
+                    } else if (node.property?.name!&#x3D;null) {
+                        return parent_name + &#x27;.&#x27; + node.property.name;
+                    } else {
+                        return parent_name
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+
+    // Find variables that are used but not defined
+    const undefinedVars:string[] &#x3D; Array.from(usedVars).filter(v &#x3D;&gt; !definedVars.has(v));
+    return undefinedVars;
+  }
+
+  public static build(properties) {
+    for (var property_fullname in properties) {
+      var property &#x3D; properties[property_fullname]
+      var src;
+      if (property.src!&#x3D;null) {
+        //src &#x3D; property.src.replace(/\./g, &#x27;?.&#x27;)
+        src &#x3D; property.src
+      } else {
+        src &#x3D; property_fullname
+        property.src &#x3D; property_fullname
+      }
+      property.short_name &#x3D; property_fullname.split(&#x27;.&#x27;).pop()
+
+      if (property.type&#x3D;&#x3D;null) {
+        property.type &#x3D; &#x27;number&#x27;
+      }
+
+      property.vars &#x3D; RecordConverter.getUndefinedVars(src);
+    }
+
+    var root &#x3D; {
+      name: &#x27;&#x27;,
+      fullpath: &#x27;&#x27;,
+      childs: []
+    }
+    for (var property_fullname in properties) {
+      var property &#x3D; properties[property_fullname]
+      var paths &#x3D; property_fullname.split(&#x27;.&#x27;)
+      var node &#x3D; root
+      var fullpath &#x3D; &#x27;&#x27;
+      for (var path of paths) {
+        if (node!&#x3D;root) fullpath +&#x3D; &#x27;.&#x27;
+        fullpath +&#x3D; path
+        var child &#x3D; node.childs.find(x&#x3D;&gt;x.name&#x3D;&#x3D;path)
+        if (child&#x3D;&#x3D;null) {
+          var prop &#x3D; properties
+          child &#x3D; {
+            name: path,
+            fullpath: fullpath,
+            property: (fullpath in properties)?properties[fullpath]:null,
+            childs: []
+          }
+          node.childs.push(child)
+        }
+        node &#x3D; child
+      }
+    }
+
+    return root
+    /*
+    function toRecord(rules, node, parent_tags&#x3D;[]) {
+      if (node.childs.length&#x3D;&#x3D;0) return;
+      var rule &#x3D; {
+        fullpath: node.fullpath,
+        tags: [...parent_tags],
+        fields: []
+      }
+      for (var child of node.childs) {
+        if (child.property!&#x3D;null) {
+          if (child.property.tag || child.fullpath&#x3D;&#x3D;&#x27;time&#x27;) {
+            rule.tags.push(child.property)
+          } else {
+            rule.fields.push(child.property)
+          }
+        }
+      }
+      rules.push(rule)
+      for (var child of node.childs) {
+        toRecord(rules, child, rule.tags)
+      }
+    }
+
+    var rules &#x3D; []
+    toRecord(rules, root, [])
+
+
+    return rules
+    */
+  }
+
+/*
+  private static async _toInfluxRecords(records, properties, prefix, refs, root, parent, data) {
+    // Transformers.aa.oo_value + Transformers.Temperature + 10
+    for (var name in data) {
+      var value &#x3D; data[name]
+      if (!Array.isArray(value) &amp;&amp; typeof(value)!&#x3D;&#x27;object&#x27;) {
+        refs[prefix + name] &#x3D; value
+        parent[name] &#x3D; value
+      }
+    }
+
+    var fields &#x3D; {}
+    var tags &#x3D; {}
+
+    for (var prop_name in properties) {
+      var property &#x3D; properties[prop_name]
+      var property_split &#x3D; prop_name.split(&#x27;.&#x27;)
+      var prop_name_short &#x3D; property_split[property_split.length-1]
+      if (prop_name_short&#x3D;&#x3D;&#x27;time&#x27;) property.tag&#x3D;true;
+
+      //if (property.tag&#x3D;&#x3D;true || prop_prefix&#x3D;&#x3D;prefix) {
+        var found &#x3D; true
+        var same_level &#x3D; false
+        for (var va of property.vars) {
+          if (!(va in refs)) {
+            found &#x3D; false
+            break
+          }
+          let prop_prefix &#x3D; &#x27;&#x27;
+          let va_split &#x3D; va.split(&#x27;.&#x27;)
+          if (va_split.length&gt;1) {
+            va_split.pop()
+            prop_prefix &#x3D; va_split.join(&#x27;.&#x27;)
+            if (prop_prefix!&#x3D;&#x27;&#x27;) prop_prefix &#x3D; prop_prefix + &#x27;.&#x27;;
+          }
+          same_level &#x3D; same_level || (prop_prefix &#x3D;&#x3D; prefix)
+        }
+        if (property.tag&#x3D;&#x3D;true || same_level) {
+          var result &#x3D; null
+          try {
+            result &#x3D; await DarkBox.evalScript(property.src, root);
+          } catch(ex) {
+            console.log((ex.message!&#x3D;null)?ex.message:ex)
+          }
+          if (result!&#x3D;null) {
+            if (property.tag&#x3D;&#x3D;true) {
+              tags[prop_name_short] &#x3D; result
+            } else {
+              if (same_level) fields[prop_name_short] &#x3D; result
+            }
+          }
+        }
+      //}
+
+    }
+
+    if (Object.keys(fields).length&gt;0) {
+      records.push({
+        tags, fields
+      })
+    }
+
+    for (var name in data) {
+      var value &#x3D; data[name]
+      if (Array.isArray(value)) {
+        for (var c of value) {
+          var refs2 &#x3D; {...refs}
+          refs2[prefix + name] &#x3D; {}
+          parent[name] &#x3D; {}
+          await RecordConverter._toInfluxRecords(records, properties, prefix+name+&#x27;.&#x27;, refs2, root, parent[name], c)
+        }
+      }
+    }
+
+  }
+
+  public static async toInfluxRecords_old(properties, data) {
+    var records &#x3D; [];
+    var root &#x3D; {}
+    await RecordConverter._toInfluxRecords(records, properties, &#x27;&#x27;, {}, root, root, data)
+    //console.log(JSON.stringify(records,null,4))
+    return records
+  }
+*/
+
+  public static async toInfluxRecords(data, program_root) {
+    async function toRecs(recs, ancestor_tags, context_root, context, program_node) {
+
+      if (program_node&#x3D;&#x3D;null) return;
+
+      var rec &#x3D; {
+        tags:[...ancestor_tags],
+        fields:[],
+        property_external:[]
+      }
+      for (var child of program_node.childs) {
+        if (child.property!&#x3D;null) {
+          var property &#x3D; child.property
+          var value &#x3D; null
+          var src &#x3D; property.src
+          if (src!&#x3D;null) {
+            try {
+              value &#x3D; await DarkBox.evalScript(property.src, context_root);
+            } catch(ex) {
+              console.log((ex.message!&#x3D;null)?ex.message:ex)
+            }
+          }
+          if (property.external!&#x3D;null) {
+            rec.property_external.push(property)
+          } else if (property.tag || property.short_name&#x3D;&#x3D;&#x27;time&#x27;) {
+            rec.tags.push({
+              name: property.short_name,
+              value: value,
+              type: property.type
+            })
+          } else {
+            rec.fields.push({
+              name: property.short_name,
+              value: value,
+              type: property.type
+            })
+          }
+        }
+      }
+      recs.push(rec)
+
+      for (var name in context) {
+        var data_childs &#x3D; context[name]
+        if (Array.isArray(data_childs)) {
+          var cnode &#x3D; program_node.childs.find(x&#x3D;&gt;x.name&#x3D;&#x3D;name)
+          if (cnode!&#x3D;null) {
+            var backup &#x3D; context[name]
+            try {
+              for (var c of data_childs) {
+                context[name] &#x3D; c
+                await toRecs(recs, rec.tags, context_root, c, cnode)
+              }
+            } catch (ex) {console.log(ex)}
+            context[name] &#x3D; backup
+          }
+        }
+      }
+
+    }
+
+    var recs &#x3D; []
+    await toRecs(recs, [], data, data, program_root)
+    return recs;
+
+  }
+
+}
+
+
+/*
+
+var properties &#x3D; {
+  &quot;time&quot;: {
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;format&quot;: &quot;date-time&quot;,
+    &quot;src&quot;: &quot;Timestamp&quot;
+  },
+  &quot;DeviceName&quot;: {
+    &quot;tag&quot;: true,
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;src&quot;: &quot;SmartPanel_ID&quot;
+  },
+  &quot;Transformers.Transformer_ID&quot;: {
+    &quot;tag&quot;: true,
+    &quot;type&quot;: &quot;string&quot;
+  },
+  &quot;ACBs.ACB_ID&quot;: {
+    &quot;tag&quot;: true,
+    &quot;type&quot;: &quot;string&quot;
+  },
+  &quot;Meters.Meter_ID&quot;: {
+    &quot;tag&quot;: true,
+    &quot;type&quot;: &quot;string&quot;
+  },
+  &quot;Transformers.aa.oo_id&quot;: {
+    &quot;tag&quot;: true,
+    &quot;type&quot;: &quot;string&quot;
+  },
+  &quot;Transformers.aa.oo_value&quot;: {
+    &quot;type&quot;: &quot;number&quot;
+  },
+  &quot;Transformers.aa.xx_value&quot;: {
+    &quot;type&quot;: &quot;number&quot;,
+    &quot;src&quot;: &quot;Transformers.aa.oo_value + Transformers.Temperature + 10&quot;
+  },
+  &quot;Status&quot;: {&quot;type&quot;: &quot;string&quot;},
+  &quot;Transformers.Temperature&quot;: {&quot;type&quot;: &quot;number&quot;},
+  &quot;ACBs.Release_Protection&quot;: {},
+  &quot;ACBs.Closing_Abnormal&quot;: {},
+  &quot;ACBs.Release_Abnormal&quot;: {},
+  &quot;ACBs.ACBStatus&quot;: {},
+  &quot;Meters.Voltage_R&quot;: {},
+  &quot;Meters.Voltage_S&quot;: {},
+  &quot;Meters.Voltage_T&quot;: {},
+  &quot;Meters.Current_R&quot;: {},
+  &quot;Meters.Current_S&quot;: {},
+  &quot;Meters.Current_T&quot;: {},
+  &quot;Meters.Line_Voltage_RS&quot;: {},
+  &quot;Meters.Line_Voltage_ST&quot;: {},
+  &quot;Meters.Line_Voltage_RT&quot;: {},
+  &quot;Meters.Line_Current_R&quot;: {},
+  &quot;Meters.Line_Current_S&quot;: {},
+  &quot;Meters.Line_Current_T&quot;: {},
+  &quot;Meters.ActivePower&quot;: {},
+  &quot;Meters.ReactivePower&quot;: {},
+  &quot;Meters.PowerFactor&quot;: {}
+}
+
+
+var data &#x3D; {
+  &quot;SmartPanel_ID&quot;: &quot;SP000001&quot;,
+  &quot;Timestamp&quot;: &quot;2024-02-06T10:00:00Z&quot;,
+  &quot;Status&quot;: &quot;Operational&quot;,
+  &quot;Transformers&quot;: [
+      {
+          &quot;Transformer_ID&quot;: &quot;1&quot;,
+          &quot;Temperature&quot;: 23,
+          &quot;aa&quot;: [{
+            &quot;oo_id&quot;: &#x27;ooid&#x27;,
+            &quot;oo_value&quot;: 37
+          }]
+      },
+      {
+          &quot;Transformer_ID&quot;: &quot;2&quot;,
+          &quot;Temperature&quot;: 25
+      }
+  ],
+  &quot;ACBs&quot;: [
+      {
+          &quot;ACB_ID&quot;: &quot;1&quot;,
+          &quot;Release_Protection&quot;: 1,
+          &quot;Closing_Abnormal&quot;: 0,
+          &quot;Release_Abnormal&quot;: 0,
+          &quot;ACBStatus&quot;: 1
+      },
+      {
+          &quot;ACB_ID&quot;: &quot;2&quot;,
+          &quot;Release_Protection&quot;: 1,
+          &quot;Closing_Abnormal&quot;: 0,
+          &quot;Release_Abnormal&quot;: 1,
+          &quot;Status&quot;: 0
+      }
+  ],
+  &quot;Meters&quot;: [
+      {
+          &quot;Meter_ID&quot;: &quot;1&quot;,
+          &quot;Voltage_R&quot;: 233,
+          &quot;Voltage_S&quot;: 231,
+          &quot;Voltage_T&quot;: 238,
+          &quot;Current_R&quot;: 85,
+          &quot;Current_S&quot;: 73,
+          &quot;Current_T&quot;: 14,
+          &quot;Line_Voltage_RS&quot;: 220,
+          &quot;Line_Voltage_ST&quot;: 225,
+          &quot;Line_Voltage_RT&quot;: 230,
+          &quot;Line_Current_R&quot;: 12,
+          &quot;Line_Current_S&quot;: 15,
+          &quot;Line_Current_T&quot;: 13,
+          &quot;ActivePower&quot;: 2343,
+          &quot;ReactivePower&quot;: 3554,
+          &quot;PowerFactor&quot;: 0.97
+      },
+      {
+          &quot;Meter_ID&quot;: &quot;2&quot;,
+          &quot;Voltage_R&quot;: 236,
+          &quot;Voltage_S&quot;: 238,
+          &quot;Voltage_T&quot;: 230,
+          &quot;Current_R&quot;: 90,
+          &quot;Current_S&quot;: 78,
+          &quot;Current_T&quot;: 65,
+          &quot;Line_Voltage_RS&quot;: 223,
+          &quot;Line_Voltage_ST&quot;: 229,
+          &quot;Line_Voltage_RT&quot;: 235,
+          &quot;Line_Current_R&quot;: 16,
+          &quot;Line_Current_S&quot;: 18,
+          &quot;Line_Current_T&quot;: 20,
+          &quot;ActivePower&quot;: 1900,
+          &quot;ReactivePower&quot;: 3200,
+          &quot;PowerFactor&quot;: 0.95,
+          &quot;Frequency&quot;: 50
+      }
+  ],
+  &quot;Input_Signals&quot;: {
+      &quot;Reserved1&quot;: 0,
+      &quot;Reserved2&quot;: 0
+  }
+}
+
+async function test() {
+  var program_root &#x3D; RecordConverter.build(properties)
+  var records &#x3D; await RecordConverter.toInfluxRecords(data, program_root)
+  console.log(JSON.stringify(records,null,4))
+}
+test()
+
+*/</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'RecordConverter.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

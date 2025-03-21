@@ -1,0 +1,2477 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content controller">
+                   <div class="content-data">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >DeviceDataExController</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/device_data/device_data.controller.ts</code>
+        </p>
+
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#getDomainFeedInTariff" >getDomainFeedInTariff</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#getGenerateMoney" >getGenerateMoney</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getQueryDomain" >getQueryDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getQueryDomainHistoryPowerSocPredictPhotometer" >getQueryDomainHistoryPowerSocPredictPhotometer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getQueryDomainPR" >getQueryDomainPR</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getQueryDomainToday" >getQueryDomainToday</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDomainFeedInTariff"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>getDomainFeedInTariff</b></span>
+                        <a href="#getDomainFeedInTariff"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDomainFeedInTariff(req, domain_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(LocalAuthGuard)<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;取得 domain 的躉售費率&#x27;})<br />@ApiQuery({name: &#x27;domain_id&#x27;, required: true, description: &#x27;ex: &quot;5&quot;&#x27;})<br />@Get(&#x27;api/feed_in_tariff&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="976"
+                                    class="link-to-prism">src/modules/device_data/device_data.controller.ts:976</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGenerateMoney"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>getGenerateMoney</b></span>
+                        <a href="#getGenerateMoney"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGenerateMoney(req, domain_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_type_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, start_time?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, end_time?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(LocalAuthGuard)<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;計算收入金額&#x27;})<br />@ApiQuery({name: &#x27;domain_id&#x27;, required: true, description: &#x27;ex: &quot;66&quot;&#x27;})<br />@ApiQuery({name: &#x27;device_type_id&#x27;, required: false, description: &#x27;ex: &quot;8&quot;&#x27;})<br />@ApiQuery({name: &#x27;start_time&#x27;, required: false, description: &#x27;ex: &quot;2024-04-30T16:00:00Z&quot;&#x27;})<br />@ApiQuery({name: &#x27;end_time&#x27;, required: false, description: &#x27;ex: &quot;2024-05-31T16:00:00Z&quot;&#x27;})<br />@Get(&#x27;api/generate_money&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="992"
+                                    class="link-to-prism">src/modules/device_data/device_data.controller.ts:992</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_type_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>start_time</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>end_time</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getQueryDomain"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getQueryDomain</b></span>
+                        <a href="#getQueryDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getQueryDomain(req, res: Response, organization_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_type_category_name?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_type_name?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, domain_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, start?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, stop?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, stop_align_every?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fields?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, every?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, create_empty?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, time_src?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, timezone?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, time_function?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, time_function_params?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limit?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, output_format?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, output_zip?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, debug?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(LocalAuthGuard)<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;查詢 Domain 資料&#x27;})<br />@ApiQuery({name: &#x27;organization_id&#x27;, required: true, description: &#x27;ex: &quot;3&quot;&#x27;})<br />@ApiQuery({name: &#x27;device_type_category_name&#x27;, required: false, description: &#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27;})<br />@ApiQuery({name: &#x27;device_type_name&#x27;, required: false, description: &#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27;})<br />@ApiQuery({name: &#x27;domain_id&#x27;, required: false, description: &#x27;ex: &quot;5&quot;&#x27;})<br />@ApiQuery({name: &#x27;start&#x27;, required: true, description: &#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27;})<br />@ApiQuery({name: &#x27;stop&#x27;, required: false, description: &#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27;})<br />@ApiQuery({name: &#x27;stop_align_every&#x27;, required: false, description: &#x27;The &#x27;stop time&#x27; align &#x27;every&#x27;. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&#x27;})<br />@ApiQuery({name: &#x27;fields&#x27;, required: false, description: &#x27;ex: &quot;field1,field2&quot;&#x27;})<br />@ApiQuery({name: &#x27;every&#x27;, required: false, description: &#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27;})<br />@ApiQuery({name: &#x27;create_empty&#x27;, required: false, description: &#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27;})<br />@ApiQuery({name: &#x27;time_src&#x27;, required: false, description: &#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27;})<br />@ApiQuery({name: &#x27;timezone&#x27;, required: false, description: &#x27;ex: &quot;Asia/Taipei&quot;&#x27;})<br />@ApiQuery({name: &#x27;time_function&#x27;, required: false, description: &#x27;ex: one of [&#x27;first&#x27;, &#x27;last&#x27;, &#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;, &#x27;spread&#x27;, &#x27;integral&#x27;]&#x27;})<br />@ApiQuery({name: &#x27;time_function_params&#x27;, required: false, description: &#x27;ex: &#x27;{&quot;unit&quot;:&quot;1h&quot;}&#x27;&#x27;})<br />@ApiQuery({name: &#x27;limit&#x27;, required: false, example: &#x27;200&#x27;})<br />@ApiQuery({name: &#x27;output_format&#x27;, required: false, description: &#x27;one of [&#x27;json&#x27;, &#x27;csv&#x27;, &#x27;influx_line_protocol&#x27;]. default is &#x27;json&#x27;&#x27;})<br />@ApiQuery({name: &#x27;output_zip&#x27;, required: false, description: &#x27;Output zip file. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&#x27;})<br />@ApiQuery({name: &#x27;debug&#x27;, required: false, description: &#x27;one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&#x27;})<br />@Get(&#x27;api/domain_datas/query&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="684"
+                                    class="link-to-prism">src/modules/device_data/device_data.controller.ts:684</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                        <code>Response</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>organization_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_type_category_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_type_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>stop</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>stop_align_every</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fields</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>every</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>create_empty</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>time_src</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>timezone</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>time_function</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>time_function_params</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>limit</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>output_format</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>output_zip</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>debug</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getQueryDomainHistoryPowerSocPredictPhotometer"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getQueryDomainHistoryPowerSocPredictPhotometer</b></span>
+                        <a href="#getQueryDomainHistoryPowerSocPredictPhotometer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getQueryDomainHistoryPowerSocPredictPhotometer(req, organization_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_type_category_name?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_type_name?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, domain_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, start?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, stop?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, every?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, create_empty?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, time_src?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, timezone?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, time_function?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, time_function_params?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limit?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(LocalAuthGuard)<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;查詢 Domain 的 Power,SoC,Predict,Photometer 歷史資料&#x27;})<br />@ApiQuery({name: &#x27;organization_id&#x27;, required: true, description: &#x27;ex: &quot;3&quot;&#x27;})<br />@ApiQuery({name: &#x27;device_type_category_name&#x27;, required: false, description: &#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27;})<br />@ApiQuery({name: &#x27;device_type_name&#x27;, required: false, description: &#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27;})<br />@ApiQuery({name: &#x27;domain_id&#x27;, required: false, description: &#x27;ex: &quot;5&quot;&#x27;})<br />@ApiQuery({name: &#x27;start&#x27;, required: true, description: &#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27;})<br />@ApiQuery({name: &#x27;stop&#x27;, required: false, description: &#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27;})<br />@ApiQuery({name: &#x27;every&#x27;, required: false, description: &#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27;})<br />@ApiQuery({name: &#x27;create_empty&#x27;, required: false, description: &#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27;})<br />@ApiQuery({name: &#x27;time_src&#x27;, required: false, description: &#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27;})<br />@ApiQuery({name: &#x27;timezone&#x27;, required: false, description: &#x27;ex: &quot;Asia/Taipei&quot;&#x27;})<br />@ApiQuery({name: &#x27;time_function&#x27;, required: false, description: &#x27;ex: one of [&#x27;first&#x27;, &#x27;last&#x27;, &#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;, &#x27;spread&#x27;, &#x27;integral&#x27;]&#x27;})<br />@ApiQuery({name: &#x27;time_function_params&#x27;, required: false, description: &#x27;ex: &#x27;{&quot;unit&quot;:&quot;1h&quot;}&#x27;&#x27;})<br />@ApiQuery({name: &#x27;limit&#x27;, required: false, example: &#x27;200&#x27;})<br />@Get(&#x27;api/domain_datas/query/history/power_soc_predict_photometer&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="794"
+                                    class="link-to-prism">src/modules/device_data/device_data.controller.ts:794</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>organization_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_type_category_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_type_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>stop</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>every</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>create_empty</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>time_src</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>timezone</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>time_function</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>time_function_params</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>limit</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getQueryDomainPR"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getQueryDomainPR</b></span>
+                        <a href="#getQueryDomainPR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getQueryDomainPR(req, res: Response, organization_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_type_category_name?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_type_name?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, domain_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, start?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, stop?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, every?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, create_empty?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, time_src?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, timezone?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limit?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(LocalAuthGuard)<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;查詢 Domain PR 值&#x27;})<br />@ApiQuery({name: &#x27;organization_id&#x27;, required: true, description: &#x27;ex: &quot;3&quot;&#x27;})<br />@ApiQuery({name: &#x27;device_type_category_name&#x27;, required: false, description: &#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27;})<br />@ApiQuery({name: &#x27;device_type_name&#x27;, required: false, description: &#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27;})<br />@ApiQuery({name: &#x27;domain_id&#x27;, required: false, description: &#x27;ex: &quot;5&quot;&#x27;})<br />@ApiQuery({name: &#x27;start&#x27;, required: false, description: &#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27;})<br />@ApiQuery({name: &#x27;stop&#x27;, required: false, description: &#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27;})<br />@ApiQuery({name: &#x27;every&#x27;, required: false, description: &#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27;})<br />@ApiQuery({name: &#x27;create_empty&#x27;, required: false, description: &#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27;})<br />@ApiQuery({name: &#x27;time_src&#x27;, required: false, description: &#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27;})<br />@ApiQuery({name: &#x27;timezone&#x27;, required: false, description: &#x27;ex: &quot;Asia/Taipei&quot;&#x27;})<br />@ApiQuery({name: &#x27;limit&#x27;, required: false, example: &#x27;200&#x27;})<br />@Get(&#x27;api/domain_datas/query/pr&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="934"
+                                    class="link-to-prism">src/modules/device_data/device_data.controller.ts:934</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                        <code>Response</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>organization_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_type_category_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_type_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>stop</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>every</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>create_empty</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>time_src</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>timezone</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>limit</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getQueryDomainToday"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getQueryDomainToday</b></span>
+                        <a href="#getQueryDomainToday"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getQueryDomainToday(req, domain_id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, timezone?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(LocalAuthGuard)<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;查詢 Domain 今日資料&#x27;})<br />@ApiQuery({name: &#x27;domain_id&#x27;, required: false, description: &#x27;ex: &quot;5&quot;&#x27;})<br />@ApiQuery({name: &#x27;timezone&#x27;, required: false, description: &#x27;ex: &quot;Asia/Taipei&quot;&#x27;})<br />@Get(&#x27;api/domain_datas/query/today&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="902"
+                                    class="link-to-prism">src/modules/device_data/device_data.controller.ts:902</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>timezone</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Put, Delete, Param, Body, ValidationPipe, UsePipes, Patch, HttpCode, UseGuards, Query, Res, RawBodyRequest, Req, HttpException, HttpStatus } from &#x27;@nestjs/common&#x27;;
+import { DeviceDataService } from &#x27;./device_data.service&#x27;;
+import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiOperation, ApiParam, ApiProperty, ApiQuery } from &#x27;@nestjs/swagger&#x27;;
+import { LocalAuthGuard } from &#x27;../auth/local-auth.guard&#x27;;
+import { DomainService } from &#x27;../domain/domain.service&#x27;;
+import { DeviceOutputService } from &#x27;../device_output/device_output.service&#x27;;
+import { DeviceService } from &#x27;../device/device.service&#x27;;
+import { DeviceTypeService } from &#x27;../device_type/device_type.service&#x27;;
+import { Request, Response } from &#x27;express&#x27;;
+import * as rawbody from &#x27;raw-body&#x27;;
+import { AppConfigService } from &#x27;src/app_config.service&#x27;;
+import { DeviceDataPredictionService } from &#x27;./device_data_prediction.service&#x27;;
+import { DeviceReportService } from &#x27;./device_report.service&#x27;;
+import { Util } from &#x27;src/util/util&#x27;;
+
+var moment &#x3D; require(&#x27;moment-timezone&#x27;);
+require(&#x27;moment/locale/zh-tw&#x27;);
+
+@Controller(&#x27;api/device_datas&#x27;)
+export class DeviceDataController {
+  constructor(
+    public readonly deviceDataService: DeviceDataService,
+    public readonly deviceReportService: DeviceReportService,
+    //public readonly deviceDataPredictionService: DeviceDataPredictionService,
+    public readonly domainService: DomainService,
+    public readonly deviceTypeService: DeviceTypeService,
+    public readonly deviceService: DeviceService,
+    public readonly deviceOutputService: DeviceOutputService,
+  ) {}
+
+
+  //@UseGuards(LocalAuthGuard)
+  //@ApiBearerAuth()
+  @Post(&#x27;:organization_id/:measurement_name/write&#x27;)
+  @ApiOperation({ summary: &#x27;對平台寫入裝置資料&#x27; })
+  async writeDeviceData(
+    @Param(&#x27;organization_id&#x27;) organization_id: number,
+    @Param(&#x27;measurement_name&#x27;) measurement_name: string,
+    @Body() data,
+    @Req() req
+  ) {
+    // we have to check req.readable because of raw-body issue #57
+    // https://github.com/stream-utils/raw-body/issues/57
+    var json &#x3D; null;
+    if (req.readable) {
+      // body is ignored by NestJS -&gt; get raw body from request
+      const raw &#x3D; await rawbody(req);
+      const text &#x3D; raw.toString().trim();
+      //console.log(&#x27;body:&#x27;, text);
+      //console.log(&#x27;typeof body:&#x27;, typeof text);
+      try {
+        json &#x3D; JSON.parse(text)
+      } catch (ex) {
+        throw ex;
+      }
+    } else {
+      // body is parsed by NestJS
+      //console.log(&#x27;data:&#x27;, data);
+      //console.log(&#x27;typeof data:&#x27;, typeof data);
+      json &#x3D; data;
+    }
+    console.log(&#x27;organization_id&#x27;, organization_id)
+    console.log(&#x27;json&#x27;, json)
+    await this.deviceDataService.writeDeviceData(req.user, organization_id, measurement_name, json)
+  }
+
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢裝置資料&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_output_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube_data,hermes_smartmeter_data,hermes_report&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_category_name&#x27;, required:false, description:&#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_names&#x27;, required:false, description:&#x27;ex: &quot;device1,device2,device3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;place_names&#x27;, required:false, description:&#x27;ex: &quot;place1,place2,place3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:false, description:&#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;fields&#x27;, required:false, description:&#x27;ex: &quot;field1,field2&quot;&#x27; })
+  @ApiQuery({ name: &#x27;where&#x27;, required:false, description:&#x27;ex: \&#x27;{&quot;domain_id&quot;:&quot;1&quot;,&quot;device_name&quot;:[&quot;device1&quot;,&quot;device2&quot;]}\&#x27; means (domain_id&#x3D;&#x3D;1 &amp;&amp; (device_name&#x3D;&#x3D;&quot;device1&quot; || device_name&#x3D;&#x3D;&quot;device2&quot;))&#x27; })
+  @ApiQuery({ name: &#x27;differenceNonNegativeSource&#x27;, required:false, description:&quot;Difference NonNegative between subsequent values. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;group_by&#x27;, required:false, example:&quot;!DeviceName,_field&quot;, description:&#x27;Regroups input data by modifying group key of input tables. If first char of group key is &quot;!&quot;, this group key will only be grouped before calculation. ex: &quot;!DeviceName,_field&quot;&#x27; })
+  @ApiQuery({ name: &#x27;every&#x27;, required:false, description:&#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;create_empty&#x27;, required:false, description:&#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27; })
+  @ApiQuery({ name: &#x27;time_src&#x27;, required:false, description:&#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @ApiQuery({ name: &#x27;time_function&#x27;, required:false, description:&quot;ex: one of [&#x27;first&#x27;, &#x27;last&#x27;, &#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;, &#x27;spread&#x27;, &#x27;integral&#x27;]&quot; })
+  @ApiQuery({ name: &#x27;time_function_params&#x27;, required:false, description:&#x27;ex: \&#x27;{&quot;unit&quot;:&quot;1h&quot;}\&#x27;&#x27; })
+  @ApiQuery({ name: &#x27;difference&#x27;, required:false, description:&quot;difference between subsequent values. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;group_function&#x27;, required:false, description:&quot;ex: one of [&#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;]&quot; })
+  @ApiQuery({ name: &#x27;pivot_columns&#x27;, required:false, description:&quot;collects unique values stored vertically (column-wise) and aligns them horizontally (row-wise) into logical sets. ex: &#x27;_field&#x27; or &#x27;tag1,tag2&#x27;&quot; })
+//  @ApiQuery({ name: &#x27;fill_first&#x27;, required:false, description:&quot;fill the first value if the first value in range is null. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;limit&#x27;, required:false, example:&quot;200&quot;})
+  @ApiQuery({ name: &#x27;output_format&#x27;, required:false, description:&quot;one of [&#x27;json&#x27;, &#x27;csv&#x27;, &#x27;influx_line_protocol&#x27;]. default is &#x27;json&#x27;&quot;})
+  @ApiQuery({ name: &#x27;output_zip&#x27;, required:false, description:&quot;Output zip file. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;debug&#x27;, required:false, description:&quot;one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @Get(&#x27;query&#x27;)
+  async getQuery (
+    @Req() req,
+    @Res() res: Response,
+    //@Query() params: { organization_id?:string, domain_id?:string, device_names?:string, device_output_name:string, start?:string, stop?:string, fields?:string, where?:string, group_by?:string, every?:string, timezone?:string, func?:string }
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+    @Query(&#x27;device_output_name&#x27;) device_output_name?: string,
+    @Query(&#x27;device_type_category_name&#x27;) device_type_category_name?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_names&#x27;) device_names?: string,
+    @Query(&#x27;place_names&#x27;) place_names?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+    @Query(&#x27;fields&#x27;) fields?: string,
+    @Query(&#x27;where&#x27;) where?: string,
+    @Query(&#x27;differenceNonNegativeSource&#x27;) differenceNonNegativeSource?: string,
+    @Query(&#x27;group_by&#x27;) group_by?: string,
+    @Query(&#x27;every&#x27;) every?: string,
+    @Query(&#x27;create_empty&#x27;) create_empty?: string,
+    @Query(&#x27;time_src&#x27;) time_src?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+    @Query(&#x27;time_function&#x27;) time_function?: string,
+    @Query(&#x27;time_function_params&#x27;) time_function_params?: string,
+    @Query(&#x27;difference&#x27;) difference?: string,
+    @Query(&#x27;group_function&#x27;) group_function?: string,
+    @Query(&#x27;pivot_columns&#x27;) pivot_columns?: string,
+  //  @Query(&#x27;fill_first&#x27;) fill_first?: string,
+    @Query(&#x27;limit&#x27;) limit?: string,
+    @Query(&#x27;output_format&#x27;) output_format?: string,
+    @Query(&#x27;output_zip&#x27;) output_zip?: string,
+    @Query(&#x27;debug&#x27;) debug?: string,
+  ): Promise&lt;any&gt; {
+    var params &#x3D; {
+      organization_id,
+      device_output_name,
+      device_type_category_name,
+      device_type_name,
+      domain_id,
+      device_names,
+      place_names,
+      start,
+      stop,
+      fields,
+      where,
+      differenceNonNegativeSource,
+      group_by,
+      every,
+      create_empty,
+      time_src,
+      timezone,
+      time_function,
+      time_function_params,
+      difference,
+      group_function,
+      pivot_columns,
+//      fill_first,
+      limit,
+      output_format,
+      output_zip,
+      debug
+    }
+
+    if ((output_zip&#x3D;&#x3D;&#x27;1&#x27; || output_zip&#x3D;&#x3D;&#x27;true&#x27;)) {
+      await this.deviceDataService.query(req.user, params, res);
+    } else {
+      var value &#x3D; await this.deviceDataService.query(req.user, params, res);
+      if (typeof(value)&#x3D;&#x3D;&#x27;object&#x27;) {
+        var text &#x3D; JSON.stringify(value)
+        const textEncoder &#x3D; new TextEncoder();
+        var byte_length &#x3D; textEncoder.encode(text).length
+        res.set({
+          &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+          &#x27;Content-Length&#x27;: byte_length,
+        })
+        res.end(text)
+      } else {
+        if (typeof(value)!&#x3D;&#x27;string&#x27;) value &#x3D; &#x27;&#x27; + value
+        res.set({
+          &#x27;Content-Type&#x27;: &#x27;text/plain&#x27;,
+          &#x27;Content-Length&#x27;: value.length,
+        })
+        res.end(value)
+      }
+    }
+
+    //return this.deviceDataService.query(this.domainService, this.deviceTypeService, this.deviceService, this.deviceOutputService, params);
+  }
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢裝置最近資料&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_output_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube_data,hermes_smartmeter_data,hermes_report&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_category_name&#x27;, required:false, description:&#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_names&#x27;, required:false, description:&#x27;ex: &quot;device1,device2,device3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;place_names&#x27;, required:false, description:&#x27;ex: &quot;place1,place2,place3&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;start&#x27;, required:false, description:&#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;fields&#x27;, required:false, description:&#x27;ex: &quot;field1,field2&quot;&#x27; })
+  @ApiQuery({ name: &#x27;where&#x27;, required:false, description:&#x27;ex: \&#x27;{&quot;domain_id&quot;:&quot;1&quot;,&quot;device_name&quot;:[&quot;device1&quot;,&quot;device2&quot;]}\&#x27; means (domain_id&#x3D;&#x3D;1 &amp;&amp; (device_name&#x3D;&#x3D;&quot;device1&quot; || device_name&#x3D;&#x3D;&quot;device2&quot;))&#x27; })
+//  @ApiQuery({ name: &#x27;differenceNonNegativeSource&#x27;, required:false, description:&quot;Difference NonNegative between subsequent values. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;group_by&#x27;, required:false, example:&quot;!DeviceName,_field&quot;, description:&#x27;Regroups input data by modifying group key of input tables. If first char of group key is &quot;!&quot;, this group key will only be grouped before calculation. ex: &quot;!DeviceName,_field&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;every&#x27;, required:false, description:&#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27; })
+//  @ApiQuery({ name: &#x27;create_empty&#x27;, required:false, description:&#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27; })
+//  @ApiQuery({ name: &#x27;time_src&#x27;, required:false, description:&#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;time_function&#x27;, required:false, description:&quot;ex: one of [&#x27;first&#x27;, &#x27;last&#x27;, &#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;, &#x27;spread&#x27;, &#x27;integral&#x27;]&quot; })
+//  @ApiQuery({ name: &#x27;time_function_params&#x27;, required:false, description:&#x27;ex: \&#x27;{&quot;unit&quot;:&quot;1h&quot;}\&#x27;&#x27; })
+//  @ApiQuery({ name: &#x27;difference&#x27;, required:false, description:&quot;difference between subsequent values. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;group_function&#x27;, required:false, description:&quot;ex: one of [&#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;]&quot; })
+  @ApiQuery({ name: &#x27;pivot_columns&#x27;, required:false, description:&quot;collects unique values stored vertically (column-wise) and aligns them horizontally (row-wise) into logical sets. ex: &#x27;_field&#x27; or &#x27;tag1,tag2&#x27;&quot; })
+//  @ApiQuery({ name: &#x27;fill_first&#x27;, required:false, description:&quot;fill the first value if the first value in range is null. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;limit&#x27;, required:false, example:&quot;200&quot;})
+  @ApiQuery({ name: &#x27;output_format&#x27;, required:false, description:&quot;one of [&#x27;json&#x27;, &#x27;csv&#x27;, &#x27;influx_line_protocol&#x27;]. default is &#x27;json&#x27;&quot;})
+  @ApiQuery({ name: &#x27;output_zip&#x27;, required:false, description:&quot;Output zip file. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;debug&#x27;, required:false, description:&quot;one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @Get(&#x27;query/last&#x27;)
+  async getQueryLast (
+    @Res() res: Response,
+    //@Query() params: { organization_id?:string, domain_id?:string, device_names?:string, device_output_name:string, start?:string, stop?:string, fields?:string, where?:string, group_by?:string, every?:string, timezone?:string, func?:string }
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+    @Query(&#x27;device_output_name&#x27;) device_output_name?: string,
+    @Query(&#x27;device_type_category_name&#x27;) device_type_category_name?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_names&#x27;) device_names?: string,
+    @Query(&#x27;place_names&#x27;) place_names?: string,
+  //  @Query(&#x27;start&#x27;) start?: string,
+  //  @Query(&#x27;stop&#x27;) stop?: string,
+    @Query(&#x27;fields&#x27;) fields?: string,
+    @Query(&#x27;where&#x27;) where?: string,
+  //  @Query(&#x27;differenceNonNegativeSource&#x27;) differenceNonNegativeSource?: string,
+    @Query(&#x27;group_by&#x27;) group_by?: string,
+  //  @Query(&#x27;every&#x27;) every?: string,
+  //  @Query(&#x27;create_empty&#x27;) create_empty?: string,
+  //  @Query(&#x27;time_src&#x27;) time_src?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+  //  @Query(&#x27;time_function&#x27;) time_function?: string,
+  //  @Query(&#x27;time_function_params&#x27;) time_function_params?: string,
+  //  @Query(&#x27;difference&#x27;) difference?: string,
+    @Query(&#x27;group_function&#x27;) group_function?: string,
+    @Query(&#x27;pivot_columns&#x27;) pivot_columns?: string,
+  //  @Query(&#x27;fill_first&#x27;) fill_first?: string,
+    @Query(&#x27;limit&#x27;) limit?: string,
+    @Query(&#x27;output_format&#x27;) output_format?: string,
+    @Query(&#x27;output_zip&#x27;) output_zip?: string,
+    @Query(&#x27;debug&#x27;) debug?: string,
+  ): Promise&lt;any&gt; {
+    var params:any &#x3D; {
+      organization_id,
+      device_output_name,
+      device_type_category_name,
+      device_type_name,
+      domain_id,
+      device_names,
+      place_names,
+    //  start,
+    //  stop,
+      fields,
+      where,
+    //  differenceNonNegativeSource,
+      group_by,
+    //  every,
+    //  create_empty,
+    //  time_src,
+      timezone,
+    //  time_function,
+    //  time_function_params,
+    //  difference,
+      group_function,
+      pivot_columns,
+//      fill_first,
+      limit,
+      output_format,
+      output_zip,
+      debug
+    }
+
+
+    var timeout &#x3D; AppConfigService.getSystemConfig().offline_timeout
+    params.start &#x3D; -Math.floor(timeout/1000) + &#x27;s&#x27;
+    params.time_function &#x3D; &quot;last&quot;
+
+    if ((output_zip&#x3D;&#x3D;&#x27;1&#x27; || output_zip&#x3D;&#x3D;&#x27;true&#x27;)) {
+      await this.deviceDataService.query(params, res);
+    } else {
+      var value &#x3D; await this.deviceDataService.query(params, res);
+      if (typeof(value)&#x3D;&#x3D;&#x27;object&#x27;) {
+        var text &#x3D; JSON.stringify(value)
+        const textEncoder &#x3D; new TextEncoder();
+        var byte_length &#x3D; textEncoder.encode(text).length
+        res.set({
+          &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+          &#x27;Content-Length&#x27;: byte_length,
+        })
+        res.end(text)
+      } else {
+        if (typeof(value)!&#x3D;&#x27;string&#x27;) value &#x3D; &#x27;&#x27; + value
+        res.set({
+          &#x27;Content-Type&#x27;: &#x27;text/plain&#x27;,
+          &#x27;Content-Length&#x27;: value.length,
+        })
+        res.end(value)
+      }
+    }
+
+    //return this.deviceDataService.query(this.domainService, this.deviceTypeService, this.deviceService, this.deviceOutputService, params);
+  }
+
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢棄電比&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_output_name&#x27;, required:false, description:&#x27;ex: &quot;device_type1_data&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_category_name&#x27;, required:false, description:&#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;device_type1&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_names&#x27;, required:false, description:&#x27;ex: &quot;device1,device2,device3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;place_names&#x27;, required:false, description:&#x27;ex: &quot;place1,place2,place3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;every&#x27;, required:false, description:&#x27;ex: one of [&quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]. min is &quot;30m&quot;&#x27; })
+  @ApiQuery({ name: &#x27;time_src&#x27;, required:false, description:&#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @Get(&#x27;curtailment_ratio&#x27;)
+  async getCurtailmentRatio (
+    @Req() req,
+    //@Res() res: Response,
+    //@Query() params: { organization_id?:string, domain_id?:string, device_names?:string, device_output_name:string, start?:string, stop?:string, fields?:string, where?:string, group_by?:string, every?:string, timezone?:string, func?:string }
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+    @Query(&#x27;device_output_name&#x27;) device_output_name?: string,
+    @Query(&#x27;device_type_category_name&#x27;) device_type_category_name?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_names&#x27;) device_names?: string,
+    @Query(&#x27;place_names&#x27;) place_names?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+    @Query(&#x27;every&#x27;) every?: string,
+    @Query(&#x27;time_src&#x27;) time_src?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+  ): Promise&lt;any&gt; {
+    /*
+    var params &#x3D; {
+      organization_id,
+      device_output_name,
+      device_type_name,
+      domain_id,
+      device_names,
+      place_names,
+      start,
+      stop,
+      every,
+      timezone,
+    }
+    */
+
+
+    var times &#x3D; [];
+    var solar_energys &#x3D; []
+    var prediction_energys &#x3D; []
+    var curtailment_ratios &#x3D; []
+
+    if (every&#x3D;&#x3D;null) every &#x3D; &#x27;1d&#x27;;
+
+    var params_base &#x3D; {
+      organization_id: organization_id,
+      device_type_category_name: device_type_category_name,
+      device_type_name: device_type_name,
+      domain_id: domain_id,
+      device_names: device_names,
+      place_names: place_names,
+      timezone: timezone,
+      start: start,
+      stop: stop,
+      every: every,
+      time_src: time_src,
+      group_by: &#x27;!DeviceName,_field&#x27;,
+      create_empty: true,
+      pivot_columns: &#x27;_field&#x27;,
+      where: null
+    }
+
+    /*
+    var w &#x3D; await this.deviceDataService.filterDevice(params_base)
+    if (w&#x3D;&#x3D;null) {
+      return {
+        times,
+        solar_energys,
+        prediction_energys,
+        curtailment_ratios
+      }
+    }
+    params_base.where &#x3D; JSON.stringify(w.where)
+    */
+
+    //var no_data &#x3D; await this.updateWhere(params)
+    //if (no_data) return [];
+
+    var params_energy &#x3D; Object.assign({
+      device_output_name: device_output_name,
+      fields: &#x27;LoadEnergy,SolarEnergy,GridEnergy&#x27;,
+      differenceNonNegativeSource: &#x27;true&#x27;,
+      time_function: &#x27;sum&#x27;,
+      group_function: &#x27;sum&#x27;
+    }, params_base)
+
+
+    var params_solar_prediction &#x3D; Object.assign({
+      device_output_name: &#x27;solar_prediction&#x27;,
+      fields: &#x27;SolarPower&#x27;,
+      time_function: &#x27;sum&#x27;,
+      group_function: &#x27;sum&#x27;
+    }, params_base)
+
+  //  var bucket_name &#x3D; w.organization.domain_name
+  //  var measurement_name &#x3D; w.device_output_names
+
+    //var table_energy &#x3D; await this.deviceDataService.queryInflux(bucket_name, measurement_name, params_energy)
+    //var table_solar_prediction &#x3D; await this.deviceDataService.queryInflux(bucket_name, measurement_name, params_solar_prediction)
+    //var table_solar_prediction &#x3D; await this.deviceDataService.queryInflux(bucket_name, &#x27;solar_prediction&#x27;, params_solar_prediction)
+
+    var table_energy &#x3D; await this.deviceDataService.query(req.user, params_energy)
+    var table_solar_prediction &#x3D; await this.deviceDataService.query(req.user, params_solar_prediction)
+
+    var data_count &#x3D; table_energy.length
+    for (var n&#x3D;0; n&lt;data_count; n++) {
+      times.push(table_energy[n]._time);
+      var solar_energy &#x3D; table_energy[n].SolarEnergy
+      var prediction_power &#x3D; table_solar_prediction[n].SolarPower
+      solar_energys.push(solar_energy)
+      var prediction_energy &#x3D; prediction_power&#x3D;&#x3D;null ? null : prediction_power/4/1000
+      prediction_energys.push(prediction_energy)
+      var curtailment_ratio &#x3D; (prediction_energy!&#x3D;null &amp;&amp; table_energy[n].SolarEnergy!&#x3D;null) ? (1-(table_energy[n].SolarEnergy/prediction_energy))*100 : null
+      if (curtailment_ratio!&#x3D;null) {
+        if (curtailment_ratio&gt;100) curtailment_ratio &#x3D; 100;
+        if (curtailment_ratio&lt;0) curtailment_ratio &#x3D; 0;
+      }
+      curtailment_ratios.push(curtailment_ratio)
+    }
+
+    return {
+      times,
+      solar_energys,
+      prediction_energys,
+      curtailment_ratios
+    }
+  }
+
+
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢 PR 值&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_output_name&#x27;, required:false, description:&#x27;ex: &quot;device_type1_data&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_category_name&#x27;, required:false, description:&#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;device_type1&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_names&#x27;, required:false, description:&#x27;ex: &quot;device1,device2,device3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;place_names&#x27;, required:false, description:&#x27;ex: &quot;place1,place2,place3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;every&#x27;, required:false, description:&#x27;ex: one of [&quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]. min is &quot;30m&quot;&#x27; })
+  @ApiQuery({ name: &#x27;time_src&#x27;, required:false, description:&#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @Get(&#x27;pr&#x27;)
+  async getPR (
+    @Req() req,
+    //@Res() res: Response,
+    //@Query() params: { organization_id?:string, domain_id?:string, device_names?:string, device_output_name:string, start?:string, stop?:string, fields?:string, where?:string, group_by?:string, every?:string, timezone?:string, func?:string }
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+    @Query(&#x27;device_output_name&#x27;) device_output_name?: string,
+    @Query(&#x27;device_type_category_name&#x27;) device_type_category_name?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_names&#x27;) device_names?: string,
+    @Query(&#x27;place_names&#x27;) place_names?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+    @Query(&#x27;every&#x27;) every?: string,
+    @Query(&#x27;time_src&#x27;) time_src?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+  ): Promise&lt;any&gt; {
+    var params &#x3D; {
+      organization_id,
+      device_output_name,
+      device_type_category_name,
+      device_type_name,
+      domain_id,
+      device_names,
+      place_names,
+      start,
+      stop,
+      every,
+      time_src,
+      timezone,
+    }
+    return await this.deviceDataService.getPR(req.user, params)
+  }
+
+
+
+
+/*
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;device_type1&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_names&#x27;, required:false, description:&#x27;ex: &quot;device1,device2,device3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;place_names&#x27;, required:false, description:&#x27;ex: &quot;place1,place2,place3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @ApiQuery({ name: &#x27;pivot_column_field&#x27;, required:false, description:&quot;pivot the data. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+
+  @Get(&#x27;solar_prediction&#x27;)
+  getSolarPrediction (
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_names&#x27;) device_names?: string,
+    @Query(&#x27;place_names&#x27;) place_names?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+    @Query(&#x27;pivot_column_field&#x27;) pivot_column_field?: string,
+  ): Promise&lt;any&gt; {
+    var params:any &#x3D; {
+      organization_id,
+      domain_id,
+      device_names,
+      place_names,
+      start,
+      stop,
+      timezone,
+    }
+    if (pivot_column_field&#x3D;&#x3D;&#x27;1&#x27; || pivot_column_field&#x3D;&#x3D;&#x27;true&#x27;) {
+      params.pivot_columns &#x3D; &#x27;_field&#x27;
+    }
+    return this.deviceDataPredictionService.getSolarPrediction(params);
+  }
+*/
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;取得裝置的事件&#x27; })
+//  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:true, description:&#x27;ex: &quot;device_type1&quot;&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;97&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_names&#x27;, required:false, description:&#x27;ex: &quot;device1,device2,device3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2023-09-01T00:00:00.000Z&quot;&#x27; })
+  @Get(&#x27;device_event&#x27;)
+  async getDeviceEvent (
+    @Req() req,
+    //@Query() params: { organization_id?:string, domain_id?:string, device_names?:string, device_output_name:string, start?:string, stop?:string, fields?:string, where?:string, group_by?:string, every?:string, timezone?:string, func?:string }
+//    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_names&#x27;) device_names?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+  ): Promise&lt;any&gt; {
+    var params &#x3D; {
+      organization_id,
+    //  device_type_name: &#x27;pv_inverter&#x27;,
+      device_output_name: &#x27;hermes_event&#x27;,
+      fields: &#x27;ErrorCode,ErrorDescription&#x27;,
+      where: &#x27;{&quot;DeviceType&quot;:[&quot;pv_inverter&quot;,&quot;ess_hermes&quot;]}&#x27;,
+      start,
+      stop,
+      domain_id,
+      device_names,
+      pivot_columns: &#x27;_field&#x27;,
+      debug:false
+    }
+    var datas &#x3D; await this.deviceDataService.query(req.user, params);
+    if (Array.isArray(datas)) {
+      for (var data of datas) {
+        delete data.table
+      }
+    }
+    return datas;
+  }
+
+
+  @ApiOperation({ summary: &#x27;取得報表&#x27; })
+  @ApiQuery({ name: &#x27;report_type&#x27;, required:true, example:&quot;pv&quot;, description:&#x27;ex: one of {&quot;pv&quot;, &quot;ess&quot;}&#x27; })
+  @ApiQuery({ name: &#x27;time_type&#x27;, required:true, example:&quot;month&quot;, description:&#x27;ex: one of {&quot;year&quot;, &quot;month&quot;}&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:true, description:&#x27;ex: &quot;66&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_id&#x27;, required:false, description:&#x27;ex: &quot;8&quot;&#x27; })
+  @ApiQuery({ name: &#x27;year&#x27;, required:true, description:&#x27;ex: &quot;2024&quot;&#x27; })
+  @ApiQuery({ name: &#x27;month&#x27;, required:false, description:&#x27;0~11 ex: &quot;0:January, 1:February, ..., 11:December&quot;&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @ApiQuery({ name: &#x27;fake_data&#x27;, required:false, description:&quot;one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @Get(&#x27;report&#x27;)
+  async getPDF(
+    @Req() req,
+    @Res() res: Response,
+    @Query(&#x27;report_type&#x27;) report_type?: string,
+    @Query(&#x27;time_type&#x27;) time_type?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_type_id&#x27;) device_type_id?: string,
+    @Query(&#x27;year&#x27;) year?: string,
+    @Query(&#x27;month&#x27;) month?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+    @Query(&#x27;fake_data&#x27;) fake_data?: string,
+  ): Promise&lt;void&gt; {
+    try {
+      var buffer &#x3D; null;
+      if (report_type&#x3D;&#x3D;&#x27;pv&#x27;) {
+        buffer &#x3D; await this.deviceReportService.generatePvPDF(req.user, time_type, domain_id, year, month, timezone, device_type_id, fake_data)
+      } else if (report_type&#x3D;&#x3D;&#x27;ess&#x27;) {
+        buffer &#x3D; await this.deviceReportService.generateEssPDF(req.user, time_type, domain_id, year, month, timezone, device_type_id, fake_data)
+      } else {
+        throw new HttpException(&#x27;report_type must be {&quot;pv&quot;, &quot;ess&quot;}&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      res.set({
+        &#x27;Content-Type&#x27;: &#x27;application/pdf&#x27;,
+        &#x27;Content-Disposition&#x27;: &#x27;attachment; filename&#x3D;report.pdf&#x27;,
+      //  &#x27;Content-Disposition&#x27;: &#x27;inline&#x27;,
+        &#x27;Content-Length&#x27;: buffer.length,
+      })
+
+      res.end(buffer)
+    } catch (ex) {
+      throw ex;
+    }
+  }
+
+}
+
+
+@Controller()
+export class DeviceDataExController {
+  constructor(
+    public readonly deviceDataService: DeviceDataService,
+    public readonly deviceReportService: DeviceReportService,
+    //public readonly deviceDataPredictionService: DeviceDataPredictionService,
+    public readonly domainService: DomainService,
+    public readonly deviceTypeService: DeviceTypeService,
+    public readonly deviceService: DeviceService,
+    public readonly deviceOutputService: DeviceOutputService,
+  ) {}
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢 Domain 資料&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;device_output_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube_data,hermes_smartmeter_data,hermes_report&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_category_name&#x27;, required:false, description:&#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:true, description:&#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop_align_every&#x27;, required:false, description:&quot;The &#x27;stop time&#x27; align &#x27;every&#x27;. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;fields&#x27;, required:false, description:&#x27;ex: &quot;field1,field2&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;where&#x27;, required:false, description:&#x27;ex: \&#x27;{&quot;domain_id&quot;:&quot;1&quot;,&quot;device_name&quot;:[&quot;device1&quot;,&quot;device2&quot;]}\&#x27; means (domain_id&#x3D;&#x3D;1 &amp;&amp; (device_name&#x3D;&#x3D;&quot;device1&quot; || device_name&#x3D;&#x3D;&quot;device2&quot;))&#x27; })
+//  @ApiQuery({ name: &#x27;differenceNonNegativeSource&#x27;, required:false, description:&quot;Difference NonNegative between subsequent values. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+//  @ApiQuery({ name: &#x27;group_by&#x27;, required:false, example:&quot;_field&quot;, description:&#x27;Regroups input data by modifying group key of input tables. If first char of group key is &quot;!&quot;, this group key will only be grouped before calculation. ex: &quot;!DeviceName,_field&quot;&#x27; })
+  @ApiQuery({ name: &#x27;every&#x27;, required:false, description:&#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;create_empty&#x27;, required:false, description:&#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27; })
+  @ApiQuery({ name: &#x27;time_src&#x27;, required:false, description:&#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @ApiQuery({ name: &#x27;time_function&#x27;, required:false, description:&quot;ex: one of [&#x27;first&#x27;, &#x27;last&#x27;, &#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;, &#x27;spread&#x27;, &#x27;integral&#x27;]&quot; })
+  @ApiQuery({ name: &#x27;time_function_params&#x27;, required:false, description:&#x27;ex: \&#x27;{&quot;unit&quot;:&quot;1h&quot;}\&#x27;&#x27; })
+  //  @ApiQuery({ name: &#x27;difference&#x27;, required:false, description:&quot;difference between subsequent values. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+//  @ApiQuery({ name: &#x27;group_function&#x27;, required:false, description:&quot;ex: one of [&#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;]&quot; })
+//  @ApiQuery({ name: &#x27;pivot_columns&#x27;, required:false, description:&quot;collects unique values stored vertically (column-wise) and aligns them horizontally (row-wise) into logical sets. ex: &#x27;_field&#x27; or &#x27;tag1,tag2&#x27;&quot; })
+//  @ApiQuery({ name: &#x27;fill_first&#x27;, required:false, description:&quot;fill the first value if the first value in range is null. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;limit&#x27;, required:false, example:&quot;200&quot;})
+  @ApiQuery({ name: &#x27;output_format&#x27;, required:false, description:&quot;one of [&#x27;json&#x27;, &#x27;csv&#x27;, &#x27;influx_line_protocol&#x27;]. default is &#x27;json&#x27;&quot;})
+  @ApiQuery({ name: &#x27;output_zip&#x27;, required:false, description:&quot;Output zip file. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @ApiQuery({ name: &#x27;debug&#x27;, required:false, description:&quot;one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @Get(&#x27;api/domain_datas/query&#x27;)
+  async getQueryDomain (
+    @Req() req,
+    @Res() res: Response,
+    //@Query() params: { organization_id?:string, domain_id?:string, device_names?:string, device_output_name:string, start?:string, stop?:string, fields?:string, where?:string, group_by?:string, every?:string, timezone?:string, func?:string }
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+  //  @Query(&#x27;device_output_name&#x27;) device_output_name?: string,
+    @Query(&#x27;device_type_category_name&#x27;) device_type_category_name?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+    @Query(&#x27;stop_align_every&#x27;) stop_align_every?: string,
+    @Query(&#x27;fields&#x27;) fields?: string,
+  //  @Query(&#x27;where&#x27;) where?: string,
+  //  @Query(&#x27;differenceNonNegativeSource&#x27;) differenceNonNegativeSource?: string,
+  //  @Query(&#x27;group_by&#x27;) group_by?: string,
+    @Query(&#x27;every&#x27;) every?: string,
+    @Query(&#x27;create_empty&#x27;) create_empty?: string,
+    @Query(&#x27;time_src&#x27;) time_src?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+    @Query(&#x27;time_function&#x27;) time_function?: string,
+    @Query(&#x27;time_function_params&#x27;) time_function_params?: string,
+  //  @Query(&#x27;difference&#x27;) difference?: string,
+  //  @Query(&#x27;group_function&#x27;) group_function?: string,
+  //  @Query(&#x27;pivot_columns&#x27;) pivot_columns?: string,
+  //  @Query(&#x27;fill_first&#x27;) fill_first?: string,
+    @Query(&#x27;limit&#x27;) limit?: string,
+    @Query(&#x27;output_format&#x27;) output_format?: string,
+    @Query(&#x27;output_zip&#x27;) output_zip?: string,
+    @Query(&#x27;debug&#x27;) debug?: string,
+  ): Promise&lt;any&gt; {
+    var params &#x3D; {
+      organization_id,
+//      device_output_name,
+      device_type_category_name,
+      device_type_name,
+      domain_id,
+      start,
+      stop,
+      stop_align_every,
+      fields,
+//      where,
+//      differenceNonNegativeSource,
+//      group_by,
+      every,
+      create_empty,
+      time_src,
+      timezone,
+      time_function,
+      time_function_params,
+//      difference,
+//      group_function,
+//      pivot_columns,
+//      fill_first,
+      limit,
+      output_format,
+      output_zip,
+      debug
+    }
+
+    if ((output_zip&#x3D;&#x3D;&#x27;1&#x27; || output_zip&#x3D;&#x3D;&#x27;true&#x27;)) {
+      await this.deviceDataService.queryDomain(req.user, params, res);
+    } else {
+      var value &#x3D; await this.deviceDataService.queryDomain(req.user, params, res);
+      if (typeof(value)&#x3D;&#x3D;&#x27;object&#x27;) {
+        var text &#x3D; JSON.stringify(value)
+        const textEncoder &#x3D; new TextEncoder();
+        var byte_length &#x3D; textEncoder.encode(text).length
+        res.set({
+          &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+          &#x27;Content-Length&#x27;: byte_length,
+        })
+        res.end(text)
+      } else {
+        if (typeof(value)!&#x3D;&#x27;string&#x27;) value &#x3D; &#x27;&#x27; + value
+        res.set({
+          &#x27;Content-Type&#x27;: &#x27;text/plain&#x27;,
+          &#x27;Content-Length&#x27;: value.length,
+        })
+        res.end(value)
+      }
+    }
+
+    //return this.deviceDataService.query(this.domainService, this.deviceTypeService, this.deviceService, this.deviceOutputService, params);
+  }
+
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢 Domain 的 Power,SoC,Predict,Photometer 歷史資料&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_category_name&#x27;, required:false, description:&#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:true, description:&#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;stop_align_every&#x27;, required:false, description:&quot;The &#x27;stop time&#x27; align &#x27;every&#x27;. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+//  @ApiQuery({ name: &#x27;fields&#x27;, required:false, description:&#x27;ex: &quot;field1,field2&quot;&#x27; })
+  @ApiQuery({ name: &#x27;every&#x27;, required:false, description:&#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;create_empty&#x27;, required:false, description:&#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27; })
+  @ApiQuery({ name: &#x27;time_src&#x27;, required:false, description:&#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @ApiQuery({ name: &#x27;time_function&#x27;, required:false, description:&quot;ex: one of [&#x27;first&#x27;, &#x27;last&#x27;, &#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;, &#x27;spread&#x27;, &#x27;integral&#x27;]&quot; })
+  @ApiQuery({ name: &#x27;time_function_params&#x27;, required:false, description:&#x27;ex: \&#x27;{&quot;unit&quot;:&quot;1h&quot;}\&#x27;&#x27; })
+  @ApiQuery({ name: &#x27;limit&#x27;, required:false, example:&quot;200&quot;})
+//  @ApiQuery({ name: &#x27;output_format&#x27;, required:false, description:&quot;one of [&#x27;json&#x27;, &#x27;csv&#x27;, &#x27;influx_line_protocol&#x27;]. default is &#x27;json&#x27;&quot;})
+//  @ApiQuery({ name: &#x27;output_zip&#x27;, required:false, description:&quot;Output zip file. one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+//  @ApiQuery({ name: &#x27;debug&#x27;, required:false, description:&quot;one of [&#x27;true&#x27;, &#x27;false&#x27;]. default is &#x27;false&#x27;&quot;})
+  @Get(&#x27;api/domain_datas/query/history/power_soc_predict_photometer&#x27;)
+  async getQueryDomainHistoryPowerSocPredictPhotometer (
+    @Req() req,
+  //  @Res() res: Response,
+    //@Query() params: { organization_id?:string, domain_id?:string, device_names?:string, device_output_name:string, start?:string, stop?:string, fields?:string, where?:string, group_by?:string, every?:string, timezone?:string, func?:string }
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+  //  @Query(&#x27;device_output_name&#x27;) device_output_name?: string,
+    @Query(&#x27;device_type_category_name&#x27;) device_type_category_name?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+  //  @Query(&#x27;stop_align_every&#x27;) stop_align_every?: string,
+  //  @Query(&#x27;fields&#x27;) fields?: string,
+    @Query(&#x27;every&#x27;) every?: string,
+    @Query(&#x27;create_empty&#x27;) create_empty?: string,
+    @Query(&#x27;time_src&#x27;) time_src?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+    @Query(&#x27;time_function&#x27;) time_function?: string,
+    @Query(&#x27;time_function_params&#x27;) time_function_params?: string,
+    @Query(&#x27;limit&#x27;) limit?: string,
+  //  @Query(&#x27;output_format&#x27;) output_format?: string,
+  //  @Query(&#x27;output_zip&#x27;) output_zip?: string,
+  //  @Query(&#x27;debug&#x27;) debug?: string,
+  ): Promise&lt;any&gt; {
+    var params &#x3D; {
+      organization_id,
+      device_type_category_name,
+      device_type_name,
+      domain_id,
+      start,
+      stop,
+  //    stop_align_every,
+  //    fields,
+      every,
+      create_empty,
+      time_src,
+      timezone,
+      time_function,
+      time_function_params,
+      limit,
+  //    output_format,
+  //    output_zip,
+  //    debug
+    }
+
+
+    var a_params &#x3D; Object.assign({}, params)
+    Object.assign(a_params, {
+      &quot;fields&quot;:&quot;SolarPower,PhotometerSolarPower,BatteryPower,LoadPower,GridPower,GenPower,BatSoC&quot;,
+      &quot;stop&quot;: (new Date()).toISOString(),
+      &quot;stop_align_every&quot;: &quot;true&quot;,
+    })
+    var a_datas &#x3D; await this.deviceDataService.queryDomain(req.user, a_params);
+
+    var b_params &#x3D; Object.assign({}, params)
+    Object.assign(b_params, {
+      &quot;fields&quot;:&quot;PredictionSolarPower&quot;
+    })
+    var b_datas &#x3D; await this.deviceDataService.queryDomain(req.user, b_params);
+
+    //var a0_time &#x3D; a_datas.length&gt;0?(new Date(a_datas[0]._time).getTime()):0
+    //var b0_time &#x3D; b_datas.length&gt;0?(new Date(b_datas[0]._time).getTime()):0
+    //var time &#x3D; Math.min(a0_time, b0_time)
+    var na &#x3D; 0
+    var nb &#x3D; 0
+    var datas &#x3D; []
+    while(na&lt;a_datas.length || nb&lt;b_datas.length) {
+      //var a_time &#x3D; na&#x3D;&#x3D;a_datas.length ? Number.MAX_SAFE_INTEGER : new Date(a_datas[na]._time).getTime()
+      //var b_time &#x3D; nb&#x3D;&#x3D;b_datas.length ? Number.MAX_SAFE_INTEGER : new Date(b_datas[nb]._time).getTime()
+
+      if (na&lt;a_datas.length &amp;&amp; nb&lt;b_datas.length) {
+        var a_time &#x3D; new Date(a_datas[na]._time).getTime()
+        var b_time &#x3D; new Date(b_datas[nb]._time).getTime()
+
+        if (a_time&#x3D;&#x3D;b_time) {
+          var data &#x3D; Object.assign({}, a_datas[na])
+          Object.assign(data, b_datas[nb])
+          datas.push(data)
+          na++
+          nb++
+        } else if (a_time&gt;b_time) {
+          datas.push(b_datas[nb])
+          nb++
+        } else if (a_time&lt;b_time) {
+          datas.push(a_datas[na])
+          na++
+        }
+      } else if (na&#x3D;&#x3D;a_datas.length &amp;&amp; nb&lt;b_datas.length) {
+          datas.push(b_datas[nb])
+          nb++
+      } else if (na&lt;a_datas.length &amp;&amp; nb&#x3D;&#x3D;b_datas.length) {
+        datas.push(a_datas[na])
+        na++
+      }
+    }
+
+    return datas
+
+
+  }
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢 Domain 今日資料&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @Get(&#x27;api/domain_datas/query/today&#x27;)
+  async getQueryDomainToday (
+    @Req() req,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+  ): Promise&lt;any&gt; {
+    var params &#x3D; {
+      domain_id,
+      timezone
+    }
+
+    var ret &#x3D; await this.deviceDataService.queryDomainToday(req.user, params)
+    return ret
+  }
+
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;查詢 Domain PR 值&#x27; })
+  @ApiQuery({ name: &#x27;organization_id&#x27;, required:true, description:&#x27;ex: &quot;3&quot;&#x27; })
+//  @ApiQuery({ name: &#x27;device_output_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube_data,hermes_smartmeter_data,hermes_report&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_category_name&#x27;, required:false, description:&#x27;ex: &quot;smart_meter,pv,ess&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_name&#x27;, required:false, description:&#x27;ex: &quot;pomcube,ess_hermes,pv_inverter,smart_meter&quot;&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:false, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start&#x27;, required:false, description:&#x27;ex: &quot;2024-11-17T16:00:00.000Z&quot;, &quot;2024-11-18T00:00:00+08:00&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27; })
+  @ApiQuery({ name: &#x27;stop&#x27;, required:false, description:&#x27;ex: &quot;2024-11-20T16:00:00.000Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;every&#x27;, required:false, description:&#x27;ex: one of [&quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;create_empty&#x27;, required:false, description:&#x27;Create empty tables for empty window. Default is false. ex: one of [false, true]&#x27; })
+  @ApiQuery({ name: &#x27;time_src&#x27;, required:false, description:&#x27;Column to use as the source of the new time value for aggregate values. Default is &quot;_stop&quot;. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27; })
+  @ApiQuery({ name: &#x27;timezone&#x27;, required:false, description:&#x27;ex: &quot;Asia/Taipei&quot;&#x27; })
+  @ApiQuery({ name: &#x27;limit&#x27;, required:false, example:&quot;200&quot;})
+  @Get(&#x27;api/domain_datas/query/pr&#x27;)
+  async getQueryDomainPR (
+    @Req() req,
+    @Res() res: Response,
+    @Query(&#x27;organization_id&#x27;) organization_id?: string,
+    @Query(&#x27;device_type_category_name&#x27;) device_type_category_name?: string,
+    @Query(&#x27;device_type_name&#x27;) device_type_name?: string,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;start&#x27;) start?: string,
+    @Query(&#x27;stop&#x27;) stop?: string,
+    @Query(&#x27;every&#x27;) every?: string,
+    @Query(&#x27;create_empty&#x27;) create_empty?: string,
+    @Query(&#x27;time_src&#x27;) time_src?: string,
+    @Query(&#x27;timezone&#x27;) timezone?: string,
+    @Query(&#x27;limit&#x27;) limit?: string,
+  ): Promise&lt;any&gt; {
+    var params &#x3D; {
+      organization_id,
+      device_type_category_name,
+      device_type_name,
+      domain_id,
+      start,
+      stop,
+      every,
+      create_empty,
+      time_src,
+      timezone,
+      limit
+    }
+
+
+    await this.deviceDataService.queryDomain(req.user, params, res);
+
+
+  }
+
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;取得 domain 的躉售費率&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:true, description:&#x27;ex: &quot;5&quot;&#x27; })
+  @Get(&#x27;api/feed_in_tariff&#x27;)
+  getDomainFeedInTariff (
+    @Req() req,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+  ): Promise&lt;any&gt; {
+    return this.deviceReportService.getDomainFeedInTariff(req.user ,domain_id);
+  }
+
+
+  @UseGuards(LocalAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;計算收入金額&#x27; })
+  @ApiQuery({ name: &#x27;domain_id&#x27;, required:true, description:&#x27;ex: &quot;66&quot;&#x27; })
+  @ApiQuery({ name: &#x27;device_type_id&#x27;, required:false, description:&#x27;ex: &quot;8&quot;&#x27; })
+  @ApiQuery({ name: &#x27;start_time&#x27;, required:false, description:&#x27;ex: &quot;2024-04-30T16:00:00Z&quot;&#x27; })
+  @ApiQuery({ name: &#x27;end_time&#x27;, required:false, description:&#x27;ex: &quot;2024-05-31T16:00:00Z&quot;&#x27; })
+  @Get(&#x27;api/generate_money&#x27;)
+  getGenerateMoney (
+    @Req() req,
+    @Query(&#x27;domain_id&#x27;) domain_id?: string,
+    @Query(&#x27;device_type_id&#x27;) device_type_id?: string,
+    @Query(&#x27;start_time&#x27;) start_time?: string,
+    @Query(&#x27;end_time&#x27;) end_time?: string,
+  ): Promise&lt;any&gt; {
+    return this.deviceReportService.getGenerateMoney(req.user, domain_id, device_type_id, start_time, end_time);
+  }
+
+
+}</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'DeviceDataExController.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

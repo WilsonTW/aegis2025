@@ -1,0 +1,4438 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DeviceDataService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/device_data/device_data.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#appService" >appService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceOutputService" >deviceOutputService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceService" >deviceService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceTypeCategoryService" >deviceTypeCategoryService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceTypeService" >deviceTypeService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#domainService" >domainService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#eventService" >eventService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#influxdbClientService" >influxdbClientService</a>
+                            </li>
+                            <li>
+                                <a href="#last_trigger_records" >last_trigger_records</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#addVarPrefix" >addVarPrefix</a>
+                            </li>
+                            <li>
+                                <a href="#checkDate" >checkDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#filterDevice" >filterDevice</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPR" >getPR</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#putWhere" >putWhere</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#query" >query</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#queryByFlux" >queryByFlux</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#queryDomain" >queryDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#queryDomainRecursion" >queryDomainRecursion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#queryDomainToday" >queryDomainToday</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#queryInflux" >queryInflux</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#queryInfluxMultiSource" >queryInfluxMultiSource</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#triggerEvent" >triggerEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#writeDeviceData" >writeDeviceData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(influxdbClientService: <a href="../injectables/InfluxdbClientService.html" target="_self">InfluxdbClientService</a>, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, deviceTypeCategoryService: <a href="../injectables/DeviceTypeCategoryService.html" target="_self">DeviceTypeCategoryService</a>, deviceTypeService: <a href="../injectables/DeviceTypeService.html" target="_self">DeviceTypeService</a>, deviceService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>, deviceOutputService: <a href="../injectables/DeviceOutputService.html" target="_self">DeviceOutputService</a>, eventService: <a href="../injectables/EventService.html" target="_self">EventService</a>, appService: <a href="../injectables/AppService.html" target="_self">AppService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/modules/device_data/device_data.service.ts:260</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>influxdbClientService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InfluxdbClientService.html" target="_self" >InfluxdbClientService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domainService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceTypeCategoryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceTypeCategoryService.html" target="_self" >DeviceTypeCategoryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceTypeService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceTypeService.html" target="_self" >DeviceTypeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceOutputService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceOutputService.html" target="_self" >DeviceOutputService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>appService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addVarPrefix"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>addVarPrefix</b></span>
+                        <a href="#addVarPrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addVarPrefix(inputCode, prefix: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1743"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1743</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>inputCode</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>prefix</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;&#x27;</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkDate"></a>
+                    <span class="name">
+                        <span ><b>checkDate</b></span>
+                        <a href="#checkDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkDate(date)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="838"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:838</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>date</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterDevice"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>filterDevice</b></span>
+                        <a href="#filterDevice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>filterDevice(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, param)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="866"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:866</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>param</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPR"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPR</b></span>
+                        <a href="#getPR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPR(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, params)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1519"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1519</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>params</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="putWhere"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>putWhere</b></span>
+                        <a href="#putWhere"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>putWhere(where, field_name, value)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="849"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:849</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>where</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>field_name</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="query"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>query</b></span>
+                        <a href="#query"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>query(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, param, res: Response)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1080"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1080</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>param</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                        <code>Response</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryByFlux"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>queryByFlux</b></span>
+                        <a href="#queryByFlux"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>queryByFlux(fluxQuery, params: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, res: Response, bucket_name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, measurement_name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="481"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:481</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fluxQuery</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>params</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                        <code>Response</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>bucket_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>measurement_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>queryDomain</b></span>
+                        <a href="#queryDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>queryDomain(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, param, res: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1783"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1783</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>param</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryDomainRecursion"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>queryDomainRecursion</b></span>
+                        <a href="#queryDomainRecursion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>queryDomainRecursion(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, param, res, organization, domain)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1888"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1888</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>param</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>organization</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryDomainToday"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>queryDomainToday</b></span>
+                        <a href="#queryDomainToday"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>queryDomainToday(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, param)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1832"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1832</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>param</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryInflux"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>queryInflux</b></span>
+                        <a href="#queryInflux"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>queryInflux(bucket_name, measurement_name, param, res: Response)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1095"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1095</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bucket_name</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>measurement_name</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>param</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                        <code>Response</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="queryInfluxMultiSource"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>queryInfluxMultiSource</b></span>
+                        <a href="#queryInfluxMultiSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>queryInfluxMultiSource(bucket_name, sources: <a href="../classes/Device.html" target="_self">Array&lt;DeviceDataSource&gt; | string</a>, param, res: Response)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="1103"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:1103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bucket_name</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>sources</td>
+                                            <td>
+                                                            <code><a href="../classes/Device.html" target="_self" >Array&lt;DeviceDataSource&gt; | string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>param</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                        <code>Response</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="triggerEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>triggerEvent</b></span>
+                        <a href="#triggerEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>triggerEvent(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, event, device, data)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="285"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:285</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>device</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeDeviceData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>writeDeviceData</b></span>
+                        <a href="#writeDeviceData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>writeDeviceData(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, organization_id, measurement_name, json)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="343"
+                                    class="link-to-prism">src/modules/device_data/device_data.service.ts:343</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>organization_id</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>measurement_name</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>json</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>appService</b></span>
+                        <a href="#appService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/modules/device_data/device_data.service.ts:270</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceOutputService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceOutputService</b></span>
+                        <a href="#deviceOutputService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceOutputService.html" target="_self" >DeviceOutputService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/modules/device_data/device_data.service.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceService</b></span>
+                        <a href="#deviceService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/modules/device_data/device_data.service.ts:267</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceTypeCategoryService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceTypeCategoryService</b></span>
+                        <a href="#deviceTypeCategoryService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceTypeCategoryService.html" target="_self" >DeviceTypeCategoryService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/modules/device_data/device_data.service.ts:265</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceTypeService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceTypeService</b></span>
+                        <a href="#deviceTypeService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceTypeService.html" target="_self" >DeviceTypeService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/modules/device_data/device_data.service.ts:266</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domainService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>domainService</b></span>
+                        <a href="#domainService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/modules/device_data/device_data.service.ts:264</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>eventService</b></span>
+                        <a href="#eventService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/modules/device_data/device_data.service.ts:269</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="influxdbClientService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>influxdbClientService</b></span>
+                        <a href="#influxdbClientService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/InfluxdbClientService.html" target="_self" >InfluxdbClientService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/modules/device_data/device_data.service.ts:263</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="last_trigger_records"></a>
+                    <span class="name">
+                        <span ><b>last_trigger_records</b></span>
+                        <a href="#last_trigger_records"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#LastTriggerRecord" target="_self" >Array&lt;LastTriggerRecord&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/modules/device_data/device_data.service.ts:260</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { In, Repository } from &#x27;typeorm&#x27;;
+import { Device } from &#x27;../device/device.entity&#x27;;
+import { DeviceConnection } from &#x27;../device_connection/device_connection.entity&#x27;;
+import { DeviceType } from &#x27;../device_type/device_type.entity&#x27;;
+import { Domain } from &#x27;../domain/domain.entity&#x27;;
+import { AppConfigService } from &#x27;../../app_config.service&#x27;;
+import { InfluxdbClientService } from &#x27;./influxdb_client.service&#x27;;
+import { DomainService } from &#x27;../domain/domain.service&#x27;;
+import { DeviceOutputService } from &#x27;../device_output/device_output.service&#x27;;
+import { DeviceService } from &#x27;../device/device.service&#x27;;
+import { DataStorerManager } from &#x27;../data_storer/mqtt.service&#x27;;
+import { DeviceTypeService } from &#x27;../device_type/device_type.service&#x27;;
+import * as PDFDocument from &#x27;pdfkit&#x27;
+import { width } from &#x27;pdfkit/js/page&#x27;;
+import { Util } from &#x27;../../util/util&#x27;;
+import { AppService } from &#x27;src/app.service&#x27;;
+import { DarkBox } from &#x27;src/util/darkbox&#x27;;
+import { EventService } from &#x27;../event/event.service&#x27;;
+import { DeviceDataPredictionService } from &#x27;./device_data_prediction.service&#x27;;
+import { Request, Response } from &#x27;express&#x27;;
+import { createReadStream } from &#x27;fs&#x27;;
+import { DeviceTypeCategoryService } from &#x27;../device_type_category/device_type_category.service&#x27;;
+import { RecordConverter } from &#x27;src/util/record_converter&#x27;;
+import { every } from &#x27;rxjs&#x27;;
+import { UserWithPermission } from &#x27;../user/user_with_permission.entity&#x27;;
+
+
+var dsource &#x3D; {
+  &quot;querys&quot;: [
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SP000001&quot;,
+          &quot;fields&quot;: &quot;DirectRadiation:PredictionIrradiance&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;mean&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003,HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarPower:PredictionSolarPower,SolarEff,SolarArea&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003,HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarPower:PredictionSolarEnergyWh&quot;
+        }
+      ],
+      &quot;time_function&quot;: &quot;integral&quot;,
+      &quot;time_function_params&quot;: &quot;{\&quot;unit\&quot;:\&quot;1h\&quot;}&quot;,
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;PredictionSolarEnergy&quot;,
+          &quot;value&quot;: &quot;r.PredictionSolarEnergyWh / 1000.0&quot;
+        }
+      ]
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_sun_photometer_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SP000001&quot;,
+          &quot;fields&quot;: &quot;Irradiance&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;mean&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;pomcube_data,hermes_ess_data&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003&quot;,
+          &quot;fields&quot;: &quot;SolarPower,GenPower&quot;
+        },
+        {
+          &quot;device_output_name&quot;: &quot;hermes_pv_inverter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarPower&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_smartmeter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SM000001,HERMES_SM000002,HERMES_SM000003&quot;,
+          &quot;fields&quot;: &quot;Active_Power:GridPower&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_smartmeter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SM000004,HERMES_SM000005,HERMES_SM000006&quot;,
+          &quot;fields&quot;: &quot;Active_Power:LoadPower&quot;
+        }
+      ],
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;hermes_smartmeter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_SM000004,HERMES_SM000005,HERMES_SM000006&quot;,
+          &quot;fields&quot;: &quot;Active_Power:LoadEnergyWh&quot;
+        }
+      ],
+      &quot;time_function&quot;: &quot;integral&quot;,
+      &quot;time_function_params&quot;: &quot;{\&quot;unit\&quot;:\&quot;1h\&quot;}&quot;,
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;LoadEnergy&quot;,
+          &quot;value&quot;: &quot;r.LoadEnergyWh / 1000.0&quot;
+        }
+      ]
+    },
+    {
+      &quot;sources&quot;: [
+        {
+          &quot;device_output_name&quot;: &quot;pomcube_data,hermes_ess_data&quot;,
+          &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003&quot;,
+          &quot;fields&quot;: &quot;SolarEnergy,GridEnergy,GenEnergy,BatteryChargeEnergy,BatteryDischargeEnergy&quot;
+        },
+        {
+          &quot;device_output_name&quot;: &quot;hermes_pv_inverter_data&quot;,
+          &quot;device_names&quot;: &quot;HERMES_PV000001,HERMES_PV000002&quot;,
+          &quot;fields&quot;: &quot;SolarEnergy,GridEnergy,GenEnergy,BatteryChargeEnergy,BatteryDischargeEnergy&quot;
+        }
+      ],
+      &quot;differenceNonNegativeSource&quot;: &quot;true&quot;,
+      &quot;time_function&quot;: &quot;sum&quot;,
+      &quot;group_function&quot;: &quot;sum&quot;
+    },
+    {
+      &quot;querys&quot;: [
+        {
+          &quot;sources&quot;: [
+            {
+              &quot;device_output_name&quot;: &quot;pomcube_data,hermes_ess_data,device_spec&quot;,
+              &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003&quot;,
+              &quot;fields&quot;: &quot;BatSoC,BatCapacity&quot;
+            }
+          ],
+          &quot;maps&quot;: [
+            {
+              &quot;field&quot;: &quot;BatRemainEnergy&quot;,
+              &quot;value&quot;: &quot;r.BatCapacity * r.BatSoC / 100.0&quot;
+            }
+          ],
+          &quot;group_function&quot;: &quot;sum&quot;,
+          &quot;export_fields&quot;: &quot;BatCapacity,BatRemainEnergy&quot;
+        }
+      ]
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;BatSoC&quot;,
+          &quot;value&quot;: &quot;r.BatRemainEnergy / r.BatCapacity * 100.0&quot;
+        }
+      ]
+    },
+    {
+      &quot;querys&quot;: [
+        {
+          &quot;sources&quot;: [
+            {
+              &quot;device_output_name&quot;: &quot;solar_prediction&quot;,
+              &quot;device_names&quot;: &quot;AA-70-2211-01-0078-938,AA-70-2211-01-0217-874,AA-70-2212-01-0028-070,HERMES_ESS000001,HERMES_ESS000002,HERMES_ESS000003,HERMES_PV000001,HERMES_PV000002&quot;,
+              &quot;fields&quot;: &quot;SolarArea,SolarEff&quot;
+            }
+          ],
+          &quot;maps&quot;: [
+            {
+              &quot;field&quot;: &quot;SolarEffArea&quot;,
+              &quot;value&quot;: &quot;r.SolarEff * r.SolarArea&quot;
+            }
+          ],
+          &quot;group_function&quot;: &quot;sum&quot;
+        }
+      ],
+      &quot;export_fields&quot;: &quot;SolarArea,SolarEffArea&quot;
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;PhotometerSolarPower&quot;,
+          &quot;value&quot;: &quot;r.Irradiance * r.SolarEffArea&quot;
+        }
+      ]
+    },
+    {
+      &quot;maps&quot;: [
+        {
+          &quot;field&quot;: &quot;CurtailmentRatio&quot;,
+          &quot;value&quot;: &quot;(r.PhotometerSolarPower-r.SolarPower)/r.PhotometerSolarPower*100.0&quot;
+        }
+      ]
+    }
+  ]
+}
+
+
+const path &#x3D; require(&#x27;path&#x27;);
+const {InfluxDB, Point} &#x3D; require(&#x27;@influxdata/influxdb-client&#x27;)
+
+const { createCanvas } &#x3D; require(&#x27;canvas&#x27;);
+//const Chart &#x3D; require(&#x27;chart.js&#x27;);
+const Chart &#x3D; require(&#x27;chart.js/auto&#x27;);
+//import Chart from &#x27;chart.js/auto&#x27;;
+
+const fs &#x3D; require(&#x27;fs&#x27;);
+//import moment from &#x27;moment-timezone&#x27;;
+var moment &#x3D; require(&#x27;moment-timezone&#x27;);
+require(&#x27;moment/locale/zh-tw&#x27;);
+
+const tmp &#x3D; require(&#x27;tmp&#x27;);
+var AdmZip &#x3D; require(&quot;adm-zip&quot;);
+
+const acorn &#x3D; require(&#x27;acorn&#x27;);
+const escodegen &#x3D; require(&#x27;escodegen&#x27;);
+
+type LastTriggerRecord &#x3D; {
+  event_id?:number,
+  device_id?:number,
+  result?:boolean|null,
+  time?:number
+};
+
+type DeviceDataSource &#x3D; {
+  measurement: string,
+  fields: string,
+  where?: string,
+  map?: string
+};
+
+@Injectable()
+export class DeviceDataService {
+
+  last_trigger_records:Array&lt;LastTriggerRecord&gt; &#x3D; []
+
+  constructor(
+    public readonly influxdbClientService:InfluxdbClientService,
+    public readonly domainService: DomainService,
+    public readonly deviceTypeCategoryService: DeviceTypeCategoryService,
+    public readonly deviceTypeService: DeviceTypeService,
+    public readonly deviceService: DeviceService,
+    public readonly deviceOutputService: DeviceOutputService,
+    public readonly eventService: EventService,
+    public readonly appService: AppService,
+    /*
+    @InjectRepository(Domain) public readonly domainRepository: Repository&lt;Domain&gt;,
+    @InjectRepository(DeviceType) public readonly deviceTypeRepository: Repository&lt;DeviceType&gt;,
+    @InjectRepository(DataStorer) public readonly dataStorerRepository: Repository&lt;DataStorer&gt;,
+    @InjectRepository(Device) public readonly deviceRepository: Repository&lt;Device&gt;,
+    @InjectRepository(DeviceConnection) public readonly deviceConnectionRepository: Repository&lt;DeviceConnection&gt;,
+    @InjectRepository(SensorSchema) public readonly sensorSchemaRepository: Repository&lt;SensorSchema&gt;,
+    */
+    //public readonly domainService: DomainService,
+    //public readonly deviceService: DeviceService
+  ) {
+  }
+
+
+  async triggerEvent(this_user:UserWithPermission, event, device, data) {
+    try {
+      var data_new &#x3D; Object.assign({}, data);
+      var context &#x3D; {
+        device: device,
+        data: data_new
+      }
+      var ret &#x3D; await DarkBox.evalScript(event.compare_function, context);
+
+      var last_trigger_record &#x3D; this.last_trigger_records.find(x&#x3D;&gt;x.event_id&#x3D;&#x3D;event.event_id &amp;&amp; x.device_id&#x3D;&#x3D;device.device_id)
+
+      if (event.trigger_onchange) {
+        if (last_trigger_record&#x3D;&#x3D;null || last_trigger_record.result&#x3D;&#x3D;null) {
+          last_trigger_record &#x3D; {
+            event_id: event.event_id,
+            device_id: device.device_id,
+            result: ret,
+            time: Date.now()
+          }
+          this.last_trigger_records.push(last_trigger_record)
+          return;
+        } else {
+          last_trigger_record.time &#x3D; Date.now()
+          if (last_trigger_record.result&#x3D;&#x3D;ret) {
+            return;
+          } else {
+            last_trigger_record.result&#x3D;ret
+          }
+        }
+      }
+
+      if (ret&#x3D;&#x3D;true) {
+        var prev_time &#x3D; 0;
+        if (last_trigger_record&#x3D;&#x3D;null) {
+          last_trigger_record &#x3D; {
+            event_id: event.event_id,
+            device_id: device.device_id,
+            time: 0
+          }
+          this.last_trigger_records.push(last_trigger_record)
+        } else {
+          prev_time &#x3D; last_trigger_record.time;
+        }
+        if (event.not_trigger_second&#x3D;&#x3D;0 || Date.now()-prev_time&gt;event.not_trigger_second*1000) {
+          last_trigger_record.time &#x3D; Date.now();
+          //var re &#x3D; new RegExp(&quot;&#x60;&quot;, &quot;g&quot;);
+          var m &#x3D; event.message.replace(/\&#x60;/g, &#x27;\&#x27;&#x27;);
+          var new_message &#x3D; await DarkBox.evalScript(&#x27;&#x60;&#x27; + m + &#x27;&#x60;&#x27;, context);
+          if (new_message!&#x3D;null &amp;&amp; (&#x27;&#x27;+new_message).trim()!&#x3D;&#x27;&#x27;) {
+            await this.appService.notifyUserByEvent(this_user, event, &#x27;device&#x27;, &#x27;&#x27;+new_message, device.device_id, null)
+          }
+        }
+      }
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+  async writeDeviceData(this_user:UserWithPermission, organization_id, measurement_name, json) {
+
+    if (json&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;&quot;data&quot; is invalid&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    var domain &#x3D; await this.domainService.findOne(this_user, organization_id)
+    if (domain&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;Domain(&#x27;+organization_id+&#x27;) not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+    var devices &#x3D; await this.domainService.getAllDevices(this_user, this.deviceService, organization_id, {}, 1000000);
+    if (devices.length&#x3D;&#x3D;0) return;
+
+    var events &#x3D; await this.eventService.findAll(this_user, {
+      where: {domain_id: organization_id}
+    });
+
+    //var device_outputs &#x3D; await this.deviceOutputService.findAll()
+
+    var datas &#x3D; [];
+    if (Array.isArray(json)) {
+      datas &#x3D; json;
+    } else {
+      datas &#x3D; [json]
+    }
+
+    var fields &#x3D; []
+    for (var data of datas) {
+      for (name in data) {
+        if (fields.indexOf(name)&#x3D;&#x3D;-1) {
+          fields.push(name)
+        }
+      }
+    }
+
+
+    var org &#x3D; AppConfigService.getInfluxdbConfig().org;
+    var influxdb_client &#x3D; InfluxdbClientService.getClient();
+    let writeClient &#x3D; influxdb_client.getWriteApi(org, domain.domain_name, &#x27;ms&#x27;)
+    
+    var all_has_data &#x3D; false;
+    for (var data of datas) {
+      var device_name &#x3D; data[&#x27;DeviceName&#x27;]
+      if (device_name&#x3D;&#x3D;null || Object.keys(data).length&lt;2) continue;
+      try {
+        var device &#x3D; devices.find(x&#x3D;&gt;x.device_name&#x3D;&#x3D;device_name);
+        if (device&#x3D;&#x3D;null) continue;
+
+        let point &#x3D; new Point(measurement_name)
+        point.tag(&#x27;DeviceName&#x27;, device_name)
+
+        /*
+        var filter_device_outputs &#x3D; device_outputs.filter(x&#x3D;&gt;x.device_type_id&#x3D;&#x3D;device.device_type_id);
+        var r &#x3D; await DarkBox.evalScript(device_output.device_state_field, data, false)
+        if (r!&#x3D;null &amp;&amp; r!&#x3D;device.device_state) field_to_update[&#x27;device_state&#x27;] &#x3D; r;
+        */
+
+        var device_state &#x3D; &#x27;running&#x27;
+        var is_online &#x3D; true;
+        if (&#x27;OnLine&#x27; in data) {
+          if (data.OnLine&#x3D;&#x3D;1) {
+            is_online &#x3D; true
+          } else {
+            is_online &#x3D; false
+            device_state &#x3D; &#x27;unknow&#x27;
+          }
+        }
+
+        var has_data &#x3D; false;
+        for (var name in data) {
+          if (name&#x3D;&#x3D;&#x27;DeviceName&#x27;) continue;
+          if (name&#x3D;&#x3D;&#x27;OnLine&#x27; || is_online) {
+            var value &#x3D; data[name]
+            var v &#x3D; parseFloat(value);
+
+            var name2 &#x3D; name
+            if (name&#x3D;&#x3D;&#x27;BatteryToTotal&#x27;) name2 &#x3D; &#x27;BatteryChargeEnergy&#x27;;
+            if (name&#x3D;&#x3D;&#x27;BatteryFromTotal&#x27;) name2 &#x3D; &#x27;BatteryDischargeEnergy&#x27;;
+            //if (name&#x3D;&#x3D;&#x27;BatteryPower&#x27;) name2 &#x3D; &#x27;BatteryPower&#x27;;
+            if (name&#x3D;&#x3D;&#x27;GridToTotal&#x27;) name2 &#x3D; &#x27;GridSellEnergy&#x27;;
+            if (name&#x3D;&#x3D;&#x27;GridFromTotal&#x27;) name2 &#x3D; &#x27;GridPurchaseEnergy&#x27;;
+            
+
+            if (!isNaN(v)) {
+              point.floatField(name2, v)
+              has_data &#x3D; true;
+            }
+          }
+        }
+        if (has_data) {
+          all_has_data &#x3D; true;
+          writeClient.writePoint(point)
+        }
+
+        
+        var new_state &#x3D; {
+          &quot;device_state&quot;: device_state,
+          &quot;is_online&quot;: is_online
+        }
+        if (is_online) {
+          new_state[&quot;last_connect_time&quot;] &#x3D; (new Date()).toISOString()
+        }
+        await this.deviceService.update(this_user, device.device_id, new_state);
+
+        for (var event of events) {
+          var is_trigger &#x3D; true;
+          if (event.domain_id&#x3D;&#x3D;null || event.device_type_id&#x3D;&#x3D;null || device.device_type_id!&#x3D;event.device_type_id) is_trigger&#x3D;false;
+          //if (device_output.device_output_id!&#x3D;event.device_output_id) is_trigger &#x3D; false;
+          if (event.device_name!&#x3D;null &amp;&amp; event.device_name!&#x3D;&#x27;&#x27; &amp;&amp; device.device_name!&#x3D;event.device_name) is_trigger &#x3D; false;
+          if (is_trigger) {
+            is_trigger &#x3D; await this.domainService.includeDomain(event.domain_id, device.domain_id)
+          }
+          if (is_trigger) {
+            await this.triggerEvent(this_user, event, device, data);
+          }
+        }
+
+      } catch (ex) {console.log(ex)}
+    }
+    try {
+      if (all_has_data) await writeClient.flush();
+    } catch(ex2) {
+      console.log(ex2.message);
+      /*
+      if (ex2.statusCode&#x3D;&#x3D;404 &amp;&amp; (/bucket [\s\S]+ not found/.test(&#x27;&#x27;+ex2.message))) {
+        try {
+          //await influxDB.createDatabase(domain_name);
+          await this.influxdb_client.createDatabase(domain_name)
+          if (need_store) await writeClient.flush();
+        } catch (ex3) {
+          console.log(ex3);
+        }
+      }
+      */
+    }
+
+  }
+
+  async queryByFlux(fluxQuery, params:any&#x3D;{}, res:Response&#x3D;null, bucket_name:string&#x3D;null, measurement_name:string&#x3D;null) {
+
+    function parseKey(s) {
+    //  s &#x3D; s.replace(/,/g, &quot;\\,&quot;)
+    //  s &#x3D; s.replace(/&#x3D;/g, &quot;\\&#x3D;&quot;)
+      s &#x3D; s.replace(/ /g, &quot;\\ &quot;)
+      return s
+    }
+    function parseTagValue(s) {
+      if (s&#x3D;&#x3D;null) return null;
+      if (typeof(s)&#x3D;&#x3D;&#x27;string&#x27;) {
+        var s2 &#x3D; s.replace(/\\/g, &quot;\\\\&quot;)
+        return s2.replace(/ /g, &quot;\\ &quot;)
+      }
+      return s
+    }
+
+    function parseFieldValue(s) {
+      if (s&#x3D;&#x3D;null) return null;
+      if (typeof(s)&#x3D;&#x3D;&#x27;string&#x27;) {
+        var s2 &#x3D; s.replace(/\\/g, &quot;\\\\&quot;)
+        s2 &#x3D; s2.replace(/\&quot;/g, &quot;\\\&quot;&quot;)
+        return &#x27;&quot;&#x27; + s2 + &#x27;&quot;&#x27;
+      }
+      return s
+    }
+
+    function parseCsvCol(value) {
+      if (value&#x3D;&#x3D;null) {
+        return &#x27;null&#x27;
+      } else if (typeof(value)&#x3D;&#x3D;&quot;number&quot;) {
+        return &#x27;&#x27; + value
+      } else {
+        var s &#x3D; &#x27;&#x27; + value
+        s &#x3D; &#x27;&quot;&#x27; + s.replace(/\&quot;/g, &#x27;&quot;&quot;&#x27;) + &#x27;&quot;&#x27;
+        return s
+      }
+    }
+
+    var is_zip &#x3D; (params.output_zip&#x3D;&#x3D;&#x27;1&#x27; || params.output_zip&#x3D;&#x3D;&#x27;true&#x27;);
+    let datas &#x3D; null
+    let tmpobj &#x3D; null;
+    let has_error &#x3D; false
+    let csv_header_outputed &#x3D; false
+    let csv_header &#x3D; &#x27;&#x27;
+    try {
+
+      if (is_zip) {
+        //const tmpobj &#x3D; tmp.fileSync();
+        tmpobj &#x3D; tmp.fileSync({tmpdir:AppConfigService.getSystemConfig().tempfile_path});
+        console.log(&#x27;create tmp file: &#x27;, tmpobj.name);
+        //console.log(&#x27;Filedescriptor: &#x27;, tmpobj.fd);
+      }
+
+      datas &#x3D; await (new Promise(async (resolve, reject) &#x3D;&gt; {
+        var config &#x3D; AppConfigService.getInfluxdbConfig();
+        var influxdb_client &#x3D; InfluxdbClientService.getClient();
+
+        let queryClient &#x3D; influxdb_client.getQueryApi(config.org)
+
+        var field_names &#x3D; []
+        if (params.output_format&#x3D;&#x3D;&#x27;csv&#x27;) {
+          if (bucket_name&#x3D;&#x3D;null) {
+            reject(new HttpException(&#x27;bucket_name is null&#x27;, HttpStatus.BAD_REQUEST))
+            return
+          }
+          if (measurement_name&#x3D;&#x3D;null) {
+            reject(new HttpException(&#x27;measurement_name is null&#x27;, HttpStatus.BAD_REQUEST))
+            return
+          }
+          try {
+
+            field_names &#x3D; []
+            if (params.fields!&#x3D;null) {
+              field_names &#x3D; params.fields.split(&#x27;,&#x27;)
+            } else {
+              var q &#x3D; &#x60;
+  import &quot;influxdata/influxdb/schema&quot;
+
+  tagKeys &#x3D; schema.tagKeys(bucket: &quot;${bucket_name}&quot;, predicate: (r) &#x3D;&gt; r._measurement &#x3D;&#x3D; &quot;${measurement_name}&quot;)
+    |&gt; map(fn: (r) &#x3D;&gt; ({ r with type: &quot;tagKey&quot; }))
+
+  fieldKeys &#x3D; schema.fieldKeys(bucket: &quot;${bucket_name}&quot;, predicate: (r) &#x3D;&gt; r._measurement &#x3D;&#x3D; &quot;${measurement_name}&quot;)
+    |&gt; map(fn: (r) &#x3D;&gt; ({ r with type: &quot;fieldKey&quot; }))
+
+  union(tables: [tagKeys, fieldKeys])
+    |&gt; sort(columns: [&quot;type&quot;], desc: true)&#x60;
+
+              /*
+              var q &#x3D; &#x27;import &quot;influxdata/influxdb/schema&quot;&#x27; + &quot;\n&quot;
+              q +&#x3D; &#x60;tagKeys &#x3D; schema.tagKeys(bucket: &quot;${bucket_name}&quot;, predicate: (r) &#x3D;&gt; r._measurement &#x3D;&#x3D; &quot;${measurement_name}&quot;)&#x60; + &quot;\n&quot;
+              q +&#x3D; &#x60;fieldKeys &#x3D; schema.fieldKeys(bucket: &quot;${bucket_name}&quot;, predicate: (r) &#x3D;&gt; r._measurement &#x3D;&#x3D; &quot;${measurement_name}&quot;)&#x60; + &quot;\n&quot;
+              q +&#x3D; &#x60;union(tables: [tagKeys, fieldKeys])&#x60;
+              */
+              var data_fields &#x3D; await this.queryByFlux(q)
+              for (var data_field of data_fields) {
+                var field_name &#x3D; data_field._value
+                if (!(field_name&#x3D;&#x3D;&#x27;_start&#x27; || field_name&#x3D;&#x3D;&#x27;_stop&#x27; || field_name&#x3D;&#x3D;&#x27;_field&#x27; || field_name&#x3D;&#x3D;&#x27;_measurement&#x27;)) {
+                  field_names.push(field_name)
+                }
+              }
+            }
+            field_names.unshift(&#x27;_time&#x27;)
+            csv_header &#x3D; field_names.map(x&#x3D;&gt;(x&#x3D;&#x3D;&#x27;_time&#x27;)?&#x27;&quot;time&quot;&#x27;:parseCsvCol(x)).join(&#x27;,&#x27;)
+          } catch (ex) {
+            reject(ex)
+            return
+          }
+        }
+
+
+        let datas &#x3D; null;
+        let data_count &#x3D; 0;
+        if (is_zip) {
+          if (params.output_format&#x3D;&#x3D;&#x27;csv&#x27; || params.output_format&#x3D;&#x3D;&#x27;influx_line_protocol&#x27;) {
+          } else {
+            fs.writeSync(tmpobj.fd, &#x27;[&#x27;)
+          }
+        } else {
+          if (params.output_format&#x3D;&#x3D;&#x27;csv&#x27; || params.output_format&#x3D;&#x3D;&#x27;influx_line_protocol&#x27;) {
+            datas &#x3D; &#x27;&#x27;;
+          } else {
+            datas &#x3D; [];
+          }
+        }
+
+        function outData(data) {
+          if (is_zip) {
+            fs.writeSync(tmpobj.fd, data)
+          } else {
+            datas +&#x3D; data
+          }
+        }
+
+        queryClient.queryRows(fluxQuery, {
+          next: (row, tableMeta) &#x3D;&gt; {
+            const tableObject &#x3D; tableMeta.toObject(row)
+            //console.log(tableObject)
+            delete tableObject.result;
+            delete tableObject._start;
+            delete tableObject._stop;
+
+            if (params.output_format&#x3D;&#x3D;&#x27;csv&#x27;) {
+              if (!csv_header_outputed) {
+                outData(csv_header + &#x27;\n&#x27;)
+                csv_header_outputed &#x3D; true
+              }
+              var d &#x3D; []
+              for (var field_name of field_names) {
+                d.push(parseCsvCol(tableObject[field_name]))
+              }
+              outData(d.join(&#x27;,&#x27;) + &#x27;\n&#x27;)
+            } else if (params.output_format&#x3D;&#x3D;&#x27;influx_line_protocol&#x27;) {
+              var tags &#x3D; &#x27;&#x27;
+              var fields &#x3D; []
+              for (var n in tableObject) {
+                if (n&#x3D;&#x3D;&#x27;_time&#x27; || n&#x3D;&#x3D;&#x27;table&#x27; || n&#x3D;&#x3D;&#x27;_value&#x27; || n&#x3D;&#x3D;&#x27;_measurement&#x27; || tableObject[n]&#x3D;&#x3D;null) continue;
+                var column &#x3D; tableMeta.columns.find(x&#x3D;&gt;x.label&#x3D;&#x3D;n)
+                if (column&#x3D;&#x3D;null) continue;
+                if (column.group) {
+                  if (n&#x3D;&#x3D;&#x27;_field&#x27;) {
+                    fields.push(parseKey(tableObject._field) + &#x27;&#x3D;&#x27; + parseFieldValue(tableObject._value))
+                  } else {
+                    tags +&#x3D; &#x27;,&#x27; + parseKey(n) + &#x27;&#x3D;&#x27; + parseTagValue(tableObject[n])
+                    /*
+                    if (n&#x3D;&#x3D;&#x27;device_name&#x27;) continue;
+                    var n2 &#x3D; n;
+                    if (n&#x3D;&#x3D;&#x27;device_sn&#x27;) n2 &#x3D; &#x27;DeviceName&#x27;;
+                    if (n&#x3D;&#x3D;&#x27;device_order&#x27;) n2 &#x3D; &#x27;PlaceName&#x27;;
+                    tags +&#x3D; &#x27;,&#x27; + parseKey(n2) + &#x27;&#x3D;&#x27; + parseKey(tableObject[n])
+                    */
+                  }
+                } else {
+                  fields.push(parseKey(n) + &#x27;&#x3D;&#x27; + parseFieldValue(tableObject[n]))
+                  /*
+                  var n2 &#x3D; n;
+                  var v2 &#x3D; tableObject[n]
+                  if (n&#x3D;&#x3D;&#x27;GridFromTotal&#x27;) {
+                    n2 &#x3D; &#x27;GridEnergy&#x27;;
+                    v2 &#x3D; tableObject[n] / 1000;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;LoadToTotal&#x27;) {
+                    n2 &#x3D; &#x27;LoadEnergy&#x27;;
+                    v2 &#x3D; tableObject[n] / 1000;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;PVTotal&#x27;) {
+                    n2 &#x3D; &#x27;SolarEnergy&#x27;;
+                    v2 &#x3D; tableObject[n] / 1000;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;GeneratorFromTotal&#x27;) {
+                    n2 &#x3D; &#x27;GenEnergy&#x27;;
+                    v2 &#x3D; tableObject[n] / 1000;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;BatteryFromTotal&#x27;) {
+                    n2 &#x3D; &#x27;BatEnergy&#x27;;
+                    v2 &#x3D; tableObject[n] / 1000;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;SolarPower&#x27;) {
+                    n2 &#x3D; &#x27;SolarPower&#x27;;
+                    v2 &#x3D; tableObject[n];
+                  }
+                  if (n&#x3D;&#x3D;&#x27;GenPower&#x27;) {
+                    n2 &#x3D; &#x27;GenPower&#x27;;
+                    v2 &#x3D; tableObject[n];
+                  }
+                  if (n&#x3D;&#x3D;&#x27;LoadPower&#x27;) {
+                    n2 &#x3D; &#x27;LoadPower&#x27;;
+                    v2 &#x3D; tableObject[n];
+                  }
+                  if (n&#x3D;&#x3D;&#x27;GridPower&#x27;) {
+                    n2 &#x3D; &#x27;GridPower&#x27;;
+                    v2 &#x3D; tableObject[n];
+                  }
+                  if (n&#x3D;&#x3D;&#x27;SOC&#x27;) {
+                    n2 &#x3D; &#x27;BatSoC&#x27;;
+                    v2 &#x3D; tableObject[n] / 10;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;MinCellTemp&#x27;) {
+                    n2 &#x3D; &#x27;EnvTemp1&#x27;;
+                    v2 &#x3D; tableObject[n] / 10;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;MaxCellTemp&#x27;) {
+                    n2 &#x3D; &#x27;EnvTemp2&#x27;;
+                    v2 &#x3D; tableObject[n] / 10;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;TotalCurr&#x27;) {
+                    n2 &#x3D; &#x27;BatCurr&#x27;;
+                    v2 &#x3D; tableObject[n] / 100;
+                  }
+                  if (n&#x3D;&#x3D;&#x27;TotalVolt&#x27;) {
+                    n2 &#x3D; &#x27;BatVolt&#x27;;
+                    v2 &#x3D; tableObject[n] / 100;
+                  }
+                  fields.push(parseKey(n2) + &#x27;&#x3D;&#x27; + parseField(v2))
+                  */
+                }
+              }
+              var time &#x3D; (new Date(tableObject._time)).getTime()*1000000
+              var measurement_name &#x3D; tableObject._measurement.replace(/ /g,&#x27;\\ &#x27;)
+              var data &#x3D; &#x60;${measurement_name}${tags} ${fields.join(&#x27;,&#x27;)} ${time}\n&#x60;
+              //var data &#x3D; &#x60;pomcube_data${tags} ${fields.join(&#x27;,&#x27;)} ${time}\n&#x60;
+
+              if (is_zip) {
+                fs.writeSync(tmpobj.fd, data)
+              } else {
+                datas +&#x3D; data
+              }
+            } else {
+              delete tableObject._measurement;
+              if (is_zip) {
+                var dot &#x3D; data_count&#x3D;&#x3D;0?&#x27;&#x27;:&#x27;,&#x27;;
+                fs.writeSync(tmpobj.fd, dot+JSON.stringify(tableObject))
+              } else {
+                datas.push(tableObject)
+              }
+            }
+            data_count ++;
+          },
+          error: (error) &#x3D;&gt; {
+            console.error(&#x27;\nError&#x27;, error)
+            reject(error)
+          },
+          complete: () &#x3D;&gt; {
+            console.log(&#x27;\nSuccess&#x27;)
+            if (params.output_format&#x3D;&#x3D;&#x27;csv&#x27; &amp;&amp; !csv_header_outputed) {
+              outData(csv_header + &#x27;\n&#x27;)
+              csv_header_outputed &#x3D; true
+            }
+            resolve(datas)
+          },
+        })
+      }));
+    } catch (ex) {
+      //console.log(ex)
+      has_error &#x3D; true
+      throw ex
+    } finally {
+      if (tmpobj!&#x3D;null) {
+        try {
+          if (is_zip) {
+            if (!has_error) {
+              if (params.output_format!&#x3D;&#x27;influx_line_protocol&#x27;) {
+                fs.writeSync(tmpobj.fd, &#x27;]&#x27;)
+              }
+
+              // creating archives
+              var zip &#x3D; new AdmZip();
+
+              // add file directly
+              //var content &#x3D; &quot;inner content of the file&quot;;
+              //zip.addFile(&quot;test.txt&quot;, Buffer.from(content, &quot;utf8&quot;), &quot;entry comment goes here&quot;);
+
+              // add local file
+              //zip.addLocalFile(tmpobj.name, &#x27;data.txt&#x27;);
+              // get everything as a buffer
+              //var willSendthis &#x3D; zip.toBuffer();
+              // or write everything to disk
+
+              var zipfile_data:Buffer &#x3D; fs.readFileSync(tmpobj.name);
+              zip.addFile(&#x27;data.txt&#x27;, zipfile_data)
+
+              const file_path_zip &#x3D; tmp.tmpNameSync({tmpdir:AppConfigService.getSystemConfig().tempfile_path}) + &#x27;.zip&#x27;;
+              //var file_path_zip &#x3D; AppConfigService.getSystemConfig().tempfile_path + &#x27;/datas.zip&#x27;
+              zip.writeZip(file_path_zip);
+
+              var stats &#x3D; fs.statSync(file_path_zip)
+              var fileSizeInBytes &#x3D; stats.size;
+
+              if (res!&#x3D;null) {
+                res.set({
+                  &#x27;Content-Type&#x27;: &#x27;application/zip&#x27;,
+                  &#x27;Content-Disposition&#x27;: &#x27;attachment; filename&#x3D;data.zip&#x27;,
+                //  &#x27;Content-Disposition&#x27;: &#x27;inline&#x27;,
+                  &#x27;Content-Length&#x27;: fileSizeInBytes,
+                })
+                //const file &#x3D; createReadStream(file_path_zip);
+                //file.pipe(res);
+
+                await (new Promise&lt;void&gt;(function(resolve, reject) {
+
+                  var readerStream &#x3D; fs.createReadStream(file_path_zip);
+                  //readerStream.setEncoding(&#x27;UTF8&#x27;);
+    
+                  readerStream.on(&#x27;data&#x27;, function(chunk) {
+                    res.write(chunk)
+                  });
+
+                  readerStream.on(&#x27;end&#x27;,function(){
+                    resolve()
+                  });
+
+                  readerStream.on(&#x27;error&#x27;, function(err) {
+                    reject(err)
+                  });
+                }));
+
+                res.end()
+              }
+              fs.unlinkSync(file_path_zip);
+            }
+          }
+        } catch (ex) {
+          console.log(ex)
+          if (is_zip) {
+            if (res!&#x3D;null) res.end()
+          }
+        }
+
+        // If we don&#x27;t need the file anymore we could manually call the removeCallback
+        // But that is not necessary if we didn&#x27;t pass the keep option because the library
+        // will clean after itself.
+        tmpobj.removeCallback();
+      }
+    }
+    return datas;
+  }
+
+  checkDate(date) {
+    if (/(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/.test(date)) {
+    // &quot;2023-09-01T00:00:00.000Z&quot; - ISO Date
+    return true;
+    } else if(/^[+-]?([0-9]*[.])?[0-9]+([smhdwy]|mo)?$/.test(date)) {
+    // 1621726200, -5d
+    return true;
+    }
+    return false;
+  }
+
+  static putWhere(where, field_name, value) {
+    var w &#x3D; where[field_name];
+    if (Array.isArray(w)) {
+      if (typeof(value)&#x3D;&#x3D;&quot;string&quot;) {
+        w.push(value.trim())
+      }
+    } else if (typeof(w)&#x3D;&#x3D;&quot;string&quot;) {
+      where[field_name] &#x3D; [];
+      where[field_name].push(w);
+      where[field_name].push(value.trim());
+    } else {
+      if (typeof(value)&#x3D;&#x3D;&quot;string&quot;) {
+        where[field_name] &#x3D; value.trim();
+      }
+    }
+  }
+
+  async filterDevice(this_user:UserWithPermission, param) {
+
+    var sources:DeviceDataSource[] &#x3D; []
+
+    if (param?.organization_id&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;organization_id is needed&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    var organization &#x3D; await this.domainService.findOne(this_user, param.organization_id)
+    if (organization&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;organization(domain) not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+
+    var where &#x3D; null;
+    if (param.where!&#x3D;null) {
+      where &#x3D; JSON.parse(param.where)
+    }
+    if (where&#x3D;&#x3D;null) where &#x3D; {};
+
+    //if (params.device_output_name &#x3D;&#x3D; DeviceDataPredictionService.SOLAR_PREDICTION_MEASUREMENT_NAME) {}
+
+    var device_types &#x3D; null
+    var device_outputs &#x3D; []
+    var device_output_reserved_names &#x3D; []
+
+    if (param.device_output_name&#x3D;&#x3D;&#x27;*&#x27;) {
+      device_outputs &#x3D; []
+    } else if (param.device_output_name!&#x3D;null) {
+      var device_output_names &#x3D; param.device_output_name.split(&#x27;,&#x27;)
+      var device_output_other_names &#x3D; []
+      for (var name of device_output_names) {
+        if (name&#x3D;&#x3D;DeviceDataPredictionService.SOLAR_PREDICTION_MEASUREMENT_NAME || name&#x3D;&#x3D;&#x27;device_spec&#x27;) {
+          device_output_reserved_names.push(name)
+        } else {
+          device_output_other_names.push(name)
+        }
+      }
+      if (device_output_other_names.length&gt;0) {
+        device_outputs &#x3D; await this.deviceOutputService.findAll(this_user, {
+          where:{
+            device_output_name: In(device_output_other_names)
+          }
+        })
+      }
+    } else {
+      device_outputs &#x3D; await this.deviceOutputService.findAll(this_user)
+    }
+
+    if (param.device_type_name!&#x3D;null || param.device_type_category_name!&#x3D;null) {
+      device_types &#x3D; await this.deviceTypeService.findAll(this_user)
+      if (param.device_type_name!&#x3D;null) {
+        var device_type_names &#x3D; param.device_type_name.split(&#x27;,&#x27;)
+        device_types &#x3D; device_types.filter(x &#x3D;&gt; device_type_names.find(
+          x2 &#x3D;&gt; x2&#x3D;&#x3D;x.device_type_name
+        )!&#x3D;null)
+      }
+      if (param.device_type_category_name!&#x3D;null) {
+        var device_type_category_names &#x3D; param.device_type_category_name.split(&#x27;,&#x27;)
+        var device_type_categorys &#x3D; await this.deviceTypeCategoryService.findAll(this_user, {
+          where: {
+            device_type_category_name: In(device_type_category_names)
+          }
+        })
+        device_types &#x3D; device_types.filter(x &#x3D;&gt; device_type_categorys.find(
+          x2 &#x3D;&gt; x2.device_type_category_id&#x3D;&#x3D;x.device_type_category_id
+        )!&#x3D;null)
+      }
+      //for (var n&#x3D;device_outputs.length-1; n&gt;&#x3D;0; n--) {
+      //  if (device_types.find(x&#x3D;&gt;x.device_type_id&#x3D;&#x3D;device_outputs[n].device_type_id)&#x3D;&#x3D;null) {
+      //    device_outputs.splice(n, 1)
+      //  }
+      //}
+      device_outputs &#x3D; device_outputs.filter(x &#x3D;&gt; device_types.find(
+        x2 &#x3D;&gt; x2.device_type_id&#x3D;&#x3D;x.device_type_id
+      )!&#x3D;null)
+    }
+
+    var device_output_names2 &#x3D; device_outputs.map(x&#x3D;&gt;x.device_output_name)
+    device_output_names2 &#x3D; device_output_names2.concat(device_output_reserved_names)
+
+    if (device_output_names2.length&#x3D;&#x3D;0 &amp;&amp; param.device_output_name!&#x3D;&#x27;*&#x27;) {
+      return null;
+    }
+
+    if (!(
+      param.domain_id&#x3D;&#x3D;null &amp;&amp;
+      param.device_names&#x3D;&#x3D;null &amp;&amp;
+      param.place_names&#x3D;&#x3D;null &amp;&amp;
+      device_types&#x3D;&#x3D;null
+    )) {
+      var DEVICE_NAME_FIELD &#x3D; AppConfigService.DEVICE_NAME_FIELD;
+      var PLACE_NAME_FIELD &#x3D; AppConfigService.PLACE_NAME_FIELD;
+
+      var domain_id;
+      if (param.domain_id!&#x3D;null) {
+        domain_id &#x3D; param.domain_id
+        if (!await this.domainService.includeDomain(param.organization_id, domain_id)) {
+          throw new HttpException(&#x27;domain not in organization&#x27;, HttpStatus.BAD_REQUEST);
+        }
+      } else {
+        domain_id &#x3D; param.organization_id
+      }
+      let args &#x3D; {}
+      if (device_types!&#x3D;null) {
+        var device_type_ids &#x3D; device_types.map(x&#x3D;&gt;x.device_type_id)
+        args[&#x27;device_type_id&#x27;] &#x3D; In(device_type_ids)
+      }
+      if (param.device_names!&#x3D;null) {
+        var device_names &#x3D; param.device_names.split(&#x27;,&#x27;)
+        if (param.device_names!&#x3D;null) {
+          args[&#x27;device_name&#x27;] &#x3D; In(device_names)
+        }
+      }
+      if (param.place_names!&#x3D;null) {
+        var place_names &#x3D; param.place_names.split(&#x27;,&#x27;)
+        if (param.place_names!&#x3D;null) {
+          args[&#x27;place_name&#x27;] &#x3D; In(place_names)
+        }
+      }
+      var devices:Array&lt;Device&gt; &#x3D; await this.domainService.getAllDevices(this_user, this.deviceService, domain_id, args, 1000000);
+      if (devices.length&#x3D;&#x3D;0) return null;
+
+      if (param.place_names!&#x3D;null) {
+        var param_place_names &#x3D; param.place_names.split(&#x27;,&#x27;);
+        devices &#x3D; devices.filter(x &#x3D;&gt; param_place_names.find(
+          x2 &#x3D;&gt; x2&#x3D;&#x3D;x.place_name
+        )!&#x3D;null)
+      }
+      if (param.device_names!&#x3D;null) {
+        var param_device_names &#x3D; param.device_names.split(&#x27;,&#x27;);
+        devices &#x3D; devices.filter(x &#x3D;&gt; param_device_names.find(
+          x2 &#x3D;&gt; x2&#x3D;&#x3D;x.device_name
+        )!&#x3D;null)
+      }
+
+      for (var device of devices) {
+        if (param.place_names!&#x3D;null &amp;&amp; param_place_names.find(device.place_name)!&#x3D;null) {
+          DeviceDataService.putWhere(where, PLACE_NAME_FIELD, device.place_name)
+        } else {
+          DeviceDataService.putWhere(where, DEVICE_NAME_FIELD, device.device_name)
+        }
+      }
+
+      sources.push({
+        measurement: device_output_names2.join(&quot;,&quot;),
+        where: JSON.stringify(where),
+        fields: param.fields
+      })
+
+      var all_outputs &#x3D; await this.deviceOutputService.findAll(this_user)
+
+      var param_fields &#x3D; param?.fields?.split(&#x27;,&#x27;)
+      if (param_fields&#x3D;&#x3D;null) param_fields &#x3D; [];
+
+      for (var device of devices) {
+        if (device.external_devices!&#x3D;null &amp;&amp; device.external_devices!&#x3D;&#x27;&#x27;) {
+          var external_devices &#x3D; device.external_devices.split(&quot;,&quot;)
+          let w &#x3D; {}
+          for (var external_device of external_devices) {
+            DeviceDataService.putWhere(w, DEVICE_NAME_FIELD, external_device)
+          }
+          var outputs &#x3D; all_outputs.filter(x&#x3D;&gt;x.device_type_id&#x3D;&#x3D;device.device_type_id)
+          for (var output of outputs) {
+            try {
+              if (output.properties!&#x3D;null &amp;&amp; (&#x27;&#x27;+output.properties).trim()!&#x3D;&#x27;&#x27;) {
+                var properties &#x3D; JSON.parse(output.properties)
+                if (properties!&#x3D;null) {
+                  let measurements &#x3D; {}
+                  for (var property_fullname in properties) {
+                    var property &#x3D; properties[property_fullname]
+                    var external &#x3D; property.external
+                    if (external!&#x3D;null &amp;&amp; external.device_output_name!&#x3D;null &amp;&amp; external.field!&#x3D;null) {
+                      if (param_fields.indexOf(external.field)!&#x3D;-1) {
+                        if (!(external.device_output_name in measurements)) {
+                          measurements[external.device_output_name] &#x3D; []
+                        }
+                        measurements[external.device_output_name].push(external.field)
+                      }
+                    }
+                  }
+
+                  for (var measurement_name in measurements) {
+                    let fields &#x3D; measurements[measurement_name]
+                    let map &#x3D; {
+                      &quot;_measurement&quot;: &#x60;&quot;${output.device_output_name}&quot;&#x60;,
+                      &quot;DeviceName&quot;: &#x60;&quot;${device.device_name}&quot;&#x60;
+                    }
+                    sources.push({
+                      measurement: measurement_name,
+                      fields: fields.join(&#x27;,&#x27;),
+                      where: JSON.stringify(w),
+                      map: JSON.stringify(map)
+                    })
+                  }
+                }
+    
+              }
+            } catch (ex) {console.log(ex)}
+          }
+        }
+      }
+
+
+    }
+
+    return {
+      organization: organization,
+      device_output_names: device_output_names2.join(&quot;,&quot;),
+      where: where,
+      sources: sources
+    }
+
+  }
+
+  //async query(domainService:DomainService, deviceTypeService:DeviceTypeService, deviceService:DeviceService, deviceOutputService:DeviceOutputService, params) {
+  async query(this_user:UserWithPermission, param, res:Response&#x3D;null) {
+
+    var w &#x3D; await this.filterDevice(this_user, param)
+    if (w&#x3D;&#x3D;null) return [];
+    param.where &#x3D; JSON.stringify(w.where)
+
+    //var no_data &#x3D; await this.updateWhere(params)
+    //if (no_data) return [];
+
+    //var measurement_name &#x3D; (param.device_output_name!&#x3D;&#x27;*&#x27;)?w.device_output_names.join(&#x27;,&#x27;):null;
+
+    return await this.queryInfluxMultiSource(w.organization.domain_name, w.sources, param, res)
+    //return await this.queryInflux(w.organization.domain_name, measurement_name, params, res);
+  }
+
+  async queryInflux(bucket_name, measurement_name, param, res:Response&#x3D;null) {
+    var sources:Array&lt;DeviceDataSource&gt; &#x3D; []
+    sources.push({
+      measurement: measurement_name,
+      fields: param.fields
+    })
+    return await this.queryInfluxMultiSource(bucket_name, sources, param, res)
+  }
+  async queryInfluxMultiSource(bucket_name, sources:Array&lt;DeviceDataSource&gt;|string, param, res:Response&#x3D;null) {
+
+    function getTimeFunctionParamString() {
+      let kvs &#x3D; []
+      if (param.time_function_params!&#x3D;null &amp;&amp; (&#x27;&#x27;+param.time_function_params).trim()!&#x3D;&#x27;&#x27;) {
+        let time_function_params &#x3D; JSON.parse(param.time_function_params)
+        for (let param_name in time_function_params) {
+          let value &#x3D; time_function_params[param_name]
+          if (/[^0-9a-zA-Z\.]/.test(param_name)) {
+            throw new HttpException(&#x27;&quot;time_function_params&quot; is invalid.&#x27;, HttpStatus.BAD_REQUEST);
+          }
+          if (!(/[0-9a-zA-Z\.]+/.test(value) || /^\&quot;[0-9a-zA-Z\_\-\. ]*\&quot;$/.test(value))) {
+            throw new HttpException(&#x27;&quot;time_function_params&quot; is invalid.&#x27;, HttpStatus.BAD_REQUEST);
+          }
+          kvs.push(param_name + &#x27;:&#x27; + value)
+        }
+      }
+      return kvs.join(&#x27;,&#x27;)
+    }
+
+    var last_qname &#x3D; null
+
+    if (param&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;params is needed&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    var empty_result &#x3D; &#x27;&#x27;
+    //if (param.output_format&#x3D;&#x3D;&#x27;influx_query&#x27;) {}
+
+    //var config &#x3D; AppConfigService.getInfluxdbConfig();
+    var fluxQuery &#x3D; &#x27;&#x27;;
+
+    if (&#x27;&#x27;+param.import_join&#x3D;&#x3D;&#x27;true&#x27;) {
+      fluxQuery +&#x3D; &#x27;import &quot;join&quot;&#x27; + &#x27;\n&#x27;
+    }
+
+    if (param.timezone!&#x3D;null) {
+      if (/[^a-zA-Z0-9\/]/.test(param.timezone)) {
+        throw new HttpException(&#x27;&quot;timezone&quot; is invalid&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      if (&#x27;&#x27;+param.has_import!&#x3D;&#x27;false&#x27;) {
+        fluxQuery +&#x3D; &#x60;import &quot;timezone&quot;\n&#x60;;
+        fluxQuery +&#x3D; &#x60;option location &#x3D; timezone.location(name: &quot;${param.timezone}&quot;)\n&#x60;;
+      }
+    }
+
+    if (param.start&#x3D;&#x3D;null) param.start&#x3D;&#x27;-2d&#x27;;
+
+    if (!this.checkDate(param.start)) {
+      throw new HttpException(&#x27;&quot;start&quot; is invalid. ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-10s&quot;, &quot;-30m&quot;, &quot;-6h&quot;, &quot;-7d&quot;, &quot;-1mo&quot;, &quot;-1y&quot;&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    var is_difference &#x3D; (param.difference&#x3D;&#x3D;&#x27;1&#x27; || param.difference&#x3D;&#x3D;&#x27;true&#x27;)
+    var is_pivot_columns &#x3D; param.pivot_columns!&#x3D;null &amp;&amp; (&#x27;&#x27;+param.pivot_columns).trim()!&#x3D;&#x27;&#x27;
+
+    if (typeof sources&#x3D;&#x3D;&quot;string&quot;) {
+      fluxQuery +&#x3D; sources
+    } else {
+      var qnames &#x3D; []
+      for (var source_index&#x3D;0; source_index&lt;sources.length; source_index++) {
+        var source &#x3D; sources[source_index]
+
+        var qname &#x3D; &#x27;q&#x27; + Util.createRandomID()
+        last_qname &#x3D; qname
+        qnames.push(qname)
+
+        fluxQuery +&#x3D; &quot;\n&quot; + &#x60;${qname}&#x3D;from(bucket: &quot;${bucket_name}&quot;)&#x60;
+        if (param.stop!&#x3D;null) {
+          if (!this.checkDate(param.stop)) {
+            throw new HttpException(&#x27;&quot;stop&quot; is invalid. ex: &quot;2023-09-01T00:00:00.000Z&quot;, &quot;1621726200&quot;, &quot;-5d&quot;&#x27;, HttpStatus.BAD_REQUEST);
+          }
+          fluxQuery +&#x3D; &#x60;|&gt; range(start: ${param.start}, stop: ${param.stop})&#x60;
+        } else {
+          fluxQuery +&#x3D; &#x60;|&gt; range(start: ${param.start})&#x60;
+        }
+
+        var measurement_name &#x3D; source.measurement
+        if (measurement_name!&#x3D;null &amp;&amp; measurement_name.trim()!&#x3D;&#x27;&#x27;) {
+          if (!/^[0-9a-zA-Z_,]+$/.test(measurement_name)) {
+            throw new HttpException(&#x27;&quot;measurement_name&quot; is invalid.&#x27;, HttpStatus.BAD_REQUEST);
+          }
+          var measurement_name_arr &#x3D; measurement_name.split(&#x27;,&#x27;);
+          var measurement_name_query &#x3D; &#x27;&#x27;;
+          for (var n&#x3D;0; n&lt;measurement_name_arr.length; n++) {
+            var mname &#x3D; measurement_name_arr[n];
+            if (n!&#x3D;0) measurement_name_query +&#x3D; &#x27; or &#x27;
+            measurement_name_query +&#x3D; &#x27;r[&quot;_measurement&quot;]&#x3D;&#x3D;&quot;&#x27;+mname+&#x27;&quot;&#x27;
+          }
+          fluxQuery +&#x3D; &#x60;|&gt; filter(fn: (r) &#x3D;&gt; ${measurement_name_query})&#x60;
+          //fluxQuery +&#x3D; &#x60;|&gt; filter(fn: (r) &#x3D;&gt; r._measurement&#x3D;&#x3D;&quot;${measurement_name}&quot;)&#x60;
+        }
+
+        var fields &#x3D; source.fields
+        if (fields!&#x3D;null &amp;&amp; !/^(\w+(:\w+)*,)*\w+(:\w+)*$/.test(&#x27;&#x27;+fields)) {
+          throw new HttpException(&#x27;&quot;fields&quot; is invalid. ex: &quot;field1,field2,field3&quot;&#x27;, HttpStatus.BAD_REQUEST);
+        }
+
+        if (fields!&#x3D;null) {
+          var fields_arr &#x3D; fields.split(&#x27;,&#x27;);
+          var fields_query &#x3D; &#x27;&#x27;;
+          var renames &#x3D; []
+          for (var n&#x3D;0; n&lt;fields_arr.length; n++) {
+            var field &#x3D; fields_arr[n];
+            var old_new &#x3D; field.split(&#x27;:&#x27;)
+            if (old_new.length&#x3D;&#x3D;2) {
+              renames.push({
+                old_field: old_new[0],
+                new_field: old_new[1]
+              })
+            }
+            var old_field &#x3D; old_new[0]
+            if (n!&#x3D;0) fields_query +&#x3D; &#x27; or &#x27;
+            fields_query +&#x3D; &#x27;r[&quot;_field&quot;] &#x3D;&#x3D; &quot;&#x27;+old_field+&#x27;&quot;&#x27;
+          }
+          fluxQuery +&#x3D; &#x27;|&gt; filter(fn: (r) &#x3D;&gt; &#x27; + fields_query + &#x27;)&#x27;
+          for (let rename of renames) {
+            fluxQuery +&#x3D; &#x60;|&gt; map(fn: (r) &#x3D;&gt; ({r with _field: if r._field&#x3D;&#x3D;&quot;${rename.old_field}&quot; then &quot;${rename.new_field}&quot; else r._field}))&#x60;
+          }
+        }
+
+        var where_query &#x3D; &#x27;&#x27;
+        if (source.where!&#x3D;null &amp;&amp; (&#x27;&#x27;+source.where).length&gt;0) {
+          var where &#x3D; JSON.parse(source.where);
+          for (var name in where) {
+            var value &#x3D; where[name];
+            var name2 &#x3D; name.trim().replace(/\\/g, &quot;\\\\&quot;)
+            name2 &#x3D; name2.replace(/\&quot;/g, &quot;\\\&quot;&quot;)
+            if (name2&#x3D;&#x3D;&#x27;&#x27;) continue;
+            if (Array.isArray(value)) {
+              // |&gt; filter(fn: (r) &#x3D;&gt; r[&quot;device_name&quot;] &#x3D;&#x3D; &quot;3096&quot; or r[&quot;device_name&quot;] &#x3D;&#x3D; &quot;3290&quot;)
+              var cond_ors &#x3D; [];
+              for (var v of value) {
+                if (typeof(v)!&#x3D;&#x27;string&#x27;) continue;
+                var v2 &#x3D; v.replace(/\\/g, &quot;\\\\&quot;)
+                v2 &#x3D; v2.replace(/\&quot;/g, &quot;\\\&quot;&quot;)
+                cond_ors.push(&#x27;r[&quot;&#x27;+name2+&#x27;&quot;] &#x3D;&#x3D; &quot;&#x27;+v2+&#x27;&quot;&#x27;)
+              }
+              if (cond_ors.length&gt;0) {
+                where_query +&#x3D; &#x27;|&gt; filter(fn: (r) &#x3D;&gt; &#x27; + cond_ors.join(&#x27; or &#x27;) + &#x27;)&#x27;
+              }
+            } else if (typeof(value)&#x3D;&#x3D;&#x27;string&#x27;) {
+              var value2 &#x3D; value.replace(/\\/g, &quot;\\\\&quot;)
+              value2 &#x3D; value2.replace(/\&quot;/g, &quot;\\\&quot;&quot;)
+              var w &#x3D; &#x27;r[&quot;&#x27;+name2+&#x27;&quot;] &#x3D;&#x3D; &quot;&#x27;+value2+&#x27;&quot;&#x27;
+              where_query +&#x3D; &#x27;|&gt; filter(fn: (r) &#x3D;&gt; &#x27; + w + &#x27;)&#x27;
+            } else if (typeof(value)&#x3D;&#x3D;&#x27;number&#x27;) {
+              var w &#x3D; &#x27;r[&quot;&#x27;+name2+&#x27;&quot;] &#x3D;&#x3D; &quot;&#x27;+value+&#x27;&quot;&#x27;
+              where_query +&#x3D; &#x27;|&gt; filter(fn: (r) &#x3D;&gt; &#x27; + w + &#x27;)&#x27;
+            }
+          }
+        }
+        fluxQuery +&#x3D; where_query
+
+        if (source.map!&#x3D;null &amp;&amp; (&#x27;&#x27;+source.map).length&gt;0) {
+          try {
+            let map &#x3D; JSON.parse(source.map)
+            let kvs &#x3D; []
+            for (let tag_name in map) {
+              var tag_value &#x3D; map[tag_name]
+              if (! (/[a-zA-Z0-9_]+/.test(tag_name))) {
+                throw new HttpException(&#x27;&quot;map&quot; is invalid&#x27;, HttpStatus.BAD_REQUEST);
+              }
+              if (!(/[A-Za-z0-9\_\+\-\*\/\.\(\) ]+/.test(tag_value))) {
+                throw new HttpException(&#x27;&quot;map&quot; is invalid&#x27;, HttpStatus.BAD_REQUEST);
+              }
+              if (!Util.checkParenthesesBalance(tag_value)) {
+                throw new HttpException(&#x27;map.value is invalid. Asymmetrical brackets.&#x27;, HttpStatus.BAD_REQUEST);
+              }
+
+              kvs.push(&#x60;${tag_name}:${tag_value}&#x60;)
+            }
+            //fluxQuery +&#x3D; &#x60;|&gt; map(fn: (r) &#x3D;&gt; ({r with _measurement: &quot;xxx&quot;, DeviceName: &quot;zzz&quot;}))&#x60;
+            if (kvs.length&gt;0) fluxQuery +&#x3D; &#x60;|&gt; map(fn: (r) &#x3D;&gt; ({r with ${kvs.join(&#x27;,&#x27;)}}))&#x60;
+          } catch (ex) {
+            throw new HttpException(&#x27;&quot;map&quot; is invalid. &#x27; + ex, HttpStatus.BAD_REQUEST);
+          }
+        }
+
+      }
+
+      if (qnames.length&#x3D;&#x3D;0) {
+        return empty_result
+      } else if (qnames.length&#x3D;&#x3D;1) {
+        //fluxQuery +&#x3D; &quot;\n&quot; + qnames[0]
+      } else {
+        last_qname &#x3D; &#x27;q&#x27; + Util.createRandomID()
+        fluxQuery +&#x3D; &quot;\n&quot; + last_qname + &#x60;&#x3D;union(tables:[${qnames.join(&quot;,&quot;)}])&#x60;
+      }
+    }
+
+    //fluxQuery +&#x3D; &quot;\n&quot; + &#x60;${qname}&#x3D;from(bucket: &quot;${bucket_name}&quot;)&#x60;
+
+    if(param.group_by!&#x3D;null &amp;&amp; /[^!a-zA-Z0-9 _,]/.test(param.group_by)) {
+      throw new HttpException(&#x27;&quot;group_by&quot; is invalid.&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    var group_by_last &#x3D; &#x27;&#x27;;
+    if (param.group_by!&#x3D;null) {
+      let group_by_arr &#x3D; param.group_by.split(&#x27;,&#x27;);
+      let group_by_first_arr &#x3D; [];
+      let group_by_last_arr &#x3D; [];
+      for (var g of group_by_arr) {
+        if (g.trim()!&#x3D;&#x27;&#x27;) {
+          if (g.charAt(0)&#x3D;&#x3D;&#x27;!&#x27;) {
+            group_by_first_arr.push(&#x27;&quot;&#x27; + g.substring(1,g.length) + &#x27;&quot;&#x27;);
+          } else {
+            group_by_first_arr.push(&#x27;&quot;&#x27; + g + &#x27;&quot;&#x27;);
+            group_by_last_arr.push(&#x27;&quot;&#x27; + g + &#x27;&quot;&#x27;);
+          }
+        }
+      }
+      let group_by_first &#x3D; group_by_first_arr.join(&#x27;,&#x27;)
+      group_by_last &#x3D; group_by_last_arr.join(&#x27;,&#x27;)
+      fluxQuery +&#x3D; &#x60;|&gt; group(columns: [${group_by_first}])&#x60;
+      fluxQuery +&#x3D; &#x27;|&gt; sort(columns: [&quot;_time&quot;])&#x27;
+    }
+
+    if ((param.differenceNonNegativeSource&#x3D;&#x3D;&#x27;1&#x27; || param.differenceNonNegativeSource&#x3D;&#x3D;&#x27;true&#x27;)) {
+      fluxQuery +&#x3D; &#x27;|&gt; difference(nonNegative: true)&#x27;
+    }
+
+    var funcs &#x3D; [&#x27;first&#x27;, &#x27;last&#x27;, &#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;, &#x27;spread&#x27;, &#x27;integral&#x27;];
+    if (param.every!&#x3D;null) {
+      //if (params.group_by!&#x3D;null) {
+      //  fluxQuery +&#x3D; &#x60;|&gt; group(columns: [${group_by_new}])&#x60;
+      //}
+
+      var tfps &#x3D; getTimeFunctionParamString()
+      
+      if(!/^([0-9]*[.])?[0-9]+([smhdw]|mo)$/.test(param.every)) {
+        throw new HttpException(&#x27;&quot;every&quot; is invalid. ex: &quot;10s&quot;, &quot;1m&quot;, &quot;2h&quot;, &quot;1d&quot;, &quot;1w&quot;, &quot;1mo&quot;, &quot;1y&quot;&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      if (funcs&#x3D;&#x3D;null) {
+        throw new HttpException(&#x27;&quot;time_function&quot; is needed when params.every is set&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      if (funcs.indexOf(param.time_function)&#x3D;&#x3D;-1) {
+        throw new HttpException(&#x27;&quot;time_function&quot; is invalid. ex: &#x27; + funcs.join(&#x27;,&#x27;), HttpStatus.BAD_REQUEST);
+      }
+      var createEmpty &#x3D; (param.create_empty&#x3D;&#x3D;&#x27;1&#x27; || param.create_empty&#x3D;&#x3D;&#x27;true&#x27;)
+      if (param.time_src!&#x3D;null) {
+        if (!(param.time_src&#x3D;&#x3D;&#x27;_start&#x27; || param.time_src&#x3D;&#x3D;&#x27;_stop&#x27;)) {
+          throw new HttpException(&#x27;&quot;time_src&quot; is invalid. ex: one of [&quot;_start&quot;, &quot;_stop&quot;]&#x27;, HttpStatus.BAD_REQUEST);
+        }
+      }
+
+      var fnString &#x3D; &#x27;&#x27;
+      var timeSrcString &#x3D; &#x27;&#x27;
+      var locationString &#x3D; &#x27;&#x27;
+
+      if (param.timezone!&#x3D;null) {
+        locationString &#x3D; &#x27;, location:location&#x27;
+      }
+      if (param.time_src!&#x3D;null) {
+        timeSrcString &#x3D; &#x60;, timeSrc:&quot;${param.time_src}&quot;&#x60;
+      }
+      if (tfps&#x3D;&#x3D;&#x27;&#x27;) {
+        fnString &#x3D; &#x60;, fn:${param.time_function}&#x60;
+      } else {
+        fnString &#x3D; &#x60;, fn:(column, tables&#x3D;&lt;-) &#x3D;&gt; tables |&gt; ${param.time_function}(${tfps})&#x60;
+      }
+      fluxQuery +&#x3D; &#x60;|&gt; aggregateWindow(every:${param.every}, createEmpty:${createEmpty}${fnString}${timeSrcString}${locationString})&#x60;
+
+      /*
+      if (param.timezone!&#x3D;null) {
+        if (param.time_src!&#x3D;null) {
+          fluxQuery +&#x3D; &#x60;|&gt; aggregateWindow(every: ${param.every}, fn: ${param.time_function}, createEmpty: ${createEmpty}, timeSrc: &quot;${param.time_src}&quot;, location: location)&#x60;
+        } else {
+          fluxQuery +&#x3D; &#x60;|&gt; aggregateWindow(every: ${param.every}, fn: ${param.time_function}, createEmpty: ${createEmpty}, location: location)&#x60;
+        }
+      } else {
+        if (param.time_src!&#x3D;null) {
+          fluxQuery +&#x3D; &#x60;|&gt; aggregateWindow(every: ${param.every}, fn: ${param.time_function}, createEmpty: ${createEmpty}, timeSrc: &quot;${param.time_src}&quot;)&#x60;
+        } else {
+          fluxQuery +&#x3D; &#x60;|&gt; aggregateWindow(every: ${param.every}, fn: ${param.time_function}, createEmpty: ${createEmpty})&#x60;
+        }
+      }
+      */
+      if (is_difference) {
+        fluxQuery +&#x3D; &#x60;|&gt; difference()&#x60;
+      }
+    } else {
+      //if (params.group_by!&#x3D;null) {
+      //  fluxQuery +&#x3D; &#x60;|&gt; group(columns: [${group_by_new}])&#x60;
+      //}
+      if (param.time_function!&#x3D;null) {
+        if (funcs.indexOf(param.time_function)&#x3D;&#x3D;-1) {
+          throw new HttpException(&#x27;&quot;time_function&quot; is invalid. ex: &#x27; + funcs.join(&#x27;,&#x27;), HttpStatus.BAD_REQUEST);
+        }
+        var tfps &#x3D; getTimeFunctionParamString()
+        fluxQuery +&#x3D; &#x60;|&gt; ${param.time_function}(${tfps})&#x60;
+      }
+    }
+
+    if (param.group_function!&#x3D;null) {
+      if (param.every!&#x3D;null) {
+        if (param.group_by!&#x3D;null &amp;&amp; group_by_last!&#x3D;null &amp;&amp; group_by_last.trim()!&#x3D;&#x27;&#x27;) {
+          fluxQuery +&#x3D; &#x60;|&gt; group(columns: [&quot;_time&quot;,${group_by_last}])&#x60;;
+        } else {
+          fluxQuery +&#x3D; &#x60;|&gt; group(columns: [&quot;_time&quot;])&#x60;;
+        }
+      } else {
+        if (param.group_by!&#x3D;null) {
+          fluxQuery +&#x3D; &#x60;|&gt; group(columns: [${group_by_last}])&#x60;
+        } else {
+          fluxQuery +&#x3D; &#x60;|&gt; group()&#x60;;
+        }
+      }
+      var funcs &#x3D; [&#x27;min&#x27;, &#x27;max&#x27;, &#x27;mean&#x27;, &#x27;median&#x27;, &#x27;count&#x27;, &#x27;sum&#x27;];
+      if (funcs.indexOf(param.group_function)&#x3D;&#x3D;-1) {
+        throw new HttpException(&#x27;&quot;group_function&quot; is invalid. ex: &#x27; + funcs.join(&#x27;,&#x27;), HttpStatus.BAD_REQUEST);
+      }
+      fluxQuery +&#x3D; &#x60;|&gt; ${param.group_function}()&#x60;;
+    }
+    if (param.every!&#x3D;null) {
+      if (param.group_by!&#x3D;null) {
+        fluxQuery +&#x3D; &#x60;|&gt; group(columns: [${group_by_last}])&#x60;
+      } else {
+        fluxQuery +&#x3D; &#x60;|&gt; group()&#x60;;
+      }
+    }
+
+    if (is_pivot_columns) {
+      if (param.every&#x3D;&#x3D;null) {
+        fluxQuery +&#x3D; &#x60;|&gt; map(fn: (r) &#x3D;&gt; ({r with _time: now()}))&#x60;
+      }
+      var pivot_columns_arr &#x3D; (&#x27;&#x27;+param.pivot_columns).split(&#x27;,&#x27;)
+      var pivot_columns &#x3D; [];
+      for (var column of pivot_columns_arr) {
+        if (/^[0-9a-zA-Z_]+$/.test(column)) {
+          pivot_columns.push(&#x27;&quot;&#x27; + column + &#x27;&quot;&#x27;)
+        }
+      }
+      if (pivot_columns.length&gt;0) {
+        fluxQuery +&#x3D; &#x60;|&gt; pivot(rowKey: [&quot;_time&quot;], columnKey: [${pivot_columns.join(&#x27;,&#x27;)}], valueColumn: &quot;_value&quot;)&#x60;;
+      }
+    }
+
+    if (param.maps!&#x3D;null) {
+      var maps &#x3D; JSON.parse(param.maps)
+      if (!Array.isArray(maps)) {
+        throw new HttpException(&#x27;&quot;maps&quot; must be Array&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      for (var map of maps) {
+        if (!(/[A-Za-z0-9\_]+/.test(map.field))) {
+          throw new HttpException(&#x27;map.field is invalid.&#x27;, HttpStatus.BAD_REQUEST);
+        }
+        if (!(/[A-Za-z0-9\_\+\-\*\/\.\(\) ]+/.test(map.value))) {
+          throw new HttpException(&#x27;map.value is invalid.&#x27;, HttpStatus.BAD_REQUEST);
+        }
+        if (!Util.checkParenthesesBalance(map.value)) {
+          throw new HttpException(&#x27;map.value is invalid. Asymmetrical brackets.&#x27;, HttpStatus.BAD_REQUEST);
+        }
+        fluxQuery +&#x3D; &#x60;|&gt; map(fn: (r) &#x3D;&gt; ({r with ${map.field}: ${map.value}}))&#x60;
+      }
+    }
+
+    if (param.sort_columns!&#x3D;null &amp;&amp; (&#x27;&#x27;+param.sort_columns).trim()!&#x3D;&#x27;&#x27;) {
+      //&#x27;|&gt; sort(columns: [&quot;_time&quot;], desc: false)&#x27;
+      var desc &#x3D; (param.sort_desc&#x3D;&#x3D;&#x27;1&#x27; || param.sort_desc&#x3D;&#x3D;&#x27;true&#x27;)
+    }
+
+    var is_zip &#x3D; (param.output_zip&#x3D;&#x3D;&#x27;1&#x27; || param.output_zip&#x3D;&#x3D;&#x27;true&#x27;);
+    var limit &#x3D; parseInt(param.limit);
+    if (is_zip) {
+      if (isNaN(limit)) limit &#x3D; null;
+    } else {
+      if (isNaN(limit)) limit &#x3D; 2000;
+      if (limit&gt;10000) limit&#x3D;10000;
+    }
+
+    if (limit!&#x3D;null &amp;&amp; !isNaN(limit)) {
+      if (&#x27;&#x27;+param.has_limit!&#x3D;&#x27;false&#x27;) {
+        fluxQuery +&#x3D; &#x60;|&gt; limit(n: ${limit})&#x60;
+      }
+    }
+
+    if (!(&#x27;&#x27;+param.no_output&#x3D;&#x3D;&#x27;true&#x27;)) {
+      if (last_qname!&#x3D;null) {
+        fluxQuery +&#x3D; &#x27;\n&#x27; + last_qname + &#x27;\n&#x27;
+      }
+    }
+
+    console.log(fluxQuery.replaceAll(&#x27;|&gt;&#x27;, &#x27;\n|&gt;&#x27;));
+
+
+    /*
+    fluxQuery &#x3D; &#x60;
+from(bucket: &quot;aegis&quot;)
+  |&gt; range(start: 2024-02-23T16:00:00Z, stop: 2024-03-10T16:00:00Z)
+  |&gt; filter(fn: (r) &#x3D;&gt; r[&quot;_measurement&quot;] &#x3D;&#x3D; &quot;pomcube&quot;)
+  |&gt; pivot(rowKey: [&quot;_time&quot;], columnKey: [&quot;_field&quot;], valueColumn: &quot;_value&quot;)
+&#x60;
+  */
+
+    if (param.output_format&#x3D;&#x3D;&#x27;influx_query&#x27;) {
+      return {
+        flux: fluxQuery,
+        last_qname
+      }
+    }
+
+    if (param.debug&#x3D;&#x3D;&#x27;1&#x27; || param.debug&#x3D;&#x3D;&#x27;true&#x27;) {
+      return {
+        params: param,
+        flux: fluxQuery
+      }
+    }
+    //return fluxQuery.replaceAll(&#x27;|&gt;&#x27;, &#x27;&lt;br&gt;|&gt;&#x27;);
+
+    var datas:any &#x3D; await this.queryByFlux(fluxQuery, param, res, bucket_name, measurement_name);
+
+
+
+    return datas;
+  }
+
+  async getPR(this_user:UserWithPermission, params) {
+
+    /*
+    var has_domain_id &#x3D; (params.domain_id!&#x3D;null &amp;&amp; (&#x27;&#x27;+params.domain_id).trim()!&#x3D;&#x27;&#x27;)
+    var has_device_names &#x3D; (params.device_names!&#x3D;null &amp;&amp; (&#x27;&#x27;+params.device_names).trim()!&#x3D;&#x27;&#x27;)
+    var has_place_names &#x3D; (params.place_names!&#x3D;null &amp;&amp; (&#x27;&#x27;+params.place_names).trim()!&#x3D;&#x27;&#x27;)
+
+    var organization_id &#x3D; parseInt(params.organization_id)
+    if (isNaN(organization_id)) {
+      throw new HttpException(&#x27;organization_id is invalid&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    var organization &#x3D; await this.domainService.findOne(organization_id)
+    if (organization&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;organization not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+    var organization_name &#x3D; organization.domain_name
+
+    if (has_domain_id &amp;&amp; !(await this.domainService.includeDomain(organization_id, params.domain_id))) {
+      throw new HttpException(&#x27;domain not in organization&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    
+    var device_query_args &#x3D; {}
+    if (params.device_type_name!&#x3D;null) {
+      var device_type &#x3D; await this.deviceTypeService.findAll({
+        where:{
+          device_type_name: params.device_type_name
+        }
+      })
+      if (device_type.length&#x3D;&#x3D;0) {
+        throw new HttpException(&#x27;device_type not found&#x27;, HttpStatus.NOT_FOUND);
+      }
+      device_query_args[&quot;device_type_id&quot;] &#x3D; device_type[0].device_type_id
+    }
+    var devices &#x3D; []
+    if (has_domain_id) {
+      var domain_id2 &#x3D; parseInt(params.domain_id)
+      if (isNaN(domain_id2)) {
+        throw new HttpException(&#x27;domain_id is invalid&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      devices &#x3D; await this.domainService.getAllDevices(this.deviceService, domain_id2, device_query_args, 1000000)
+    } else {
+      devices &#x3D; await this.domainService.getAllDevices(this.deviceService, organization_id, device_query_args, 1000000)
+    }
+
+    if (has_device_names) {
+      var device_names_arr &#x3D; params.device_names.split(&#x27;,&#x27;)
+      for (var n&#x3D;devices.length-1; n&gt;&#x3D;0; n--) {
+        var device &#x3D; devices[n]
+        if (device_names_arr.find(x&#x3D;&gt;x&#x3D;&#x3D;device.device_name)&#x3D;&#x3D;null) {
+          devices.splice(n,1)
+        }
+      }
+    }
+
+    if (has_place_names) {
+      var place_names_arr &#x3D; params.place_names.split(&#x27;,&#x27;)
+      for (var n&#x3D;devices.length-1; n&gt;&#x3D;0; n--) {
+        var device &#x3D; devices[n]
+        if (place_names_arr.find(x&#x3D;&gt;x&#x3D;&#x3D;device.place_name)&#x3D;&#x3D;null) {
+          devices.splice(n,1)
+        }
+      }
+    }
+
+    var where &#x3D; null;
+    if (params.where!&#x3D;null) {
+      where &#x3D; JSON.parse(params.where)
+    }
+    if (where&#x3D;&#x3D;null) where &#x3D; {};
+
+    var DEVICE_NAME_FIELD &#x3D; AppConfigService.DEVICE_NAME_FIELD;
+    var PLACE_NAME_FIELD &#x3D; AppConfigService.PLACE_NAME_FIELD;
+
+    if (has_domain_id || has_device_names || has_place_names) {
+      for (var device of devices) {
+        DeviceDataService.putWhere(where, DEVICE_NAME_FIELD, device.device_name)
+      }
+    }
+    */
+
+    if (params.every&#x3D;&#x3D;null) params.every &#x3D; &#x27;1d&#x27;;
+
+    var params_base &#x3D; {
+      organization_id: params.organization_id,
+      domain_id: params.domain_id,
+      device_type_category_name: params.device_type_category_name,
+      device_type_name: params.device_type_name,
+      where: params.where,
+      timezone: params.timezone,
+      start: params.start,
+      stop: params.stop,
+      every: params.every,
+      time_src: params.time_src,
+      group_by: &#x27;!DeviceName,_field&#x27;,
+      create_empty: true,
+      pivot_columns: &#x27;_field&#x27;
+    }
+
+    /*
+    var w &#x3D; await this.filterDevice(params_base)
+    if (w&#x3D;&#x3D;null) return []
+    var organization_name &#x3D; w.organization.domain_name
+    params_base.where &#x3D; JSON.stringify(w.where)
+    */
+
+    /*
+    var device_output_name &#x3D; params.device_output_name
+    if (device_output_name&#x3D;&#x3D;null) {
+      var device_outputs &#x3D; await this.deviceOutputService.findAll()
+      if (device_outputs.length&#x3D;&#x3D;0) {
+        return []
+      }
+      device_output_name &#x3D; device_outputs.map(x&#x3D;&gt;x.device_output_name).join(&#x27;,&#x27;)
+    }
+    */
+
+    var params_energy &#x3D; Object.assign({
+      device_output_name: &#x27;hermes_pv_inverter_data&#x27;, //w.device_output_names,
+      //fields: &#x27;LoadEnergy,SolarEnergy,GridEnergy&#x27;,
+      fields: &#x27;SolarEnergy&#x27;,
+      differenceNonNegativeSource: &#x27;true&#x27;,
+      time_function: &#x27;sum&#x27;,
+      group_function: &#x27;sum&#x27;
+    }, params_base)
+
+
+    var params_irradiance &#x3D; Object.assign({
+      device_output_name: &#x27;hermes_pv_inverter_data&#x27;, //w.device_output_names,
+      fields: &#x27;Irradiance&#x27;,
+      time_function: &#x27;integral&#x27;,
+      group_function: &#x27;sum&#x27;
+    }, params_base)
+
+
+    /*
+    var params_solar_prediction &#x3D; Object.assign({
+      device_output_name: &#x27;solar_prediction&#x27;,
+      fields: &#x27;SolarPower&#x27;,
+      time_function: &#x27;sum&#x27;,
+      group_function: &#x27;sum&#x27;
+    }, params_base)
+    */
+
+    var params_device_spec &#x3D; Object.assign({
+      device_output_name: &#x27;device_spec&#x27;,
+      fields: &#x27;SolarCapacity&#x27;,
+      time_function: &#x27;first&#x27;,
+      group_function: &#x27;sum&#x27;
+    }, params_base)
+
+
+    //var table_solar_prediction &#x3D; await this.queryInflux(organization_name, params_solar_prediction.device_output_name, params_solar_prediction, null);
+  //  var table_energy &#x3D; await this.queryInflux(organization_name, params_energy.device_output_name, params_energy, null);
+  //  var table_irradiance &#x3D; await this.queryInflux(organization_name, params_irradiance.device_output_name, params_irradiance, null);
+  //  var table_device_spec &#x3D; await this.queryInflux(organization_name, params_device_spec.device_output_name, params_device_spec, null);
+
+    var table_energy &#x3D; await this.query(this_user, params_energy);
+    var table_irradiance &#x3D; await this.query(this_user, params_irradiance);
+    var table_device_spec &#x3D; await this.query(this_user, params_device_spec);
+
+    var now &#x3D; Date.now()
+    for (var irr of table_irradiance) {
+      if ((new Date(irr._time)).getTime()&gt;now &amp;&amp; irr.Irradiance&#x3D;&#x3D;0) irr.Irradiance&#x3D;null;
+    }
+
+    /*
+    var every &#x3D; params.every
+    var every_num &#x3D; parseInt(every)
+    var is_every_mo &#x3D; false
+    var every_sec &#x3D; 60*60
+    if (every.substring(every.length-2, every.length)&#x3D;&#x3D;&#x27;mo&#x27;) {
+      is_every_mo &#x3D; true
+    } else if (every.substring(every.length-1, every.length)&#x3D;&#x3D;&#x27;d&#x27;) {
+      every_sec &#x3D; 60 * 60 * 24 * every_num
+    } else if (every.substring(every.length-1, every.length)&#x3D;&#x3D;&#x27;h&#x27;) {
+      every_sec &#x3D; 60 * 60 * every_num
+    } else if (every.substring(every.length-1, every.length)&#x3D;&#x3D;&#x27;m&#x27;) {
+      every_sec &#x3D; 60 * every_num
+    } else if (every.substring(every.length-1, every.length)&#x3D;&#x3D;&#x27;s&#x27;) {
+      every_sec &#x3D; every_num
+    }
+    */
+
+    var timezone &#x3D; params.timezone
+    if (timezone&#x3D;&#x3D;null) {
+      timezone &#x3D; &#x27;Asia/Taipei&#x27;
+    }
+
+    var rets &#x3D; []
+    var size &#x3D; table_energy.length
+    for (var n&#x3D;0; n&lt;size; n++) {
+      /*
+      if (is_every_mo) {
+        var m &#x3D; moment.tz(table_energy[n]._time, timezone);
+        m.subtract(1, &#x27;months&#x27;)
+        every_sec &#x3D; 60 * 60 * 24 * m.daysInMonth() * every_num
+      }
+      */
+      var ret &#x3D; {
+        _time: table_energy[n]?._time,
+        SolarEnergy: table_energy[n]?.SolarEnergy,
+        SolarCapacity: table_device_spec[n]?.SolarCapacity, // 100
+        Irradiance: (table_irradiance[n]?.Irradiance&#x3D;&#x3D;null) ? undefined : table_irradiance[n]?.Irradiance / 60 / 60,  // 35000000
+        PR: undefined
+      }
+      if (
+        ret.SolarEnergy !&#x3D; null &amp;&amp;
+        ret.SolarCapacity !&#x3D; null &amp;&amp;
+        ret.Irradiance !&#x3D; null
+      ) {
+        var production_yield &#x3D; ret.SolarEnergy / ret.SolarCapacity
+        var irradiation_yield &#x3D; ret.Irradiance / 1000
+        ret.PR &#x3D; production_yield / irradiation_yield * 100
+      }
+      rets.push(ret)
+    }
+
+    return rets;
+
+  }
+
+
+  // 解析代码并生成 AST
+  static addVarPrefix(inputCode, prefix&#x3D;&#x27;&#x27;) {
+    // 使用 acorn 解析代码为抽象语法树
+    const ast &#x3D; acorn.parse(inputCode, { ecmaVersion: &#x27;latest&#x27; });
+
+    // 遍历 AST，修改所有的变量名
+    function transformNode(node) {
+      if (node.type &#x3D;&#x3D;&#x3D; &#x27;Identifier&#x27;) {
+        // 如果是变量名，修改其值
+        node.name &#x3D; prefix + node.name;
+      } else if (node.type &#x3D;&#x3D;&#x3D; &#x27;Literal&#x27; &amp;&amp; typeof node.value &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp; Number.isInteger(node.value)) {
+        // 如果是整数常量，加上 &quot;.0&quot;
+        node.value &#x3D; node.value + 0.0;
+      }
+    }
+
+    // 深度遍历 AST，并修改节点
+    function traverseAst(node) {
+      transformNode(node);
+
+      // 对所有子节点递归进行相同的操作
+      for (const key in node) {
+        if (node[key] &amp;&amp; typeof node[key] &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+          Array.isArray(node[key])
+            ? node[key].forEach(traverseAst)
+            : traverseAst(node[key]);
+        }
+      }
+    }
+
+    // 开始遍历 AST
+    traverseAst(ast);
+
+    // 使用 escodegen 将修改后的 AST 转回代码
+    var transformedCode &#x3D; escodegen.generate(ast);
+    if (transformedCode.charAt(transformedCode.length-1)&#x3D;&#x3D;&#x27;;&#x27;) {
+      transformedCode &#x3D; transformedCode.substring(0, transformedCode.length-1)
+    }
+    return transformedCode;
+  }
+
+  async queryDomain(this_user:UserWithPermission, param, res&#x3D;null) {
+    if (param&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;param is needed&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    param.pivot_columns &#x3D; &#x27;_field&#x27;
+    //if (param.time_function&#x3D;&#x3D;null) param.time_function &#x3D; &#x27;mean&#x27;;
+
+    var timezone2 &#x3D; param.timezone ?? &#x27;Asia/Taipei&#x27;
+    if (&#x27;&#x27;+param.stop_align_every&#x3D;&#x3D;&#x27;true&#x27; &amp;&amp; param.every!&#x3D;null) {
+      let stop2 &#x3D; Util.getRelativeTime(param.stop, timezone2)
+      param.stop &#x3D; Util.alignTime(stop2, param.every, timezone2)
+    }
+
+    if (param.organization_id&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;organization_id is needed&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    var organization &#x3D; await this.domainService.findOne(this_user, param.organization_id)
+    if (organization&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;organization(domain) not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+
+    var domain_id &#x3D; param.domain_id
+
+    if (domain_id&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;&quot;domain_id&quot; is invalid&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    var domain:Domain &#x3D; await this.domainService.findOne(this_user, domain_id)
+    if (domain&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;Domain not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+
+    var result &#x3D; await this.queryDomainRecursion(this_user, param, res, organization, domain)
+    if (result.last_qname!&#x3D;null) result.flux +&#x3D; &#x27;\n&#x27; + result.last_qname
+    if (result.flux!&#x3D;&#x27;&#x27;) result.flux +&#x3D; &#x27;\n&#x27; + &#x27;|&gt; group()&#x27;
+
+    console.log(&#x27;last_qname&#x3D;&#x27;+result.last_qname);
+    console.log(result.flux.replaceAll(&#x27;|&gt;&#x27;, &#x27;\n|&gt;&#x27;));
+
+    var root_param &#x3D; Object.assign({}, param)
+    root_param.import_join &#x3D; &#x27;true&#x27;
+    delete root_param.every
+    delete root_param.time_function
+    delete root_param.pivot_columns
+
+    var ret &#x3D; await this.queryInfluxMultiSource(organization.domain_name, result.flux, root_param, res)
+    return ret
+  }
+
+  async queryDomainToday(this_user:UserWithPermission, param) {
+
+    if (param.domain_id&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;&quot;domain_id&quot; is invalid&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    var domain &#x3D; await this.domainService.findOne(this_user, param.domain_id)
+    if (domain&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;Domain not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+    var organization_id &#x3D; await this.domainService.getOrganizationId(param.domain_id)
+
+    var timezone &#x3D; param.timezone
+    if (timezone&#x3D;&#x3D;null) timezone &#x3D; &#x27;Asia/Taipei&#x27;
+    var m &#x3D; moment.tz((new Date()).toISOString(), timezone);
+
+    var param_base &#x3D; {
+      organization_id,
+      domain_id: param.domain_id,
+      timezone: param.timezone,
+      start: m.startOf(&#x27;day&#x27;).toISOString(),
+      every: &#x27;1d&#x27;,
+      time_src: &#x27;_start&#x27;
+    }
+
+    // SolarEnergy,LoadEnergy,GridPurchaseEnergy,GridSellEnergy,BatteryDischargeEnergy,BatteryChargeEnergy
+
+    var ret:any &#x3D; {}
+
+    var param2 &#x3D; Object.assign({&quot;fields&quot;: &quot;SolarEnergy,LoadEnergy&quot;}, param_base)
+    var data &#x3D; await this.queryDomain(this_user, param2, null);
+    if (data.length&gt;0) {
+      var last_index &#x3D; data.length-1
+      ret.SolarEnergy &#x3D; data[last_index].SolarEnergy
+      ret.LoadEnergy &#x3D; data[last_index].LoadEnergy
+    }
+
+    var param2 &#x3D; Object.assign({&quot;fields&quot;: &quot;GridPurchaseEnergy,GridSellEnergy&quot;}, param_base)
+    var data &#x3D; await this.queryDomain(this_user, param2, null);
+    if (data.length&gt;0) {
+      var last_index &#x3D; data.length-1
+      ret.GridPurchaseEnergy &#x3D; data[last_index].GridPurchaseEnergy
+      ret.GridSellEnergy &#x3D; data[last_index].GridSellEnergy
+    }
+
+    var param2 &#x3D; Object.assign({&quot;fields&quot;: &quot;BatteryDischargeEnergy,BatteryChargeEnergy&quot;}, param_base)
+    var data &#x3D; await this.queryDomain(this_user, param2, null);
+    if (data.length&gt;0) {
+      var last_index &#x3D; data.length-1
+      ret.BatteryDischargeEnergy &#x3D; data[last_index].BatteryDischargeEnergy
+      ret.BatteryChargeEnergy &#x3D; data[last_index].BatteryChargeEnergy
+    }
+    
+    return ret;
+  }
+
+
+  async queryDomainRecursion(this_user:UserWithPermission, param, res, organization, domain) {
+
+    var self &#x3D; this
+
+    function getMapVars(map):Set&lt;string&gt; {
+      var map_vars &#x3D; new Set&lt;string&gt;()
+      if (map&#x3D;&#x3D;null) return map_vars;
+      if (!(/[A-Za-z0-9\_]+/.test(map.field))) {
+        throw new HttpException(&#x27;&quot;domain(&#x27;+domain?.domain_name+&#x27;).data_sources&quot;. map.field is invalid.&#x27;, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+      if (!(/[A-Za-z0-9\_\+\-\*\/\.\(\) ]+/.test(map.value))) {
+        throw new HttpException(&#x27;&quot;domain(&#x27;+domain?.domain_name+&#x27;).data_sources&quot;. map.value is invalid.&#x27;, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+      if (!Util.checkParenthesesBalance(map.value)) {
+        throw new HttpException(&#x27;&quot;domain(&#x27;+domain?.domain_name+&#x27;).data_sources&quot;. map.value is invalid. Asymmetrical brackets.&#x27;, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+      var vars:string[] &#x3D; RecordConverter.getUndefinedVars(map.value);
+      for (var v of vars) {
+        if (v&#x3D;&#x3D;&#x27;r&#x27;) continue;
+        if (v.substring(0,2)&#x3D;&#x3D;&#x27;r.&#x27;) {
+          v &#x3D; v.substring(2,v.length)
+        }
+        map_vars.add(v)
+      }
+      return map_vars
+    }
+
+    function getMapsVars(maps):Set&lt;string&gt; {
+      var map_vars &#x3D; new Set&lt;string&gt;()
+      for (let map of maps) {
+        map_vars &#x3D; Util.unionSet(map_vars, getMapVars(map))
+      }
+      return map_vars
+    }
+
+    function buildTree(query):Set&lt;string&gt; {
+
+      var exports:Set&lt;string&gt; &#x3D; new Set()
+
+      var child_querys &#x3D; query.querys
+      if (Array.isArray(child_querys)) {
+        for (var child_query of child_querys) {
+          var child_exports &#x3D; buildTree(child_query)
+          exports &#x3D; Util.unionSet(exports, child_exports)
+        }
+      }
+
+      if (Array.isArray(query.sources)) {
+        for (let source of query.sources) {
+          if (typeof(source.fields)&#x3D;&#x3D;&#x27;string&#x27;) {
+            var fields &#x3D; source.fields.split(&#x27;,&#x27;)
+            for (var field of fields) {
+              var field_arr &#x3D; field.split(&#x27;:&#x27;)
+              var field_new_name &#x3D; field_arr[field_arr.length-1]
+              exports.add(field_new_name)
+            }
+          }
+        }
+      }
+
+      if (Array.isArray(query.maps)) {
+        for (let map of query.maps) {
+          exports.add(map.field)
+          map.need_fields &#x3D; getMapVars(map)
+        }
+      }
+
+      if (typeof(query.export_fields)&#x3D;&#x3D;&quot;string&quot;) {
+        query.export_fields_set &#x3D; new Set(query.export_fields.split(&#x27;,&#x27;))
+      } else {
+        query.export_fields_set &#x3D; exports
+      }
+      return query.export_fields_set
+    }
+
+
+    async function getFlux(query, param_fields, param, query_ref, all_device_names):Promise&lt;{ last_qname?: string; flux?: string; }&gt; {
+      
+      
+      async function getFluxBySources(query, need_fields:Set&lt;string&gt;) {
+
+        let match_fields:Set&lt;string&gt; &#x3D; new Set()
+
+        var ret &#x3D; {
+          last_qname: null,
+          flux: &#x27;&#x27;,
+          fields: []
+        }
+
+        var sources &#x3D; query.sources
+        if (!Array.isArray(sources)) {
+          return ret
+        }
+
+        var query_sources &#x3D; []
+        for (let source of sources) {
+
+          if (typeof(source.fields)!&#x3D;&#x27;string&#x27;) continue;
+          var fields &#x3D; source.fields.split(&#x27;,&#x27;)
+          let both_fields:Set&lt;string&gt; &#x3D; new Set()
+          for (var field of fields) {
+            var field_arr &#x3D; field.split(&#x27;:&#x27;)
+            var field_new_name &#x3D; field_arr[field_arr.length-1]
+            if (need_fields.has(field_new_name)) {
+              both_fields.add(field)
+              match_fields.add(field_new_name)
+            }
+          }
+          if (both_fields.size&#x3D;&#x3D;0) continue;
+
+          var device_names &#x3D; source.device_names.split(&#x27;,&#x27;)
+          var where &#x3D; {}
+          var has_device &#x3D; false
+          for (var device_name of device_names) {
+            if (all_device_names&#x3D;&#x3D;null || all_device_names.indexOf(device_name)!&#x3D;-1) {
+              has_device &#x3D; true
+              DeviceDataService.putWhere(where, AppConfigService.DEVICE_NAME_FIELD, device_name)
+            }
+          }
+          if (device_names.length&#x3D;&#x3D;0 || (device_names.length&gt;0 &amp;&amp; has_device)) {
+            query_sources.push({
+              measurement: source.device_output_name,
+              where: JSON.stringify(where),
+              fields: Array.from(both_fields).join(&#x27;,&#x27;)
+            })
+          }
+        }
+
+        if (query_sources.length&gt;0) {
+
+          var query_param:any &#x3D; {
+            differenceNonNegativeSource: query.differenceNonNegativeSource,
+            time_function: query.time_function,
+            time_function_params: query.time_function_params
+          }
+
+          for (var n3 in param) {
+            if (param[n3]!&#x3D;null) query_param[n3] &#x3D; param[n3];
+          }
+
+          Object.assign(query_param, {
+          //  differenceNonNegativeSource: query.differenceNonNegativeSource,
+          //  time_function: query.time_function,
+          //  time_function_params: query.time_function_params,
+          //  group_by: &quot;!DeviceName,_field&quot;,
+          //  group_function: query.group_function,
+            group_by: &quot;DeviceName,_field&quot;,
+            group_function: null,
+          //  maps: (query.maps&#x3D;&#x3D;null)?null:JSON.stringify(query.maps),
+            output_format: &#x27;influx_query&#x27;,
+            has_import: false,
+            has_limit: false,
+            no_output: true
+          })
+
+          if (query_param.time_function&#x3D;&#x3D;null) query_param.time_function &#x3D; &#x27;mean&#x27;;
+
+          if (query.group_function!&#x3D;null &amp;&amp; query.maps&#x3D;&#x3D;null) {
+            query_param.group_by &#x3D; &quot;!DeviceName,_field&quot;
+            query_param.group_function &#x3D; query.group_function
+          }
+
+          delete query_param.output_zip
+          delete query_param.debug
+          delete query_param.limit
+
+          let influx_query &#x3D; await self.queryInfluxMultiSource(organization.domain_name, query_sources, query_param)
+          ret &#x3D; {
+            last_qname: influx_query.last_qname,
+            flux: influx_query.flux,
+            fields: Array.from(match_fields)
+          }
+        }
+
+        return ret
+      }
+
+      async function getFluxByQuerys(query, need_fields:Set&lt;string&gt;, influx_querys) {
+        var found &#x3D; false
+        if (Array.isArray(query.querys)) {
+          for (var child_query of query.querys) {
+            var both_fields:Set&lt;string&gt; &#x3D; Util.intersectionSet(need_fields, child_query.export_fields_set)
+            if (both_fields.size&gt;0) {
+              found &#x3D; true
+              var r &#x3D; await getFlux(child_query, Array.from(both_fields), param, query_ref, all_device_names)
+              influx_querys.push({
+                last_qname: r.last_qname,
+                flux: r.flux,
+                fields: both_fields
+              })
+              for (var both_field of both_fields) {
+                need_fields.delete(both_field);
+              }
+            }
+          }
+        }
+        return found
+      }
+
+      async function getFluxByMaps(query, need_fields:Set&lt;string&gt;, influx_querys) {
+        var found &#x3D; false
+
+        if (!Array.isArray(query.maps)) return;
+
+        for (var map of query.maps) {
+          if (typeof(map.field)!&#x3D;&#x27;string&#x27;) continue;
+          if (!need_fields.has(map.field)) continue;
+          need_fields.delete(map.field)
+
+          let match_fields:Set&lt;string&gt; &#x3D; new Set(map.need_fields)
+
+          found &#x3D; found || await getFluxByQuerys(query, match_fields, influx_querys)
+
+          var influx_query &#x3D; await getFluxBySources(query, match_fields)
+          if (influx_query.fields.length&gt;0) {
+            found &#x3D; true
+            influx_querys.push({
+              last_qname: influx_query.last_qname,
+              flux: influx_query.flux,
+              fields: influx_query.fields
+            })
+            match_fields &#x3D; Util.differenceSet(match_fields, influx_query.fields)
+          }
+
+          found &#x3D; found || await getFluxByQuerys(query_ref, match_fields, influx_querys)
+
+        }
+        if (found) {
+          let flux2 &#x3D; &#x60;|&gt; map(fn: (r) &#x3D;&gt; ({r with ${map.field}: ${map.value}}))&#x60;
+          influx_querys.push({
+            is_map: true,
+            flux: flux2
+          })
+        }
+      }
+
+      var need_fields:Set&lt;string&gt; &#x3D; new Set(param_fields)
+      var match_fields &#x3D; new Set([...need_fields])
+      var influx_querys &#x3D; []
+
+      if (Array.isArray(query.querys)) {
+        for (var child_query of query.querys) {
+          var both_fields:Set&lt;string&gt; &#x3D; Util.intersectionSet(match_fields, child_query.export_fields_set)
+          if (both_fields.size&gt;0) {
+            var r &#x3D; await getFlux(child_query, Array.from(both_fields), param, query_ref, all_device_names)
+            influx_querys.push({
+              last_qname: r.last_qname,
+              flux: r.flux,
+              fields: Array.from(both_fields)
+            })
+            match_fields &#x3D; Util.differenceSet(match_fields, both_fields)
+          }
+        }
+      }
+
+      await getFluxByMaps(query, match_fields, influx_querys)
+
+      var influx_query &#x3D; await getFluxBySources(query, match_fields)
+      if (influx_query.fields.length&gt;0) {
+        influx_querys.push({
+          last_qname: influx_query.last_qname,
+          flux: influx_query.flux,
+          fields: influx_query.fields
+        })
+        match_fields &#x3D; Util.differenceSet(match_fields, influx_query.fields)
+      }
+
+      var last_qname &#x3D; null
+      var flux &#x3D; &#x27;&#x27;
+
+      if (influx_querys.length&gt;0) {
+        if (influx_querys.length&#x3D;&#x3D;1) {
+          last_qname &#x3D; influx_querys[0].last_qname
+          flux &#x3D; influx_querys[0].flux
+        } else {
+          var qnames &#x3D; []
+          var map_fluxs &#x3D; []
+          var influx_querys2 &#x3D; []
+          for (let influx_query of influx_querys) {
+            if (influx_query.is_map) {
+              map_fluxs.push(influx_query.flux)
+            } else if (influx_query.last_qname&#x3D;&#x3D;null) {
+              last_qname &#x3D; &#x27;q&#x27; + Util.createRandomID()
+              flux +&#x3D; &#x27;\n&#x27; + last_qname + &#x27;&#x3D;&#x27; + influx_query.flux + &#x27;\n&#x27;
+              influx_querys2.push(influx_query)
+            } else {
+              last_qname &#x3D; influx_query.last_qname
+              flux +&#x3D; &#x27;\n&#x27; + influx_query.flux + &#x27;\n&#x27;
+              influx_querys2.push(influx_query)
+            }
+            qnames.push(last_qname)
+          }
+
+          //last_qname &#x3D; &#x27;q&#x27; + Util.createRandomID()
+          //flux +&#x3D; last_qname + &#x60;&#x3D;union(tables: [${qnames.join(&#x27;,&#x27;)}])&#x60; + &#x27;\n&#x27;
+          
+          function toKV(kvs, lr, fields) {
+            for (var field of fields) {
+              var field_arr &#x3D; field.split(&#x27;:&#x27;)
+              var new_field_name &#x3D; field_arr[field_arr.length-1]
+              kvs.push(new_field_name + &#x27;:&#x27; + lr + &#x27;.&#x27; + new_field_name)
+            }
+          }
+          var prev_qname &#x3D; null
+          var prev_fields &#x3D; new Set()
+          if (qnames.length&gt;0) {
+            prev_qname &#x3D; qnames[0]
+            prev_fields &#x3D; new Set([...influx_querys2[0].fields])
+          }
+          for (var n&#x3D;1; n&lt;influx_querys2.length; n++) {
+            last_qname &#x3D; &#x27;q&#x27; + Util.createRandomID()
+            var kvs &#x3D; []
+            toKV(kvs, &#x27;l&#x27;, prev_fields)
+            toKV(kvs, &#x27;r&#x27;, influx_querys2[n].fields)
+            flux +&#x3D; &#x60;
+${last_qname}&#x3D;join.full(
+    left: ${prev_qname} |&gt;group(columns:[&quot;_time&quot;]),
+    right: ${qnames[n]} |&gt;group(columns:[&quot;_time&quot;]),
+    on: (l, r) &#x3D;&gt; l._time &#x3D;&#x3D; r._time,
+    as: (l, r) &#x3D;&gt; {
+        time &#x3D; if exists l._time then l._time else r._time
+        return {_time: time, ${kvs.join(&#x27;,&#x27;)}}
+    },
+)&#x60;
+            prev_qname &#x3D; last_qname
+            prev_fields &#x3D; new Set([...prev_fields, ...influx_querys2[n].fields])
+          }
+          for (var map_flux of map_fluxs) {
+            flux +&#x3D; map_flux
+          }
+        }
+      }
+
+
+      if ((query.maps!&#x3D;null || query.querys!&#x3D;null) &amp;&amp; query.group_function &#x3D;&#x3D; &quot;sum&quot;) {
+        flux +&#x3D; &#x60;|&gt; group(columns: [&quot;_time&quot;])&#x60;
+        var fns &#x3D; []
+        var ids &#x3D; []
+        for (let field of need_fields) {
+          fns.push(&#x60;${field}: if exists r.${field} then accumulator.${field} + r.${field} else accumulator.${field}&#x60;)
+          ids.push(&#x60;${field}: 0.0&#x60;)
+        }
+        flux +&#x3D; &#x60;
+|&gt; reduce(
+  fn: (r, accumulator) &#x3D;&gt;
+  ({
+    ${fns.join(&#x27;,&#x27;)}
+  }),
+  identity: { ${ids.join(&#x27;,&#x27;)} },
+)&#x60;
+      }
+
+
+      return {
+        last_qname,
+        flux
+      }
+
+    }
+
+    var last_qname &#x3D; null
+    var influx_query_str &#x3D; &#x27;&#x27;
+    var domain_id &#x3D; domain.domain_id
+
+    if (param.fields&#x3D;&#x3D;null || (&#x27;&#x27;+param.fields).trim()&#x3D;&#x3D;&#x27;&#x27;) {
+      throw new HttpException(&#x27;&quot;fields&quot; is empty&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    var param_fields &#x3D; param.fields.split(&quot;,&quot;)
+
+
+    var child_domains &#x3D; await this.domainService.findAll(this_user, {where:{parent_domain_id:domain_id}})
+    var last_qnames &#x3D; []
+    for (var child_domain of child_domains) {
+      var child_result &#x3D; await this.queryDomainRecursion(this_user, param, res, organization, child_domain)
+      if (child_result.flux!&#x3D;&#x27;&#x27;) {
+        influx_query_str +&#x3D; &#x27;\n&#x27; + child_result.flux + &#x27;\n&#x27;
+        if (child_result.last_qname!&#x3D;null) {
+          last_qnames.push(child_result.last_qname)
+        }
+      }
+      if (child_result.last_qname!&#x3D;null) {
+        last_qname &#x3D; child_result.last_qname;
+      }
+    }
+    if (last_qnames.length&gt;&#x3D;2) {
+      last_qname &#x3D; &#x27;q&#x27; + Util.createRandomID()
+      influx_query_str +&#x3D; last_qname + &#x60;&#x3D;union(tables: [${last_qnames.join(&#x27;,&#x27;)}])&#x60; + &#x27;\n&#x27;
+      influx_query_str +&#x3D; &#x60;|&gt; group(columns: [&quot;_field&quot;])&#x60;
+      influx_query_str +&#x3D; &#x60;|&gt; sum()&#x60;
+    }
+
+    var domain_query &#x3D; null
+    if (!(domain.data_sources&#x3D;&#x3D;null || (&#x27;&#x27;+domain.data_sources).trim()&#x3D;&#x3D;&#x27;&#x27;)) {
+      try {
+        domain_query &#x3D; JSON.parse(domain.data_sources)
+      } catch (ex) {
+        throw new HttpException(&#x60;&quot;domain[${domain.domain_name}].data_sources&quot; is invalid.&#x60; + ex, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+    }
+
+    if (domain_query&#x3D;&#x3D;null) {
+      return {
+        last_qname,
+        flux: influx_query_str
+      }
+    }
+
+    //domain_query &#x3D; dsource
+    buildTree(domain_query)
+    
+    var is_filter_device_type_category &#x3D; (param.device_type_category_name!&#x3D;null &amp;&amp; (&#x27;&#x27;+param.device_type_category_name).trim()!&#x3D;&#x27;&#x27;)
+    var is_filter_device_type &#x3D; (param.device_type_name!&#x3D;null &amp;&amp; (&#x27;&#x27;+param.device_type_name).trim()!&#x3D;&#x27;&#x27;)
+
+    var device_type_category_id &#x3D; null
+    if (is_filter_device_type_category) {
+      var device_type_categorys &#x3D; await this.deviceTypeCategoryService.findAll(this_user, {where:{device_type_category_name:param.device_type_category_name}})
+      if (device_type_categorys.length&#x3D;&#x3D;0) {
+        throw new HttpException(&#x27;DeviceTypeCategory not found&#x27;, HttpStatus.NOT_FOUND);
+      }
+      device_type_category_id &#x3D; device_type_categorys[0].device_type_category_id;
+    }
+
+    var device_type_id &#x3D; null
+    if (is_filter_device_type) {
+      var device_types &#x3D; await this.deviceTypeService.findAll(this_user, {where:{device_type_name:param.device_type_name}})
+      if (device_types.length&#x3D;&#x3D;0) {
+        throw new HttpException(&#x27;DeviceType not found&#x27;, HttpStatus.NOT_FOUND);
+      }
+      device_type_id &#x3D; device_types[0].device_type_id;
+    }
+
+    let devices:Device[] &#x3D; null;
+    if (is_filter_device_type_category &amp;&amp; is_filter_device_type) {
+      devices &#x3D; await this.domainService.getAllDevices(this_user, this.deviceService, organization.domain_id, {device_type_category_id,device_type_id}, 1000000)
+    } else if (is_filter_device_type_category) {
+      devices &#x3D; await this.domainService.getAllDevices(this_user, this.deviceService, organization.domain_id, {device_type_category_id}, 1000000)
+    } else if (is_filter_device_type) {
+      devices &#x3D; await this.domainService.getAllDevices(this_user, this.deviceService, organization.domain_id, {device_type_id}, 1000000)
+    }
+
+    var all_device_names &#x3D; null
+    if (devices!&#x3D;null) {
+      all_device_names &#x3D; devices.map(x&#x3D;&gt;x.device_name)
+    }
+
+    var r &#x3D; await getFlux(domain_query, param_fields, param, domain_query, all_device_names)
+    // r.flux +&#x3D; &#x60;|&gt; map(fn: (r) &#x3D;&gt; ({r with _domain_id: &quot;${domain_id}&quot;}))&#x60;
+
+
+    return {
+      last_qname: r.last_qname,
+      flux: r.flux
+    }
+  }
+
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DeviceDataService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

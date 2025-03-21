@@ -1,0 +1,654 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >DeviceSpecStorer</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/device_data/device_spec_storer.service.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#storeDeviceSpec" >storeDeviceSpec</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateInfluxdbDeviceSpec" >updateInfluxdbDeviceSpec</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="storeDeviceSpec"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>storeDeviceSpec</b></span>
+                        <a href="#storeDeviceSpec"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>storeDeviceSpec(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, devices, time: null, bucket: null, domain_id: null, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/modules/device_data/device_spec_storer.service.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>devices</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>time</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>bucket</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>domain_id</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>domainService</td>
+                                            <td>
+                                                            <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateInfluxdbDeviceSpec"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updateInfluxdbDeviceSpec</b></span>
+                        <a href="#updateInfluxdbDeviceSpec"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateInfluxdbDeviceSpec(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, domainServiceEx: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, deviceService, time: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/modules/device_data/device_spec_storer.service.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>domainServiceEx</td>
+                                            <td>
+                                                            <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>deviceService</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>time</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable, OnModuleInit } from &quot;@nestjs/common&quot;;
+import { Cron } from &quot;@nestjs/schedule&quot;;
+import { InfluxdbClientService } from &quot;./influxdb_client.service&quot;;
+import { DomainService } from &quot;../domain/domain.service&quot;;
+import { DeviceService } from &quot;../device/device.service&quot;;
+import { Util } from &quot;src/util/util&quot;;
+import { AppConfigService } from &quot;src/app_config.service&quot;;
+import { UserWithPermission } from &quot;../user/user_with_permission.entity&quot;;
+
+var moment &#x3D; require(&#x27;moment-timezone&#x27;);
+require(&#x27;moment/locale/zh-tw&#x27;);
+
+const {InfluxDB, Point} &#x3D; require(&#x27;@influxdata/influxdb-client&#x27;)
+const {DeleteAPI} &#x3D; require(&#x27;@influxdata/influxdb-client-apis&#x27;)
+
+export class DeviceSpecStorer {
+
+  public static async storeDeviceSpec(this_user:UserWithPermission, devices, time&#x3D;null, bucket&#x3D;null, domain_id&#x3D;null, domainService:DomainService&#x3D;null) {
+
+    var fields &#x3D; {
+      bat_capacity: &#x27;BatCapacity&#x27;,
+      solar_area: &#x27;SolarArea&#x27;,
+      solar_eff: &#x27;SolarEff&#x27;,
+      solar_capacity: &#x27;SolarCapacity&#x27;
+    }
+
+    var all_has_data &#x3D; false
+    for (var device of devices) {
+      for (var field_name in fields) {
+        if (device[field_name]!&#x3D;null) {
+          all_has_data &#x3D; true
+          break
+        }
+      }
+      if (all_has_data) break;
+    }
+    if (!all_has_data) return;
+
+    if (bucket&#x3D;&#x3D;null) {
+      if (domain_id&#x3D;&#x3D;null || domainService&#x3D;&#x3D;null) return;
+      var org_id &#x3D; await domainService.getOrganizationId(domain_id)
+      bucket &#x3D; (await domainService.findOne(this_user, org_id))?.domain_name
+      if (bucket&#x3D;&#x3D;null) return;
+    }
+
+    var org &#x3D; AppConfigService.getInfluxdbConfig().org;
+    var measurement &#x3D; &#x27;device_spec&#x27;
+
+    if (time&#x3D;&#x3D;null) {
+      var m &#x3D; moment()
+      m.millisecond(0)
+      m.second(0)
+      m.minute(0)
+      time &#x3D; m.toISOString()
+    }
+
+    var influxdb_client &#x3D; InfluxdbClientService.getClient();
+    let writeClient &#x3D; influxdb_client.getWriteApi(org, bucket, &#x27;ms&#x27;)
+    for (var device of devices) {
+      var has_data &#x3D; false
+      let point &#x3D; new Point(measurement)
+      point.tag(&#x27;DeviceName&#x27;, device.device_name)
+      if (device.place_name!&#x3D;null &amp;&amp; (&#x27;&#x27;+device.place_name).trim()!&#x3D;&#x27;&#x27;) point.tag(&#x27;PlaceName&#x27;, device.place_name)
+      for (var field_name in fields) {
+        if (device[field_name]!&#x3D;null) {
+          point.floatField(fields[field_name], device[field_name])
+          has_data &#x3D; true
+        }
+      }
+      point.timestamp(new Date(time))
+      if (has_data) {
+        writeClient.writePoint(point)
+      }
+    }
+    if (all_has_data) {
+      await writeClient.flush();
+    }
+  }
+
+  public static async updateInfluxdbDeviceSpec(this_user:UserWithPermission, domainServiceEx:DomainService, deviceService, time&#x3D;null) {
+
+    async function storeDeviceSpec(domains, time) {
+
+      for (var domain of domains) {
+        if (domain.domain_id&#x3D;&#x3D;2) continue; // recycle
+        try {
+          var devices &#x3D; await domainServiceEx.getAllDevices(this_user, deviceService, domain.domain_id, {}, 1000000)
+          await DeviceSpecStorer.storeDeviceSpec(this_user, devices, time, domain.domain_name)
+        } catch (ex) {
+          console.log(ex)
+        }
+      }
+
+    }
+
+    var domains &#x3D; await domainServiceEx.findAll(this_user, {
+      where:{
+        parent_domain_id: 1
+      }
+    })
+
+    if (time&#x3D;&#x3D;null) {
+      var m &#x3D; moment()
+      m.minute(0)
+      m.second(0)
+      m.millisecond(0)
+      time &#x3D; m.toISOString()
+    }
+    await storeDeviceSpec(domains, time)
+
+    /*
+    m.year(2024)
+    m.month(6)
+    m.date(1)
+    m.hour(0)
+    var now &#x3D; Date.now()
+    while (m.unix()*1000&lt;now) {
+      var time &#x3D; m.toISOString()
+      await storeDeviceSpec(domains, time)
+      m.add(1, &#x27;h&#x27;)
+    }
+    var xxx &#x3D; 123;
+    */
+
+    
+  }
+
+}
+
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'DeviceSpecStorer.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

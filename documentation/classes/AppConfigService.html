@@ -1,0 +1,940 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >AppConfigService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app_config.service.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#DEVICE_NAME_FIELD" >DEVICE_NAME_FIELD</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#DEVICE_NAME_MQTT_TOPIC" >DEVICE_NAME_MQTT_TOPIC</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#PLACE_NAME_FIELD" >PLACE_NAME_FIELD</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#RECYCLE_DOMAIN_ID" >RECYCLE_DOMAIN_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#ROOT_DOMAIN_ID" >ROOT_DOMAIN_ID</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getDatabaseConfig" >getDatabaseConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getEnv" >getEnv</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getInfluxdbConfig" >getInfluxdbConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getLogDir" >getLogDir</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getStaticPageRootPath" >getStaticPageRootPath</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getSystemConfig" >getSystemConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getSystemUser" >getSystemUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app_config.service.ts:12</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEVICE_NAME_FIELD"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>DEVICE_NAME_FIELD</b></span>
+                        <a href="#DEVICE_NAME_FIELD"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;DeviceName&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app_config.service.ts:10</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEVICE_NAME_MQTT_TOPIC"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>DEVICE_NAME_MQTT_TOPIC</b></span>
+                        <a href="#DEVICE_NAME_MQTT_TOPIC"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;_mqtt_topic&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app_config.service.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PLACE_NAME_FIELD"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>PLACE_NAME_FIELD</b></span>
+                        <a href="#PLACE_NAME_FIELD"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;PlaceName&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app_config.service.ts:11</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RECYCLE_DOMAIN_ID"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>RECYCLE_DOMAIN_ID</b></span>
+                        <a href="#RECYCLE_DOMAIN_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app_config.service.ts:9</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ROOT_DOMAIN_ID"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>ROOT_DOMAIN_ID</b></span>
+                        <a href="#ROOT_DOMAIN_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app_config.service.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDatabaseConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getDatabaseConfig</b></span>
+                        <a href="#getDatabaseConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDatabaseConfig()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app_config.service.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>TypeOrmModuleOptions</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEnv"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getEnv</b></span>
+                        <a href="#getEnv"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEnv(env_name, default_value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app_config.service.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>env_name</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>default_value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;&#x27;</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInfluxdbConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getInfluxdbConfig</b></span>
+                        <a href="#getInfluxdbConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getInfluxdbConfig()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app_config.service.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ token: any; url: any; org: any; bucket: any; }</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLogDir"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getLogDir</b></span>
+                        <a href="#getLogDir"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getLogDir()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app_config.service.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStaticPageRootPath"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getStaticPageRootPath</b></span>
+                        <a href="#getStaticPageRootPath"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getStaticPageRootPath()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/app_config.service.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSystemConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getSystemConfig</b></span>
+                        <a href="#getSystemConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSystemConfig()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app_config.service.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ test_mode: boolean; static_page_path: any; max_upload_file_size: any; upload_path: any; download_path: string; repair_order_dirname: any; repair_record_dirname: any; domain_dirname: any; ... 6 more ...; offline_timeout: any; }</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSystemUser"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getSystemUser</b></span>
+                        <a href="#getSystemUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSystemUser()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app_config.service.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TypeOrmModuleOptions } from &#x27;@nestjs/typeorm&#x27;;
+import { join } from &#x27;path&#x27;;
+import { PowerScheduler } from &#x27;./modules/power_scheduler/power_scheduler.entity&#x27;;
+import { UserWithPermission } from &#x27;./modules/user/user_with_permission.entity&#x27;;
+
+export class AppConfigService {
+
+    public static ROOT_DOMAIN_ID: number &#x3D; 1;
+    public static RECYCLE_DOMAIN_ID: number &#x3D; 2;
+    public static DEVICE_NAME_FIELD: string &#x3D; &#x27;DeviceName&#x27;;
+    public static PLACE_NAME_FIELD: string &#x3D; &#x27;PlaceName&#x27;;
+    public static DEVICE_NAME_MQTT_TOPIC: string &#x3D; &#x27;_mqtt_topic&#x27;;
+    
+    constructor() {}
+
+    static getEnv(env_name, default_value&#x3D;&#x27;&#x27;) {
+        if (process.env[env_name]!&#x3D;null) {
+            return process.env[env_name];
+        } else {
+            return default_value;
+        }
+    }
+
+    static getStaticPageRootPath() {
+        return AppConfigService.getEnv(&#x27;STATIC_PAGE&#x27;, join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;web&#x27;, &#x27;dist&#x27;));
+    }
+
+    static getDatabaseConfig():TypeOrmModuleOptions {
+        return {
+            //type: &#x27;mysql&#x27;,
+            //type: &#x27;mariadb&#x27;,
+            type: &#x27;postgres&#x27;,
+            //host: &#x27;127.0.0.1&#x27;,
+            // host: &#x27;192.168.1.20&#x27;,
+            //host: &#x27;192.168.1.36&#x27;,
+            host: &#x27;localhost&#x27;,
+            //port: 3306,
+            port: 5432,
+            //username: &#x27;root&#x27;,
+            username: &#x27;postgres&#x27;,
+            password: &#x27;abcd1234&#x27;,
+            database: &#x27;aegis&#x27;,
+            entities: [__dirname + &#x27;/**/*.entity{.ts,.js}&#x27;],
+            synchronize: false,
+        }
+
+        /*
+        return {
+            host: AppConfigService.getEnv(&#x27;MYSQL_HOST&#x27;, &#x27;127.0.0.1&#x27;),
+            port: parseInt(AppConfigService.getEnv(&#x27;MYSQL_PORT&#x27;, &#x27;3306&#x27;)),
+            user: AppConfigService.getEnv(&#x27;MYSQL_USER&#x27;, &#x27;root&#x27;), 
+            password: AppConfigService.getEnv(&#x27;MYSQL_PASSWORD&#x27;, &#x27;abcd1234&#x27;),
+            database : AppConfigService.getEnv(&#x27;MYSQL_DATABASE&#x27;, &#x27;aegis&#x27;),
+            connectionLimit: 10,
+        //    connectTimeout: 15000
+        };
+        */
+    }
+
+    static getInfluxdbConfig() {
+        return {
+            // 192.168.1.36
+            //token: AppConfigService.getEnv(&#x27;INFLUXDB_TOKEN&#x27;, &#x27;3laePk3V2tdsxCWGoQKeNvdq0isbETmg5r-aTdTAegxPtLuEjQDtz_SDIN7V7dSB0BlUHtKBWJZPcuZCIGwloA&#x3D;&#x3D;&#x27;),
+            
+            // 192.168.1.20
+            token: AppConfigService.getEnv(&#x27;INFLUXDB_TOKEN&#x27;, &#x27;zLi7R-fu6DPkEcKOJVzzH37nGKvfG1vtMdCOgu_yAaS-A8XuwyyIZxegt4Y1kJYT9kraDfVlBK7P5Fdg1-ARjA&#x3D;&#x3D;&#x27;),
+            
+            url: AppConfigService.getEnv(&#x27;INFLUXDB_URL&#x27;, &#x27;http://192.168.1.20:8086&#x27;),
+            //url: AppConfigService.getEnv(&#x27;INFLUXDB_URL&#x27;, &#x27;http://192.168.1.36:8086&#x27;),
+            org: AppConfigService.getEnv(&#x27;INFLUXDB_ORG&#x27;, &#x27;my-org&#x27;),
+            bucket: AppConfigService.getEnv(&#x27;INFLUXDB_BUCKET&#x27;, &#x27;aegis&#x27;)
+        };
+    }
+
+    static getLogDir() {
+        return process.env.LOG_DIR;
+    }
+
+    static getSystemConfig() {
+        var offline_timeout &#x3D; parseInt(AppConfigService.getEnv(&#x27;OFFLINE_TIMEOUT&#x27;, &#x27;180000&#x27;)) // 3*60*1000, 3min
+        if (offline_timeout&#x3D;&#x3D;null || isNaN(offline_timeout)) {
+            offline_timeout &#x3D; 180000
+        }
+        var test_mode_str &#x3D; &#x27;&#x27;+AppConfigService.getEnv(&#x27;TEST_MODE&#x27;, &#x27;false&#x27;)
+        var test_mode &#x3D; (test_mode_str.toLowerCase() &#x3D;&#x3D; &#x27;true&#x27;)
+
+        return {
+            test_mode: test_mode,
+
+            static_page_path: AppConfigService.getEnv(&#x27;STATIC_PAGE_PATH&#x27;, join(__dirname, &#x27;..&#x27;, &#x27;public&#x27;)),
+            max_upload_file_size: AppConfigService.getEnv(&#x27;MAX_UPLOAD_FILE_SIZE&#x27;, String(3*1024*1024)),
+
+            //upload_path: AppConfigService.getEnv(&#x27;UPLOAD_PATH&#x27;, join(__dirname, &#x27;..&#x27;, &#x27;public&#x27;, &#x27;upload&#x27;)),
+            //download_path: AppConfigService.getEnv(&#x27;DOWNLOAD_PATH&#x27;, &#x27;upload&#x27;),
+            upload_path: join(__dirname, &#x27;..&#x27;, &#x27;public&#x27;, &#x27;upload&#x27;),
+            download_path: &#x27;upload&#x27;,
+            
+            repair_order_dirname: AppConfigService.getEnv(&#x27;REPAIR_ORDER_DIRNAME&#x27;, &#x27;repair_order&#x27;),
+            repair_record_dirname: AppConfigService.getEnv(&#x27;REPAIR_RECORD_DIRNAME&#x27;, &#x27;repair_record&#x27;),
+            domain_dirname: AppConfigService.getEnv(&#x27;DOMAIN_DIRNAME&#x27;, &#x27;domain&#x27;),
+            max_photo_wh: AppConfigService.getEnv(&#x27;MAX_PHOTO_WH&#x27;, String(4320)),
+
+            pomcube_api_host: AppConfigService.getEnv(&#x27;POMCUBE_API_HOST&#x27;, &#x27;https://k7topdvct9.execute-api.ap-northeast-1.amazonaws.com&#x27;),
+            pomcube_username: AppConfigService.getEnv(&#x27;POMCUBE_USERNAME&#x27;, &#x27;bomb054@gmail.com&#x27;),
+            pomcube_password: AppConfigService.getEnv(&#x27;POMCUBE_PASSWORD&#x27;, &#x27;Abcd1234&#x27;),
+
+            tempfile_path: __dirname + &#x27;/../tmp&#x27;,
+            power_scheduler_measurement: &#x27;power_scheduler&#x27;,
+            offline_timeout: offline_timeout,
+        }
+    }
+
+    static getSystemUser() {
+        var user:UserWithPermission &#x3D; new UserWithPermission()
+        user.user_id &#x3D; null
+        user.user_account &#x3D; &#x27;system&#x27;
+        user.role_id &#x3D; 1
+        user.domain_id &#x3D; 1
+        user.permissions &#x3D; [&quot;all_perm&quot;]
+        return user
+    }
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppConfigService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

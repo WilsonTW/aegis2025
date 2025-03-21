@@ -1,0 +1,1420 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >RepairOrderService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/repair_order/repair_order.service.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../injectables/RepairOrderServiceBase.html" target="_self" >RepairOrderServiceBase</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#repairOrderRepository" >repairOrderRepository</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#checkData" >checkData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllInDomain" >findAllInDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOneInDomain" >findOneInDomain</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPhotos" >getPhotos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remove" >remove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(repairOrderRepository: <a href="../classes/RepairOrder.html" target="_self">Repository&lt;RepairOrder&gt;</a>, appService: <a href="../injectables/AppService.html" target="_self">AppService</a>, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, repairOrderHistoryService: <a href="../injectables/RepairOrderHistoryService.html" target="_self">RepairOrderHistoryService</a>, repairItemService: <a href="../injectables/RepairItemService.html" target="_self">RepairItemService</a>, repairRecordService: <a href="../injectables/RepairRecordService.html" target="_self">RepairRecordService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/repair_order/repair_order.service.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>repairOrderRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/RepairOrder.html" target="_self" >Repository&lt;RepairOrder&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>appService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domainService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>repairOrderHistoryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RepairOrderHistoryService.html" target="_self" >RepairOrderHistoryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>repairItemService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RepairItemService.html" target="_self" >RepairItemService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>repairRecordService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RepairRecordService.html" target="_self" >RepairRecordService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>checkData</b></span>
+                        <a href="#checkData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkData(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, repairOrder: <a href="../classes/RepairOrderUpdate.html" target="_self">RepairOrderUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/modules/repair_order/repair_order.service.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>repairOrder</td>
+                                            <td>
+                                                            <code><a href="../classes/RepairOrderUpdate.html" target="_self" >RepairOrderUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, repairOrder: <a href="../classes/RepairOrderUpdate.html" target="_self">RepairOrderUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RepairOrderServiceBase.html" target="_self" >RepairOrderServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RepairOrderServiceBase.html#source" target="_self" >RepairOrderServiceBase:55</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>repairOrder</td>
+                                            <td>
+                                                            <code><a href="../classes/RepairOrderUpdate.html" target="_self" >RepairOrderUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/RepairOrder.html" target="_self" >Promise&lt;RepairOrder&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, options: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RepairOrderServiceBase.html" target="_self" >RepairOrderServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RepairOrderServiceBase.html#source" target="_self" >RepairOrderServiceBase:156</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/RepairOrder.html" target="_self" >Promise&lt;RepairOrder[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllInDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAllInDomain</b></span>
+                        <a href="#findAllInDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllInDomain(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, options: null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/modules/repair_order/repair_order.service.ts:165</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                        <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/RepairOrder.html" target="_self" >Promise&lt;RepairOrder[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RepairOrderServiceBase.html" target="_self" >RepairOrderServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RepairOrderServiceBase.html#source" target="_self" >RepairOrderServiceBase:170</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/RepairOrder.html" target="_self" >Promise&lt;RepairOrder&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneInDomain"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOneInDomain</b></span>
+                        <a href="#findOneInDomain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneInDomain(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/modules/repair_order/repair_order.service.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/RepairOrder.html" target="_self" >Promise&lt;RepairOrder&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPhotos"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPhotos</b></span>
+                        <a href="#getPhotos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPhotos(repair_order_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/modules/repair_order/repair_order.service.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>repair_order_id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RepairOrderServiceBase.html" target="_self" >RepairOrderServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RepairOrderServiceBase.html#source" target="_self" >RepairOrderServiceBase:141</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateRepairOrder: <a href="../classes/RepairOrderUpdate.html" target="_self">RepairOrderUpdate</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../injectables/RepairOrderServiceBase.html" target="_self" >RepairOrderServiceBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RepairOrderServiceBase.html#source" target="_self" >RepairOrderServiceBase:94</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>updateRepairOrder</td>
+                                            <td>
+                                                            <code><a href="../classes/RepairOrderUpdate.html" target="_self" >RepairOrderUpdate</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/RepairOrder.html" target="_self" >Promise&lt;RepairOrder&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="repairOrderRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>repairOrderRepository</b></span>
+                        <a href="#repairOrderRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/RepairOrder.html" target="_self" >Repository&lt;RepairOrder&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(RepairOrder)<br />
+                        </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../injectables/RepairOrderServiceBase.html" target="_self" >RepairOrderServiceBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/RepairOrderServiceBase.html#source" target="_self" >RepairOrderServiceBase:26</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Inject, Injectable, NotFoundException, Post, UploadedFiles, UseInterceptors } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { Repository } from &#x27;typeorm&#x27;;
+import { RepairOrder, RepairOrderUpdate } from &#x27;./repair_order.entity&#x27;;
+import { RepairOrderServiceBase } from &#x27;./repair_order.service.base&#x27;;
+import { AnyFilesInterceptor } from &#x27;@nestjs/platform-express&#x27;;
+import { AppConfigService } from &#x27;../../app_config.service&#x27;;
+import { Util } from &#x27;src/util/util&#x27;;
+import { Mail } from &#x27;../mail/mail.entity&#x27;;
+import { MailService } from &#x27;../mail/mail.service&#x27;;
+import { AppService } from &#x27;../../app.service&#x27;;
+import { EventService } from &#x27;../event/event.service&#x27;;
+import { UserWithPermission } from &#x27;../user/user_with_permission.entity&#x27;;
+import { DomainService } from &#x27;../domain/domain.service&#x27;;
+import { GetRepairOrderArgs } from &#x27;./repair_order.args&#x27;;
+import { RepairOrderHistoryService } from &#x27;../repair_order_history/repair_order_history.service&#x27;;
+import { RepairItemService } from &#x27;../repair_item/repair_item.service&#x27;;
+import { RepairRecordService } from &#x27;../repair_record/repair_record.service&#x27;;
+
+const path &#x3D; require(&#x27;node:path&#x27;);
+const fs &#x3D; require(&#x27;fs&#x27;);
+
+@Injectable()
+export class RepairOrderService extends RepairOrderServiceBase {
+  constructor(
+    @InjectRepository(RepairOrder) public readonly repairOrderRepository: Repository&lt;RepairOrder&gt;,
+    private readonly appService: AppService,
+    private readonly domainService: DomainService,
+    private readonly repairOrderHistoryService: RepairOrderHistoryService,
+    private readonly repairItemService: RepairItemService,
+    private readonly repairRecordService: RepairRecordService
+  //  public readonly mailService: MailService,
+  //  public readonly notifyService: NotifyService,
+  //  @Inject(MailService) public readonly mailService: MailService,
+  //  @InjectRepository(Mail) public readonly mailRepository: Repository&lt;Mail&gt;,
+  ) {
+    super(repairOrderRepository);
+  }
+
+  async getPhotos(repair_order_id) {
+    var config &#x3D; AppConfigService.getSystemConfig();
+    return await Util.getPhotos(config.repair_order_dirname, repair_order_id);
+  }
+
+
+  async checkData(this_user:UserWithPermission, repairOrder: RepairOrderUpdate) {
+    if (repairOrder.domain_id!&#x3D;null) {
+      var in_domain &#x3D; await this.domainService.includeDomain(this_user.domain_id, repairOrder.domain_id)
+      if (!in_domain) {
+        throw new HttpException(&#x27;domain_id is out of domain&#x27;, HttpStatus.FORBIDDEN);
+      }
+    }
+  }
+
+  async create(this_user:UserWithPermission, repairOrder: RepairOrderUpdate): Promise&lt;RepairOrder&gt; {
+    if (repairOrder.domain_id&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;domain_id is null&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    await this.checkData(this_user, repairOrder)
+    repairOrder.creator_id &#x3D; this_user.user_id;
+    var ret &#x3D; await this.repairOrderRepository.save(repairOrder);
+
+    await this.repairOrderHistoryService.create(this_user, {
+      repair_order_id: ret.repair_order_id,
+      user_id: this_user.user_id,
+      user_name: this_user.user_name,
+      table_name: &#x27;repair_order&#x27;,
+      difference: JSON.stringify({
+        add: ret
+      }),
+      snapshot: JSON.stringify(ret),
+      create_time: (new Date()).toISOString()
+    });
+
+    if (repairOrder.assign_user_id!&#x3D;null) {
+      try {
+        await this.appService.notifyUser(
+          this_user,
+          {
+            user_id:repairOrder.assign_user_id,
+            mail: true,
+            email: true,
+            line_notify: true
+          },
+          &#x27;repair_order&#x27;, &#x27;Repair order(&#x27;+ret.repair_order_id+&#x27;) is created&#x27;, null, ret.repair_order_id)
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+    return ret;
+    //return await this.repairOrderRepository.insert(repairOrder);
+  }
+
+  async update(this_user:UserWithPermission, id: number, updateRepairOrder: RepairOrderUpdate): Promise&lt;RepairOrder&gt; {
+    var from_repair_order:RepairOrder &#x3D; await this.findOneInDomain(this_user, id)
+    if (from_repair_order&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;The repair_order is not in this domain&#x27;, HttpStatus.FORBIDDEN);
+    }
+
+    await this.checkData(this_user, updateRepairOrder)
+    delete updateRepairOrder.creator_id
+    await this.repairOrderRepository.update(id, updateRepairOrder);
+    
+    var to_repair_order &#x3D; await this.repairOrderRepository.findOne({
+      where: {
+        repair_order_id:id,
+      },
+    });
+
+    var difference &#x3D; Util.diffObject(from_repair_order, to_repair_order)
+
+    if (difference.modified) {
+      await this.repairOrderHistoryService.create(this_user, {
+        repair_order_id: id,
+        user_id: this_user.user_id,
+        user_name: this_user.user_name,
+        table_name: &#x27;repair_order&#x27;,
+        difference: JSON.stringify(difference),
+        snapshot: JSON.stringify(to_repair_order),
+        create_time: (new Date()).toISOString()
+      });
+    }
+
+    try {
+      if (to_repair_order.assign_user_id!&#x3D;null &amp;&amp; from_repair_order.assign_user_id!&#x3D;to_repair_order.assign_user_id) {
+        await this.appService.notifyUser(
+          this_user,
+          {
+            user_id:to_repair_order.assign_user_id,
+            mail: true,
+            email: true,
+            line_notify: true
+          }, &#x27;repair_order&#x27;, &#x27;Repair order(&#x27;+to_repair_order.repair_order_id+&#x27;) is assigned&#x27;, null, to_repair_order.repair_order_id)
+      }
+    } catch (ex) {
+      console.log(ex);
+    }
+    return to_repair_order;
+  }
+
+  async remove(this_user:UserWithPermission, id: number): Promise&lt;boolean&gt; {
+    var repairOrder: RepairOrder &#x3D; await this.findOneInDomain(this_user, id)
+    if (repairOrder&#x3D;&#x3D;null) {
+      throw new HttpException(&#x27;The repair_order is not in this domain&#x27;, HttpStatus.NOT_FOUND);
+    }
+    var repair_records &#x3D; await this.repairRecordService.findAll(this_user, {where:{repair_order_id: id}})
+    for (var repair_record of repair_records) {
+      await this.repairRecordService.remove(this_user, repair_record.repair_record_id)
+    }
+    await this.repairItemService.removeAll(this_user, {repair_order_id: id})
+    await this.repairOrderHistoryService.removeAll(this_user, {repair_order_id: id})
+    const result &#x3D; await this.repairOrderRepository.delete(id);
+    return result.affected &gt; 0;
+  }
+
+  async findAll(this_user:UserWithPermission, options&#x3D;null): Promise&lt;RepairOrder[]&gt; {
+    var repair_orders &#x3D;  await this.repairOrderRepository.find(options);
+    for (var repair_order of repair_orders) {
+      repair_order.photos &#x3D; (await this.getPhotos(repair_order.repair_order_id)).join(&#x27;|&#x27;);
+    }
+    return repair_orders;
+  }
+
+
+  async findAllInDomain(this_user:UserWithPermission, options&#x3D;null): Promise&lt;RepairOrder[]&gt; {
+    var repair_orders &#x3D; await this.domainService.getAllRepairOrders(this_user, this, this_user.domain_id, options?.where)
+    return repair_orders
+  }
+
+  async findOne(this_user:UserWithPermission, id: number): Promise&lt;RepairOrder&gt; {
+    var repair_order &#x3D; await this.repairOrderRepository.findOne({
+        where: {
+          repair_order_id:id,
+        },
+    });
+    repair_order.photos &#x3D; (await this.getPhotos(repair_order.repair_order_id)).join(&#x27;|&#x27;);
+    return repair_order;
+  }
+
+  async findOneInDomain(this_user:UserWithPermission, id: number): Promise&lt;RepairOrder&gt; {
+    var where:GetRepairOrderArgs &#x3D; {repair_order_id: id}
+    var repair_orders &#x3D; await this.domainService.getAllRepairOrders(this_user, this, this_user.domain_id, where)
+    return repair_orders.length&gt;0 ? repair_orders[0] : null;
+  }
+
+
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RepairOrderService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

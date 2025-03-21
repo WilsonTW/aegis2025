@@ -114,6 +114,11 @@ $ npm run start:prod
 $ export TEST_MODE=true
 $ npm run start
 ```
+## 啟動CompoDoc
+
+```bash
+$ npx compodoc -p tsconfig.json -s --port 15002
+```
 
 ## API 測試網頁
 

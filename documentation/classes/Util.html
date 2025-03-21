@@ -1,0 +1,3146 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >Util</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/util/util.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#ajax" >ajax</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#alignTime" >alignTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#avg" >avg</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#checkParenthesesBalance" >checkParenthesesBalance</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#createRandomID" >createRandomID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#createUUID" >createUUID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#differenceSet" >differenceSet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#diffObject" >diffObject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#extractVariables" >extractVariables</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#fillTemplate" >fillTemplate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPhotos" >getPhotos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getRelativeTime" >getRelativeTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#getViewPermissionByTable" >getViewPermissionByTable</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#hasOneInSubset" >hasOneInSubset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#hasPermission" >hasPermission</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#intersectionSet" >intersectionSet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#isDateValid" >isDateValid</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#isSuperset" >isSuperset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#max" >max</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#mergeDatasByTime" >mergeDatasByTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#min" >min</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#notifyDeviceChanged" >notifyDeviceChanged</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#numberWithCommas" >numberWithCommas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveFile" >saveFile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#secondsToHHMMSS" >secondsToHHMMSS</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#sleep" >sleep</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#sum" >sum</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#unionSet" >unionSet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#writeDynamicData" >writeDynamicData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ajax"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>ajax</b></span>
+                        <a href="#ajax"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ajax(url, options, is_return_response, time: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="458"
+                                    class="link-to-prism">src/util/util.ts:458</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>is_return_response</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>time</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>15000</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alignTime"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>alignTime</b></span>
+                        <a href="#alignTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>alignTime(time, every, timezone)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/util/util.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>time</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>every</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>timezone</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="avg"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>avg</b></span>
+                        <a href="#avg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>avg(arr)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/util/util.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>arr</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkParenthesesBalance"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>checkParenthesesBalance</b></span>
+                        <a href="#checkParenthesesBalance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkParenthesesBalance(s)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/util/util.ts:302</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>s</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createRandomID"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>createRandomID</b></span>
+                        <a href="#createRandomID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createRandomID()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="351"
+                                    class="link-to-prism">src/util/util.ts:351</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createUUID"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>createUUID</b></span>
+                        <a href="#createUUID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createUUID()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="339"
+                                    class="link-to-prism">src/util/util.ts:339</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="differenceSet"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>differenceSet</b></span>
+                        <a href="#differenceSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>differenceSet(setA: Set<T> | Array<T>, setB: Set<T> | Array<T>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/util/util.ts:282</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>setA</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>setB</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Set&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="diffObject"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>diffObject</b></span>
+                        <a href="#diffObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>diffObject(src, dst)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/util/util.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>src</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>dst</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ modified: boolean; remove: {}; add: {}; diff: {}; }</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="extractVariables"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>extractVariables</b></span>
+                        <a href="#extractVariables"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>extractVariables(inputString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="359"
+                                    class="link-to-prism">src/util/util.ts:359</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>inputString</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Array&lt;string&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fillTemplate"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>fillTemplate</b></span>
+                        <a href="#fillTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fillTemplate(template: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, args: Array<literal type>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="373"
+                                    class="link-to-prism">src/util/util.ts:373</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>template</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>args</td>
+                                            <td>
+                                                        <code>Array&lt;literal type&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPhotos"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getPhotos</b></span>
+                        <a href="#getPhotos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPhotos(dirname, id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="484"
+                                    class="link-to-prism">src/util/util.ts:484</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dirname</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRelativeTime"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getRelativeTime</b></span>
+                        <a href="#getRelativeTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getRelativeTime(time, timezone)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/util/util.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>time</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>timezone</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getViewPermissionByTable"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>getViewPermissionByTable</b></span>
+                        <a href="#getViewPermissionByTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getViewPermissionByTable(table_name)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="296"
+                                    class="link-to-prism">src/util/util.ts:296</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>table_name</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{}</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasOneInSubset"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>hasOneInSubset</b></span>
+                        <a href="#hasOneInSubset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hasOneInSubset(bigset: Set<T> | Array<T>, subset: Set<T> | Array<T>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="248"
+                                    class="link-to-prism">src/util/util.ts:248</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bigset</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>subset</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasPermission"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>hasPermission</b></span>
+                        <a href="#hasPermission"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hasPermission(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, perms: Array<String> | Set<String>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="291"
+                                    class="link-to-prism">src/util/util.ts:291</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>perms</td>
+                                            <td>
+                                                        <code>Array&lt;String&gt; | Set&lt;String&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="intersectionSet"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>intersectionSet</b></span>
+                        <a href="#intersectionSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>intersectionSet(setA: Set<T>, setB: Set<T> | Array<T>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/util/util.ts:272</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>setA</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>setB</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Set&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDateValid"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>isDateValid</b></span>
+                        <a href="#isDateValid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isDateValid(dateStr)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="334"
+                                    class="link-to-prism">src/util/util.ts:334</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dateStr</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSuperset"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>isSuperset</b></span>
+                        <a href="#isSuperset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isSuperset(bigset: Set<T> | Array<T>, subset: Set<T> | Array<T>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="233"
+                                    class="link-to-prism">src/util/util.ts:233</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bigset</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>subset</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="max"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>max</b></span>
+                        <a href="#max"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>max(arr)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/util/util.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>arr</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mergeDatasByTime"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>mergeDatasByTime</b></span>
+                        <a href="#mergeDatasByTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mergeDatasByTime(data1s: Array<any>, data2s: Array<any>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="383"
+                                    class="link-to-prism">src/util/util.ts:383</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data1s</td>
+                                            <td>
+                                                        <code>Array&lt;any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>data2s</td>
+                                            <td>
+                                                        <code>Array&lt;any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{}</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="min"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>min</b></span>
+                        <a href="#min"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>min(arr)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/util/util.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>arr</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notifyDeviceChanged"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>notifyDeviceChanged</b></span>
+                        <a href="#notifyDeviceChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>notifyDeviceChanged()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="594"
+                                    class="link-to-prism">src/util/util.ts:594</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numberWithCommas"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>numberWithCommas</b></span>
+                        <a href="#numberWithCommas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>numberWithCommas(x)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/util/util.ts:227</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>x</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveFile"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>saveFile</b></span>
+                        <a href="#saveFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveFile(repair_order_upload_path, repair_order_download_path, files: Express.Multer.File)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="503"
+                                    class="link-to-prism">src/util/util.ts:503</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>repair_order_upload_path</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>repair_order_download_path</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>files</td>
+                                            <td>
+                                                        <code>Express.Multer.File</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Array&lt;literal type&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="secondsToHHMMSS"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>secondsToHHMMSS</b></span>
+                        <a href="#secondsToHHMMSS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>secondsToHHMMSS(seconds)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/util/util.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seconds</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sleep"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>sleep</b></span>
+                        <a href="#sleep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sleep(msec)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="450"
+                                    class="link-to-prism">src/util/util.ts:450</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>msec</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sum"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>sum</b></span>
+                        <a href="#sum"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sum(arr)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/util/util.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>arr</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unionSet"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>unionSet</b></span>
+                        <a href="#unionSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>unionSet(setA: Set<T> | Array<T>, setB: Set<T> | Array<T>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/util/util.ts:263</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>setA</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>setB</td>
+                                            <td>
+                                                        <code>Set&lt;T&gt; | Array&lt;T&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Set&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeDynamicData"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>writeDynamicData</b></span>
+                        <a href="#writeDynamicData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>writeDynamicData(data, writeClient, measurement)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="606"
+                                    class="link-to-prism">src/util/util.ts:606</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>writeClient</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>measurement</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus } from &quot;@nestjs/common&quot;;
+import { AppConfigService } from &quot;../app_config.service&quot;;
+import * as sharp from &#x27;sharp&#x27;;
+import { InfluxdbClientService } from &quot;src/modules/device_data/influxdb_client.service&quot;;
+import { MailService } from &quot;src/modules/mail/mail.service&quot;;
+import { UserWithPermission } from &quot;src/modules/user/user_with_permission.entity&quot;;
+
+const {InfluxDB, Point} &#x3D; require(&#x27;@influxdata/influxdb-client&#x27;)
+const path &#x3D; require(&#x27;node:path&#x27;);
+const fs &#x3D; require(&#x27;fs&#x27;);
+
+var moment &#x3D; require(&#x27;moment-timezone&#x27;);
+require(&#x27;moment/locale/zh-tw&#x27;);
+
+export class Util {
+
+  static diffObject(src, dst) {
+    var diff &#x3D; {};
+    var add &#x3D; {};
+    var remove &#x3D; {};
+    for (var key in src) {
+      if (!(key in dst)) {
+        remove[key] &#x3D; src[key];
+      } else if (src[key] !&#x3D; dst[key]) {
+        diff[key] &#x3D; {
+          src: src[key],
+          dst: dst[key]
+        }
+      }
+    }
+    for (var key in dst) {
+      if (!(key in src)) {
+        add[key] &#x3D; dst[key];
+      }
+    }
+    return {
+      modified: Object.keys(diff).length&gt;0 || Object.keys(add).length&gt;0 || Object.keys(remove).length&gt;0,
+      remove: remove,
+      add: add,
+      diff: diff
+    }
+  }
+
+  static sum(arr) {
+    var count &#x3D; 0
+    var s &#x3D; 0
+    for (var v of arr) {
+      if (v!&#x3D;null) {
+        count ++
+        s +&#x3D; v
+      }
+    }
+    return count&#x3D;&#x3D;0 ? null : s
+  }
+  
+  static avg(arr) {
+    var count &#x3D; 0
+    var s &#x3D; 0
+    for (var v of arr) {
+      if (v!&#x3D;null) {
+        count ++
+        s +&#x3D; v
+      }
+    }
+    return count&#x3D;&#x3D;0 ? null : s / count
+  }
+
+  static min(arr) {
+    var count &#x3D; 0
+    var m &#x3D; Number.MAX_SAFE_INTEGER
+    for (var v of arr) {
+      if (v!&#x3D;null) {
+        count ++
+        m &#x3D; Math.min(m, v)
+      }
+    }
+    return count&#x3D;&#x3D;0 ? null : m
+  }
+
+  static max(arr) {
+    var count &#x3D; 0
+    var m &#x3D; Number.MIN_SAFE_INTEGER
+    for (var v of arr) {
+      if (v!&#x3D;null) {
+        count ++
+        m &#x3D; Math.max(m, v)
+      }
+    }
+    return count&#x3D;&#x3D;0 ? null : m
+  }
+
+  static secondsToHHMMSS(seconds) {
+    const hours &#x3D; Math.floor(seconds / 3600);
+    const minutes &#x3D; Math.floor((seconds % 3600) / 60);
+    const secs &#x3D; seconds % 60;
+
+    return [
+        String(hours).padStart(2, &#x27;0&#x27;),
+        String(minutes).padStart(2, &#x27;0&#x27;),
+        String(secs).padStart(2, &#x27;0&#x27;)
+    ].join(&#x27;:&#x27;);
+  }
+
+  static getRelativeTime(time, timezone) {
+    let new_time &#x3D; time
+    if (time&#x3D;&#x3D;null) {
+      new_time &#x3D; (new Date()).toISOString()
+    } else if (time&#x3D;&#x3D;&#x27;0&#x27;) {
+      new_time &#x3D; time
+    } else if (/^\-[0-9]+([smhdwy]|mo)$/.test(time)) {
+      var v &#x3D; parseInt(time)
+      for (var n&#x3D;1;n&lt;time.length;n++) {
+        if (time.charCodeAt(n)&lt;48 || time.charCodeAt(n)&gt;57) { // &#x27;0&#x27;:48, &#x27;9&#x27;:57
+          break;
+        }
+      }
+      let start_unit &#x3D; time.substring(n,time.length)
+
+      var start_msec &#x3D; (new Date()).getTime()
+      start_msec &#x3D; Math.floor(start_msec / 1000) * 1000
+      var m &#x3D; moment.tz(start_msec, timezone);
+
+      if (start_unit&#x3D;&#x3D;&#x27;s&#x27;)       m.add(v, &#x27;seconds&#x27;);
+      else if (start_unit&#x3D;&#x3D;&#x27;m&#x27;)  m.add(v, &#x27;minutes&#x27;);
+      else if (start_unit&#x3D;&#x3D;&#x27;h&#x27;)  m.add(v, &#x27;hours&#x27;);
+      else if (start_unit&#x3D;&#x3D;&#x27;d&#x27;)  m.add(v, &#x27;days&#x27;);
+      else if (start_unit&#x3D;&#x3D;&#x27;w&#x27;)  m.add(v, &#x27;weeks&#x27;);
+      else if (start_unit&#x3D;&#x3D;&#x27;mo&#x27;) m.add(v, &#x27;months&#x27;);
+      else if (start_unit&#x3D;&#x3D;&#x27;y&#x27;)  m.add(v, &#x27;years&#x27;);
+
+      new_time &#x3D; m.toISOString()
+    } else {
+      if (!Util.isDateValid(time)) {
+        throw new HttpException(&#x27;&quot;time&quot; is invalid&#x27;, HttpStatus.BAD_REQUEST);
+      }
+      new_time &#x3D; (new Date(time)).toISOString()
+    }
+    return new_time
+  }
+
+  static alignTime(time, every, timezone) {
+    for (var n&#x3D;1;n&lt;every.length;n++) {
+      if (every.charCodeAt(n)&lt;48 || every.charCodeAt(n)&gt;57) { // &#x27;0&#x27;:48, &#x27;9&#x27;:57
+        break;
+      }
+    }
+    let every_value &#x3D; parseInt(every)
+    if (every_value&#x3D;&#x3D;0) {
+      throw new HttpException(&#x27;&quot;every&quot; is 0&#x27;, HttpStatus.BAD_REQUEST);
+    }
+    let every_unit &#x3D; every.substring(n,every.length)
+
+
+    var m1 &#x3D; moment.tz(time, timezone)
+    var m2 &#x3D; moment.tz(time, timezone)
+    var last
+    if (every_unit&#x3D;&#x3D;&#x27;s&#x27;){
+      last &#x3D; Math.floor(m1.second() / every_value) * every_value
+      m2.startOf(&#x27;second&#x27;)
+      m2.second(last); 
+    } else if (every_unit&#x3D;&#x3D;&#x27;m&#x27;) {
+      last &#x3D; Math.floor(m1.minute() / every_value) * every_value
+      m2.startOf(&#x27;minute&#x27;)
+      m2.minute(last); 
+    } else if (every_unit&#x3D;&#x3D;&#x27;h&#x27;) {
+      last &#x3D; Math.floor(m1.hour() / every_value) * every_value
+      m2.startOf(&#x27;hour&#x27;)
+      m2.hour(last); 
+    } else if (every_unit&#x3D;&#x3D;&#x27;d&#x27;) {
+      last &#x3D; Math.floor((m1.date()-1) / every_value) * every_value + 1
+      m2.startOf(&#x27;date&#x27;)
+      m2.date(last); 
+    } else if (every_unit&#x3D;&#x3D;&#x27;mo&#x27;) {
+      last &#x3D; Math.floor(m1.month() / every_value) * every_value
+      m2.startOf(&#x27;month&#x27;)
+      m2.month(last); 
+    } else if (every_unit&#x3D;&#x3D;&#x27;y&#x27;) {
+      last &#x3D; Math.floor(m1.year() / every_value) * every_value
+      m2.startOf(&#x27;year&#x27;)
+      m2.year(last); 
+    }
+
+    return m2.toISOString()
+
+
+    /*
+    var diff_sec &#x3D; stop_sec - start_sec
+    var every_sec
+    let last_sec &#x3D; stop_sec
+    if (every_unit&#x3D;&#x3D;&#x27;s&#x27;) {
+      every_sec &#x3D; every_value
+      last_sec &#x3D; start_sec + Math.floor(diff_sec / every_sec) * every_sec
+    } else if (every_unit&#x3D;&#x3D;&#x27;m&#x27;) {
+      every_sec &#x3D; every_value * 60
+      last_sec &#x3D; start_sec + Math.floor(diff_sec / every_sec) * every_sec
+    } else if (every_unit&#x3D;&#x3D;&#x27;h&#x27;) {
+      every_sec &#x3D; every_value * 3600
+      last_sec &#x3D; start_sec + Math.floor(diff_sec / every_sec) * every_sec
+    } else if (every_unit&#x3D;&#x3D;&#x27;d&#x27;) {
+      every_sec &#x3D; every_value * 86400
+      last_sec &#x3D; start_sec + Math.floor(diff_sec / every_sec) * every_sec
+    } else if (every_unit&#x3D;&#x3D;&#x27;w&#x27;) {
+      every_sec &#x3D; every_value * 604800
+      last_sec &#x3D; start_sec + Math.floor(diff_sec / every_sec) * every_sec
+    } else if (every_unit&#x3D;&#x3D;&#x27;mo&#x27;) {
+      if (every_value!&#x3D;1) {
+        throw new HttpException(&#x27;Not supported for &quot;every&quot; is not 1 when &quot;stop_align_every&quot; is assigned&#x27;, HttpStatus.METHOD_NOT_ALLOWED);
+      }
+      var m2 &#x3D; moment.tz(stop_sec*1000, timezone2)
+      m2.startOf(&#x27;month&#x27;)
+      last_sec &#x3D; m2.unix()
+    } else if (every_unit&#x3D;&#x3D;&#x27;y&#x27;) {
+      if (every_value!&#x3D;1) {
+        throw new HttpException(&#x27;Not supported for &quot;every&quot; is not 1 when &quot;stop_align_every&quot; is assigned&#x27;, HttpStatus.METHOD_NOT_ALLOWED);
+      }
+      var m2 &#x3D; moment.tz(stop_sec*1000, timezone2)
+      m2.startOf(&#x27;year&#x27;)
+      last_sec &#x3D; m2.unix()
+    }
+
+    params.stop &#x3D; (new Date(last_sec*1000)).toISOString()
+    */
+
+  }
+
+  static numberWithCommas(x) {
+    if (x&#x3D;&#x3D;null || isNaN(x) || (&#x27;&#x27;+x)&#x3D;&#x3D;&#x27;&#x27;) return &#x27;&#x27;;
+    var v &#x3D; Math.floor(parseFloat(x) * 100)/100;
+    return v.toString().replace(/\B(?&lt;!\.\d*)(?&#x3D;(\d{3})+(?!\d))/g, &quot;,&quot;);
+  }
+
+  static isSuperset&lt;T&gt;(bigset:Set&lt;T&gt;|Array&lt;T&gt;, subset:Set&lt;T&gt;|Array&lt;T&gt;) {
+    var bigset2:Set&lt;T&gt;
+    if (Array.isArray(bigset)) {
+      bigset2 &#x3D; new Set(bigset)
+    } else {
+      bigset2 &#x3D; bigset
+    }
+    for (var elem of subset) {
+      if (!bigset2.has(elem)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  static hasOneInSubset&lt;T&gt;(bigset:Set&lt;T&gt;|Array&lt;T&gt;, subset:Set&lt;T&gt;|Array&lt;T&gt;) {
+    var bigset2:Set&lt;T&gt;
+    if (Array.isArray(bigset)) {
+      bigset2 &#x3D; new Set(bigset)
+    } else {
+      bigset2 &#x3D; bigset
+    }
+    for (var elem of subset) {
+      if (bigset2.has(elem)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  static unionSet&lt;T&gt;(setA: Set&lt;T&gt;|Array&lt;T&gt;, setB: Set&lt;T&gt;|Array&lt;T&gt;): Set&lt;T&gt; {
+    return new Set([...setA, ...setB])
+    /*
+    const result &#x3D; new Set&lt;T&gt;(setA);  // 創建一個新 Set，並把 setA 的元素加入
+    setB.forEach(item &#x3D;&gt; result.add(item));  // 將 setB 的元素添加到 result 中（不會重複）
+    return result;
+    */
+  }
+
+  static intersectionSet&lt;T&gt;(setA: Set&lt;T&gt;, setB: Set&lt;T&gt;|Array&lt;T&gt;): Set&lt;T&gt; {
+    var intersection:Set&lt;T&gt; &#x3D; new Set();
+    for (var elem of setB) {
+      if (setA.has(elem)) {
+        intersection.add(elem);
+      }
+    }
+    return intersection;
+  };
+
+  static differenceSet&lt;T&gt;(setA: Set&lt;T&gt;|Array&lt;T&gt;, setB: Set&lt;T&gt;|Array&lt;T&gt;): Set&lt;T&gt; {
+    var difference &#x3D; new Set(setA);
+    for (var elem of setB) {
+      difference.delete(elem);
+    }
+    return difference;
+  }
+
+
+  static hasPermission(this_user:UserWithPermission, perms:Array&lt;String&gt;|Set&lt;String&gt;) {
+    var perms2 &#x3D; [&quot;all_perm&quot;, ...perms]
+    return Util.hasOneInSubset(this_user.permissions, perms2)
+  }
+
+  static getViewPermissionByTable(table_name) {
+    return [&#x60;view:${table_name}&#x60;, &#x60;edit:${table_name}&#x60;, &#x60;manage:${table_name}&#x60;]
+  }
+
+
+  // 檢查括號是否對稱
+  static checkParenthesesBalance(s) {
+    // 用來儲存左括號的堆疊
+    const stack &#x3D; [];
+    
+    // 配對的右括號對應的左括號
+    const matchingPairs &#x3D; {
+        &#x27;)&#x27;: &#x27;(&#x27;,
+        &#x27;]&#x27;: &#x27;[&#x27;,
+        &#x27;}&#x27;: &#x27;{&#x27;
+    };
+
+    // 遍歷字串中的每個字符
+    for (let char of s) {
+        // 如果是左括號，將其推入堆疊
+        if (char &#x3D;&#x3D;&#x3D; &#x27;(&#x27; || char &#x3D;&#x3D;&#x3D; &#x27;[&#x27; || char &#x3D;&#x3D;&#x3D; &#x27;{&#x27;) {
+            stack.push(char);
+        }
+        // 如果是右括號，檢查堆疊中的左括號是否匹配
+        else if (char &#x3D;&#x3D;&#x3D; &#x27;)&#x27; || char &#x3D;&#x3D;&#x3D; &#x27;]&#x27; || char &#x3D;&#x3D;&#x3D; &#x27;}&#x27;) {
+            // 如果堆疊是空的或頂部元素不匹配，則返回 false
+            if (stack.length &#x3D;&#x3D;&#x3D; 0 || stack[stack.length - 1] !&#x3D;&#x3D; matchingPairs[char]) {
+                return false;
+            }
+            // 弹出堆疊頂部的元素
+            stack.pop();
+        }
+    }
+
+    // 如果堆疊中還有剩餘的左括號，說明不匹配
+    return stack.length &#x3D;&#x3D;&#x3D; 0;
+  }
+
+  static isDateValid(dateStr) {
+    var v:any &#x3D; new Date(dateStr)
+    return !isNaN(v);
+  }
+
+  static createUUID() {
+    var d &#x3D; Date.now();
+    if (typeof performance !&#x3D;&#x3D; &#x27;undefined&#x27; &amp;&amp; typeof performance.now &#x3D;&#x3D;&#x3D; &#x27;function&#x27;){
+      d +&#x3D; performance.now(); //use high-precision timer if available
+    }
+    return &#x27;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#x27;.replace(/[xy]/g, function (c) {
+      var r &#x3D; (d + Math.random() * 16) % 16 | 0;
+      d &#x3D; Math.floor(d / 16);
+        return (c &#x3D;&#x3D;&#x3D; &#x27;x&#x27; ? r : (r &amp; 0x3 | 0x8)).toString(16);
+    });
+  }
+
+  static createRandomID() {
+    return Util.createUUID().replace(/\-/g, &#x27;&#x27;)
+  }
+
+
+  // const inputString &#x3D; &quot;/ab/${cde}fgh/${ij}klm&quot;;
+  // const outputArray &#x3D; extractVariables(inputString);
+  // console.log(outputArray); // 輸出: [&quot;cde&quot;, &quot;ij&quot;]
+  static extractVariables(inputString:string):Array&lt;string&gt; {
+    const pattern &#x3D; /\${(.*?)}/g; // 匹配&quot;${}&quot;中的任何字串，並捕獲其中的內容
+    const matches &#x3D; [];
+    let match;
+    while ((match &#x3D; pattern.exec(inputString)) !&#x3D;&#x3D; null) {
+        matches.push(match[1].trim()); // 將匹配的字串加入到結果陣列中
+    }
+    return matches;
+  }
+
+  // const template &#x3D; &quot;/ab/${cde.xx}fgh/${ij}klm&quot;;
+  // const args &#x3D; [{name: &quot;cde.xx&quot;, value: &quot;12&quot;}, {name: &quot;ij&quot;, value: &quot;345&quot;}];
+  // const outputString &#x3D; fillTemplate(template, args);
+  // console.log(outputString); // 輸出: &quot;/ab/12fgh/345klm&quot;
+  static fillTemplate(template:string, args:Array&lt;{name:string,value:string}&gt;):string {
+    // 將輸入模板中的&quot;${}&quot;替換為對應的值
+    for (let arg of args) {
+        const regex &#x3D; new RegExp(&#x60;\\$\\{${arg.name}\\}&#x60;, &#x27;g&#x27;);
+        template &#x3D; template.replace(regex, arg.value);
+    }
+    return template;
+  }
+
+
+  static mergeDatasByTime(data1s:Array&lt;any&gt;, data2s:Array&lt;any&gt;) {
+    var n1 &#x3D; 0
+    var n2 &#x3D; 0
+    var data0s &#x3D; []
+    var field &#x3D; {}
+    while(true) {
+      if (n1&gt;&#x3D;data1s.length &amp;&amp; n2&gt;&#x3D;data2s.length) break;
+      if (n1&lt;data1s.length &amp;&amp; n2&gt;&#x3D;data2s.length) {
+        for (var d in data1) {
+          if (d!&#x3D;&#x27;_time&#x27;) {
+            if (data1[d]!&#x3D;null) field[d] &#x3D; data1[d]
+          }
+        }
+        data0s.push({_time:data1.time, ...field})
+        n1 ++
+        continue;
+      }
+      if (n1&gt;&#x3D;data1s.length &amp;&amp; n2&lt;data2s.length) {
+        for (var d in data2) {
+          if (d!&#x3D;&#x27;_time&#x27;) {
+            if (data2[d]!&#x3D;null) field[d] &#x3D; data2[d]
+          }
+        }
+        data0s.push({_time:data2.time, ...field})
+        n2 ++
+        continue;
+      }
+
+      var data1 &#x3D; data1s[n1]
+      var data2 &#x3D; data2s[n2]
+      var time1 &#x3D; (new Date(data1._time)).getTime()
+      var time2 &#x3D; (new Date(data2._time)).getTime()
+      if (time1&#x3D;&#x3D;time2) {
+        for (var d in data1) {
+          if (d!&#x3D;&#x27;_time&#x27;) {
+            if (data1[d]!&#x3D;null) field[d] &#x3D; data1[d]
+          }
+        }
+        for (var d in data2) {
+          if (d!&#x3D;&#x27;_time&#x27;) {
+            if (data2[d]!&#x3D;null) field[d] &#x3D; data2[d]
+          }
+        }
+        data0s.push({_time:data1.time, ...field})
+        n1 ++
+        n2 ++
+      } else if (time1&lt;time2) {
+        for (var d in data1) {
+          if (d!&#x3D;&#x27;_time&#x27;) {
+            if (data1[d]!&#x3D;null) field[d] &#x3D; data1[d]
+          }
+        }
+        data0s.push({_time:data1.time, ...field})
+        n1 ++
+      } else if (time1&gt;time2) {
+        for (var d in data2) {
+          if (d!&#x3D;&#x27;_time&#x27;) {
+            if (data2[d]!&#x3D;null) field[d] &#x3D; data2[d]
+          }
+        }
+        data0s.push({_time:data2.time, ...field})
+        n2 ++
+      }
+    }
+    return data0s
+  }
+
+  static async sleep(msec) {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+        setTimeout(() &#x3D;&gt; {
+            resolve(null);
+        }, msec);
+    });
+  }
+
+  static async ajax(url, options, is_return_response&#x3D;false, time &#x3D; 15000) {
+    const controller &#x3D; new AbortController();
+    setTimeout(() &#x3D;&gt; {
+        controller.abort();
+    }, time);
+    const config &#x3D; { ...options, signal: controller.signal };
+    try {
+        const response &#x3D; await fetch(url, config);
+        if (is_return_response) return response;
+
+        var text &#x3D; await response.text();
+        if (response.status&gt;&#x3D;400) {
+            console.log(&#x27;Cannot load page &quot;&#x27;+url+&#x27;&quot;. response(&#x27;+response.status+&#x27;)&#x3D;&quot;&#x27;+text+&#x27;&quot;&#x27;);
+            return null;
+        } else {
+            return text;
+        }
+        //const responseJson &#x3D; await response.json();
+        //return responseJson;
+    } catch (error) {
+        console.log(&#x27;Cannot load page &quot;&#x27;+url+&#x27;&quot;&#x27;);
+        console.error(error);
+        return null;
+    }
+  }
+
+  static async getPhotos(dirname, id) {
+    var config &#x3D; AppConfigService.getSystemConfig();
+    var phoths &#x3D; [];
+    var root_path &#x3D; path.join(config.upload_path, dirname);
+    if (!fs.existsSync(root_path)) {
+      return phoths;
+    }
+    var dir_path &#x3D; path.join(root_path, String(id));
+    if (!fs.existsSync(dir_path)) {
+      return phoths;
+    }
+    var files &#x3D; fs.readdirSync(dir_path);
+    for (var file of files) {
+      phoths.push(config.download_path + &#x27;/&#x27; + dirname + &#x27;/&#x27; + id + &#x27;/&#x27; + file);
+    }
+    return phoths;
+  }
+
+
+  static async saveFile(repair_order_upload_path, repair_order_download_path, files: Express.Multer.File): Promise&lt;Array&lt;{
+    originalname?:string,
+    success:boolean,
+    error:string
+  }&gt;&gt; {
+
+    var config &#x3D; AppConfigService.getSystemConfig();
+
+    var images: Array&lt;Express.Multer.File&gt; &#x3D; [];
+    if (Array.isArray(files)) {
+      images &#x3D; files;
+    } else {
+      images &#x3D; [files];
+    }
+
+    var results &#x3D; [];
+    if (files&#x3D;&#x3D;null) return results;
+
+    for (var image of images) {
+      var res &#x3D; {
+        originalname: image?.originalname,
+        download: &#x27;&#x27;,
+        success: false,
+        error: &#x27;&#x27;
+      };
+      results.push(res);
+      try {
+        /*
+        var originalname &#x3D; image.originalname;
+        if (!/[^\u0000-\u00ff]/.test(originalname)) {
+          originalname &#x3D; Buffer.from(originalname, &#x27;latin1&#x27;).toString(&#x27;utf8&#x27;,);
+        }
+        res.originalname &#x3D; originalname;
+        var originalNameNoExt &#x3D; path.parse(originalname).name;
+        //const filename &#x3D; Date.now() + &#x27;-&#x27; + originalNameNoExt + &#x27;.webp&#x27;;
+        */
+
+        if (image.size&gt;parseInt(config.max_upload_file_size)) {
+          res.error &#x3D; &#x27;File size too large. filesize:(&#x27;+image.size+&#x27; &gt; &#x27;+config.max_upload_file_size+&#x27;)&#x27;;
+          continue;
+        }
+
+        if (image.mimetype&#x3D;&#x3D;&#x27;application/pdf&#x27;) {
+          //const filename &#x3D; originalNameNoExt + &#x27;.pdf&#x27;;
+          const filename &#x3D; Util.createUUID() + &#x27;.pdf&#x27;;
+          res.download &#x3D; repair_order_download_path + &#x27;/&#x27; + filename;
+          
+          //const multerText &#x3D; Buffer.from(file.buffer).toString(&quot;utf-8&quot;); // this reads and converts the contents of the text file into string
+          await fs.promises.writeFile(path.join(repair_order_upload_path, filename), image.buffer);
+        } else {
+          //const filename &#x3D; originalNameNoExt + &#x27;.webp&#x27;;
+          const filename &#x3D; Util.createUUID() + &#x27;.webp&#x27;;
+          res.download &#x3D; repair_order_download_path + &#x27;/&#x27; + filename;
+
+          var max_photo_wh &#x3D; parseInt(config.max_photo_wh);
+          var shp &#x3D; await sharp(image.buffer);
+          var metadata &#x3D; await shp.metadata();
+          console.log(metadata.width, metadata.height)
+          if (metadata.width &gt;&#x3D; metadata.height &amp;&amp; metadata.width&gt;max_photo_wh) {
+            shp.resize(null, null, {
+              width: max_photo_wh,
+              height: null,
+              fit: &#x27;contain&#x27;
+            })
+          } else if (metadata.width &lt; metadata.height &amp;&amp; metadata.height&gt;max_photo_wh) {
+            shp.resize(null, null, {
+              width: null,
+              height: max_photo_wh,
+              fit: &#x27;contain&#x27;
+            })
+          }
+
+          shp.webp({ effort: 3 })
+          shp.toFile(path.join(repair_order_upload_path, filename));
+
+          /*
+          await sharp(image.buffer)
+            .resize(800)
+            .webp({ effort: 3 })
+            .toFile(path.join(UPLOAD_DIR, filename));
+          */
+        }
+        res.success &#x3D; true;
+      } catch(ex) {
+        console.log(ex);
+        res.error &#x3D; ex.toString();
+      }
+    }
+    return results;
+  }
+
+  static async notifyDeviceChanged() {
+      Util.ajax(&quot;http://127.0.0.1:1880/notify_device_changed&quot;, {
+          method: &quot;POST&quot;,
+          body: &quot;&quot;,
+          cache: &#x27;no-cache&#x27;, // *default, no-cache, reload, force-cache, only-if-cached
+          mode: &#x27;cors&#x27;, // no-cors, cors, *same-origin
+      }, false, 10000).catch(ex&#x3D;&gt;{
+        console.log(ex)
+      })
+  }
+
+  // 將動態資料展平並寫入 InfluxDB
+  static writeDynamicData(data, writeClient, measurement) {
+    // 創建一個新的 Point
+    const point &#x3D; new Point(measurement);
+    
+    // 展平並處理 data
+    function flattenAndAddFields(prefix, obj) {
+      for (const [key, value] of Object.entries(obj)) {
+        const fieldKey &#x3D; prefix ? &#x60;${prefix}_${key}&#x60; : key;
+        if (typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; !Array.isArray(value)) {
+          // 對象，遞歸處理
+          flattenAndAddFields(fieldKey, value);
+        } else if (Array.isArray(value)) {
+          // 陣列，處理每個元素
+          value.forEach((item, index) &#x3D;&gt; {
+            if (typeof item &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+              point.floatField(&#x60;${fieldKey}_${index}&#x60;, item);
+            } else if (typeof item &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+              point.stringField(&#x60;${fieldKey}_${index}&#x60;, item);
+            }
+          });
+        } else if (typeof value &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+          // 數字欄位
+          point.floatField(fieldKey, value);
+        } else if (typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+          // 字符串欄位
+          point.stringField(fieldKey, value);
+        }
+      }
+    }
+    
+    flattenAndAddFields(&#x27;&#x27;, data);
+    
+    // 設定時間戳（如果需要，這裡使用當前時間）
+    point.timestamp(new Date());
+
+    /*
+    var influxdb_client &#x3D; InfluxdbClientService.getClient();
+    var org &#x3D; AppConfigService.getInfluxdbConfig().org;
+    let writeClient &#x3D; influxdb_client.getWriteApi(org, bucket, &#x27;ms&#x27;)
+    */
+
+    // 寫入點到 InfluxDB
+    writeClient.writePoint(point);
+  }
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'Util.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

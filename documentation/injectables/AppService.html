@@ -1,0 +1,1277 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AppService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceService" >deviceService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#domainRepository" >domainRepository</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#domainService" >domainService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#mailService" >mailService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#userService" >userService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getHello" >getHello</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#notifyPhone" >notifyPhone</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#notifyUser" >notifyUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#notifyUserByEvent" >notifyUserByEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(domainRepository: <a href="../classes/Domain.html" target="_self">Repository&lt;Domain&gt;</a>, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, mailService: <a href="../injectables/MailService.html" target="_self">MailService</a>, deviceService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app.service.ts:32</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>domainRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Domain.html" target="_self" >Repository&lt;Domain&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domainService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mailService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MailService.html" target="_self" >MailService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getHello"></a>
+                    <span class="name">
+                        <span ><b>getHello</b></span>
+                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getHello()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app.service.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notifyPhone"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>notifyPhone</b></span>
+                        <a href="#notifyPhone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>notifyPhone(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, token, title, body)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app.service.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>token</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>title</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>body</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notifyUser"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>notifyUser</b></span>
+                        <a href="#notifyUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>notifyUser(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, notify: literal type, mail_type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_id, repair_order_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app.service.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>notify</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>mail_type</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>message</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_id</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>undefined</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>repair_order_id</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>undefined</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notifyUserByEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>notifyUserByEvent</b></span>
+                        <a href="#notifyUserByEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>notifyUserByEvent(this_user: <a href="../classes/UserWithPermission.html" target="_self">UserWithPermission</a>, event: <a href="../classes/Event.html" target="_self">Event</a>, mail_type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, device_id, repair_order_id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app.service.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>this_user</td>
+                                            <td>
+                                                            <code><a href="../classes/UserWithPermission.html" target="_self" >UserWithPermission</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/Event.html" target="_self" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>mail_type</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>message</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>device_id</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>undefined</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>repair_order_id</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>undefined</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceService"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceService</b></span>
+                        <a href="#deviceService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Inject(DeviceService)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app.service.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domainRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>domainRepository</b></span>
+                        <a href="#domainRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Domain.html" target="_self" >Repository&lt;Domain&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(Domain)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app.service.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domainService"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>domainService</b></span>
+                        <a href="#domainService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Inject(DomainService)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app.service.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mailService"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>mailService</b></span>
+                        <a href="#mailService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/MailService.html" target="_self" >MailService</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Inject(MailService)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app.service.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userService"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>userService</b></span>
+                        <a href="#userService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Inject(UserService)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app.service.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Inject, Injectable, OnModuleInit, Post, UseGuards, Request, Body } from &#x27;@nestjs/common&#x27;;
+import { MailService } from &#x27;./modules/mail/mail.service&#x27;;
+import { Event } from &#x27;./modules/event/event.entity&#x27;;
+import { EventService } from &#x27;./modules/event/event.service&#x27;;
+import { RepairOrder, RepairOrderUpdate } from &#x27;./modules/repair_order/repair_order.entity&#x27;;
+import { DomainService } from &#x27;./modules/domain/domain.service&#x27;;
+import { UserService } from &#x27;./modules/user/user.service&#x27;;
+import { Domain } from &#x27;./modules/domain/domain.entity&#x27;;
+import { In, Repository } from &#x27;typeorm&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { AppConfigService } from &#x27;./app_config.service&#x27;;
+import { InfluxdbClientService } from &#x27;./modules/device_data/influxdb_client.service&#x27;;
+import { DeviceService } from &#x27;./modules/device/device.service&#x27;;
+import { Util } from &#x27;./util/util&#x27;;
+import { DataStorerManager } from &#x27;./modules/data_storer/mqtt.service&#x27;;
+import { Cron } from &#x27;@nestjs/schedule&#x27;;
+import { DeviceSpecStorer } from &#x27;./modules/device_data/device_spec_storer.service&#x27;;
+import { UserWithPermission } from &#x27;./modules/user/user_with_permission.entity&#x27;;
+import { LocalAuthGuard } from &#x27;./modules/auth/local-auth.guard&#x27;;
+import { ApiBearerAuth } from &#x27;@nestjs/swagger&#x27;;
+import { PhoneNotifyDto } from &#x27;./app.entity&#x27;;
+
+// const admin &#x3D; require(&#x27;firebase-admin&#x27;);
+// //const serviceAccount &#x3D; require(&#x27;../key/notify-test-61814-firebase-adminsdk-6lfws-14c8a5fb82.json&#x27;); // 替换为你的服务账户文件路径
+// const serviceAccount &#x3D; require(&#x27;../key/aegis-test-map-firebase-adminsdk-fwnn2-6daff4c1f4.json&#x27;); // 替换为你的服务账户文件路径
+
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+// });
+
+@Injectable()
+export class AppService {
+
+  constructor(
+    @InjectRepository(Domain) public readonly domainRepository: Repository&lt;Domain&gt;,
+    @Inject(DomainService) public readonly domainService: DomainService,
+    @Inject(UserService) public readonly userService: UserService,
+    @Inject(MailService) public readonly mailService: MailService,
+    @Inject(DeviceService) public readonly deviceService: DeviceService,
+  //  @Inject(EventService) public readonly eventService: EventService,
+  ) {
+    //console.log(&quot;AppService - constructor&quot;);
+  }
+
+  getHello(): string {
+    return &#x27;Hello World!&#x27;;
+  }
+
+  async notifyPhone(this_user:UserWithPermission, token, title, body): Promise&lt;boolean&gt; {
+    console.log(&#x27;推播通知已被跳過&#x27;);
+    return true; // 不執行 Firebase 發送
+  };
+
+  // async notifyPhone (this_user:UserWithPermission, token, title, body): Promise&lt;boolean&gt; {
+  //   try {
+  //     const response &#x3D; await admin.messaging().send({
+  //       token: token, // 設備的 FCM token
+  //       notification: {
+  //         title: title,
+  //         body: body,
+  //       },
+  //       data: {
+  //         // 可選的額外數據
+  //         key1: &#x27;value1&#x27;,
+  //         key2: &#x27;value2&#x27;,
+  //       },
+  //     });
+  //     console.log(&#x27;發送成功:&#x27;, response);
+  //     return true
+  //   } catch (error) {
+  //     console.error(&#x27;發送失敗:&#x27;, error);
+  //     return false
+  //   }
+  // };
+  
+  async notifyUser(this_user:UserWithPermission, notify:{user_id,mail?:boolean,email?:boolean,line_notify?:boolean}, mail_type:string, message:string, device_id&#x3D;undefined, repair_order_id&#x3D;undefined) {
+
+    if (notify.user_id&#x3D;&#x3D;null) return;
+
+    var user &#x3D; await this.userService.findOne(this_user, notify.user_id);
+    if (user&#x3D;&#x3D;null) {
+      console.log(&#x27;notifyUser - user_id (&#x27;+notify.user_id+&#x27;) is not found&#x27;);
+      return;
+    }
+
+    if (notify.mail) {
+      await this.mailService.create(this_user, {
+        mail_type: mail_type,
+        user_id: notify.user_id,
+        content: message,
+        device_id: device_id,
+        repair_order_id: repair_order_id,
+        create_time: (new Date()).toISOString()
+      })
+    }
+
+    if (notify.line_notify &amp;&amp; user.line_notify_token!&#x3D;null &amp;&amp; user.line_notify_token.trim()!&#x3D;&#x27;&#x27;) {
+      await fetch(&#x27;https://notify-api.line.me/api/notify&#x27;, {
+        headers: {
+          &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;,
+          Authorization: &#x60;Bearer ${user.line_notify_token}&#x60;
+        },
+        body: &#x60;message&#x3D;${encodeURIComponent(message)}&#x60;,
+        method: &#x27;POST&#x27;
+      })
+    }
+  }
+
+  async notifyUserByEvent(this_user:UserWithPermission, event:Event, mail_type:string, message:string, device_id&#x3D;undefined, repair_order_id&#x3D;undefined) {
+
+    var notifys &#x3D; null;
+    if (event.notifys!&#x3D;&#x27;&#x27;) {
+      try {
+        notifys &#x3D; JSON.parse(event.notifys);
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+    if (!Array.isArray(notifys)) return;
+
+    for (var notify of notifys) {
+      await this.notifyUser(this_user, notify, mail_type, message, device_id, repair_order_id);
+    }
+  }
+
+
+  /*
+  async queryByFlux(fluxQuery, params&#x3D;{}) {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      var config &#x3D; AppConfigService.getInfluxdbConfig();
+      var influxdb_client &#x3D; InfluxdbClientService.getClient();
+
+      let queryClient &#x3D; influxdb_client.getQueryApi(config.org)
+
+      var datas &#x3D; [];
+      queryClient.queryRows(fluxQuery, {
+        next: (row, tableMeta) &#x3D;&gt; {
+          const tableObject &#x3D; tableMeta.toObject(row)
+          //console.log(tableObject)
+          delete tableObject.result;
+          delete tableObject._start;
+          delete tableObject._stop;
+          delete tableObject._measurement;
+          datas.push(tableObject)
+        },
+        error: (error) &#x3D;&gt; {
+          console.error(&#x27;\nError&#x27;, error)
+          reject(error)
+        },
+        complete: () &#x3D;&gt; {
+          console.log(&#x27;\nSuccess&#x27;)
+          resolve(datas)
+        },
+      })
+    });
+  }
+  */
+
+
+  
+}
+
+
+
+/*
+var time_tariffs:Array&lt;{time:number, tariff:number}&gt; &#x3D; [
+  {
+      time: 5,
+      tariff: 20
+  }, {
+      time: 10,
+      tariff: 30
+  }, {
+      time: 15,
+      tariff: 40
+  }
+];
+
+var domainService &#x3D; new DomainService(null);
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 0, 3, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 0, 5, 10);
+console.log(time_tariffs2)
+
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 0, 7, 10);
+console.log(time_tariffs2)
+
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 5, 7, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 5, 10, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 5, 12, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 5, 15, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 7, 17, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 15, 17, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 7, 17, 10);
+console.log(time_tariffs2)
+
+var time_tariffs2 &#x3D; JSON.parse(JSON.stringify(time_tariffs))
+domainService.mergeTariff(time_tariffs2, 6, 12, 10);
+console.log(time_tariffs2)
+
+time_tariffs2 &#x3D; [
+  {
+      time: 1716781019000,
+      tariff: 20
+  }, {
+      time: 1716781119000,
+      tariff: 30
+  }, {
+      time: 1716781219000,
+      tariff: 40
+  }
+]
+domainService.mergeTariff(time_tariffs2, 1716781009000, 1716781018000, 10);
+console.log(time_tariffs2)
+
+time_tariffs2 &#x3D; [
+  {
+      time: 1716781019000,
+      tariff: 20
+  }, {
+      time: 1716781119000,
+      tariff: 30
+  }, {
+      time: 1716781219000,
+      tariff: 40
+  }
+]
+domainService.mergeTariff(time_tariffs2, 1716781019000, 1716781215000, 50);
+console.log(time_tariffs2)
+
+var xxx &#x3D; 123;
+*/</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,2084 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>aegis documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">aegis documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DataStorerManager</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/data_storer/mqtt.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#appService" >appService</a>
+                            </li>
+                            <li>
+                                <a href="#device_clients" >device_clients</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceConnectionRepository" >deviceConnectionRepository</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceInputRepository" >deviceInputRepository</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceOutputRepository" >deviceOutputRepository</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceService" >deviceService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#deviceTypeService" >deviceTypeService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#domainService" >domainService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#eventService" >eventService</a>
+                            </li>
+                            <li>
+                                <a href="#influxdb_client" >influxdb_client</a>
+                            </li>
+                            <li>
+                                <a href="#last_trigger_times" >last_trigger_times</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#mailService" >mailService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onConnect" >onConnect</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onData" >onData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onDisconnect" >onDisconnect</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onError" >onError</a>
+                            </li>
+                            <li>
+                                <a href="#onModuleInit" >onModuleInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#publicData" >publicData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#sleep" >sleep</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateAllConnection" >updateAllConnection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateAllConnection2" >updateAllConnection2</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(appService: <a href="../injectables/AppService.html" target="_self">AppService</a>, domainService: <a href="../injectables/DomainService.html" target="_self">DomainService</a>, deviceTypeService: <a href="../injectables/DeviceTypeService.html" target="_self">DeviceTypeService</a>, deviceService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>, mailService: <a href="../injectables/MailService.html" target="_self">MailService</a>, eventService: <a href="../injectables/EventService.html" target="_self">EventService</a>, deviceOutputRepository: Repository<DeviceOutput>, deviceInputRepository: Repository<DeviceInput>, deviceConnectionRepository: Repository<DeviceConnection>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:136</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>appService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>domainService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceTypeService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceTypeService.html" target="_self" >DeviceTypeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mailService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MailService.html" target="_self" >MailService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceOutputRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;DeviceOutput&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceInputRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;DeviceInput&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceConnectionRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;DeviceConnection&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onConnect"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onConnect</b></span>
+                        <a href="#onConnect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onConnect(device_client: <a href="../classes/DeviceClient.html" target="_self">DeviceClient</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device_client</td>
+                                            <td>
+                                                            <code><a href="../classes/DeviceClient.html" target="_self" >DeviceClient</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onData</b></span>
+                        <a href="#onData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onData(device_client: <a href="../classes/DeviceClient.html" target="_self">DeviceClient</a>, response_data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="270"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:270</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device_client</td>
+                                            <td>
+                                                            <code><a href="../classes/DeviceClient.html" target="_self" >DeviceClient</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>response_data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDisconnect"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onDisconnect</b></span>
+                        <a href="#onDisconnect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onDisconnect(device_client: <a href="../classes/DeviceClient.html" target="_self">DeviceClient</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:266</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device_client</td>
+                                            <td>
+                                                            <code><a href="../classes/DeviceClient.html" target="_self" >DeviceClient</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onError"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onError</b></span>
+                        <a href="#onError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onError(device_client: <a href="../classes/DeviceClient.html" target="_self">DeviceClient</a>, error: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device_client</td>
+                                            <td>
+                                                            <code><a href="../classes/DeviceClient.html" target="_self" >DeviceClient</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>error</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onModuleInit"></a>
+                    <span class="name">
+                        <span ><b>onModuleInit</b></span>
+                        <a href="#onModuleInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onModuleInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:169</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="publicData"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>publicData</b></span>
+                        <a href="#publicData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>publicData(device_connection_id, topic: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device_connection_id</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>topic</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sleep"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>sleep</b></span>
+                        <a href="#sleep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sleep(msec)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="223"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:223</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>msec</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAllConnection"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updateAllConnection</b></span>
+                        <a href="#updateAllConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAllConnection()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="583"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:583</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAllConnection2"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updateAllConnection2</b></span>
+                        <a href="#updateAllConnection2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAllConnection2()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="587"
+                                    class="link-to-prism">src/modules/data_storer/mqtt.service.ts:587</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>appService</b></span>
+                        <a href="#appService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="device_clients"></a>
+                    <span class="name">
+                        <span ><b>device_clients</b></span>
+                        <a href="#device_clients"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/Device.html" target="_self" >Array&lt;DeviceClient&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceConnectionRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceConnectionRepository</b></span>
+                        <a href="#deviceConnectionRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Repository&lt;DeviceConnection&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(DeviceConnection)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:153</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceInputRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceInputRepository</b></span>
+                        <a href="#deviceInputRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Repository&lt;DeviceInput&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(DeviceInput)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:152</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceOutputRepository"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceOutputRepository</b></span>
+                        <a href="#deviceOutputRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Repository&lt;DeviceOutput&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @InjectRepository(DeviceOutput)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceService</b></span>
+                        <a href="#deviceService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceTypeService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>deviceTypeService</b></span>
+                        <a href="#deviceTypeService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DeviceTypeService.html" target="_self" >DeviceTypeService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domainService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>domainService</b></span>
+                        <a href="#domainService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/DomainService.html" target="_self" >DomainService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>eventService</b></span>
+                        <a href="#eventService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="influxdb_client"></a>
+                    <span class="name">
+                        <span ><b>influxdb_client</b></span>
+                        <a href="#influxdb_client"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="last_trigger_times"></a>
+                    <span class="name">
+                        <span ><b>last_trigger_times</b></span>
+                        <a href="#last_trigger_times"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Array&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:132</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mailService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>mailService</b></span>
+                        <a href="#mailService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/MailService.html" target="_self" >MailService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/modules/data_storer/mqtt.service.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable, NotFoundException, OnModuleInit } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { In, Repository } from &#x27;typeorm&#x27;;
+import { Device } from &#x27;../device/device.entity&#x27;;
+import { Cron, Timeout } from &#x27;@nestjs/schedule&#x27;;
+import { DeviceConnection } from &#x27;../device_connection/device_connection.entity&#x27;;
+import { DeviceType } from &#x27;../device_type/device_type.entity&#x27;;
+import { Domain } from &#x27;../domain/domain.entity&#x27;;
+import { DomainService } from &#x27;../domain/domain.service&#x27;;
+import { DeviceService } from &#x27;../device/device.service&#x27;;
+import { DeviceOutput } from &#x27;../device_output/device_output.entity&#x27;;
+import { InfluxdbClientService } from &#x27;../device_data/influxdb_client.service&#x27;;
+import { AppConfigService } from &#x27;src/app_config.service&#x27;;
+import { DarkBox } from &#x27;../../util/darkbox&#x27;
+import { EventService } from &#x27;../event/event.service&#x27;;
+import { MailService } from &#x27;../mail/mail.service&#x27;;
+import { Util } from &#x27;../../util/util&#x27;;
+import { AppService } from &#x27;../../app.service&#x27;;
+import { DeviceTypeService } from &#x27;../device_type/device_type.service&#x27;;
+import { DeviceInput } from &#x27;../device_input/device_input.entity&#x27;;
+import { RecordConverter } from &#x27;src/util/record_converter&#x27;;
+
+const {InfluxDB, Point} &#x3D; require(&#x27;@influxdata/influxdb-client&#x27;)
+
+const mqtt &#x3D; require(&quot;mqtt&quot;);
+//const DarkBox &#x3D; require(&quot;../../util/d&quot;);
+
+
+type DeviceOutputEx &#x3D; DeviceOutput &amp; { properties?: any, program_root?:any }
+
+var dataStorerManager:DataStorerManager &#x3D; null;
+//var device_clients:Array&lt;DeviceClient&gt; &#x3D; [];
+
+class DeviceClient {
+
+  public client:any;
+//  public domain:Domain
+  public device_connection:DeviceConnection
+  public device_outputs:Array&lt;DeviceOutput&gt;
+
+  public onDataListener: {
+    onData:(device_client:DeviceClient, response_data:any)&#x3D;&gt;any
+  };
+
+  public onEventListener: {
+    onConnect:(device_client:DeviceClient)&#x3D;&gt;any
+    onDisconnect:(device_client:DeviceClient)&#x3D;&gt;any
+    onError:(device_client:DeviceClient, error:any)&#x3D;&gt;any
+  };
+
+  constructor() {
+    console.log(&#x27;DeviceClient constructor&#x27;);
+  }
+  public async connect() {}
+  public async disconnect() {}
+  public async write() {}
+  public async read() {}
+}
+
+class MqttClient extends DeviceClient {
+
+  client:any;
+
+  public async connect() {
+
+    var device_connection &#x3D; this.device_connection;
+
+    if (device_connection.host&#x3D;&#x3D;null) return;
+
+    const option &#x3D; {
+      host: device_connection.host,
+      port: device_connection.port,
+      // enable automatic reconnect
+      clientId: &#x27;aegis_&#x27; + Math.random().toString(16).substring(2, 10),
+      username: device_connection.username,
+      password: device_connection.password,
+      keepalive: 60,  //6s
+      reconnectPeriod: 2*60*1000, // 120s
+    };
+
+    const client &#x3D; mqtt.connect(option);
+    this.client &#x3D; client;
+
+    client.on(&quot;connect&quot;, async() &#x3D;&gt; {
+      console.log(&#x60;MQTT server is connected. connection_id:${device_connection.device_connection_id}, connection_name:${device_connection.device_connection_name}, host:${device_connection.host}&#x60;);
+      if (typeof(this?.onEventListener?.onConnect)&#x3D;&#x3D;&#x27;function&#x27;) {
+        await this.onEventListener.onConnect(this);
+      }
+    });
+    
+    client.on(&quot;message&quot;, async (topic, message) &#x3D;&gt; {
+      // message is Buffer
+      if (typeof(this?.onDataListener?.onData)&#x3D;&#x3D;&#x27;function&#x27;) {
+        await this.onDataListener.onData(this, {topic, message});
+      }
+    });
+    
+    client.on(&#x27;reconnect&#x27;, () &#x3D;&gt; {
+      console.log(&#x27;MQTT server reconnecting...&#x27;);
+    });
+      
+    client.on(&#x27;error&#x27;, async (error) &#x3D;&gt; {
+      console.log(&#x27;MQTT error:&#x27;, error);
+      if (typeof(this?.onEventListener?.onError)&#x3D;&#x3D;&#x27;function&#x27;) {
+        await this.onEventListener.onError(this, error);
+      }
+    });
+
+  }
+
+  async disconnect(): Promise&lt;void&gt; {
+    if (this.client!&#x3D;null) {
+      try {
+        console.log(&#x27;MQTT disconnect - (&#x27;+this?.device_connection?.device_connection_id+&#x27;) &#x27; + this?.device_connection?.device_connection_name + &#x27; (&#x27; + this?.device_connection?.host + &#x27;)&#x27;);
+        await this.client.end();
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+  }
+
+}
+
+
+
+
+@Injectable()
+export class DataStorerManager implements OnModuleInit {
+
+  influxdb_client: any;
+  device_clients: Array&lt;DeviceClient&gt; &#x3D; [];
+  last_trigger_times:Array&lt;{
+    event_id:number,
+    device_id:number,
+    time:number
+  }&gt; &#x3D; []
+
+  constructor(
+    public readonly appService: AppService,
+    public readonly domainService: DomainService,
+    public readonly deviceTypeService: DeviceTypeService,
+    public readonly deviceService: DeviceService,
+    public readonly mailService: MailService,
+    public readonly eventService: EventService,
+
+
+    //  @InjectRepository(Domain) public readonly domainRepository: Repository&lt;Domain&gt;,
+  //  @InjectRepository(DeviceType) public readonly deviceTypeRepository: Repository&lt;DeviceType&gt;,
+  //  @InjectRepository(DataStorer) public readonly dataStorerRepository: Repository&lt;DataStorer&gt;,
+  //  @InjectRepository(Device) public readonly deviceRepository: Repository&lt;Device&gt;,
+    @InjectRepository(DeviceOutput) public readonly deviceOutputRepository: Repository&lt;DeviceOutput&gt;,
+    @InjectRepository(DeviceInput) public readonly deviceInputRepository: Repository&lt;DeviceInput&gt;,
+    @InjectRepository(DeviceConnection) public readonly deviceConnectionRepository: Repository&lt;DeviceConnection&gt;,
+  //  @InjectRepository(SensorSchema) public readonly sensorSchemaRepository: Repository&lt;SensorSchema&gt;,
+  //  public readonly influxdbClientService: InfluxdbClientService,
+  ) {
+    console.log(&#x27;DataStorerManager constructor&#x27;);
+
+    /*
+    var influxdb_config &#x3D; AppConfigService.getInfluxdbConfig();
+    this.influxdb_client &#x3D; new InfluxDB({
+        url: influxdb_config.url,
+        token: influxdb_config.token
+    });
+    */
+    dataStorerManager &#x3D; this;
+  }
+
+  onModuleInit() {
+    console.log(&#x27;DataStorerManager - onModuleInit&#x27;)
+  }
+
+  static publicData(device_connection_id, topic:string, data:string) {
+    try {
+      var device_client &#x3D; dataStorerManager.device_clients.find(x&#x3D;&gt;x.device_connection.device_connection_id&#x3D;&#x3D;device_connection_id);
+      if (device_client!&#x3D;null) {
+        device_client.client.publish(topic, data, {qos:0, retain:true}, (error) &#x3D;&gt; {
+          if (error) {
+            console.error(error)
+          }
+        });
+      }
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+  /*
+  static async notifyDevice(deviceIoService: DeviceIoService) {
+    for (var device_client of device_clients) {
+      var new_device_ios:Array&lt;DeviceIo&gt; &#x3D; [];
+      var device_ios &#x3D; await deviceIoService.findAll();
+      for (var device_io of device_ios) {
+        if (device_io.device_connection_id&#x3D;&#x3D;device_client.device_connection.device_connection_id &amp;&amp; device_io.io_direction&#x3D;&#x3D;&#x27;output&#x27;) {
+          if (device_client.device_connection.device_connection_type&#x3D;&#x3D;&#x27;mqtt&#x27;) {
+            new_device_ios.push(device_io);
+          }
+        }
+      }
+
+      for (var device_io of new_device_ios) {
+        console.log(&#x27;public data to &quot;&#x27;+device_io.mqtt_topic+&#x27;&quot;\n&#x27; + device_io.template);
+        device_client.client.publish(device_io.mqtt_topic, device_io.template);
+        
+        // try {
+        //   var data &#x3D; {
+        //     &quot;command&quot;: &quot;SwitchMode&quot;,
+        //     &quot;parameters&quot;: {
+        //       &quot;mode&quot;: &quot;Protection&quot;
+        //     }
+        //   };
+        //   console.log(&#x27;public data to &quot;/HERMES/EMS000001/control&quot;&#x27;);
+        //   device_client.client.publish(&quot;/HERMES/EMS000001/control&quot;, JSON.stringify(data));
+        // } catch (ex) {
+        //   console.log(ex)
+        // }
+        
+      }
+    }
+  }
+  */
+
+  async sleep(msec) {
+      return new Promise((resolve, reject) &#x3D;&gt; {
+          setTimeout(() &#x3D;&gt; {
+              resolve(null);
+          }, msec);
+      });
+  }
+
+  async onConnect(device_client:DeviceClient) {
+    var device_outputs &#x3D; await this.deviceOutputRepository.find({
+      where: {
+        output_type: &quot;mqtt&quot;,
+        device_type_id: device_client.device_connection.device_type_id
+      }
+    })
+    device_client.device_outputs &#x3D; device_outputs;
+
+    var topics &#x3D; [];
+    for (var device_output of device_outputs) {
+      try {
+        if (device_output.properties!&#x3D;null &amp;&amp; (&#x27;&#x27;+device_output.properties).trim()!&#x3D;&#x27;&#x27;) {
+          var device_output2:DeviceOutputEx &#x3D; device_output
+          device_output2.properties &#x3D; JSON.parse(device_output.properties)
+          var program_root &#x3D; RecordConverter.build(device_output2.properties)
+          device_output2.program_root &#x3D; program_root
+        }
+      } catch (ex) {
+        console.log(ex)
+      }
+      var mqtt_topic:string|null &#x3D; device_output.path?.trim();
+      if (mqtt_topic!&#x3D;null &amp;&amp; mqtt_topic!&#x3D;&#x27;&#x27; &amp;&amp; topics.indexOf(mqtt_topic)&#x3D;&#x3D;-1) {
+        topics.push(mqtt_topic)
+      }
+    }
+
+    device_client.client.subscribe(topics, (err, granted) &#x3D;&gt; {
+      for (var g of granted) {
+        console.log(&#x27;MQTT topic &quot;&#x27;+g.topic+&#x27;&quot; is subscribed, err&#x3D;&#x27;, err);
+      }
+    });
+
+  }
+  
+  async onDisconnect(device_client:DeviceClient) {}
+
+  async onError(device_client:DeviceClient, error:any) {}
+  
+  async onData(device_client:DeviceClient, response_data: any) {
+    var self &#x3D; this;
+
+    var {topic, message} &#x3D; response_data;
+
+    var system_user &#x3D; AppConfigService.getSystemUser()
+
+    var string_data &#x3D; message.toString();
+    console.log((new Date()).toISOString() + &#x27;[&#x27; + topic + &#x27;] &#x27; + string_data);
+    
+    var data_org:any;
+    try {
+      data_org &#x3D; JSON.parse(string_data);
+    } catch (ex) {
+      console.log(ex)
+      return;
+    }
+    if (data_org&#x3D;&#x3D;null) return;
+
+    var events &#x3D; await this.eventService.findAll(system_user);
+
+    var device_connection &#x3D; device_client.device_connection;
+    var device_connection_id &#x3D; device_connection.device_connection_id
+    var domain_name &#x3D; await this.domainService.getDomainName(device_connection.organization_id);
+    if (domain_name&#x3D;&#x3D;null) return;
+
+    var connection_devices &#x3D; await this.deviceService.findAll(system_user, {
+      where:{
+        device_connection_id: device_connection_id
+      }
+    })
+    if (connection_devices.length&#x3D;&#x3D;0) return;
+
+    var influxdb_config &#x3D; AppConfigService.getInfluxdbConfig();
+    var influxdb_client &#x3D; new InfluxDB({
+        url: influxdb_config.url,
+        token: influxdb_config.token
+    });
+
+    var org &#x3D; AppConfigService.getInfluxdbConfig().org;
+    let writeClient &#x3D; influxdb_client.getWriteApi(org, domain_name, &#x27;ms&#x27;)
+
+    var device_outputs:DeviceOutputEx[] &#x3D; device_client.device_outputs;
+    for (var device_output of device_outputs) {
+      try {
+        /*
+        var vars &#x3D; Util.extractVariables(data_storer.src_topic);
+        var args &#x3D; [];
+        for (var v of vars) {
+          args.push({name:v, value:&#x27;+&#x27;});
+        }
+        var src_topic &#x3D; Util.fillTemplate(data_storer.src_topic, args);
+        */
+
+        var topic_device_name &#x3D; null;
+        var listen_topic &#x3D; device_output.path;
+
+        var regex_listen_topic &#x3D; listen_topic.replaceAll(&#x27;+&#x27;, &#x27;(.*)&#x27;)
+        regex_listen_topic &#x3D; regex_listen_topic.replaceAll(&#x27;#&#x27;, &#x27;(.*)&#x27;)
+        var matchs &#x3D; [...topic.matchAll(new RegExp(&#x27;^&#x27;+regex_listen_topic+&#x27;$&#x27;,&#x27;g&#x27;))]
+        if (matchs.length&gt;0) {
+          if (matchs[0].length&gt;1) {
+            topic_device_name &#x3D; matchs[0][matchs[0].length-1]
+            if (topic_device_name&#x3D;&#x3D;&#x27;&#x27;) topic_device_name &#x3D; null;
+          }
+        } else {
+          continue;
+        }
+
+        /*
+        var n &#x3D; listen_topic.lastIndexOf(&#x27;+&#x27;)
+        if (n!&#x3D;-1) {
+          var remain_length &#x3D; listen_topic.length-(n+1);
+          if (topic.substring(0,n)!&#x3D;listen_topic.substring(0,n) || topic.substring(topic.length-remain_length,topic.length)!&#x3D;listen_topic.substring(n+1,listen_topic.length)) continue;
+          topic_device_name &#x3D; topic.substring(n, topic.length - remain_length);
+        } else {
+          if (device_output.path!&#x3D;topic) continue;
+        }
+        */
+
+        var output_devices &#x3D; connection_devices.filter(x&#x3D;&gt;x.device_type_id &#x3D;&#x3D; device_output.device_type_id)
+
+        var datas:any &#x3D; Array.isArray(data_org)?data_org:[data_org];
+        /*
+        var devices &#x3D; null;
+        var device_names:Array&lt;String&gt; &#x3D; [];
+        for (var data of datas) {
+          var device_name &#x3D; getDeviceName(device_output, data, topic_device_name);
+          if (!(device_name&#x3D;&#x3D;null || (&quot;&quot;+device_name).trim()&#x3D;&#x3D;&#x27;&#x27;)) {
+            device_names.push(device_name)
+          }
+        }
+        devices &#x3D; await this.getAllDeviceByDomain(device_output.organization_id, device_output.device_type_id, device_names);
+        */
+ 
+        try {
+          var need_store &#x3D; (device_output.is_store &amp;&amp; device_output.device_output_name!&#x3D;null &amp;&amp; device_output.device_output_name.trim()!&#x3D;&#x27;&#x27;);
+          var need_update_state &#x3D; (device_output.device_state_field!&#x3D;null);
+          //var data_schema &#x3D; JSON.parse(device_output?.data_schema);
+          // data_schema &#x3D; {
+          //   &quot;type&quot;: &quot;array&quot;,
+          //   &quot;items&quot;: {
+          //     &quot;type&quot;: &quot;object&quot;,
+          //     &quot;properties&quot;: {
+          //       &quot;device_name&quot;: {&quot;type&quot;: &quot;string&quot;},
+          //       &quot;value1&quot;: {&quot;type&quot;: &quot;integer&quot;}
+          //       &quot;value2&quot;: {&quot;type&quot;: &quot;number&quot;}
+          //     },
+          //     &quot;required&quot;: [
+          //       &quot;device_name&quot;
+          //     ]
+          //   }
+          // }
+          if (domain_name!&#x3D;null) {
+
+            /*
+            var props;
+            if (data_schema.type&#x3D;&#x3D;&#x27;object&#x27;) {
+              props &#x3D; data_schema.properties;
+            } else if (data_schema.type&#x3D;&#x3D;&#x27;array&#x27;) {
+              props &#x3D; data_schema.items.properties;
+            }
+            */
+
+            //var store_tags &#x3D; [];
+            //var store_tags &#x3D; [{tag:&quot;device_order&quot;,source:&quot;device_order&quot;}]
+            //if (device_output.store_tags!&#x3D;null &amp;&amp; device_output.store_tags.trim()!&#x3D;&#x27;&#x27;) {
+            //  store_tags &#x3D; JSON.parse(device_output.store_tags)
+            //}
+            
+            //var store_fields &#x3D; null;
+            //var store_fields &#x3D; [{field:&quot;SOC&quot;,source:&quot;SOC&quot;},]
+            //if (device_output.store_fields!&#x3D;null &amp;&amp; device_output.store_fields.trim()!&#x3D;&#x27;&#x27;) {
+            //  store_fields &#x3D; JSON.parse(device_output.store_fields)
+            //}
+
+            const DEVICE_NAME_MQTT_TOPIC &#x3D; AppConfigService.DEVICE_NAME_MQTT_TOPIC
+            const DEVICE_NAME_FIELD &#x3D; AppConfigService.DEVICE_NAME_FIELD
+
+            var properties &#x3D; device_output.properties
+            var program_root &#x3D; device_output.program_root
+            var all_has_data &#x3D; false;
+            
+            for (var data of datas) {
+              var device &#x3D; null
+              if (device_output.properties!&#x3D;null) {
+                if (topic_device_name!&#x3D;null) {
+                  data[DEVICE_NAME_MQTT_TOPIC] &#x3D; topic_device_name
+                }
+                var records &#x3D; await RecordConverter.toInfluxRecords(data, program_root)
+                console.log(topic, &#x27; : &#x27;, records)
+
+                var device_name &#x3D; null;
+                for (var record of records) {
+                  let found &#x3D; false
+                  for (var tag of record.tags) {
+                    if (tag.name&#x3D;&#x3D;DEVICE_NAME_FIELD) {
+                      device_name &#x3D; tag.value
+                      found &#x3D; true
+                      break
+                    }
+                  }
+                  if (found) break;
+                }
+                if (device_name&#x3D;&#x3D;null) continue;
+                device &#x3D; output_devices.find(x&#x3D;&gt;x.device_name &#x3D;&#x3D; device_name);
+                if (device&#x3D;&#x3D;null) continue;
+
+                var field_to_update &#x3D; {};
+                if (need_update_state) {
+                  var r &#x3D; await DarkBox.evalScript(device_output.device_state_field, data, false)
+                  if (r!&#x3D;null &amp;&amp; r!&#x3D;device.device_state) field_to_update[&#x27;device_state&#x27;] &#x3D; r;
+                  var r &#x3D; await DarkBox.evalScript(device_output.device_error_code_field, data, false)
+                  if (r!&#x3D;null &amp;&amp; r!&#x3D;device.error_code) field_to_update[&#x27;error_code&#x27;] &#x3D; r;
+                  var r &#x3D; await DarkBox.evalScript(device_output.device_error_description_field, data, false)
+                  if (r!&#x3D;null &amp;&amp; r!&#x3D;device.error_description) field_to_update[&#x27;error_description&#x27;] &#x3D; r;
+                }
+                field_to_update[&#x27;is_online&#x27;] &#x3D; true;
+                field_to_update[&#x27;last_connect_time&#x27;] &#x3D; (new Date()).toISOString();
+                if (Object.keys(field_to_update).length&gt;0) {
+                  await this.deviceService.update(system_user, device.device_id, field_to_update);
+                }
+                if (need_store) {
+                  for (var record of records) {
+                    let point &#x3D; new Point(device_output.device_output_name) //measurement_name
+                    var has_data &#x3D; false;
+                    var tags &#x3D; record.tags
+                    for (var tag of tags) {
+                      if (tag.value&#x3D;&#x3D;null) continue;
+                      if (tag.name&#x3D;&#x3D;&#x27;time&#x27;) {
+                        point.timestamp(new Date(tag.value))
+                      } else {
+                        point.tag(tag.name, tag.value)
+                      }
+                    }
+                    var fields &#x3D; record.fields
+                    for (var field of fields) {
+                      var data_name &#x3D; field.name
+                      var data_value &#x3D; field.value
+                      var type &#x3D; field.type;
+                      if (type&#x3D;&#x3D;&#x27;number&#x27; || type&#x3D;&#x3D;null) {
+                        var v &#x3D; parseFloat(data_value);
+                        if (!isNaN(v)) {
+                          point.floatField(data_name, v)
+                          has_data &#x3D; true;
+                        }
+                      } else if (type&#x3D;&#x3D;&#x27;integer&#x27;) {
+                        var v &#x3D; parseInt(data_value);
+                        if (!isNaN(v)) {
+                          point.intField(data_name, v)
+                          has_data &#x3D; true;
+                        }
+                      } else if (type&#x3D;&#x3D;&#x27;boolean&#x27;) {
+                        point.booleanField(data_name, (data_value&#x3D;&#x3D;&#x27;1&#x27; || (&#x27;&#x27;+data_value).toLowerCase()&#x3D;&#x3D;&#x27;true&#x27;))
+                        has_data &#x3D; true;
+                      } else if (type&#x3D;&#x3D;&#x27;string&#x27;) {
+                        point.stringField(data_name, &#x27;&#x27;+data_value)
+                        has_data &#x3D; true;
+                      }
+                    }
+                    if (has_data) {
+                      writeClient.writePoint(point)
+                      all_has_data &#x3D; true
+                    }
+                  }
+                }
+              }
+
+              if (device!&#x3D;null) {
+                for (var event of events) {
+                  if (!event.enabled || event.event_type!&#x3D;&#x27;device&#x27;) continue;
+                  var is_trigger &#x3D; true;
+                  if (event.domain_id&#x3D;&#x3D;null || event.device_type_id&#x3D;&#x3D;null || event.device_output_id&#x3D;&#x3D;null) is_trigger&#x3D;false;
+                  if (device.device_type_id!&#x3D;event.device_type_id) is_trigger &#x3D; false;
+                  if (device_output.device_output_id!&#x3D;event.device_output_id) is_trigger &#x3D; false;
+                  if (event.device_name!&#x3D;null &amp;&amp; event.device_name!&#x3D;&#x27;&#x27; &amp;&amp; device.device_name!&#x3D;event.device_name) is_trigger &#x3D; false;
+                  if (is_trigger) {
+                    is_trigger &#x3D; await this.domainService.includeDomain(event.domain_id, device.domain_id)
+                  }
+
+                  if (!is_trigger) continue;
+                  try {
+                    //var data_new &#x3D; Object.assign({}, data_tag);
+                    //Object.assign(data_new, data_field);
+                    var data_new &#x3D; Object.assign({}, data);
+                    var context &#x3D; {
+                      device: device,
+                      data: data_new
+                    }
+                    var ret &#x3D; await DarkBox.evalScript(event.compare_function, context);
+      
+                    if (ret&#x3D;&#x3D;true) {
+                      var last_trigger_time &#x3D; this.last_trigger_times.find(x&#x3D;&gt;x.event_id&#x3D;&#x3D;event.event_id &amp;&amp; x.device_id&#x3D;&#x3D;device.device_id)
+                      var prev_time &#x3D; 0;
+                      if (last_trigger_time&#x3D;&#x3D;null) {
+                        last_trigger_time &#x3D; {
+                          event_id: event.event_id,
+                          device_id: device.device_id,
+                          time: 0
+                        }
+                        this.last_trigger_times.push(last_trigger_time)
+                      } else {
+                        prev_time &#x3D; last_trigger_time.time;
+                      }
+                      if (event.not_trigger_second&#x3D;&#x3D;0 || Date.now()-prev_time&gt;event.not_trigger_second*1000) {
+                        last_trigger_time.time &#x3D; Date.now();
+                        //var re &#x3D; new RegExp(&quot;&#x60;&quot;, &quot;g&quot;);
+                        var m &#x3D; event.message.replace(/\&#x60;/g, &#x27;\&#x27;&#x27;);
+                        var new_message &#x3D; await DarkBox.evalScript(&#x27;&#x60;&#x27; + m + &#x27;&#x60;&#x27;, context);
+                        if (new_message!&#x3D;null &amp;&amp; (&#x27;&#x27;+new_message).trim()!&#x3D;&#x27;&#x27;) {
+                          await this.appService.notifyUserByEvent(system_user, event, &#x27;device&#x27;, &#x27;&#x27;+new_message, device.device_id, null)
+                        }
+                      }
+                    }
+                  } catch (ex) {
+                    console.log(ex);
+                    continue;
+                  }
+
+                }
+
+              }
+
+            }
+            try {
+              if (need_store &amp;&amp; all_has_data) await writeClient.flush();
+            } catch(ex2) {
+              console.log(ex2.message);
+              /*
+              if (ex2.statusCode&#x3D;&#x3D;404 &amp;&amp; (/bucket [\s\S]+ not found/.test(&#x27;&#x27;+ex2.message))) {
+                try {
+                  //await influxDB.createDatabase(domain_name);
+                  await this.influxdb_client.createDatabase(domain_name)
+                  if (need_store) await writeClient.flush();
+                } catch (ex3) {
+                  console.log(ex3);
+                }
+              }
+              */
+            }
+          }
+        } catch (ex) {
+          console.log(ex);
+        }
+
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+
+    //client.end();
+  }
+
+  public static async updateAllConnection() {
+    if (dataStorerManager!&#x3D;null) await dataStorerManager.updateAllConnection2();
+  }
+
+  public async updateAllConnection2() {
+
+    var test_mode &#x3D; AppConfigService.getSystemConfig().test_mode
+    if (test_mode) return;
+
+    console.log(&#x27;updateAllConnection ...&#x27;);
+
+    for (var device_client of this.device_clients) {
+      try {
+        await device_client.disconnect();
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+    dataStorerManager.device_clients &#x3D; [];
+
+    var system_user &#x3D; AppConfigService.getSystemUser()
+    
+    try {
+      //await this.domainServiceEx.getAllDevices(this.deviceService, domain.domain_id, {}, 1000000)
+      var device_connections &#x3D; await this.deviceConnectionRepository.find();
+      var device_types &#x3D; await this.deviceTypeService.findAll(system_user)
+      var device_inputs &#x3D; await this.deviceInputRepository.find()
+      var device_outputs &#x3D; await this.deviceOutputRepository.find()
+      device_inputs.sort((a,b)&#x3D;&gt;{return a.run_order-b.run_order})
+      for (var device_connection of device_connections) {
+        try {
+          if (!device_connection.enabled) continue;
+          var device_type &#x3D; device_types.find(x&#x3D;&gt;x.device_type_id&#x3D;&#x3D;device_connection.device_type_id)
+          if (device_type&#x3D;&#x3D;null) continue;
+          if (device_outputs.filter(x &#x3D;&gt; x.device_type_id&#x3D;&#x3D;device_connection.device_type_id &amp;&amp; x.output_type&#x3D;&#x3D;&#x27;mqtt&#x27;).length&gt;0) {
+            var device_client &#x3D; new MqttClient()
+            device_client.device_connection &#x3D; device_connection;
+            device_client.onDataListener &#x3D; this;
+            device_client.onEventListener &#x3D; this;
+            this.device_clients.push(device_client);
+            await device_client.connect()
+          }
+          if (device_inputs.filter(x &#x3D;&gt; x.device_type_id&#x3D;&#x3D;device_connection.device_type_id &amp;&amp; x.input_type&#x3D;&#x3D;&#x27;http&#x27; &amp;&amp; x.autorun).length&gt;0) {
+
+          }
+        } catch (ex) {
+          console.log(ex);
+        }
+      }
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+}</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DataStorerManager.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
